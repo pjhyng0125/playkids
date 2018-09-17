@@ -3,5 +3,25 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="join">
+	<!-- addr -->
+	<select id="selectgugun" resultType="String">
+		select distinct ds_gugun from ds_zip
+		order by ds_gugun
+	</select>
+	
+	<select id="selectdong" parameterType="String" resultType="String">
+		select ds_dong from ds_zip where ds_gugun=#{gugun}
+		order by ds_dong
+	</select>
 
+	<!-- play -->
+	<select id="selecttype" resultType="String">
+		select distinct ptype from play order by ptype
+	</select>
+	
+	<select id="selectact" parameterType="String" resultType="String">
+		select pact from play where ptype=#{ptype}
+		order by pact
+	</select>
+	
 </mapper>

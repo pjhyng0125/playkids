@@ -6,18 +6,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+td{
+	align-items: center;
+	align-self: center;
+	align-content: center;
+}
+</style>
 </head>
 <body>
 <center>
 <div class="container">
 	<div>
-		<h2>회원 가입</h2>
-		아이디: <input type="text"><br>
-		비밀번호: <input type="text"><br>
-		<input type="radio" name="rb" checked> 개인  
-		<input type="radio" name="rb"> 기업<br>
-		<pre><input type="submit" value="로그인">      <input type="submit" value="취소"><br></pre>
-		<pre><a href="#">회원 가입</a>      <a href="#">아이디/비밀번호 찾기</a></pre>
+		<h2>회원 가입</h2><br>
+	<table cellspacing="5" cellpadding="10">
+		<tr>
+			<td width="150px">아이디:</td><td><input type="text"></td>
+		</tr>
+		<tr>
+			<td>비밀번호:</td><td><input type="text"></td>
+		</tr>
+		<tr>
+			<td><input type="radio" name="rb" checked> 개인</td>
+			<td><input type="radio" name="rb"> 기업</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="로그인">
+				<input type="submit" value="취소">
+			</td>
+		</tr>
+		<tr>	
+			<td colspan="2" align="center">
+				<pre><a href="#">회원 가입</a>  <a href="#">아이디/비밀번호 찾기</a></pre>
+			</td>
+		</tr>
+	</table>
 	</div>
 </div>
 </center>

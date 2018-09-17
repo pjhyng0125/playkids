@@ -11,9 +11,9 @@
 <center>
 <div class="container">
 	<div>
+	<h3>회원 가입 선택</h3><br>
 		<pre>
-		<input type="button" value="개인 회원 가입">   
-		<input type="button" value="기업 회원 가입">		
+		<input type="button" value="개인 회원 가입">   <input type="button" value="기업 회원 가입">		
 		</pre><br>
 		<a href="#">로그인 화면으로</a>
 		

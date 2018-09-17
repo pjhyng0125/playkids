@@ -1,0 +1,33 @@
+package com.playkids.persistence;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class JoinDAOImpl implements JoinDAO{
+	@Inject
+	private SqlSession session;
+	
+	public List<String> listgugun() throws SQLException{
+		return session.selectList("join.selectgugun");
+	}
+	
+	public List<String> listdong(String gugun) throws SQLException{
+		return session.selectList("join.selectdong",gugun);
+	}
+
+	@Override
+	public List<String> listtype() throws SQLException {
+		return session.selectList("join.selecttype");
+	}
+
+	@Override
+	public List<String> listact(String ptype) throws SQLException {
+		return session.selectList("join.selectact",ptype);
+	}
+}
