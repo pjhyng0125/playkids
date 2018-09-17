@@ -51,7 +51,6 @@
 		param="type=ptype";
 		$.ajax({
 			url:"/loadplay",
-			//url:"addr_result.jsp",
 			data:param,
 			type:"POST",
 			success:function(str){
