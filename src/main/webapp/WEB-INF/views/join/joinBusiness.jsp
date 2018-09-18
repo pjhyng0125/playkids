@@ -59,13 +59,29 @@
 			<tr>
 				<td>기업소개:</td><td colspan="2"><textarea cols="22px" rows="4px"></textarea></td>
 			</tr>
-			<tr>   
-				<td colspan="3" align="center">
-					<input type="submit" value="다음">
-					<input type="submit" value="취소">
-				</td>
-			</tr>
 		</table>
+		<br><br>
+<!--기업 회원 가입-계좌번호 등록-->
+		<div>
+		<h4>계좌번호 등록</h4><br>
+	<div>
+<pre>
+기업 준수 사항
+ 계좌 번호 등록 안내
+</pre>
+	</div>
+	<table cellspacing="5" cellpadding="10">
+		<tr>
+			<td width="150px">계좌번호:</td><td><input type="text"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="button" value="회원가입">
+				<input type="button" value="취소">
+			</td>
+		</tr>
+	</table>
+	</div>
 	</div>
 </div>
 </center>

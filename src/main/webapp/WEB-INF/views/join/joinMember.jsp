@@ -15,8 +15,7 @@
 		
 //회원가입 버튼 클릭 시
 		$('#btjoin').click(function(){
-			alert('회원 가입 버튼 클릭!');
-			alert('mid:'+$('#mid').val());
+			/* alert('mid:'+$('#mid').val());
 			alert('mpw:'+$('#mpw').val());
 			alert('mname:'+$('#mname').val());
 			alert('gugun:'+$('#gugun').val());
@@ -24,33 +23,38 @@
 			alert('mphone:'+$('#mphone').val());
 			alert('mbirth:'+$('#mbirth').val());
 			alert('playtype:'+$('#playtype').val());
-			alert('act:'+$('#act').val());
-			$.ajax({
-				url:"/insertjoin",
-				data:{
-					mid:$('#mid').val(),
-					mpw:$('#mpw').val(),
-					mname:$('#mname').val(),
-					maddress:$('#gugun').val()+" "+$('#dong').val(),
-					mphone:$('#mphone').val(),
-					mbirth:$('#mbirth').val(),
-					minterest:$('#playtype').val()+" "+$('#act').val()
-				},
-				type:"POST",
-				success:function(result){
-					alert(result);
-					href.location="/login";
-				}				
-			});
-		});
+			alert('act:'+$('#act').val()); */
+			insertmember();
+			location.href="/login";
+		});//btjoin click
 		
 //취소 버튼 클릭 시
-		/* $('#btcancel').click(function(){
-			alert('취소 버튼 클릭!');
-			
-		}); */
+		 $('#btcancel').click(function(){
+			location.href="/login";
+		});//btcancel click 
 		
 	});//function
+//join
+	function insertmember(){
+		$.ajax({
+			url:"/insertjoin",
+			data:{
+				mid:$('#mid').val(),
+				mpw:$('#mpw').val(),
+				mname:$('#mname').val(),
+				maddress:$('#gugun').val()+" "+$('#dong').val(),
+				mphone:$('#mphone').val(),
+				mbirth:$('#mbirth').val(),
+				minterest:$('#playtype').val()+" "+$('#act').val()
+			},
+			type:"POST",
+			success:function(result){
+				alert(result);
+				href.location="/login";
+			}				
+		});//ajax
+	}//insertmember
+	
 //address	
 	function loadgugun(){
 		param="type=gugun";
