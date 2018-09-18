@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+ 	<select id="select_list" resultType="BoardVO">
+ 		select bno, mid, title, regdate, count from board
+ 		order by bno desc
+ 	</select>
+ 	
+ 	<insert id="insert_board">
+ 		insert into board(bno, title, content, mid)
+     	values (tbl_board_seq.nextval, #{title}, #{content}, #{mid})
+ 	</insert>
+ 	
+ 	<delete id="delete_board">
+ 		delete from board 
+ 		where bno=#{bno}
+ 	</delete>
+ 	
+ 	<update id="update_board">
+ 		update board
+ 		set title=#{title}, content=#{content}
+   		where bno=#{bno}
+ 	</update>
+ 	
+ 	<select id="select_board" resultType="BoardVO">
+ 		select bno,mid, title, regdate, content, count from board
+ 		where bno=#{bno}
+ 	</select>
+ 	
+ 	<update id="updateViewCnt">
+ 		update board set count=count+1 where bno=#{bno}
+ 	</update>
+ 	
+ 	
+ 	<!-- ***************************** -->
+ 	
+ 	<!-- 전체 행의수 구하기 -->
+  <select id="selectTotalCount" resultType="int">
+  	select count(*)
+  	from board
+  </select>
+  
+  <!-- 공통된 sql문 작성 저장   -->
+  <sql id="search">
+  	<if test="searchType!=null">
+  		<choose>
+  			<when test="searchType=='t'.toString()">
+  				where title like '%'||#{keyword}||'%'
+  			</when>
+  			<when test="searchType=='c'.toString()">
+  				where content like '%'||#{keyword}||'%'
+  			</when>
+  			<when test="searchType=='w'.toString()">
+  				where writer like '%'||#{keyword}||'%'
+  			</when>
+  		</choose>
+  	</if>
+  </sql>
+  
+
+  
+  <select id="listSearch" resultType="BoardVO">
+  	select * 
+  	from board
+  	<include refid="search"></include>
+  	order by bno desc
+  </select>
+  
+  <select id="listSearchCount" resultType="int">
+  	select count(*) 
+  	from board 
+  	<include refid="search"></include>
+  </select>
+ 	
+ 	
+</mapper>
