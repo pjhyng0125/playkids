@@ -4,13 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="board">
  	<select id="select_list" resultType="BoardVO">
- 		select bno, category, mid, title, regdate, count from board
+ 		select bno, mid, title, regdate, count from board
  		order by bno desc
  	</select>
  	
  	<insert id="insert_board">
- 		insert into board(bno, category, title, content, mid)
-     	values (board_seq.nextval, #{category}, #{title}, #{content}, #{mid})
+ 		insert into board(bno, title, content, mid)
+     	values (tbl_board_seq.nextval, #{title}, #{content}, #{mid})
  	</insert>
  	
  	<delete id="delete_board">
@@ -18,16 +18,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where bno=#{bno}
  	</delete>
  	
- 	<update id="update_boad">
+ 	<update id="update_board">
  		update board
- 		set category=#{category}, title=#{title}, content=#{content}
+ 		set title=#{title}, content=#{content}
    		where bno=#{bno}
  	</update>
  	
  	<select id="select_board" resultType="BoardVO">
- 		select bno, category, mid, title, regdate, count from board
+ 		select bno,mid, title, regdate, content, count from board
  		where bno=#{bno}
  	</select>
+ 	
+ 	<update id="updateViewCnt">
+ 		update board set count=count+1 where bno=#{bno}
+ 	</update>
+ 	
  	
  	<!-- ***************************** -->
  	

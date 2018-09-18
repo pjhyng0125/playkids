@@ -17,13 +17,6 @@ public class BoardDAOImpl implements BoardDAO{
 
 	@Inject
 	private SqlSession sqlsession;
-	
-	@Override
-	public List<BoardVO> select_list() throws Exception {
-		Criteria cri = new Criteria();
-		RowBounds bound = new RowBounds(0,cri.getPerPageNum());
-		return sqlsession.selectList("board.select_list",null,bound);
-	}
 
 	@Override
 	public boolean insert_board(BoardVO vo) throws Exception {
@@ -61,5 +54,11 @@ public class BoardDAOImpl implements BoardDAO{
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return sqlsession.selectOne("board.listSearchCount", cri);
 	}
+	
+	@Override
+	public void updateViewCnt(int bno) {
+		sqlsession.update("board.updateViewCnt", bno);
+	}
+	
 
 }

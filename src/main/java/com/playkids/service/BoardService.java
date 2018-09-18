@@ -6,9 +6,7 @@ import com.playkids.domain.BoardVO;
 import com.playkids.domain.SearchCriteria;
 
 public interface BoardService {
-	
-	public List<BoardVO> select_list() throws Exception;
-	
+
 	public boolean insert_page(BoardVO vo)throws Exception;
 
 	public boolean delete_page(int bno)throws Exception;

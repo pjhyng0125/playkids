@@ -15,11 +15,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Inject
 	private BoardDAO dao;
-	
-	@Override
-	public List<BoardVO> select_list()throws Exception {
-		return dao.select_list();
-	}
+
 
 	@Override
 	public boolean insert_page(BoardVO vo)throws Exception {
@@ -38,6 +34,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardVO select_board(int bno) throws Exception{
+		dao.updateViewCnt(bno);
 		return dao.select_board(bno);
 	}
 	
@@ -50,5 +47,6 @@ public class BoardServiceImpl implements BoardService{
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return dao.listSearchCount(cri);
 	}
+	
 
 }

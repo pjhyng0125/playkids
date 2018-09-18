@@ -5,7 +5,6 @@ import java.sql.Date;
 public class BoardVO {
 
 	private int bno;					// 게시물 번호
-	private String category;			// 게시물 카테고리
 	private String mid;					// 작성자 - 유저id
 	private String title;				// 제목
 	private String content;				// 내용
@@ -49,16 +48,11 @@ public class BoardVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
+	
 	
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno + ", category=" + category + ", mid=" + mid + ", title=" + title + ", content="
+		return "BoardVO [bno=" + bno +", mid=" + mid + ", title=" + title + ", content="
 				+ content + ", regdate=" + regdate + ", count=" + count + "]";
 	}
 }
