@@ -121,6 +121,10 @@ public class JoinController {
 				result="기업 회원 로그인 실패...";
 		}
 		return result;
-			
+	}
+	
+	@RequestMapping(value="createclass")
+	public String createClass() {
+		return "/join/createClass";
 	}
 }
