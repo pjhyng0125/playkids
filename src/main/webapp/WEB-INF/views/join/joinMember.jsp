@@ -10,10 +10,45 @@
 <script type="text/javascript">
 	
 	$(function(){
-		
-		alert('시작!');
 		loadgugun();
 		loadplaytype();
+		
+//회원가입 버튼 클릭 시
+		$('#btjoin').click(function(){
+			alert('회원 가입 버튼 클릭!');
+			alert('mid:'+$('#mid').val());
+			alert('mpw:'+$('#mpw').val());
+			alert('mname:'+$('#mname').val());
+			alert('gugun:'+$('#gugun').val());
+			alert('dong:'+$('#dong').val());
+			alert('mphone:'+$('#mphone').val());
+			alert('mbirth:'+$('#mbirth').val());
+			alert('playtype:'+$('#playtype').val());
+			alert('act:'+$('#act').val());
+			$.ajax({
+				url:"/insertjoin",
+				data:{
+					mid:$('#mid').val(),
+					mpw:$('#mpw').val(),
+					mname:$('#mname').val(),
+					maddress:$('#gugun').val()+" "+$('#dong').val(),
+					mphone:$('#mphone').val(),
+					mbirth:$('#mbirth').val(),
+					minterest:$('#playtype').val()+" "+$('#act').val()
+				},
+				type:"POST",
+				success:function(result){
+					alert(result);
+					href.location="/login";
+				}				
+			});
+		});
+		
+//취소 버튼 클릭 시
+		/* $('#btcancel').click(function(){
+			alert('취소 버튼 클릭!');
+			
+		}); */
 		
 	});//function
 //address	
@@ -84,16 +119,16 @@
 	<h3>개인 회원 가입</h3><br>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td width="150px">아이디:</td><td colspan="2"><input type="text"></td>
+				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="mid"></td>
 			</tr>
 			<tr>
-				<td>비밀번호:</td><td colspan="2"><input type="text"></td>
+				<td>비밀번호:</td><td colspan="2"><input type="password"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="text"></td>
+				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="mpw"></td>
 			</tr>
 			<tr>
-				<td>이름:</td><td colspan="2"><input type="text"></td>
+				<td>이름:</td><td colspan="2"><input type="text" id="mname"></td>
 			</tr>
 			<tr>
 				<td>주소:</td>
@@ -109,10 +144,10 @@
 				    </td>
 			</tr>
 			<tr>
-				<td>폰번호:</td><td colspan="2"><input type="text"></td>
+				<td>폰번호:</td><td colspan="2"><input type="text" id="mphone"></td>
 			</tr>
 			<tr>
-				<td>생년월일:</td><td colspan="2"><input type="text"></td>
+				<td>생년월일:</td><td colspan="2"><input type="text" id="mbirth"></td>
 			</tr>
 			<tr>
 				<td>관심사:</td>
@@ -129,8 +164,8 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="center">
-					<input type="submit" value="회원가입">
-					<input type="submit" value="취소">
+					<input type="button" value="회원가입" id="btjoin">
+					<input type="reset" value="취소" id="btcancel">
 				</td>
 			</tr>
 		</table>

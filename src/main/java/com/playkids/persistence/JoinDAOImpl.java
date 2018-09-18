@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.playkids.domain.MemberVO;
+
 @Repository
 public class JoinDAOImpl implements JoinDAO{
 	@Inject
@@ -29,5 +31,14 @@ public class JoinDAOImpl implements JoinDAO{
 	@Override
 	public List<String> listact(String ptype) throws SQLException {
 		return session.selectList("join.selectact",ptype);
+	}
+
+	@Override
+	public boolean insertmember(MemberVO member) throws SQLException {
+		int n=session.insert("join.insertmember", member);
+		if(n==1)
+			return true;
+		else
+			return false;
 	}
 }

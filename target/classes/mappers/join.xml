@@ -24,4 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by pact
 	</select>
 	
+	<!-- join -->
+	<insert id="insertmember" parameterType="com.playkids.domain.MemberVO">
+		insert into member
+		values (#{mid},#{mpw},#{mname},#{maddress},#{mphone},#{mbirth},#{minterest})
+	</insert>
 </mapper>
