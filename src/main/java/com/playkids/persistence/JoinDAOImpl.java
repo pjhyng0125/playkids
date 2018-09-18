@@ -2,6 +2,7 @@ package com.playkids.persistence;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,6 +47,24 @@ public class JoinDAOImpl implements JoinDAO{
 	@Override
 	public boolean insertbusiness(BusinessVO business) throws SQLException {
 		int n=session.insert("join.insertbusiness", business);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean loginmember(Map<String, String> map) throws SQLException {
+		int n=session.selectOne("join.loginmember", map);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean loginbusiness(Map<String, String> map) throws SQLException {
+		int n=session.selectOne("join.loginbusiness", map);
 		if(n==1)
 			return true;
 		else

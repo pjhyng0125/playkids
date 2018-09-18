@@ -2,6 +2,7 @@ package com.playkids.persistence;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,5 +19,7 @@ public interface JoinDAO {
 	public List<String> listtype() throws SQLException;
 	public List<String> listact(String ptype) throws SQLException;
 	public boolean insertmember(MemberVO member) throws SQLException;	
-	public boolean insertbusiness(BusinessVO business) throws SQLException;	
+	public boolean insertbusiness(BusinessVO business) throws SQLException;
+	public boolean loginmember(Map<String, String> map) throws SQLException;
+	public boolean loginbusiness(Map<String, String> map) throws SQLException;
 }

@@ -2,6 +2,7 @@ package com.playkids.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -44,6 +45,16 @@ public class JoinServiceImpl implements JoinService{
 	@Override
 	public boolean createbusiness(BusinessVO business) throws SQLException {
 		return joindao.insertbusiness(business);
+	}
+
+	@Override
+	public boolean findmember(Map<String, String> map) throws SQLException {
+		return joindao.loginmember(map);
+	}
+	
+	@Override
+	public boolean findbusiness(Map<String, String> map) throws SQLException {
+		return joindao.loginbusiness(map);
 	}
 	
 

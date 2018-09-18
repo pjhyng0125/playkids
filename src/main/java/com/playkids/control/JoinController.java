@@ -1,9 +1,13 @@
 package com.playkids.control;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,5 +95,32 @@ public class JoinController {
 				result="기업 회원 가입 실패...";
 		}
 		return result;
+	}
+	
+	@RequestMapping(value="findlogin")
+	public @ResponseBody String findLogin(HttpServletRequest request, String type, String id, String pw) throws SQLException {
+		String result=null;
+		Map<String, String> map=new HashMap<>();
+		HttpSession session=request.getSession();
+		System.out.println(id+pw);
+		map.put("id", id);
+		map.put("pw", pw);
+		if(type.equals("member")) {
+			if(service.findmember(map)) {
+				result="개인 회원 로그인 성공!!!";
+				session.setAttribute("login_member", map.get("id"));
+			}
+			else
+				result="개인 회원 로그인 실패...";
+		}else if(type.equals("business")) {
+			if(service.findbusiness(map)) {
+				result="기업 회원 로그인 성공!!!";
+				session.setAttribute("login_business", map.get("id"));
+			}
+			else
+				result="기업 회원 로그인 실패...";
+		}
+		return result;
+			
 	}
 }

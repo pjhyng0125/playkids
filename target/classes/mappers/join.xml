@@ -34,4 +34,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into business
 		values (#{bid},#{bpw},#{bname},#{bintro},#{bphone},#{baddress},sysdate,#{baccount})
 	</insert>
+	<!-- login member -->
+	<select id="loginmember" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from member
+		where mid=#{id} and mpw=#{pw}
+	</select>
+	<!-- login business -->
+	<select id="loginbusiness" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from business
+		where bid=#{id} and bpw=#{pw}
+	</select>
 </mapper>
