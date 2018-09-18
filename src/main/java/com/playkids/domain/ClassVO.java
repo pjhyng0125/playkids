@@ -3,19 +3,29 @@ package com.playkids.domain;
 import java.util.Date;
 
 public class ClassVO {
+	private String bid;
 	private String ctype;
 	private String cname;
-	private Date cdate;
 	private String cpic;
-	private String bid;
 	private String cage;
 	private String cintro;
-	private String cteacher;
-	private String cteacherpic;
+	private Date cdate;
 	private String prepare;
 	private String notice;
 	private int price;
+	private String cteachername;
+	private String cteacherpic;
+	private String cteacher;
+	private Date cregdate;
 	private int autho;
+
+	public String getBid() {
+		return bid;
+	}
+
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
 
 	public String getCtype() {
 		return ctype;
@@ -33,28 +43,12 @@ public class ClassVO {
 		this.cname = cname;
 	}
 
-	public Date getCdate() {
-		return cdate;
-	}
-
-	public void setCdate(Date cdate) {
-		this.cdate = cdate;
-	}
-
 	public String getCpic() {
 		return cpic;
 	}
 
 	public void setCpic(String cpic) {
 		this.cpic = cpic;
-	}
-
-	public String getBid() {
-		return bid;
-	}
-
-	public void setBid(String bid) {
-		this.bid = bid;
 	}
 
 	public String getCage() {
@@ -73,20 +67,12 @@ public class ClassVO {
 		this.cintro = cintro;
 	}
 
-	public String getCteacher() {
-		return cteacher;
+	public Date getCdate() {
+		return cdate;
 	}
 
-	public void setCteacher(String cteacher) {
-		this.cteacher = cteacher;
-	}
-
-	public String getCteacherpic() {
-		return cteacherpic;
-	}
-
-	public void setCteacherpic(String cteacherpic) {
-		this.cteacherpic = cteacherpic;
+	public void setCdate(Date cdate) {
+		this.cdate = cdate;
 	}
 
 	public String getPrepare() {
@@ -113,6 +99,38 @@ public class ClassVO {
 		this.price = price;
 	}
 
+	public String getCteachername() {
+		return cteachername;
+	}
+
+	public void setCteachername(String cteachername) {
+		this.cteachername = cteachername;
+	}
+
+	public String getCteacherpic() {
+		return cteacherpic;
+	}
+
+	public void setCteacherpic(String cteacherpic) {
+		this.cteacherpic = cteacherpic;
+	}
+
+	public String getCteacher() {
+		return cteacher;
+	}
+
+	public void setCteacher(String cteacher) {
+		this.cteacher = cteacher;
+	}
+
+	public Date getCregdate() {
+		return cregdate;
+	}
+
+	public void setCregdate(Date cregdate) {
+		this.cregdate = cregdate;
+	}
+
 	public int getAutho() {
 		return autho;
 	}
@@ -123,9 +141,10 @@ public class ClassVO {
 
 	@Override
 	public String toString() {
-		return "ClassVO [ctype=" + ctype + ", cname=" + cname + ", cdate=" + cdate + ", cpic=" + cpic + ", bid=" + bid
-				+ ", cage=" + cage + ", cintro=" + cintro + ", cteacher=" + cteacher + ", cteacherpic=" + cteacherpic
-				+ ", prepare=" + prepare + ", notice=" + notice + ", price=" + price + ", autho=" + autho + "]";
+		return "ClassVO [bid=" + bid + ", ctype=" + ctype + ", cname=" + cname + ", cpic=" + cpic + ", cage=" + cage
+				+ ", cintro=" + cintro + ", cdate=" + cdate + ", prepare=" + prepare + ", notice=" + notice + ", price="
+				+ price + ", cteachername=" + cteachername + ", cteacherpic=" + cteacherpic + ", cteacher=" + cteacher
+				+ ", cregdate=" + cregdate + ", autho=" + autho + "]";
 	}
 
 }
