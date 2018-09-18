@@ -24,9 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by pact
 	</select>
 	
-	<!-- join -->
+	<!-- join member -->
 	<insert id="insertmember" parameterType="com.playkids.domain.MemberVO">
 		insert into member
 		values (#{mid},#{mpw},#{mname},#{maddress},#{mphone},#{mbirth},#{minterest})
+	</insert>
+	<!-- join business -->
+	<insert id="insertbusiness" parameterType="BusinessVO">
+		insert into business
+		values (#{bid},#{bpw},#{bname},#{bintro},#{bphone},#{baddress},sysdate,#{baccount})
 	</insert>
 </mapper>

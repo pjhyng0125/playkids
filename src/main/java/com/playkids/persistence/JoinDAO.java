@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.playkids.domain.BusinessVO;
 import com.playkids.domain.MemberVO;
 
 public interface JoinDAO {
@@ -17,4 +18,5 @@ public interface JoinDAO {
 	public List<String> listtype() throws SQLException;
 	public List<String> listact(String ptype) throws SQLException;
 	public boolean insertmember(MemberVO member) throws SQLException;	
+	public boolean insertbusiness(BusinessVO business) throws SQLException;	
 }

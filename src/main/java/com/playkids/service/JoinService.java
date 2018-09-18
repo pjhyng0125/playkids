@@ -3,6 +3,7 @@ package com.playkids.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.playkids.domain.BusinessVO;
 import com.playkids.domain.MemberVO;
 
 public interface JoinService {
@@ -12,4 +13,5 @@ public interface JoinService {
 	public List<String> selecttype() throws SQLException;
 	public List<String> selectact(String ptype) throws SQLException;
 	public boolean createmember(MemberVO member) throws SQLException;
+	boolean createbusiness(BusinessVO business) throws SQLException;
 }

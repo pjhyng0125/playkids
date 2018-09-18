@@ -6,6 +6,75 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	
+	$(function(){
+		loadgugun();
+		
+//회원가입 버튼 클릭 시
+		$('#btjoin').click(function(){
+			insertbusiness();
+		});//btjoin click
+		
+//취소 버튼 클릭 시
+		 $('#btcancel').click(function(){
+			location.href="/login";
+		});//btcancel click 
+		
+	});//function
+//join
+	function insertbusiness(){
+		$.ajax({
+			url:"/insertjoin",
+			data:{
+				type:"business",
+				bid:$('#bid').val(),
+				bpw:$('#bpw').val(),
+				bname:$('#bname').val(),
+				bintro:$('#bintro').val(),
+				bphone:$('#bphone').val(),
+				baddress:$('#gugun').val()+","+$('#dong').val()+","+$('#road').val(),
+				baccount:$('#baccount').val()
+			},
+			type:"POST",
+			success:function(result){
+				alert(result);
+				href.location="/login";
+			}				
+		});//ajax
+	}//insertmember
+	
+//address	
+	function loadgugun(){
+		param="type=gugun";
+		$.ajax({
+			url:"/loadaddr",
+			//url:"addr_result.jsp",
+			data:param,
+			type:"POST",
+			success:function(str){
+				var gugun=document.getElementById("gugun");
+				gugun.innerHTML=str;
+			}
+		});//ajax for gugun
+	}//loadgugun
+		
+	function loaddong(){
+		$.ajax({
+			url:"/loadaddr",
+			data:{
+				type:"dong",
+				gugun:$('#gugun').val()
+			},
+			type:"POST",
+			success:function(str){
+				var dong=document.getElementById("dong");
+				dong.innerHTML=str;
+			}
+		});//ajax for dong
+	}//loaddong
+		
+</script>
 </head>
 <body>
 <center>
@@ -14,50 +83,38 @@
 	<h3>기업 회원 가입</h3><br>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td width="150px">아이디:</td><td colspan="2"><input type="text"></td>
+				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="bid"></td>
 			</tr>
 			<tr>
-				<td>비밀번호:</td><td colspan="2"><input type="text"></td>
+				<td>비밀번호:</td><td colspan="2"><input type="password"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="text"></td>
+				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="bpw"></td>
 			</tr>
 			<tr>
-				<td>기업명:</td><td colspan="2"><input type="text"></td>
+				<td>기업명:</td><td colspan="2"><input type="text" id="bname"></td>
 			</tr>
 			<tr>
 				<td>주소:</td>
 					<td>
-						<select>
-							<option>노원구</option>
+						<select name="gugun" id="gugun" onchange="loaddong()">
+							<option value="0">==선택==</option>
 		               	</select>
 				    </td>
 				    <td>
-						<select>
-							<option>중계동</option>
+						<select name="dong" id="dong">
+							<option value="0">==선택==</option>
 		               	</select>
 				    </td>
 			</tr>
 			<tr>
-				<td>전화번호:</td><td colspan="2"><input type="text"></td>
+				<td>도로명주소:</td><td colspan="2"><input type="text" id="road"></td>
 			</tr>
 			<tr>
-				<td>관심분야:</td>
-					<td>
-						<select>
-							<option>야외활동</option>
-							<option>실내활동</option>
-		               	</select>
-				    </td>
-				    <td>
-						<select>
-							<option>축구</option>
-							<option>농구</option>
-		               	</select>
-				    </td>
+				<td>전화번호:</td><td colspan="2"><input type="text" id="bphone"></td>
 			</tr>
 			<tr>
-				<td>기업소개:</td><td colspan="2"><textarea cols="22px" rows="4px"></textarea></td>
+				<td>기업소개:</td><td colspan="2"><textarea cols="22px" rows="4px" id="bintro"></textarea></td>
 			</tr>
 		</table>
 		<br><br>
@@ -72,12 +129,12 @@
 	</div>
 	<table cellspacing="5" cellpadding="10">
 		<tr>
-			<td width="150px">계좌번호:</td><td><input type="text"></td>
+			<td width="150px">계좌번호:</td><td><input type="text" id="baccount"></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="회원가입">
-				<input type="button" value="취소">
+				<input type="button" value="회원가입" id="btjoin">
+				<input type="button" value="취소" id="btcancel">
 			</td>
 		</tr>
 	</table>

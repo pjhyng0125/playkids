@@ -39,6 +39,7 @@
 		$.ajax({
 			url:"/insertjoin",
 			data:{
+				type:"member",
 				mid:$('#mid').val(),
 				mpw:$('#mpw').val(),
 				mname:$('#mname').val(),
@@ -96,8 +97,8 @@
 				var playtype=document.getElementById("playtype");
 				playtype.innerHTML=str;
 			}
-		});//ajax for gugun
-	}//loadgugun
+		});//ajax for playtype
+	}//loadplaytype
 		
 	function loadact(){
 		$.ajax({
@@ -111,8 +112,8 @@
 				var act=document.getElementById("act");
 				act.innerHTML=str;
 			}
-		});//ajax for dong
-	}//loaddong
+		});//ajax for act
+	}//loadact
 		
 </script>
 </head>

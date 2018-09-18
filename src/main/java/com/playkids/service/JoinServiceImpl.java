@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.playkids.domain.BusinessVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.persistence.JoinDAO;
 
@@ -38,6 +39,11 @@ public class JoinServiceImpl implements JoinService{
 	@Override
 	public boolean createmember(MemberVO member) throws SQLException {
 		return joindao.insertmember(member);
+	}
+
+	@Override
+	public boolean createbusiness(BusinessVO business) throws SQLException {
+		return joindao.insertbusiness(business);
 	}
 	
 

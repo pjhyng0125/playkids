@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.playkids.domain.BusinessVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.service.JoinService;
 
@@ -76,12 +77,19 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value="insertjoin")
-	public @ResponseBody String insertJoin(MemberVO member) throws SQLException {
+	public @ResponseBody String insertJoin(String type, MemberVO member, BusinessVO business) throws SQLException {
 		String result=null;
-		if(service.createmember(member))
-			result="회원 가입 성공!!!";
-		else
-			result="회원 가입 실패...";
+		if(type.equals("member")) {
+			if(service.createmember(member))
+				result="개인 회원 가입 성공!!!";
+			else
+				result="개인 회원 가입 실패...";
+		}else if(type.equals("business")) {
+			if(service.createbusiness(business))
+				result="기업 회원 가입 성공!!!";
+			else
+				result="기업 회원 가입 실패...";
+		}
 		return result;
 	}
 }
