@@ -70,10 +70,13 @@ public class ReplyController {
 	@RequestMapping(value="/all/{bno}",method=RequestMethod.GET)
 	public List<ReplyVO> list(@PathVariable("bno") int bno) {
 		List<ReplyVO> list=null;
+		ResponseEntity<String> entity=null;
 		try {
 			list =service.list_reply(bno);
+			entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			entity = new ResponseEntity<>("FAIL",HttpStatus.BAD_REQUEST);
 		}
 		
 		return list;
