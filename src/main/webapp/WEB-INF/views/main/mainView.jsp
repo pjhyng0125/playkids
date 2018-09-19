@@ -112,6 +112,7 @@
   </section>
   <div class="container">
   <img onclick="javascript:location.href='/program1';" src="/resources/bootstrap/images/slide4.jpg">
+  <img onclick="javascript:location.href='/program2';" src="/resources/bootstrap/images/slide7.jpg" hspace="50">
   </div>
   
   <br><br>
@@ -124,9 +125,10 @@
   
   <div class="container">
   <img onclick="javascript:location.href='/program';" src="/resources/bootstrap/images/slide5.jpg">
+  <img onclick="javascript:location.href='/program';" src="/resources/bootstrap/images/slide13.jpg" hspace="50">
   </div>
   
-  <br><br><br><br><br>
+  <br><br><br><br><br><br>
   <footer id="footer" class="midnight-blue">
     <div class="container">
       <div class="row">
