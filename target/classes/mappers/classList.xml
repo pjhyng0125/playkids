@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="classList">
+	<select id="selectClist" parameterType="map" resultType="ClassListVO">
+	select ctype, cname, cdate, cpic, baddress, cage,price
+	from class natural join business
+	</select>
+	
+	<select id="selectGu" parameterType="map" resultType="string">
+	select distinct baddress 
+	from class natural join business
+	order by baddress asc
+	</select>
+</mapper>
