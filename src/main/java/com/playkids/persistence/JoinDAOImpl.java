@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 
 @Repository
@@ -83,6 +84,15 @@ public class JoinDAOImpl implements JoinDAO{
 	@Override
 	public boolean findidcheckbusin(String checkid) {
 		int n=session.selectOne("join.findidcheckbusin",checkid);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean insertclass(ClassVO cv) {
+		int n=session.insert("join.insertclass", cv);
 		if(n==1)
 			return true;
 		else

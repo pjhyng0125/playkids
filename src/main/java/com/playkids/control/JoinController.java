@@ -1,6 +1,8 @@
 package com.playkids.control;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,11 +11,15 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.service.JoinService;
 
@@ -144,8 +150,60 @@ public class JoinController {
 	}
 	
 //클래스 생성 action
-	@RequestMapping(value="insertclass")
-	public String createClass() {
+	@RequestMapping(value="insertclass", method=RequestMethod.GET)
+	public String showclass() {
 		return "/join/createClass";
 	}
+	
+	
+	/*@RequestMapping(value="insertclass", method=RequestMethod.POST)
+	public @ResponseBody String createClass(HttpServletRequest request) throws IOException {
+		MultipartRequest mreq=null;
+		String result=null;
+		String formName=null;
+		String fileName=null;
+		String savepath=request.getServletContext().getRealPath("/upload");
+		System.out.println("savepath:"+savepath);
+		int maxSize=5*1024*1024;
+		mreq=new MultipartRequest(request, savepath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+		
+		
+		@SuppressWarnings("rawtypes")
+		Enumeration formNames=mreq.getFileNames();
+		while(formNames.hasMoreElements()) {
+			formName=(String)formNames.nextElement();
+			fileName=mreq.getFilesystemName(formName);
+			System.out.println("filename:"+fileName);
+			if(fileName != null) {
+				System.out.println("파일 업로드 성공!");
+			}//if
+		}//while
+		
+		ClassVO cv=new ClassVO();
+		cv.setBid(mreq.getParameter("bid"));
+		cv.setCtype(mreq.getParameter("ctype"));
+		cv.setCname(mreq.getParameter("cname"));
+		//cv.setCpic("cpic");
+		cv.setCpic(mreq.getFilesystemName("cpic"));
+		cv.setCage(mreq.getParameter("cage1")+","+mreq.getParameter("cage2"));
+		cv.setCintro(mreq.getParameter("cintro"));
+		
+		//cv.setCdate(mreq.getParameter("cdate"));
+		cv.setPrepare(mreq.getParameter("prepare"));
+		cv.setNotice(mreq.getParameter("notice"));
+		cv.setPrice(Integer.parseInt(mreq.getParameter("price")));
+		
+		cv.setCteachername(mreq.getParameter("cteachername"));
+		//cv.setCteacherpic(mreq.getParameter("cteacherpic"));
+		cv.setCpic(mreq.getFilesystemName("cteacherpic"));
+		cv.setCteacher(mreq.getParameter("cteacher"));		
+		
+		if(service.createclass(cv)) {
+			result="클래스 입력 성공!!!";
+		}else {
+			result="클래스 입력 실패...";		
+		}
+		
+		return result;
+	}*/
 }
