@@ -25,6 +25,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/resources/ref/cos.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

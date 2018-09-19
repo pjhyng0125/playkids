@@ -15,8 +15,20 @@
 	});
 	
 	function insertclass(){
-		
-	}
+		var form=$('form')[0];
+		var formData=new FormData(form);
+		$.ajax({
+			url:"/insertclass",
+			type:"POST",
+			processData:false,
+			contentType:false,
+			data:formData,
+			success:function(data){
+				alert(data);//입력 성공시: 클래스 입력 성공!!!
+							//입력 실패시: 클래스 입력 실패...
+			}
+		});//ajax
+	}//insertclass
 </script>
 </head>
 <body>
@@ -24,6 +36,7 @@
 <div class="container">
 	<h3>클래스 등록 화면</h3><br>
 <!-- 클래스 정보 입력 -->
+<form enctype="multipart/form-data" method="post">
 	<div>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
@@ -108,6 +121,7 @@
 	<input type="button" value="클래스등록" id="btaddclass">
 	<input type="button" value="취소" id="btcancel">
 </div>
+</form>
 </div>
 </center>
 </body>

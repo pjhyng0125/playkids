@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 
 public interface JoinDAO {
@@ -24,4 +25,5 @@ public interface JoinDAO {
 	public boolean loginbusiness(Map<String, String> map) throws SQLException;
 	public boolean findidcheck(String checkid);
 	public boolean findidcheckbusin(String checkid);
+	public boolean insertclass(ClassVO cv);
 }

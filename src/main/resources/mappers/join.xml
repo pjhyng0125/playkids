@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- join member -->
-	<insert id="insertmember" parameterType="com.playkids.domain.MemberVO">
+	<insert id="insertmember" parameterType="MemberVO">
 		insert into member
 		values (#{mid},#{mpw},#{mname},#{maddress},#{mphone},#{mbirth},#{minterest})
 	</insert>
@@ -33,6 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertbusiness" parameterType="BusinessVO">
 		insert into business
 		values (#{bid},#{bpw},#{bname},#{bintro},#{bphone},#{baddress},sysdate,#{baccount})
+	</insert>
+	<!-- insert class -->
+	<insert id="insertclass" parameterType="ClassVO">
+		insert into class
+		values (#{bid},#{ctype},#{cname},#{cpic},#{cage},#{cintro},#{cdate},#{prepare},#{notice},#{price},#{cteachername},#{cteacherpic},#{cteacher},sysdate,'flase')
 	</insert>
 	<!-- login member -->
 	<select id="loginmember" parameterType="java.util.Map" resultType="Integer">
