@@ -91,4 +91,5 @@ values (tbl_reply_seq.nextval,'1','¿¬½À´ñ±Û12','abcd1234');
 insert into reply (rno, bno, reply_content, replyer)
 values (tbl_reply_seq.nextval,'1','¿¬½À´ñ±Û13','abcd1234');
 
+select * from reply
 

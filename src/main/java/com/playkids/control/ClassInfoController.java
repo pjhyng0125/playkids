@@ -36,6 +36,18 @@ public class ClassInfoController {
 		model.addAttribute("businessVO", businessVO);
 		return "classInfo/classInfo";
 	}
+
+	@RequestMapping("/map")
+	public String select_info(String bid, Model model)throws Exception{
+		if(bid==null) {
+			bid="키즈키즈";
+		}
+		
+		BusinessVO businessVO = service.select_business(bid);
+		
+		model.addAttribute("businessVO", businessVO);
+		return "api/mapApi";
+	}
 	
 	
 	

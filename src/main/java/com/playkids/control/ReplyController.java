@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.playkids.domain.Criteria;
@@ -25,11 +26,11 @@ public class ReplyController {
 
 	@Inject
 	private ReplyService service;
-	/*
-	@RequestMapping(value="/{bno}/{page}",method=RequestMethod.GET)
+	
+	
+	@RequestMapping(value="/{bno}/{replypage}",method=RequestMethod.GET)
 	public Map<String, Object> listPage(@PathVariable("bno") int bno,
-						 @PathVariable("page") int page) {
-		
+						 @PathVariable("replypage") int page) {
 		Map<String , Object> map = new HashMap<>();
 		List<ReplyVO> list= null;
 		Criteria cri = new Criteria();
@@ -40,7 +41,9 @@ public class ReplyController {
 			pm.setCri(cri);
 			pm.setTotalRecord(service.count(bno));
 			
-			list = service.listReply(bno, cri);
+			list = service.list_reply(bno,cri);
+			
+			System.out.println("댓글 list >>>>"+list);
 			
 			map.put("list", list);
 			map.put("pm", pm);
@@ -51,7 +54,7 @@ public class ReplyController {
 		}
 		return map;
 	}
-	*/
+	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
 		//ResponseEntity<클라이어트에게 전달할 자료형> 								
@@ -66,22 +69,6 @@ public class ReplyController {
 		
 		return entity;
 	}
-	
-	@RequestMapping(value="/all/{bno}",method=RequestMethod.GET)
-	public List<ReplyVO> list(@PathVariable("bno") int bno) {
-		List<ReplyVO> list=null;
-		ResponseEntity<String> entity=null;
-		try {
-			list =service.list_reply(bno);
-			entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>("FAIL",HttpStatus.BAD_REQUEST);
-		}
-		
-		return list;
-	}
-	
 	
 	@RequestMapping(value="/{rno}",method=RequestMethod.PUT)
 	public ResponseEntity<String> update(@PathVariable("rno") int rno, 

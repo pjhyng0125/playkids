@@ -20,8 +20,7 @@ public class ReplyDAOImpl implements ReplyDAO{
 	private SqlSession sqlsession;
 	
 	@Override
-	public List<ReplyVO> list_reply(int bno) throws Exception {
-		Criteria cri = new Criteria();
+	public List<ReplyVO> list_reply(int bno,Criteria cri) throws Exception {
 		RowBounds rb = new RowBounds(cri.getPageStart(),cri.getPerPageNum() );
 		return sqlsession.selectList("reply.list_reply", bno, rb);
 	}
@@ -45,6 +44,12 @@ public class ReplyDAOImpl implements ReplyDAO{
 		int t = sqlsession.update("reply.update_reply", vo);
 		if(t==1) return true;
 		else return false;
+	}
+	
+	@Override
+	public int count(int bno) throws Exception{
+		
+		return sqlsession.selectOne("reply.count", bno);
 	}
 
 }
