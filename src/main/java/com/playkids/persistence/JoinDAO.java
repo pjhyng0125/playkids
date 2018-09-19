@@ -22,4 +22,6 @@ public interface JoinDAO {
 	public boolean insertbusiness(BusinessVO business) throws SQLException;
 	public boolean loginmember(Map<String, String> map) throws SQLException;
 	public boolean loginbusiness(Map<String, String> map) throws SQLException;
+	public boolean findidcheck(String checkid);
+	public boolean findidcheckbusin(String checkid);
 }

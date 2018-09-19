@@ -56,6 +56,16 @@ public class JoinServiceImpl implements JoinService{
 	public boolean findbusiness(Map<String, String> map) throws SQLException {
 		return joindao.loginbusiness(map);
 	}
+
+	@Override
+	public boolean selectidcheck(String checkid) {
+		return joindao.findidcheck(checkid);
+	}
+
+	@Override
+	public boolean selectidcheckbusin(String checkid) {
+		return joindao.findidcheckbusin(checkid);
+	}
 	
 
 }

@@ -123,7 +123,28 @@ public class JoinController {
 		return result;
 	}
 	
-	@RequestMapping(value="createclass")
+//멤버 로그인 아이디 중복 체크
+	@RequestMapping(value="idcheck")
+	public @ResponseBody String idCheck(String type, String checkid) {
+		String result=null;
+		if(type.equals("member")) {
+			if(service.selectidcheck(checkid)){
+				result="<font color=red>아이디 중복</font>";
+			}else {
+				result="<font color=green>아이디 사용 가능</font>";			
+			}
+		}else if(type.equals("business")) {
+			if(service.selectidcheckbusin(checkid)){
+				result="<font color=red>아이디 중복</font>";
+			}else {
+				result="<font color=green>아이디 사용 가능</font>";			
+			}
+		}
+		return result;
+	}
+	
+//클래스 생성 action
+	@RequestMapping(value="insertclass")
 	public String createClass() {
 		return "/join/createClass";
 	}

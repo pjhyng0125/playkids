@@ -70,4 +70,22 @@ public class JoinDAOImpl implements JoinDAO{
 		else
 			return false;
 	}
+
+	@Override
+	public boolean findidcheck(String checkid) {
+		int n=session.selectOne("join.findidcheck",checkid);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean findidcheckbusin(String checkid) {
+		int n=session.selectOne("join.findidcheckbusin",checkid);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
 }
