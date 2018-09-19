@@ -6,6 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){
+//클래스 등록 버튼 클릭 시
+		$('#btaddclass').click(function(){
+			insertclass();
+		});//addclass click
+	});
+	
+	function insertclass(){
+		
+	}
+</script>
 </head>
 <body>
 <center>

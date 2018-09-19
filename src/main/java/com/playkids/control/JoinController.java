@@ -127,7 +127,6 @@ public class JoinController {
 	@RequestMapping(value="idcheck")
 	public @ResponseBody String idCheck(String type, String checkid) {
 		String result=null;
-		System.out.println(type+","+checkid);
 		if(type.equals("member")) {
 			if(service.selectidcheck(checkid)){
 				result="<font color=red>아이디 중복</font>";
@@ -145,7 +144,7 @@ public class JoinController {
 	}
 	
 //클래스 생성 action
-	@RequestMapping(value="createclass")
+	@RequestMapping(value="insertclass")
 	public String createClass() {
 		return "/join/createClass";
 	}
