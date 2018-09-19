@@ -16,7 +16,7 @@
         }       
     </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>admin</title>
+<title>관리자 창</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -65,11 +65,11 @@ $ function updatemember(){
   <nav1 class="web-nav2">
 		<div class="web-nav2-inner">
 			<ul>
-			<li><a class="web-nav2-button1 web-nav2-button">회원정보</a></li>
-			<li><a class="web-nav2-button2 web-nav2-button">기업정보</a></li>
-			<li><a class="web-nav2-button3 web-nav2-button">클래스정보</a></li>
-			<li><a class="web-nav2-button4 web-nav2-button">게시판</a></li>
-			<li><a class="web-nav2-button5 web-nav2-button">수익정보</a></li>
+			<li><a href="#member">회원정보</a></li>
+			<li><a href="#company">기업정보</a></li>
+			<li><a href="#classinfo">클래스정보</a></li>
+			<li><a href="#board">게시판</a></li>
+			<li><a href="#revenue">수익정보</a></li>
 			</ul>
 		</div>
   </nav1>
