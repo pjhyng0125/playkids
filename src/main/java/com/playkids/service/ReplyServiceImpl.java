@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.playkids.domain.Criteria;
 import com.playkids.domain.ReplyVO;
 import com.playkids.persistence.ReplyDAO;
 
@@ -16,8 +17,8 @@ public class ReplyServiceImpl implements ReplyService{
 	private ReplyDAO dao;
 	
 	@Override
-	public List<ReplyVO> list_reply(int bno) throws Exception {
-		return dao.list_reply(bno);
+	public List<ReplyVO> list_reply(int bno,Criteria cri) throws Exception {
+		return dao.list_reply(bno,cri);
 	}
 
 	@Override
@@ -33,6 +34,11 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public boolean update_reply(ReplyVO vo) throws Exception {
 		return dao.update_reply(vo);
+	}
+	
+	@Override
+	public int count(int bno) throws Exception{
+		return dao.count(bno);
 	}
 
 }

@@ -8,7 +8,7 @@ public class ReplyVO {
 	private int bno;
 	private String reply_content;
 	private String replyer;
-	private Date regdate;
+	private Date reply_regdate;
 	
 	public int getRno() {
 		return rno;
@@ -29,11 +29,12 @@ public class ReplyVO {
 	public void setReplyer(String replyer) {
 		this.replyer = replyer;
 	}
-	public Date getRegdate() {
-		return regdate;
+	
+	public Date getReply_regdate() {
+		return reply_regdate;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setReply_regdate(Date reply_regdate) {
+		this.reply_regdate = reply_regdate;
 	}
 	public String getReply_content() {
 		return reply_content;
@@ -44,10 +45,7 @@ public class ReplyVO {
 	@Override
 	public String toString() {
 		return "ReplyVO [rno=" + rno + ", bno=" + bno + ", reply_content=" + reply_content + ", replyer=" + replyer
-				+ ", regdate=" + regdate + "]";
+				+ ", reply_regdate=" + reply_regdate + "]";
 	}
-	
-	
-	
 	
 }
