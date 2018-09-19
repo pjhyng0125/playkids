@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 
 public interface JoinService {
@@ -17,4 +18,7 @@ public interface JoinService {
 	boolean createbusiness(BusinessVO business) throws SQLException;
 	boolean findmember(Map<String, String> map) throws SQLException;
 	boolean findbusiness(Map<String, String> map) throws SQLException;
+	public boolean selectidcheck(String checkid);
+	public boolean selectidcheckbusin(String checkid);
+	public boolean createclass(ClassVO cv);
 }

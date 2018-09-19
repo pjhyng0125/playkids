@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.persistence.JoinDAO;
 
@@ -55,6 +56,21 @@ public class JoinServiceImpl implements JoinService{
 	@Override
 	public boolean findbusiness(Map<String, String> map) throws SQLException {
 		return joindao.loginbusiness(map);
+	}
+
+	@Override
+	public boolean selectidcheck(String checkid) {
+		return joindao.findidcheck(checkid);
+	}
+
+	@Override
+	public boolean selectidcheckbusin(String checkid) {
+		return joindao.findidcheckbusin(checkid);
+	}
+
+	@Override
+	public boolean createclass(ClassVO cv) {
+		return joindao.insertclass(cv);
 	}
 	
 
