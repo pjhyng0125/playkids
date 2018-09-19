@@ -14,15 +14,6 @@
 		
 //회원가입 버튼 클릭 시
 		$('#btjoin').click(function(){
-			/* alert('mid:'+$('#mid').val());
-			alert('mpw:'+$('#mpw').val());
-			alert('mname:'+$('#mname').val());
-			alert('gugun:'+$('#gugun').val());
-			alert('dong:'+$('#dong').val());
-			alert('mphone:'+$('#mphone').val());
-			alert('mbirth:'+$('#mbirth').val());
-			alert('playtype:'+$('#playtype').val());
-			alert('act:'+$('#act').val()); */
 			insertmember();
 			location.href="/login";
 		});//btjoin click
@@ -31,9 +22,31 @@
 		 $('#btcancel').click(function(){
 			location.href="/login";
 		});//btcancel click 
+//아이디 중복 확인
+		$('#mid').keyup(function(){
+			var s=$(this).val();
+			if(s.length>=6 && s.length<=12){
+				idcheck();
+			}else{
+				$('#midcheck').html('<font color=red>아이디 조건: 6~12자리</font>');
+			}
+		});//mid keyup
 		
 	});//function
 //join
+	function idcheck(){
+		$.ajax({
+			url:"/idcheck",
+			data:{
+				type:"member",
+				checkid:$('#mid').val()
+			},
+			success:function(str){
+				$('#midcheck').html(str);
+			}
+		});//ajax
+	}
+	
 	function insertmember(){
 		$.ajax({
 			url:"/insertjoin",
@@ -123,7 +136,7 @@
 	<h3>개인 회원 가입</h3><br>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="mid"></td>
+				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="mid"><div id="midcheck"></div></td>
 			</tr>
 			<tr>
 				<td>비밀번호:</td><td colspan="2"><input type="password"></td>

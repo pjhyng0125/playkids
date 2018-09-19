@@ -20,8 +20,30 @@
 		 $('#btcancel').click(function(){
 			location.href="/login";
 		});//btcancel click 
+
+		$('#bid').keyup(function(){
+			var s=$(this).val();
+			if(s.length>=6 && s.length<=12){
+				idcheck();
+			}else{
+				$('#bidcheck').html('<font color=red>아이디 조건: 6~12자리</font>');
+			}
+		});//bid keyup
 		
 	});//function
+//아이디 중복 확인
+function idcheck(){
+	$.ajax({
+		url:"/idcheck",
+		data:{
+			type:"business",
+			checkid:$('#bid').val()
+		},
+		success:function(str){
+			$('#bidcheck').html(str);
+		}
+	});//ajax
+}
 //join
 	function insertbusiness(){
 		$.ajax({
@@ -83,7 +105,7 @@
 	<h3>기업 회원 가입</h3><br>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="bid"></td>
+				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="bid"><div id="bidcheck"></div></td>
 			</tr>
 			<tr>
 				<td>비밀번호:</td><td colspan="2"><input type="password"></td>

@@ -17,4 +17,6 @@ public interface JoinService {
 	boolean createbusiness(BusinessVO business) throws SQLException;
 	boolean findmember(Map<String, String> map) throws SQLException;
 	boolean findbusiness(Map<String, String> map) throws SQLException;
+	public boolean selectidcheck(String checkid);
+	public boolean selectidcheckbusin(String checkid);
 }

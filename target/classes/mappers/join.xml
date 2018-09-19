@@ -44,4 +44,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from business
 		where bid=#{id} and bpw=#{pw}
 	</select>
+	<!-- login idcheck -->
+	<select id="findidcheck" resultType="Integer" parameterType="String">
+		select count(*) from member where mid=#{checkid}
+	</select>
+	<select id="findidcheckbusin" resultType="Integer" parameterType="String">
+		select count(*) from business where bid=#{checkid}
+	</select>
+	
 </mapper>
