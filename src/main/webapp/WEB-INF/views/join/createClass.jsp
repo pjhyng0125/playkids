@@ -10,6 +10,8 @@
 	$(function(){
 //클래스 등록 버튼 클릭 시
 		$('#btaddclass').click(function(){
+			$('#file1').val();
+			$('#file2').val();
 			insertclass();
 		});//addclass click
 	});
@@ -40,24 +42,24 @@
 	<div>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td width="150px">기업 아이디:</td><td colspan="2"><input type="text" id="bid"></td>
+				<td width="150px">기업 아이디:</td><td colspan="2"><input type="text" name="bid"></td>
 			</tr>
 			<tr>
-				<td>클래스타입:</td><td><select id="ctype">
+				<td>클래스타입:</td><td><select name="ctype">
 													<option value="야외놀이">야외놀이</option>
 													<option value="실내놀이">실내놀이</option>
 												</select></td>
 			</tr>
 			<tr>
-				<td>클래스명:</td><td><input type="text" id="cname"></td>
+				<td>클래스명:</td><td><input type="text" name="cname"></td>
 			</tr>
 			<tr>
-				<td>클래스사진:</td><td><input type="file" id="cpic"></td>
+				<td>클래스사진:</td><td><input type="file" id="file1" name="file_class"></td>
 			</tr>
 			<tr>
 				<td>권장나이:</td>
 					<td>
-						<select id="cage1">
+						<select name="cage1">
 							<option value="0">==선택==</option>
 							<option value="8">8세</option>
 							<option value="9">9세</option>
@@ -67,7 +69,7 @@
 							<option value="13">13세</option>
 		               	</select>
 		               	~
-						<select id="cage2">
+						<select name="cage2">
 							<option value="0">==선택==</option>
 							<option value="8">8세</option>
 							<option value="9">9세</option>
@@ -79,7 +81,7 @@
 				    </td>
 			</tr>
 			<tr>
-				<td>클래스소개:</td><td><textarea cols="22px" rows="4px" id="cintro"></textarea></td>
+				<td>클래스소개:</td><td><textarea cols="22px" rows="4px" name="cintro"></textarea></td>
 			</tr>
 		</table>
 	<div><br><br>
@@ -88,16 +90,16 @@
 <div>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td>날짜:</td><td><input type="text" id="cdate"></td>
+				<td>날짜:</td><td><input type="text" name="cdate"></td>
 			</tr>
 			<tr>
-				<td>준비물:</td><td><input type="text" id="prepare"></td>
+				<td>준비물:</td><td><input type="text" name="prepare"></td>
 			</tr>
 			<tr>
-				<td>유의사항:</td><td><input type="text" id="notice"></td>
+				<td>유의사항:</td><td><input type="text" name="notice"></td>
 			</tr>
 			<tr>
-				<td>금액:</td><td><input type="text" id="price"></td>
+				<td>금액:</td><td><input type="text" name="price"></td>
 			</tr>
 		</table>
 </div><br><br>
@@ -106,13 +108,13 @@
 <div>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td>강사명:</td><td><input type="text" id="cteachername"></td>
+				<td>강사명:</td><td><input type="text" name="cteachername"></td>
 			</tr>
 			<tr>
-				<td>강사사진:</td><td><input type="file" id="cteacherpic"></td>
+				<td>강사사진:</td><td><input type="file" id="file2" name="file_teacher"></td>
 			</tr>
 			<tr>
-				<td>강사소개:</td><td><textarea cols="22px" rows="4px" id="cteacher"></textarea></td>
+				<td>강사소개:</td><td><textarea cols="22px" rows="4px" name="cteacher"></textarea></td>
 			</tr>
 		</table>
 </div>

@@ -1,22 +1,23 @@
 package com.playkids.control;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
@@ -28,6 +29,12 @@ public class JoinController {
 	
 	@Inject
 	private JoinService service;
+	
+	@Resource(name="upload_class")
+	private String upload_class;
+
+	@Resource(name="upload_teacher")
+	private String upload_teacher;
 	
 	@RequestMapping(value="login")
 	public String login() {
@@ -155,6 +162,36 @@ public class JoinController {
 		return "/join/createClass";
 	}
 	
+	@RequestMapping(value="insertclass", method=RequestMethod.POST)
+	public @ResponseBody String createClass(HttpServletRequest request, MultipartFile file_class, MultipartFile file_teacher ) throws IOException {
+		//String result=null;
+		/*System.out.println("originalName: "+file_class.getOriginalFilename());
+		System.out.println("size: "+file_class.getSize());
+		System.out.println("contentType: "+file_class.getContentType());*/
+		String path_class=request.getServletContext().getRealPath("upload/class");
+		String path_teacher=request.getServletContext().getRealPath("upload/teacher");
+		
+		uploadFile(file_class.getOriginalFilename(), file_class.getBytes(),"class",path_class);
+		uploadFile(file_teacher.getOriginalFilename(), file_teacher.getBytes(),"teacher",path_teacher);
+		
+		/*if(service.createclass(cv)) {
+			result="클래스 입력 성공!!!";
+		}else {
+			result="클래스 입력 실패...";		
+		}*/
+		
+		return "메세지 받기 성공!";
+	}
+	
+	private void uploadFile(String savedName, byte[] fileData, String type, String path) throws IOException {
+		File target=null;
+		if(type.equals("class")) {
+			target=new File(path, savedName);
+		}else if(type.equals("teacher")) {
+			target=new File(path, savedName);			
+		}
+		FileCopyUtils.copy(fileData, target);
+	}
 	
 	/*@RequestMapping(value="insertclass", method=RequestMethod.POST)
 	public @ResponseBody String createClass(HttpServletRequest request) throws IOException {
