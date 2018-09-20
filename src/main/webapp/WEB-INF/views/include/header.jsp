@@ -8,7 +8,7 @@
          a:hover{color:#ff0000;}                     
          
          /* nav tag */
-         .web-nav2 ul{padding-top:30px;}                     /*  상단 여백 10px  */
+         .web-nav2 ul{padding-top:150px;}                     /*  상단 여백 10px  */
          .web-nav2 ul li {
             display:inline;                         /*  세로나열을 가로나열로 변경 */
             font:bold 17px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */

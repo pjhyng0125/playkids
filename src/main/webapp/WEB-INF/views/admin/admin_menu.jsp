@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,11 +9,11 @@
          a:hover{color:#ff0000;}                     
          
          /* nav tag */
-         nav1 ul{padding-top:150px;}                     /*  상단 여백 10px  */
+         nav1 ul{padding-top:150px;}            
          nav1 ul li {
-            display:inline;                         /*  세로나열을 가로나열로 변경 */
-            font:bold 18px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
-            padding: 100px;                         /* 각 메뉴 간격 */
+            display:inline;                         
+            font:bold 18px Dotum;                   
+            padding: 100px;                   
         }       
     </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,15 +27,9 @@
 <link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
 <script>
-$ function updatemember(){
-	$.ajax({
-		url:"/updatemember",
-		data:{
-			type:""
-		}
-	})
-	
-}
+
+
+
 </script>
 </head>
 <body>
@@ -65,8 +60,8 @@ $ function updatemember(){
   <nav1 class="web-nav2">
 		<div class="web-nav2-inner">
 			<ul>
-			<li><a href="#member">회원정보</a></li>
-			<li><a href="#company">기업정보</a></li>
+			<li><a href="adminMember">회원정보</a></li>
+			<li><a href="adminBusiness">기업정보</a></li>
 			<li><a href="#classinfo">클래스정보</a></li>
 			<li><a href="#board">게시판</a></li>
 			<li><a href="#revenue">수익정보</a></li>
@@ -74,6 +69,14 @@ $ function updatemember(){
 		</div>
   </nav1>
   <hr>
+  
+  <table class="table table-bordered">
+	<tr>
+		<th>아이디</th><th>이름</th><th>연락처</th><th>생년월일</th>
+	</tr>
+
+  </table>
+
 
 </body>
 </html>

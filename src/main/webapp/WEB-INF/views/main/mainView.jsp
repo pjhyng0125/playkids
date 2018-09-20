@@ -3,29 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-         a{text-decoration:none; color:#000000;}         
-         a:hover{color:#ff0000;}                     
-         
-         /* nav tag */
-         nav1 ul{padding-top:130px;}                     /*  상단 여백 10px  */
-         nav1 ul li {
-            display:inline;                         /*  세로나열을 가로나열로 변경 */
-            font:bold 17px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
-            padding: 95px;                         /* 각 메뉴 간격 */
-        }       
-    </style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>mainView</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
-<link href="/resources/bootstrap/css/animate.min.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/animate.css" rel="stylesheet" />
-<link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/style.css" rel="stylesheet">
+<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+
+
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -55,7 +38,7 @@
     </div>
   </nav>
   
-  <nav1 class="web-nav2">
+  <!-- <nav1 class="web-nav2">
 		<div class="web-nav2-inner">
 			<ul>
 			<li><a class="web-nav2-button1 web-nav2-button" href="/programs/">전체보기</a></li>
@@ -66,7 +49,7 @@
 			</ul>
 		</div>
   </nav1>
-  <hr>
+  <hr> -->
   
 <div id="home">
     <div class="slider">
@@ -129,31 +112,4 @@
   </div>
   
   <br><br><br><br><br><br>
-  <footer id="footer" class="midnight-blue">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="text-center">
-            <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
-          </div>
-          &copy; PlayKids Corporation.
-        </div>
-       </div>
-     </div>
-  </footer>
-  
-  
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="js/jquery.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/resources/bootstrap/js/jquery.prettyPhoto.js"></script>
-  <script src="/resources/bootstrap/js/jquery.isotope.min.js"></script>
-  <script src="/resources/bootstrap/js/wow.min.js"></script>
-  <script src="/resources/bootstrap/js/jquery.easing.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
-  <script src="/resources/bootstrap/js/main.js"></script>
-  <script src="/resources/bootstrap/contactform/contactform.js"></script>
-              
-</body>
-</html>
+  <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
