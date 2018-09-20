@@ -29,7 +29,8 @@ public class ClassListController {
 	public String totalClass(HttpServletRequest request,ClassCriteria classCri) {
 		Map<String, String> map = new HashMap<>();
 		 
-		//전체 class List 보내기
+		//전체 class List 보내기 
+		
 		List<ClassListVO> totalclass = service.selectClist(map,classCri);
 		for(int i=0; i<totalclass.size();i++) {
 			String[] ages = totalclass.get(i).getCage().split(",");
