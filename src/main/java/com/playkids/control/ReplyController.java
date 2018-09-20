@@ -79,6 +79,7 @@ public class ReplyController {
 		try {
 			// url 경로를 통해 전달받은 rno 값을 vo에 설정
 			vo.setRno(rno);
+			System.out.println("댓글 수정vo: "+vo);
 			service.update_reply(vo);
 			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		} catch (Exception e) {
