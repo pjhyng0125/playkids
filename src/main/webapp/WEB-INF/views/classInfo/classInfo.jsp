@@ -6,17 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${classVO.cname } 수업</title>
-<%-- css/bootstrap --%>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
-<link href="/resources/bootstrap/css/animate.min.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/animate.css" rel="stylesheet" />
-<link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/style.css" rel="stylesheet">
-
 <style type="text/css">
 	#facility_info{width:100px; height: 100px; display:block;}
 	#facility_font,#class_intro{font-weight: bolder; color: black;}
@@ -25,19 +14,10 @@
 	#class_cfont{font-size: 18px; margin-left: 10px;}
 	#class_title{font-size: 20px; font-weight: bolder; color: black;}
 	#class_pic{border-radius: 10px; box-shadow: 0px 0px 20px -5px;}
-	         a{text-decoration:none; color:#000000;}         
-         a:hover{color:#ff0000;}                     
-         
-         /* nav tag */
-         nav1 ul{padding-top:30px;}                     /*  상단 여백 10px  */
-         nav1 ul li {
-            display:inline;                         /*  세로나열을 가로나열로 변경 */
-            font:bold 17px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
-            padding: 95px;                         /* 각 메뉴 간격 */
-        }     
+	
+	  
+	                      
 </style>
-</head>
-<body>
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 <div><img alt="수업사진" src="${classVO.cpic }" id="class_pic" style="width: 100%; height: 380px;"></div>
 <hr>
@@ -107,14 +87,3 @@
 </div><br><br>
 </form>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/resources/bootstrap/js/jquery.prettyPhoto.js"></script>
-  <script src="/resources/bootstrap/js/jquery.isotope.min.js"></script>
-  <script src="/resources/bootstrap/js/wow.min.js"></script>
-  <script src="/resources/bootstrap/js/jquery.easing.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
-  <script src="/resources/bootstrap/js/main.js"></script>
-  <script src="/resources/bootstrap/contactform/contactform.js"></script>
-</body>
-</html>

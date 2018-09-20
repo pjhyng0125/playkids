@@ -9,7 +9,9 @@ import com.playkids.domain.ClassVO;
 
 
 public interface ClassInfoDAO {
+	
 	public ClassVO select_info(String cname)throws Exception;
+	
 	public BusinessVO select_business(String bid)throws Exception;
 	
 }
