@@ -331,10 +331,10 @@ ALTER TABLE class
 	ADD
 		CONSTRAINT FK_business_TO_class
 		FOREIGN KEY (
-			cno
+			bid
 		)
 		REFERENCES business (
-			cno
+			bid
 		);
 
 ALTER TABLE location
@@ -391,12 +391,8 @@ ALTER TABLE reserve
 	ADD
 		CONSTRAINT FK_class_TO_reserve
 		FOREIGN KEY (
-			ctype,
-			cname,
-			cdate2
+			cno
 		)
 		REFERENCES class (
-			ctype,
-			cname,
-			cdate
+			cno
 		);

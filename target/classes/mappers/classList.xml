@@ -6,11 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectClist" parameterType="map" resultType="ClassListVO">
 	select ctype, cname, cdate, cpic, baddress, cage,price
 	from class natural join business
+	where classtype = #{classtype}
 	</select>
 	
 	<select id="selectGu" parameterType="map" resultType="string">
 	select distinct baddress 
 	from class natural join business
+	where classtype = #{classtype}
 	order by baddress asc
+	</select>
+	
+	<select id="selectTotalCnt" parameterType="map" resultType="int">
+		select count(*) 
+		from class
+		where classtype = #{classtype}
 	</select>
 </mapper>

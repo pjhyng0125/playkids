@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <c:forEach items="${totalclass }"  var="totalclass">
                 <div class="col-md-3 class-list">
-                    <input type="hidden" value='${totalclass.baddress.split(" ")[1] }'>
+                    <input type="hidden" value='${totalclass.baddress.split(" ")[1] }' class="addressHidden">
                     <input type="hidden" startAge='${totalclass.startAge }' endAge='${totalclass.endAge }' class="ageHidden">
                     <div class="card zoom">
                         <a style="cursor: pointer">

@@ -3,19 +3,6 @@
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-	body{
-		margin-top:127px;
-	}
-	.categoryNav{height: 80px;
-		background-color: white;
-	}
-	.categoryNav div{
-	height: 80px;
-	}
-	.categoryNav a{
-	color:green;
-	}
-	
 	.class-list{
             margin-top: 20px;
             margin-bottom: 20px;
@@ -59,9 +46,17 @@
             transform: translateX(200px);
             
         }
+        #loadingImg{
+        	text-align: center;
+        }
+        
+        .tophead{
+        	margin-bottom:70px;
+        }
 </style>
   
    <div class="container">
+    <h2 class="tophead font-weight-bold">${ctype }</h2>
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#areaModal">지역</button>
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ageModal">나이</button>
     <!-- 나이 Modal -->
@@ -84,10 +79,11 @@
                     </div>
         </div>
     <script type="text/javascript">
-    var page = 1;
-    
     $(function(){
-    	var gu ='';
+        var page = 1;
+        var gu ='';
+    	var age='';
+    	var totalPage ="${totalPage}";
     	//구에 따른 list
     	$('.guBtn').click(function(){
     		gu = $(this).text();
@@ -101,17 +97,13 @@
     		}else{
     			alert(gu);
     	
-    			$('.addressHidden[value= "'+gu+'"]').each(function(){
-    				$(this).parent().show();
-    			})
+    			$('.addressHidden[value= "'+gu+'"]').parent().fadeIn();
 
-    			$('.addressHidden[value!= "'+gu+'"]').each(function(){
-    				$(this).parent().hide();
-    			})
+    			$('.addressHidden[value!= "'+gu+'"]').parent().fadeOut();
     		}
     	});
     	
-    	var age='';
+    
     	//나이에 따른 list
     	$('.ageBtn').click(function(){
     		age = parseInt($(this).val());
@@ -135,36 +127,62 @@
     		}
     	});
     	
-    	// scroll paging    	
+    	function getList(page){
+    		$('#loadingImg').html('<img src="/resources/img/loader.gif">');  
+    	    $.ajax({
+    	        type : 'post',  	        
+    	        data : {"page" : page},
+    	        url : '/totalClass',
+    	        success : function(result) {   	            	
+	    	        	var html = "";
+	
+	    	            if (page!=1){  //페이지가 1이 아닐경우 데이터를 붙힌다.
+	    	                $("#pagingList").append(result); 
+	    	            }
+	    	            $('#loadingImg').empty();
+	    				if(gu != ""){
+	    	           		$('.addressHidden[value = "'+gu+'"]').parent().show();
+	
+	        				$('.addressHidden[value!= "'+gu+'"]').parent().hide();					
+	    				}	 
+	               
+	        		
+	        			if(age != ''){
+	    	    			$('.ageHidden').each(function(){
+	    	    				var startAge = parseInt($(this).attr("startAge"));
+	    	    				var endAge = parseInt($(this).attr("endAge"));
+	    	
+	    	    				if(age>=startAge && age<=endAge){
+	    	    					$(this).parent().show();
+	    	    				}else{
+	    	    					$(this).parent().hide();
+	    	    				}
+	        				});
+	        			}
+	        			
+    	          
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+    	    }); 
+    	}
+        
+    	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+    	     if($(window).scrollTop() >= $(document).height() - $(window).height()){
+    	    	 if(page != totalPage){
+    	    		  page++;
+    		          getList(page);
+    	          }
+    	     } 
+    	});  	
     	
 
     }); // $(function)
     
-	function getList(page){
-	    $.ajax({
-	        type : 'post',  	        
-	        data : {"page" : page},
-	        url : '/totalClass',
-	        success : function(result) {
-	            var html = "";
-	            if (page!=1){  //페이지가 1이 아닐경우 데이터를 붙힌다.
-	                $("#pagingList").append(result); 
-	            }
-	       },error:function(e,code){
-	    	   alert('정말에러!!'+e.status+":"+code)
-	           if(e.status==300){
-	               alert("데이터를 가져오는데 실패하였습니다.");
-	           };
-	       }
-	    }); 
-	}
-    
-	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-	     if($(window).scrollTop() >= $(document).height() - $(window).height()){
-	           page++;   
-	          getList(page);
-	     } 
-	});
+	
     </script>
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -220,25 +238,26 @@
 
                 <!--class-->
                 <div class="row" id="pagingList">
-                <c:forEach items="${totalclass }"  var="totalclass">
+                <c:forEach items="${classlist }"  var="classlist">
                 <div class="col-md-3 class-list">
-                    <input type="hidden" value='${totalclass.baddress.split(" ")[1] }' class="addressHidden"> 
-                    <input type="hidden" startAge='${totalclass.startAge }' endAge='${totalclass.endAge }' class="ageHidden">
+                    <input type="hidden" value='${classlist.baddress.split(" ")[1] }' class="addressHidden"> 
+                    <input type="hidden" startAge='${classlist.startAge }' endAge='${classlist.endAge }' class="ageHidden">
                     <div class="card zoom">
-                        <a style="cursor: pointer">
-                            <img class="card-img-top" src="/resources/img/${totalclass.cpic }" alt="Card image" style="width:100%" height="200px">
+                        <a style="cursor: pointer" class="classImg">
+                            <img class="card-img-top" src="/resources/img/${classlist.cpic }" alt="Card image" style="width:100%" height="200px">
                         </a>
                             <div class="card-body">
-                              <h5 class="card-title">${totalclass.cname }</h5>
-                              <p class="card-text">${totalclass.baddress } / ${totalclass.startAge }세~${totalclass.endAge }세 권장</p>
-                              <p class="card-text"><font color="red ">${totalclass.price }</font>원</p>
+                              <h5 class="card-title">${classlist.cname }</h5>
+                              <p class="card-text">${classlist.baddress } / ${classlist.startAge }세~${classlist.endAge }세 권장</p>
+                              <p class="card-text"><font color="red ">${classlist.price }</font>원</p>
                             </div> 
                          
                         </div>
                     </div>
                 </c:forEach>
-                 </div>
-                 </div>
+                 </div><!-- //class -->
+                 <div id="loadingImg"></div>
+                 </div><!-- container -->
                  
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
