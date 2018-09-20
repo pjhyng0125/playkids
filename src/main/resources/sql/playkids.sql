@@ -291,13 +291,8 @@ ALTER TABLE reply
 /* reserve */
 CREATE TABLE reserve (
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
-	bid VARCHAR2(50) NOT NULL, /* 기업아이디 */
-	cdate DATE NOT NULL, /* 클래스등록일 */
-	cname VARCHAR2(30), /* 클래스명 */
-	rdate DATE, /* 확정일 */
-	price NUMBER, /* 금액 */
-	ctype VARCHAR2(30), /* 클래스타입 */
-	cdate2 DATE /* 클래스등록일2 */
+	cno number NOT NULL,
+	regdate DATE, /* 확정일 */
 );
 
 COMMENT ON TABLE reserve IS 'reserve';
@@ -321,27 +316,25 @@ COMMENT ON COLUMN reserve.cdate2 IS '클래스등록일2';
 CREATE UNIQUE INDEX PK_reserve
 	ON reserve (
 		mid ASC,
-		bid ASC,
-		cdate ASC
+		cno ASC
 	);
 
 ALTER TABLE reserve
 	ADD
 		CONSTRAINT PK_reserve
 		PRIMARY KEY (
-			mid,
-			bid,
-			cdate
+		mid ASC,
+		cno ASC
 		);
 
 ALTER TABLE class
 	ADD
 		CONSTRAINT FK_business_TO_class
 		FOREIGN KEY (
-			bid
+			cno
 		)
 		REFERENCES business (
-			bid
+			cno
 		);
 
 ALTER TABLE location
