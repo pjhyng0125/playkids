@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../include/reference.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,8 +10,18 @@
 	$(function(){
 //클래스 등록 버튼 클릭 시
 		$('#btaddclass').click(function(){
-			$('#file1').val();
-			$('#file2').val();
+			alert($('#file1').val());
+			alert($('#file2').val());
+			if($('#file1').val()==''){
+				alert('클래스 사진 입력!')
+				return;
+			}
+			if($('#file2').val()==''){
+				alert('강사 사진 입력!')
+				return;
+			}
+			alert($('#cage1').val());
+			alert($('#cdate').val());
 			insertclass();
 		});//addclass click
 	});
@@ -59,7 +69,7 @@
 			<tr>
 				<td>권장나이:</td>
 					<td>
-						<select name="cage1">
+						<select id="cage1" name="cage1">
 							<option value="0">==선택==</option>
 							<option value="8">8세</option>
 							<option value="9">9세</option>
@@ -90,7 +100,7 @@
 <div>
 		<table cellspacing="5" cellpadding="10">
 			<tr>
-				<td>날짜:</td><td><input type="text" name="cdate"></td>
+				<td>날짜:</td><td><input type="date" id="cdate" name="cdate"></td>
 			</tr>
 			<tr>
 				<td>준비물:</td><td><input type="text" name="prepare"></td>
@@ -101,6 +111,12 @@
 			<tr>
 				<td>금액:</td><td><input type="text" name="price"></td>
 			</tr>
+			<tr>
+				<td>금액:</td><td><input type="checkbox" name="park" value="park">주차공간 
+  								<input type="checkbox" name="protect" value="protect">보호자대기실
+  								<input type="checkbox" name="together" value="together">참관가능여부</td>
+			</tr>
+			
 		</table>
 </div><br><br>
 <!-- 강사 정보 입력 -->
@@ -126,5 +142,4 @@
 </form>
 </div>
 </center>
-</body>
-</html>
+<%@include file="../include/footer.jsp"%>

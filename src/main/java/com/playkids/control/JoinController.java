@@ -3,6 +3,7 @@ package com.playkids.control;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -159,11 +160,59 @@ public class JoinController {
 //클래스 생성 action
 	@RequestMapping(value="insertclass", method=RequestMethod.GET)
 	public String showclass() {
+		System.out.println("insertclass get in");
 		return "/join/createClass";
 	}
 	
 	@RequestMapping(value="insertclass", method=RequestMethod.POST)
-	public @ResponseBody String createClass(HttpServletRequest request, MultipartFile file_class, MultipartFile file_teacher ) throws IOException {
+	public @ResponseBody String createClass(HttpServletRequest request,
+			MultipartFile file_class, MultipartFile file_teacher,
+			String bid, String ctype, String cname, String cage1, String cage2,
+			String cintro, String cdate, String prepare, String notice, int price,
+			String park, String protect, String together, 
+			String cteachername, String cteacher
+			) throws IOException {
+		System.out.println("insertclass post in");
+		
+		ClassVO classvo=new ClassVO();
+		classvo.setBid(bid);
+		classvo.setCtype(ctype);
+		classvo.setCname(cname);
+		classvo.setCpic(file_class.getOriginalFilename());
+		classvo.setCage(cage1+","+cage2);
+		classvo.setCintro(cintro);
+		//classvo.setCdate(cdate);
+		classvo.setPrepare(prepare);
+		classvo.setPrice(price);
+		classvo.setPark(park);
+		classvo.setProtect(protect);
+		classvo.setTogether(together);
+		classvo.setCteachername(cteachername);
+		classvo.setCteacher(cteacher);
+		classvo.setCteacherpic(file_teacher.getOriginalFilename());
+		
+		System.out.println("cage:"+cage1+","+cage2);
+		System.out.println("bid:"+bid);
+		System.out.println("ctype:"+ctype);
+		System.out.println("cname:"+cname);
+		System.out.println("cintro:"+cintro);
+		System.out.println("cdate:"+cdate);
+
+		System.out.println("prepare:"+prepare);
+		System.out.println("notice:"+notice);
+		System.out.println("price:"+price);
+		System.out.println("park:"+park);
+		System.out.println("protect:"+protect);
+		System.out.println("together:"+together);
+		
+		System.out.println("cteachername:"+cteachername);
+		System.out.println("cteacher:"+cteacher);
+		
+		System.out.println("file_class:"+classvo.getCpic());
+		System.out.println("file_teacher:"+classvo.getCteacherpic());
+		
+		//System.out.println("auth:"+classvo.getAutho());
+		
 		//String result=null;
 		/*System.out.println("originalName: "+file_class.getOriginalFilename());
 		System.out.println("size: "+file_class.getSize());
