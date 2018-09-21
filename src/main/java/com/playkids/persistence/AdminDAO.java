@@ -10,4 +10,5 @@ public interface AdminDAO {
 	public List<MemberVO> admin_member(String mid) throws Exception;
 	
 	public List<BusinessVO> admin_business(String bid) throws Exception;
+	
 }

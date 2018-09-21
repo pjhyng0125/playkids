@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<table width="100%" border="3">
+<table style="width:100%" border="1" bgcolor="orange">
 	<tr>
 		<th>아이디</th><th>기업명</th><th>연락처</th><th>가입일</th><th>계좌번호</th>
 	</tr>
-	<c:forEach items="${list }" var="b">
+	<c:forEach items="${list }" var="adminVO">
 		<tr>
-			<th>${b.bid}</th>
-			<th>${b.bname}</th>
-			<th>${b.bphone}</th>
-			<th>${b.bregdate}</th>
-			<th>${b.baccount}</th>
+			<th>${adminVO.bid}</th>
+			<th>${adminVO.bname}</th>
+			<th>${adminVO.bphone}</th>
+			<th>${adminVO.bregdate}</th>
+			<th>${adminVO.baccount}</th>
 		</tr>
 	</c:forEach>
+</table>
+	

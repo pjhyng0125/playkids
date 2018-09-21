@@ -136,6 +136,7 @@ ALTER TABLE location
 		);
 
 /* member */
+drop table member;
 CREATE TABLE member (
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
 	mpw VARCHAR2(50), /* 패스워드 */
@@ -147,6 +148,8 @@ CREATE TABLE member (
 	mregdate DATE default sysdate NOT NULL,
 	mcash NUMBER default 0
 );
+
+select * from MEMBER;
 
 COMMENT ON TABLE member IS 'member';
 
@@ -163,6 +166,10 @@ COMMENT ON COLUMN member.mphone IS '연락처';
 COMMENT ON COLUMN member.mbirth IS '생년월일';
 
 COMMENT ON COLUMN member.minterest IS '관심분야';
+
+COMMENT ON COLUMN member.mregdate IS '가입일';
+
+COMMENT ON COLUMN member.mcash IS '캐쉬';
 
 CREATE UNIQUE INDEX PK_member
 	ON member (

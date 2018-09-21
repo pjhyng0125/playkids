@@ -4,13 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
 		<select id="admin_member" resultType="MemberVO">
-		select mid,mname,mphone,mbirth
+		select mid,mname,mphone,mbirth,minterest
 		from member
 		
 		</select>
 		
 		<select id="admin_business" resultType="BusinessVO">
-		select bid,bname,bphone,bacouunt
+		select bid,bname,bphone,bregdate,baccount
 		from business
 		</select>
 </mapper>

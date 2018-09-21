@@ -30,8 +30,11 @@ public class AdminController {
 		return "admin/admin_member";
 	}
 	
-/*	@RequestMapping("adminBusiness")
-	public String admin_businessGET()throws Exception{
+	@RequestMapping(value="adminBusiness", method=RequestMethod.GET)
+	public String admin_businessGET(String bid, Model model)throws Exception{
+		
+		model.addAttribute("admin",service.selectbusiness(bid));
+		
 		return "admin/admin_business";
-	}*/
+	}
 }
