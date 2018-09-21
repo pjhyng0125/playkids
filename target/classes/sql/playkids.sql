@@ -143,7 +143,9 @@ CREATE TABLE member (
 	maddress VARCHAR2(50), /* 林家 */
 	mphone VARCHAR2(20), /* 楷遏贸 */
 	mbirth CHAR(6), /* 积斥岿老 */
-	minterest VARCHAR2(30) /* 包缴盒具 */
+	minterest VARCHAR2(30), /* 包缴盒具 */
+	mregdate DATE default sysdate NOT NULL,
+	mcash NUMBER default 0
 );
 
 COMMENT ON TABLE member IS 'member';
