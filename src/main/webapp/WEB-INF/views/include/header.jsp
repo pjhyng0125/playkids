@@ -14,6 +14,15 @@
             font:bold 17px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
             padding: 95px;                         /* 각 메뉴 간격 */
         }       
+        body{
+         padding-bottom: 195.2px;
+        }
+    footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
     </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>playkids</title>
@@ -60,7 +69,7 @@
             <li><a href="/main">홈</a></li>
             <li><a href="/login">로그인</a></li>
             <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/cashcharge">캐쉬충전</a></li>
+            <li><a href="/chargepage">캐쉬충전</a></li>
           </ul>
         </div>
         <!-- /.Navbar-collapse -->
@@ -71,14 +80,12 @@
   <nav class="web-nav2">
 		<div class="web-nav2-inner">
 			<ul>
-			<li><a class="web-nav2-button1 web-nav2-button" href="/programs/">전체보기</a></li>
-			<li><a class="web-nav2-button2 web-nav2-button" href="/programs/category/0/">야외놀이</a></li>
-			<li><a class="web-nav2-button3 web-nav2-button" href="/programs/category/1/">실내놀이</a></li>
+			<li><a class="web-nav2-button1 web-nav2-button" href="/totalClass">전체보기</a></li>
+			<li><a class="web-nav2-button2 web-nav2-button" href="/outerClass">야외놀이</a></li>
+			<li><a class="web-nav2-button3 web-nav2-button" href="/innerClass">실내놀이</a></li>
 			<li><a class="web-nav2-button4 web-nav2-button" href="/programs/category/2/">창의활동</a></li>
 			<li><a class="web-nav2-button5 web-nav2-button" href="/programs/category/3/">동내친구들아 같이놀자</a></li>
 			</ul>
 		</div>
   </nav>
   <hr>
-  </body>
-</html>

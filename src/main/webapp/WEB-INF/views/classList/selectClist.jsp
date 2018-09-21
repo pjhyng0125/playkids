@@ -84,6 +84,7 @@
         var gu ='';
     	var age='';
     	var totalPage ="${totalPage}";
+    	var ctype = "${ctype}";
     	//구에 따른 list
     	$('.guBtn').click(function(){
     		gu = $(this).text();
@@ -128,11 +129,20 @@
     	});
     	
     	function getList(page){
+    		var url;
+    		if(ctype=="" || ctype== undefined){
+    			url="/totalClass";
+    		}else if (ctype=="실내놀이"){
+    			url="/innerClass";
+    		}else{
+    			url="/outerClass";
+    		}
+    		
     		$('#loadingImg').html('<img src="/resources/img/loader.gif">');  
     	    $.ajax({
     	        type : 'post',  	        
     	        data : {"page" : page},
-    	        url : '/totalClass',
+    	        url : url,
     	        success : function(result) {   	            	
 	    	            if (page!=1){  //페이지가 1이 아닐경우 데이터를 붙힌다.
 	    	                $("#pagingList").append(result); 
@@ -242,6 +252,7 @@
                     <input type="hidden" startAge='${classlist.startAge }' endAge='${classlist.endAge }' class="ageHidden">
                     <div class="card zoom">
                         <a style="cursor: pointer" class="classImg">
+                        	<input type="hidden" value="${classlist.cno }" >
                             <img class="card-img-top" src="/resources/img/${classlist.cpic }" alt="Card image" style="width:100%" height="200px">
                         </a>
                             <div class="card-body">
