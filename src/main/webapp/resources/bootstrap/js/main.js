@@ -28,7 +28,7 @@ $(function() {
 	//Pretty Photo
 
 	$(window).scroll(function(){
-		if ($(this).scrollTop() > 100) {
+		if ($(this).scrollTop() > $(document).height()-$(window).height()) {
 			$('.scrollup').fadeIn();
 			} else {
 				$('.scrollup').fadeOut();
