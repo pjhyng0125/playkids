@@ -27,6 +27,7 @@ public interface JoinDAO {
 	public boolean findidcheckbusin(String checkid);
 	public boolean insertclass(ClassVO cv);
 	public int selectcno(Map<String, String> map);
+	public int selectcnocount(Map<String, String> map);
 	public boolean updatefile(Map<String, Object> map);
 	
 }

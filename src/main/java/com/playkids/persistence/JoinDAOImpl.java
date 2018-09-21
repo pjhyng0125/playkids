@@ -113,5 +113,10 @@ public class JoinDAOImpl implements JoinDAO{
 		else
 			return false;
 	}
+
+	@Override
+	public int selectcnocount(Map<String, String> map) {
+		return session.selectOne("join.selectcnocount", map);
+	}
 	
 }

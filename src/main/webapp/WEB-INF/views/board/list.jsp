@@ -8,11 +8,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <script type="text/javascript">
 	$(function(){
 		$('#write').click(function(evt){
 			self.location="insert";
 		});
+		
+		$('#searchBtn').on(
+				"click",
+				function(event) {
+
+					self.location = "list"
+							+ '${pm.makeQuery(1)}'
+							+ "&searchType="
+							+ $("select option:selected").val()
+							+ "&keyword=" + encodeURIComponent($('#keywordInput').val());
+
+				});
+		
+		var now = new Date();
+		var now_compare = now.getFullYear()+"-"+now.getMonth()+"-"+now.getDate();
+	
 	});
 </script>
 <style type="text/css">
@@ -28,12 +45,18 @@
 .board_table{
 
 }
+#board_title{
+	margin-left: 30px;
+}
 
 
 </style>
 </head>
 <body>
 <br>
+<div id="hidden">
+	<input type="hidden" id="regdate_board" value="">
+</div>
 <section class="content">
 <div class="row">
 		<!-- left column -->
@@ -42,24 +65,27 @@
 <div class="col-md-12">
 <div class="box">
 <div class="box-header with-border">
-<font size="10">공지 및  게시판</font>
-<span class="dropdown">
-<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">분류
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      <li role="presentation" class="dropdown-header">검색할 내용을 선택하세요</li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">제목</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">내용</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">작성자</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">카테고리</a></li>
-    </ul>
-</span>	
-<input type="text" size="30" id="search_board" placeholder="검색내용">
+<font size="10" id="board_title"> 공지 및  게시판</font>
+<select name="searchType">
+						<option value="n"
+							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							--선택--</option>
+						<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							타이틀</option>
+						<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							내용</option>
+						<option value="w"
+							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+							작성자</option>
+						
+</select> <input type="text" name='keyword' i size="30" id="search_board" placeholder="검색내용" value='${cri.keyword }'>
+
 <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i>검색</button>
 <button class="btn btn-info" id="write">글쓰기</button>
 </div>
 <hr>
-
 
 <div class="box-body">
 <center>
@@ -70,7 +96,8 @@
 		<tr align="center" class="board_line">
 		<td>${posting.bno}</td>
 		<td><a href='/board/showpage${pm.makeSearch(pm.cri.page) }&bno=${posting.bno}'>${posting.title}
-			</a></td>
+			</a>[${posting.reply_cnt }] <span class='badge badge-danger'>New</span>
+		</td>
 		<td>${posting.mid}</td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd"
 				value="${posting.regdate }" /></td>
@@ -81,6 +108,7 @@
 </table>
 </center>
 </div>
+
 <hr width="70%">
 <div class="box-footer">
 <div class="text-center">

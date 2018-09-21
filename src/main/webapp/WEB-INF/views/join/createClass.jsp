@@ -1,30 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="../include/reference.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>insertclass</title>
 <script type="text/javascript">
 	$(function(){
 //클래스 등록 버튼 클릭 시
 		$('#btaddclass').click(function(){
-			alert($('#file1').val());
-			alert($('#file2').val());
-			if($('#file1').val()==''){
-				alert('클래스 사진 입력!')
-				return;
-			}
-			if($('#file2').val()==''){
-				alert('강사 사진 입력!')
-				return;
-			}
-			alert($('#cage1').val());
-			alert($('#cdate').val());
-			insertclass();
+			checkEmpty();
 		});//addclass click
-	});
+	}); 
+
+//유효성 검사
+	function checkEmpty(){
+		if($('input[name=bid]').val()==''){
+			alert('기업 아이디 입력!')
+			return;
+		}
+		if($('input[name=cname]').val()==''){
+			alert('클래스명 입력!')
+			return;
+		}
+		if($('#file1').val()==''){
+			alert('클래스 사진 입력!')
+			return;
+		}
+		if($('select[name=cage1]').val()==0){
+			alert('권장 나이1 선택!')
+			return;
+		}
+		if($('select[name=cage2]').val()==0){
+			alert('권장 나이2 선택!')
+			return;
+		}
+		if($('textarea[name=cintro]').val()==''){
+			alert('클래스 소개 입력!')
+			return;
+		}
+		if($('input[name=cdate]').val()==''){
+			alert('클래스 날짜 입력!')
+			return;
+		}
+		if($('input[name=prepare]').val()==''){
+			alert('준비물 입력!')
+			return;
+		}
+		if($('input[name=notice]').val()==''){
+			alert('유의사항 입력!')
+			return;
+		}
+		if($('input[name=price]').val()==''){
+			alert('금액 입력!')
+			return;
+		}
+		if($('input[name=cteachername]').val()==''){
+			alert('강사명 입력!')
+			return;
+		}
+		if($('#file2').val()==''){
+			alert('강사 사진 입력!')
+			return;
+		}
+		if($('textarea[name=cteacher]').val()==''){
+			alert('강사소개 입력!')
+			return;
+		}
+		insertclass();
+	}
 	
 	function insertclass(){
 		var form=$('form')[0];
@@ -69,7 +111,7 @@
 			<tr>
 				<td>권장나이:</td>
 					<td>
-						<select id="cage1" name="cage1">
+						<select name="cage1">
 							<option value="0">==선택==</option>
 							<option value="8">8세</option>
 							<option value="9">9세</option>
@@ -112,7 +154,7 @@
 				<td>금액:</td><td><input type="text" name="price"></td>
 			</tr>
 			<tr>
-				<td>금액:</td><td><input type="checkbox" name="park" value="park">주차공간 
+				<td>시설정보:</td><td><input type="checkbox" name="park" value="park">주차공간 
   								<input type="checkbox" name="protect" value="protect">보호자대기실
   								<input type="checkbox" name="together" value="together">참관가능여부</td>
 			</tr>

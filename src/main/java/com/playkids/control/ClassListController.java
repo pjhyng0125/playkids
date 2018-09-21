@@ -86,6 +86,37 @@ public class ClassListController {
 		return "classList/selectClist";
 	}
 	
+	@RequestMapping("/outerClass")
+	public String outerClass(HttpServletRequest request,Criteria cri) {
+		Map<String, String> map = new HashMap<>();
+		map.put("ctype", "야외놀이");
+		request.setAttribute("ctype", map.get("ctype"));
+		cri.setPerPageNum(20);
+		
+		//전체 class List 보내기 
+		List<ClassListVO> classlist = service.selectClist(map,cri);
+		for(int i=0; i<classlist.size();i++) {
+			String[] ages = classlist.get(i).getCage().split(",");
+			ClassListVO classListVO = classlist.get(i);
+			classListVO.setStartAge(Integer.parseInt(ages[0])); 
+			classListVO.setEndAge(Integer.parseInt(ages[1]));			
+		}
+		
+		//중복되지 않는 guInfo 등록							
+		List<String> guInfoList = service.selectGu(map);
+		for(int i=0; i<guInfoList.size();i++) {
+			guInfoList.set(i, guInfoList.get(i).split(" ")[1]);
+		}
+		request.setAttribute("totalPage", (int) Math.ceil(service.selectTotalCnt(map)/(double)cri.getPerPageNum()));
+		request.setAttribute("guInfoList",guInfoList);
+		request.setAttribute("classlist", classlist);
+		if(request.getMethod().equals("POST")) {
+			System.out.println("post 왔니?");
+			return "classList/result/selectClistResult";			
+		}
+		return "classList/selectClist";
+	}
+	
 	
 	
 }

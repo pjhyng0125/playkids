@@ -409,3 +409,10 @@ ALTER TABLE reserve
 			cname,
 			cdate
 		);
+		
+create table admin(
+	profit number default 0
+);
+
+		
+		

@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- join member -->
 	<insert id="insertmember" parameterType="MemberVO">
-		insert into member
-		values (#{mid},#{mpw},#{mname},#{maddress},#{mphone},#{mbirth},#{minterest})
+		insert into member (mid,mpw,mname,maddress,mphone,mbirth,minterest)
+		values (#{mid},#{mpw},#{mname},#{maddress},#{mphone},to_date(#{mbirth}),#{minterest})
 	</insert>
 	<!-- join business -->
 	<insert id="insertbusiness" parameterType="BusinessVO">
@@ -59,6 +59,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<select id="selectcno" parameterType="java.util.Map" resultType="Integer">
 		select cno from class
+		where bid=#{bid} and cname=#{cname} and cdate=to_date(#{cdate})
+	</select>
+	<select id="selectcnocount" parameterType="java.util.Map" resultType="Integer">
+		select count(cno) from class
 		where bid=#{bid} and cname=#{cname} and cdate=to_date(#{cdate})
 	</select>
 	<update id="updatefile" parameterType="java.util.Map">

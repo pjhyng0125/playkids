@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../include/reference.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 	
@@ -14,8 +10,8 @@
 		
 //회원가입 버튼 클릭 시
 		$('#btjoin').click(function(){
-			insertmember();
-			location.href="/login";
+			checkEmpty();
+			//location.href="/login";
 		});//btjoin click
 		
 //취소 버튼 클릭 시
@@ -31,6 +27,58 @@
 				$('#midcheck').html('<font color=red>아이디 조건: 6~12자리</font>');
 			}
 		});//mid keyup
+		
+		function checkEmpty(){
+			if($('#mid').val()==''){
+				alert('개인 회원 아이디 입력!')
+				return;
+			}
+			if($('#midcheck').text().indexOf('6~12')>0){
+				alert('아이디 조건 확인!');
+				return;
+			}
+			if($('#midcheck').text().indexOf('중복')>0){
+				alert('아이디 중복 확인!');
+				return;
+			}
+			if($('#mpw').val()==''){
+				alert('비밀번호 입력!')
+				return;
+			}
+			if($('#mpwconfirm').val()==''){
+				alert('비밀번호 확인 입력!')
+				return;
+			}
+			if($('#mname').val()==''){
+				alert('이름 입력!')
+				return;
+			}
+			if($('#gugun').val()==0){
+				alert('주소 구 선택!')
+				return;
+			}
+			if($('#dong').val()==0){
+				alert('주소 동 선택!')
+				return;
+			}
+			if($('#mphone').val()==''){
+				alert('폰번호 입력!')
+				return;
+			}
+			if($('#mbirth').val()==''){
+				alert('생년월일 입력!')
+				return;
+			}
+			if($('#playtype').val()==0){
+				alert('관심사 타입 선택!')
+				return;
+			}
+			if($('#act').val()==0){
+				alert('관심사 상세 선택!')
+				return;
+			}
+			insertmember();
+		}
 		
 	});//function
 //join
@@ -53,7 +101,7 @@
 			data:{
 				type:"member",
 				mid:$('#mid').val(),
-				mpw:$('#mpw').val(),
+				mpw:$('#mpwconfirm').val(),
 				mname:$('#mname').val(),
 				maddress:$('#gugun').val()+","+$('#dong').val(),
 				mphone:$('#mphone').val(),
@@ -139,10 +187,10 @@
 				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="mid"><div id="midcheck"></div></td>
 			</tr>
 			<tr>
-				<td>비밀번호:</td><td colspan="2"><input type="password"></td>
+				<td>비밀번호:</td><td colspan="2"><input type="password" id="mpw"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="mpw"></td>
+				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="mpwconfirm"></td>
 			</tr>
 			<tr>
 				<td>이름:</td><td colspan="2"><input type="text" id="mname"></td>
@@ -164,7 +212,7 @@
 				<td>폰번호:</td><td colspan="2"><input type="text" id="mphone"></td>
 			</tr>
 			<tr>
-				<td>생년월일:</td><td colspan="2"><input type="text" id="mbirth"></td>
+				<td>생년월일:</td><td colspan="2"><input type="date" id="mbirth"></td>
 			</tr>
 			<tr>
 				<td>관심사:</td>

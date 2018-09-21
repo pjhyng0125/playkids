@@ -202,30 +202,16 @@ public class JoinController {
 		classvo.setCteachername(cteachername);
 		classvo.setCteacher(cteacher);
 		
-		/*System.out.println("bid:"+classvo.getBid());
-		System.out.println("ctype:"+classvo.getCtype());
-		System.out.println("cname:"+classvo.getCname());
-		System.out.println("cage:"+classvo.getCage());
-		System.out.println("cintro:"+classvo.getCintro());
-		System.out.println("cdate:"+classvo.getCdate());
-
-		System.out.println("prepare:"+classvo.getPrepare());
-		System.out.println("notice:"+classvo.getNotice());
-		System.out.println("price:"+classvo.getPrice());
-		System.out.println("park:"+classvo.getPark());
-		System.out.println("protect:"+classvo.getProtect());
-		System.out.println("together:"+classvo.getTogether());
-		
-		System.out.println("cteachername:"+classvo.getCteachername());
-		System.out.println("cteacher:"+classvo.getCteacher());*/
-		
-		if(service.createclass(classvo)) {
+//클래스 정보 입력
+		if(service.createclass(classvo))
 			System.out.println("DB class 정보 입력 성공!");
 //파일 업로드
 			Map<String, String> map=new HashMap<>();
 			map.put("bid",bid);
 			map.put("cname",cname);
 			map.put("cdate",cdate);
+int cnocount=service.getcnocount(map);
+if(cnocount==1) {//유일한 cno 검출
 			int cno=service.getcno(map);
 //파일 저장 경로
 			String path_class=request.getServletContext().getRealPath("upload/class");
@@ -244,17 +230,21 @@ public class JoinController {
 			map_file.put("cteacherpic", teacherFileName);
 			map_file.put("cno", cno);
 			  
-			if(service.modifyfile(map_file));
+		if(service.modifyfile(map_file)) {
 			System.out.println("DB file 정보 입력 성공!");
 		}else {
-			System.out.println("DB class 정보 입력 실패...OTL");			
-			System.out.println("기업명, 클래스명, 클래스날짜 중복을 확인하세요");		
+			System.out.println("DB class 정보 입력 실패...OTL");					
 		}
 
 //파일 이름 저장은 파일 업로드 후에
 
 		System.out.println("file_class:"+classvo.getCpic());
 		System.out.println("file_teacher:"+classvo.getCteacherpic());
+}else if(cnocount > 1) {
+		System.out.println("기업명, 클래스명, 클래스날짜 중복을 확인하세요");
+}else {
+		System.out.println("DB class 정보 입력 실패...OTL");	
+}
 		
 		return "메세지 받기 성공!";
 	}
