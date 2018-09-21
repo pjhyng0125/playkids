@@ -11,6 +11,8 @@ public class MemberVO {
 	private String mregdate;
 	private String mcash;
 	
+	
+
 	public MemberVO() {
 		super();
 	}

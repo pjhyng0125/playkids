@@ -26,11 +26,7 @@
 <link href="/resources/bootstrap/css/animate.css" rel="stylesheet" />
 <link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
-<script>
 
-
-
-</script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -62,7 +58,7 @@
 			<ul>
 			<li><a href="adminMember">회원정보</a></li>
 			<li><a href="adminBusiness">기업정보</a></li>
-			<li><a href="adminClassinfo">클래스정보</a></li>
+			<li><a href="adminClassInfo">클래스정보</a></li>
 			<li><a href="adminBoard">게시판</a></li>
 			<li><a href="adminRevenue">수익정보</a></li>
 			</ul>

@@ -87,7 +87,8 @@
   </section>
   <div class="container">
   <img onclick="javascript:location.href='/program1';" src="/resources/bootstrap/images/slide4.jpg">
-  <img onclick="javascript:location.href='/program2';" src="/resources/bootstrap/images/slide7.jpg" hspace="50">
+  <img onclick="javascript:location.href='/program1';" src="/resources/bootstrap/images/slide7.jpg" hspace="50">
+  <img onclick="javascript:location.href='/program1';" src="/resources/bootstrap/images/slide14.jpg">
   </div>
   
   <br><br>
