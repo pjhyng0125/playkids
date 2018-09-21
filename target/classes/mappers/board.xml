@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   				where content like '%'||#{keyword}||'%'
   			</when>
   			<when test="searchType=='w'.toString()">
-  				where writer like '%'||#{keyword}||'%'
+  				where mid like '%'||#{keyword}||'%'
   			</when>
   		</choose>
   	</if>
@@ -58,12 +58,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 
   
-  <select id="listSearch" resultType="BoardVO">
-  	select bno, mid, title, content, regdate,count,newflag,(select count(*) from reply where reply.bno = board.bno) reply_cnt
-  	from board
-  	<include refid="search"></include>
-  	order by bno desc
-  </select>
+  <select id="listSearch" resultType="BoardVO"><![CDATA[
+  select bno, mid, title, content, regdate,count,
+     case
+     when (1>sysdate-regdate)  then 1
+     else 0
+     end newflag,(select count(*) from reply where reply.bno = board.bno) reply_cnt
+     from board
+     ]]>
+     <include refid="search"></include>
+     order by bno desc
+ </select>
   
   <select id="listSearchCount" resultType="int">
   	select count(*) 
