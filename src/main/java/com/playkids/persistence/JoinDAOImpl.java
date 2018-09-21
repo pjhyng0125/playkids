@@ -98,4 +98,20 @@ public class JoinDAOImpl implements JoinDAO{
 		else
 			return false;
 	}
+
+	@Override
+	public int selectcno(Map<String, String> map) {
+		return session.selectOne("join.selectcno", map);
+	}
+
+	@Override
+	public boolean updatefile(Map<String, Object> map) {
+		int n=session.update("join.updatefile", map);
+		System.out.println("update count:"+n);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+	
 }

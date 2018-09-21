@@ -178,36 +178,81 @@ public class JoinController {
 		classvo.setBid(bid);
 		classvo.setCtype(ctype);
 		classvo.setCname(cname);
-		classvo.setCpic(file_class.getOriginalFilename());
 		classvo.setCage(cage1+","+cage2);
 		classvo.setCintro(cintro);
-		//classvo.setCdate(cdate);
+		classvo.setCdate(cdate);
 		classvo.setPrepare(prepare);
+		classvo.setNotice(notice);
 		classvo.setPrice(price);
-		classvo.setPark(park);
-		classvo.setProtect(protect);
-		classvo.setTogether(together);
+		if(park!=null)
+			classvo.setPark("use");
+		else
+			classvo.setPark("non");
+		
+		if(protect!=null)
+			classvo.setProtect("use");
+		else
+			classvo.setProtect("non");
+		
+		if(together!=null)
+			classvo.setTogether("use");
+		else
+			classvo.setTogether("non");
+		
 		classvo.setCteachername(cteachername);
 		classvo.setCteacher(cteacher);
-		classvo.setCteacherpic(file_teacher.getOriginalFilename());
 		
-		System.out.println("cage:"+cage1+","+cage2);
-		System.out.println("bid:"+bid);
-		System.out.println("ctype:"+ctype);
-		System.out.println("cname:"+cname);
-		System.out.println("cintro:"+cintro);
-		System.out.println("cdate:"+cdate);
+		/*System.out.println("bid:"+classvo.getBid());
+		System.out.println("ctype:"+classvo.getCtype());
+		System.out.println("cname:"+classvo.getCname());
+		System.out.println("cage:"+classvo.getCage());
+		System.out.println("cintro:"+classvo.getCintro());
+		System.out.println("cdate:"+classvo.getCdate());
 
-		System.out.println("prepare:"+prepare);
-		System.out.println("notice:"+notice);
-		System.out.println("price:"+price);
-		System.out.println("park:"+park);
-		System.out.println("protect:"+protect);
-		System.out.println("together:"+together);
+		System.out.println("prepare:"+classvo.getPrepare());
+		System.out.println("notice:"+classvo.getNotice());
+		System.out.println("price:"+classvo.getPrice());
+		System.out.println("park:"+classvo.getPark());
+		System.out.println("protect:"+classvo.getProtect());
+		System.out.println("together:"+classvo.getTogether());
 		
-		System.out.println("cteachername:"+cteachername);
-		System.out.println("cteacher:"+cteacher);
+		System.out.println("cteachername:"+classvo.getCteachername());
+		System.out.println("cteacher:"+classvo.getCteacher());*/
 		
+		if(service.createclass(classvo)) {
+			System.out.println("DB class 정보 입력 성공!");
+//파일 업로드
+			Map<String, String> map=new HashMap<>();
+			map.put("bid",bid);
+			map.put("cname",cname);
+			map.put("cdate",cdate);
+			int cno=service.getcno(map);
+//파일 저장 경로
+			String path_class=request.getServletContext().getRealPath("upload/class");
+			String path_teacher=request.getServletContext().getRealPath("upload/teacher");
+//파일 업로드 함수 호출
+			String classFileName=setFileName(file_class.getOriginalFilename(),cno);
+			String teacherFileName=setFileName(file_teacher.getOriginalFilename(),cno);
+			
+			uploadFile(classFileName, file_class.getBytes(),"class",path_class);
+			uploadFile(teacherFileName, file_teacher.getBytes(),"teacher",path_teacher);
+//VO에 파일명 set
+			classvo.setCpic(classFileName);
+			classvo.setCteacherpic(teacherFileName);
+			Map<String, Object> map_file=new HashMap<>();
+			map_file.put("cpic", classFileName);
+			map_file.put("cteacherpic", teacherFileName);
+			map_file.put("cno", cno);
+			  
+			if(service.modifyfile(map_file));
+			System.out.println("DB file 정보 입력 성공!");
+		}else {
+			System.out.println("DB class 정보 입력 실패...OTL");			
+			System.out.println("기업명, 클래스명, 클래스날짜 중복을 확인하세요");		
+		}
+
+//파일 이름 저장은 파일 업로드 후에
+
 		System.out.println("file_class:"+classvo.getCpic());
 		System.out.println("file_teacher:"+classvo.getCteacherpic());
 		
@@ -217,11 +262,8 @@ public class JoinController {
 		/*System.out.println("originalName: "+file_class.getOriginalFilename());
 		System.out.println("size: "+file_class.getSize());
 		System.out.println("contentType: "+file_class.getContentType());*/
-		String path_class=request.getServletContext().getRealPath("upload/class");
-		String path_teacher=request.getServletContext().getRealPath("upload/teacher");
+		//전송된 파일이 저장될 경로
 		
-		uploadFile(file_class.getOriginalFilename(), file_class.getBytes(),"class",path_class);
-		uploadFile(file_teacher.getOriginalFilename(), file_teacher.getBytes(),"teacher",path_teacher);
 		
 		/*if(service.createclass(cv)) {
 			result="클래스 입력 성공!!!";
@@ -231,7 +273,12 @@ public class JoinController {
 		
 		return "메세지 받기 성공!";
 	}
-	
+	//teacher.jpg=> teacher_cno.jpg
+	private String setFileName(String originalName, int cno) {
+			String filename=originalName.split("\\.")[0];
+			String extension=originalName.split("\\.")[1];
+		return filename+"_"+cno+"."+extension;
+	}
 	private void uploadFile(String savedName, byte[] fileData, String type, String path) throws IOException {
 		File target=null;
 		if(type.equals("class")) {
@@ -240,7 +287,7 @@ public class JoinController {
 			target=new File(path, savedName);			
 		}
 		FileCopyUtils.copy(fileData, target);
-	}
+	}//uploadFile
 	
 	/*@RequestMapping(value="insertclass", method=RequestMethod.POST)
 	public @ResponseBody String createClass(HttpServletRequest request) throws IOException {

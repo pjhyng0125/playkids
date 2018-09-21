@@ -34,11 +34,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into business
 		values (#{bid},#{bpw},#{bname},#{bintro},#{bphone},#{baddress},sysdate,#{baccount})
 	</insert>
-	<!-- insert class -->
-	<insert id="insertclass" parameterType="ClassVO">
-		insert into class
-		values (#{bid},#{ctype},#{cname},#{cpic},#{cage},#{cintro},#{cdate},#{prepare},#{notice},#{price},#{cteachername},#{cteacherpic},#{cteacher},sysdate,'flase')
-	</insert>
 	<!-- login member -->
 	<select id="loginmember" parameterType="java.util.Map" resultType="Integer">
 		select count(*) from member
@@ -57,4 +52,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from business where bid=#{checkid}
 	</select>
 	
+	<!-- insert class -->
+	<insert id="insertclass" parameterType="ClassVO">
+		insert into class (cno,bid,ctype,cname,cage,cintro,cdate,prepare,notice,price,park,protect,together,cteachername,cteacher,cregdate)
+		values (class_seq.nextval,#{bid},#{ctype},#{cname},#{cage},#{cintro},to_date(#{cdate}),#{prepare},#{notice},#{price},#{park},#{protect},#{together},#{cteachername},#{cteacher},sysdate)
+	</insert>
+	<select id="selectcno" parameterType="java.util.Map" resultType="Integer">
+		select cno from class
+		where bid=#{bid} and cname=#{cname} and cdate=to_date(#{cdate})
+	</select>
+	<update id="updatefile" parameterType="java.util.Map">
+		update class
+		set cpic=#{cpic}, cteacherpic=#{cteacherpic}
+		where cno=#{cno}
+	</update>
 </mapper>

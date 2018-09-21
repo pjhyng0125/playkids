@@ -72,6 +72,16 @@ public class JoinServiceImpl implements JoinService{
 	public boolean createclass(ClassVO cv) {
 		return joindao.insertclass(cv);
 	}
+
+	@Override
+	public int getcno(Map<String, String> map) {
+		return joindao.selectcno(map);
+	}
+
+	@Override
+	public boolean modifyfile(Map<String, Object> map) {
+		return joindao.updatefile(map);
+	}
 	
 
 }
