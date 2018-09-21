@@ -70,7 +70,7 @@
 				return;
 			}
 			if($('#playtype').val()==0){
-				alert('관심사 티입 선택!')
+				alert('관심사 타입 선택!')
 				return;
 			}
 			if($('#act').val()==0){
