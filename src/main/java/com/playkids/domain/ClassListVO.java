@@ -1,6 +1,7 @@
 package com.playkids.domain;
 
 public class ClassListVO {
+	private int cno;
 	private String ctype;
 	private String cname;
 	private String cdate;
@@ -10,20 +11,11 @@ public class ClassListVO {
 	private int price;
 	private int startAge;
 	private int endAge;
-	
-	
-	
-	public int getStartAge() {
-		return startAge;
+	public int getCno() {
+		return cno;
 	}
-	public void setStartAge(int startAge) {
-		this.startAge = startAge;
-	}
-	public int getEndAge() {
-		return endAge;
-	}
-	public void setEndAge(int endAge) {
-		this.endAge = endAge;
+	public void setCno(int cno) {
+		this.cno = cno;
 	}
 	public String getCtype() {
 		return ctype;
@@ -67,11 +59,24 @@ public class ClassListVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public int getStartAge() {
+		return startAge;
+	}
+	public void setStartAge(int startAge) {
+		this.startAge = startAge;
+	}
+	public int getEndAge() {
+		return endAge;
+	}
+	public void setEndAge(int endAge) {
+		this.endAge = endAge;
+	}
 	@Override
 	public String toString() {
-		return "ClassListVO [ctype=" + ctype + ", cname=" + cname + ", cdate=" + cdate + ", cpic=" + cpic
-				+ ", baddress=" + baddress + ", cage=" + cage + ", price=" + price + ", startAge=" + startAge
+		return "ClassListVO [cno=" + cno + ", ctype=" + ctype + ", cname=" + cname + ", cdate=" + cdate + ", cpic="
+				+ cpic + ", baddress=" + baddress + ", cage=" + cage + ", price=" + price + ", startAge=" + startAge
 				+ ", endAge=" + endAge + "]";
 	}
+	
 	
 }

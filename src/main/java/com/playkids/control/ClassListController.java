@@ -27,12 +27,12 @@ public class ClassListController {
 	@RequestMapping("/totalClass")
 	public String totalClass(HttpServletRequest request,Criteria cri) {
 		Map<String, String> map = new HashMap<>();
-		map.put("ctype", "전체보기"); 
-		request.setAttribute("ctype", map.get("ctype"));
+		request.setAttribute("ctype", "전체보기");
 		cri.setPerPageNum(20);
 		//전체 class List 보내기 
 		
 		List<ClassListVO> classlist = service.selectClist(map,cri);
+		System.out.println(classlist);
 		for(int i=0; i<classlist.size();i++) {
 			String[] ages = classlist.get(i).getCage().split(",");
 			ClassListVO classListVO = classlist.get(i);

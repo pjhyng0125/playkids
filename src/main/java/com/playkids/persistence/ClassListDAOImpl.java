@@ -21,7 +21,8 @@ public class ClassListDAOImpl implements ClassListDAO{
 	
 	@Override
 	public List<ClassListVO> selectClist(Map<String,String> map,Criteria cri) {
-		RowBounds bounds = new RowBounds(cri.getPageStart(), cri.getPerPageNum()); 
+		RowBounds bounds = new RowBounds(cri.getPageStart(), cri.getPerPageNum());
+		System.out.println("DAO ¿Ô´Ï?");
 		return sqlsession.selectList("classList.selectClist", map,bounds);
 	}
 
@@ -32,7 +33,7 @@ public class ClassListDAOImpl implements ClassListDAO{
 
 	@Override
 	public int selectTotalCnt(Map<String,String> map) {
-		return sqlsession.selectOne("classList.selectTotalCnt");
+		return sqlsession.selectOne("classList.selectTotalCnt",map);
 	}
 
 }

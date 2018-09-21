@@ -134,8 +134,6 @@
     	        data : {"page" : page},
     	        url : '/totalClass',
     	        success : function(result) {   	            	
-	    	        	var html = "";
-	
 	    	            if (page!=1){  //페이지가 1이 아닐경우 데이터를 붙힌다.
 	    	                $("#pagingList").append(result); 
 	    	            }

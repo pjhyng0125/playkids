@@ -292,7 +292,7 @@ ALTER TABLE reply
 CREATE TABLE reserve (
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
 	cno number NOT NULL,
-	regdate DATE, /* 확정일 */
+	regdate DATE /* 확정일 */
 );
 
 COMMENT ON TABLE reserve IS 'reserve';
