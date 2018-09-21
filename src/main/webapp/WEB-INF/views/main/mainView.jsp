@@ -1,30 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>mainView</title>
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
-
-</head>
-<body>
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <!-- <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="row">
         <div class="site-logo">
           <a href="main" class="brand">PlayKids</a>
         </div>
 
-        <!-- Brand and toggle get grouped for better mobile display -->
+        Brand and toggle get grouped for better mobile display
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
 							<i class="fa fa-bars"></i>
 						</button>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        Collect the nav links, forms, and other content for toggling
         <div class="collapse navbar-collapse" id="menu">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#home">홈</a></li>
@@ -33,10 +25,10 @@
             <li><a href="/cashcharge">캐쉬충전</a></li>
           </ul>
         </div>
-        <!-- /.Navbar-collapse -->
+        /.Navbar-collapse
       </div>
     </div>
-  </nav>
+  </nav> -->
   
   <!-- <nav1 class="web-nav2">
 		<div class="web-nav2-inner">
@@ -51,7 +43,7 @@
   </nav1>
   <hr> -->
   
-<div id="home">
+<div>
     <div class="slider">
       <div id="about-slider">
         <div id="carousel-slider" class="carousel slide" data-ride="carousel">

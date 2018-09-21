@@ -45,7 +45,7 @@
     <div class="container">
       <div class="row">
         <div class="site-logo">
-          <a href="main" class="brand">PlayKids</a>
+          <a href="/main" class="brand">PlayKids</a>
         </div>
 
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,7 +57,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="menu">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#home">홈</a></li>
+            <li><a href="/main">홈</a></li>
             <li><a href="/login">로그인</a></li>
             <li><a href="/mypage">마이페이지</a></li>
             <li><a href="/cashcharge">캐쉬충전</a></li>
