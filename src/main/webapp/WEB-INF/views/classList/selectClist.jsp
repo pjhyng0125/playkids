@@ -251,8 +251,7 @@
                     <input type="hidden" value='${classlist.baddress.split(" ")[1] }' class="addressHidden"> 
                     <input type="hidden" startAge='${classlist.startAge }' endAge='${classlist.endAge }' class="ageHidden">
                     <div class="card zoom">
-                        <a style="cursor: pointer" class="classImg">
-                        	<input type="hidden" value="${classlist.cno }" >
+                        <a style="cursor: pointer" class="classImg" href="/class/info?cno=${classlist.cno }">
                             <img class="card-img-top" src="/resources/img/${classlist.cpic }" alt="Card image" style="width:100%" height="200px">
                         </a>
                             <div class="card-body">

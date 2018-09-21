@@ -14,9 +14,11 @@
             font:bold 17px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
             padding: 95px;                         /* 각 메뉴 간격 */
         }       
+        
         body{
-         padding-bottom: 195.2px;
+         padding-bottom: 195.19px;
         }
+        
     footer {
     position: fixed;
     left: 0;

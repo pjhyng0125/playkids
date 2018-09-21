@@ -22,6 +22,10 @@
 .myclassStatus-selected{
 	    color: #F15A5B;
 }
+.myclassStatus-reserveTable, .myclassStatus-completeTable{
+	display: none;
+}
+
 .myinfolist th{
 	text-align: center;
 }
@@ -38,7 +42,7 @@
     	        //data : {"page" : page},
     	        url : "/myinfolist",
     	        success : function(result) {   	            	
-	    	            $('myinfolist').html(result);
+	    	            $('.myinfolist-data').html(result);
     	       },error:function(e,code){
     	    	   alert('정말에러!!'+e.status+":"+code)
     	           if(e.status==300){
@@ -53,6 +57,20 @@
 		})
 		$('.myQnAinfo').click(function(){
 			
+		})
+		
+		$('.myinfolist-data').on('click','#myReserve',function(){
+			$(this).addClass('myclassStatus-selected');
+			$('#myComplete').removeClass('myclassStatus-selected');
+			$('.myclassStatus-reserveTable').show();
+			$('.myclassStatus-completeTable').hide();
+		})
+
+		$('.myinfolist-data').on('click','#myComplete',function(){
+			$(this).addClass('myclassStatus-selected');
+			$('#myReserve').removeClass('myclassStatus-selected');
+			$('.myclassStatus-completeTable').show();
+			$('.myclassStatus-reserveTable').hide();
 		})
 	})
 </script>
@@ -103,7 +121,7 @@
 		</div>
 	</div>
 <br><br><br>
-<div class="row myinfolist">
+<div class="row myinfolist myinfolist-data">
 </div>
 </div>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
