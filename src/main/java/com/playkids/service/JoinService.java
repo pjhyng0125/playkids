@@ -22,5 +22,6 @@ public interface JoinService {
 	public boolean selectidcheckbusin(String checkid);
 	public boolean createclass(ClassVO cv);
 	public int getcno(Map<String, String> map);
+	public int getcnocount(Map<String, String> map);
 	public boolean modifyfile(Map<String, Object> map);
 }

@@ -82,6 +82,11 @@ public class JoinServiceImpl implements JoinService{
 	public boolean modifyfile(Map<String, Object> map) {
 		return joindao.updatefile(map);
 	}
+
+	@Override
+	public int getcnocount(Map<String, String> map) {
+		return joindao.selectcnocount(map);
+	}
 	
 
 }
