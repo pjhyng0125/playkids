@@ -21,10 +21,11 @@ create table board(
 	title varchar2(200) not null,
 	content varchar2(1000),
 	count number default 0,
-	regdate DATE default sysdate
-);
+	regdate DATE default sysdate,
+	newflag number default 1
+);	-- newflag = 0 false //	newflag = 1 true ; new badge on
 
-alter table board 
+alter table board 													-- 안들어가지더라
 add constraint fk_member_to_board
 	foreign key(mid)
 	references member(mid);

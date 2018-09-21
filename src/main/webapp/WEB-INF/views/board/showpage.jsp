@@ -3,8 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
 <%@include file="/WEB-INF/views/include/header.jsp" %>
 <script type="text/javascript">
 
@@ -54,7 +53,7 @@ $(function(){
 	replylist(1);
 	
 	$('#list').click(function(){
-		self.location="/board/list";
+		self.location="/board/list?page="+$('#page').val();
 	});
 	$('#del').click(function(){
 		self.location="/board/delete?bno=${boardVO.bno}";
@@ -92,8 +91,6 @@ $(function(){
 		$('#modal_replyer').html(replyer);
 		$('#mod_reply_content').val(reply_content);
 		$('#modal_rno_display').attr({'value':rno});
-		
-		
 	});
 	
 	$('#send_mod').click(function(){
@@ -117,9 +114,6 @@ $(function(){
 		});
 	});
 	
-
-	
-	
 	$('#replylist').on('click','.replyLi #del_reply',function(){
 		var reply = $(this).parent();
 		var rno= reply.attr('data-rno');
@@ -138,16 +132,18 @@ $(function(){
 });
 
 </script>
+<div class="container">
+<div id="hidden_info">
+	<input type="hidden" id="page" value="${pm.cri.page }">	<!-- 현재 페이지 -->
+	<input type="hidden" id="searchType" value="">
+	<input type="hidden" id="keyword" value="">	
+</div>
 <center>
 <h3>게시물 보기</h3>
-<div>
-	<input type="hidden" id="page" value="">	<!-- 현재 페이지 -->
-	
-</div>
 
-글 번호 : <input type="text" name="bno" size="3" value="${boardVO.bno }" readonly>
-작성자 : <input type="text" name="mid" size="30" value="${boardVO.mid }" readonly>	
-제목 : <input type="text" name="title" value="${boardVO.title }" readonly>
+글 번호 : <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
+작성자 : <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
+제목 : <input type="text" name="title" size="30"  value="${boardVO.title }" readonly>
 조회수 :<input type="text" name="count" value="${boardVO.count }" readonly size="3"><br><br>
 내용 : <textarea rows="10" style="width: 70%" name="content" readonly>${boardVO.content }</textarea><br>
 <button id="mod" class="btn btn-info">수정</button>
@@ -169,6 +165,7 @@ $(function(){
 	<div id="pagination"></div>
 </div>
 </center>
+
 <div class="modal fade" id="mod_modal" style="width: 50%">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -185,6 +182,7 @@ $(function(){
 		 <button type="button" class="btn btn-warning" data-dismiss="modal">취소</button>
 		</div>
 	</div>
+</div>
 </div>
 
 <%@include file="/WEB-INF/views/include/footer.jsp" %>

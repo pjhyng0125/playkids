@@ -10,6 +10,7 @@ public class BoardVO {
 	private String content;				// 내용
 	private Date regdate;				// 작성일자
 	private int count;					// 조회수
+	private int reply_cnt;				
 	
 	public int getBno() {
 		return bno;
@@ -48,11 +49,16 @@ public class BoardVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
-	
+	public int getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(int reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno +", mid=" + mid + ", title=" + title + ", content="
-				+ content + ", regdate=" + regdate + ", count=" + count + "]";
+		return "BoardVO [bno=" + bno + ", mid=" + mid + ", title=" + title + ", content=" + content + ", regdate="
+				+ regdate + ", count=" + count + ", reply_cnt=" + reply_cnt + "]";
 	}
+	
 }

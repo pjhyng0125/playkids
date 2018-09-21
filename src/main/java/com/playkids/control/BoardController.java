@@ -48,8 +48,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="showpage", method=RequestMethod.GET)
-	public String showpage(int bno, HttpServletRequest request) throws Exception  {
+	public String showpage(int bno, HttpServletRequest request, SearchCriteria cri) throws Exception  {
 		request.setAttribute("boardVO", service.select_board(bno));
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalRecord(service.listSearchCount(cri));
+		
+		request.setAttribute("pm", pm);
 		return "board/showpage";
 	}
 	
