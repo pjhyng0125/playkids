@@ -9,7 +9,7 @@
 		
 //회원가입 버튼 클릭 시
 		$('#btjoin').click(function(){
-			insertbusiness();
+			checkEmpty();
 		});//btjoin click
 		
 //취소 버튼 클릭 시
@@ -25,7 +25,58 @@
 				$('#bidcheck').html('<font color=red>아이디 조건: 6~12자리</font>');
 			}
 		});//bid keyup
-		
+//checkEmpty	
+		function checkEmpty(){
+			if($('#bid').val()==''){
+				alert('개인 회원 아이디 입력!')
+				return;
+			}
+			if($('#bidcheck').text().indexOf('6~12')>0){
+				alert('아이디 조건 확인!');
+				return;
+			}
+			if($('#bidcheck').text().indexOf('중복')>0){
+				alert('아이디 중복 확인!');
+				return;
+			}
+			if($('#bpw').val()==''){
+				alert('비밀번호 입력!')
+				return;
+			}
+			if($('#bpwconfirm').val()==''){
+				alert('비밀번호 확인 입력!')
+				return;
+			}
+			if($('#bname').val()==''){
+				alert('기업명 입력!')
+				return;
+			}
+			if($('#gugun').val()==0){
+				alert('주소 구 선택!')
+				return;
+			}
+			if($('#dong').val()==0){
+				alert('주소 동 선택!')
+				return;
+			}
+			if($('#road').val()==''){
+				alert('도로명 주소 입력!')
+				return;
+			}
+			if($('#bphone').val()==''){
+				alert('기업전화번호 입력!')
+				return;
+			}
+			if($('#mbintro').val()==''){
+				alert('기업 소개 입력!')
+				return;
+			}
+			if($('#baccount').val()==''){
+				alert('기업 계좌번호 입력!')
+				return;
+			}
+			insertbusiness();
+		}
 	});//function
 //아이디 중복 확인
 function idcheck(){
@@ -104,10 +155,10 @@ function idcheck(){
 				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="bid"><div id="bidcheck"></div></td>
 			</tr>
 			<tr>
-				<td>비밀번호:</td><td colspan="2"><input type="password"></td>
+				<td>비밀번호:</td><td colspan="2"><input type="password" id="bpw"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="bpw"></td>
+				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="bpwconfirm"></td>
 			</tr>
 			<tr>
 				<td>기업명:</td><td colspan="2"><input type="text" id="bname"></td>

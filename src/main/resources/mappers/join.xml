@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- join member -->
 	<insert id="insertmember" parameterType="MemberVO">
-		insert into member
-		values (#{mid},#{mpw},#{mname},#{maddress},#{mphone},#{mbirth},#{minterest})
+		insert into member (mid,mpw,mname,maddress,mphone,mbirth,minterest)
+		values (#{mid},#{mpw},#{mname},#{maddress},#{mphone},to_date(#{mbirth}),#{minterest})
 	</insert>
 	<!-- join business -->
 	<insert id="insertbusiness" parameterType="BusinessVO">
