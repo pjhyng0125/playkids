@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="text-center">
-            <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
+            <a href="#home" class="scrollup" style="display: none;"><i class="fa fa-angle-up fa-3x"></i></a>
           </div>
           &copy; PlayKids Corporation.
         </div>

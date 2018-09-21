@@ -3,14 +3,29 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="classList">
-	<select id="selectClist" parameterType="map" resultType="ClassListVO">
-	select ctype, cname, cdate, cpic, baddress, cage,price
+	
+	<select id="selectClist" parameterType="java.util.Map" resultType="ClassListVO">
+	select cno,ctype, cname, cdate, cpic, baddress, cage,price 
 	from class natural join business
+	<include refid="classtype"></include>	
 	</select>
 	
-	<select id="selectGu" parameterType="map" resultType="string">
+	<select id="selectGu" parameterType="java.util.Map" resultType="string">
 	select distinct baddress 
 	from class natural join business
+	<include refid="classtype"></include>
 	order by baddress asc
 	</select>
+	
+	<select id="selectTotalCnt" parameterType="java.util.Map" resultType="int">
+		select count(*) 
+		from class
+		<include refid="classtype"></include>
+	</select>
+	
+	<sql id="classtype">
+		<if test="ctype!=null">
+			where ctype = #{ctype}
+		</if>
+	</sql>
 </mapper>
