@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${classVO.cname } 수업</title>
+<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 <style type="text/css">
 	#facility_info{width:100px; height: 100px; display:block;}
 	#facility_font,#class_intro{font-weight: bolder; color: black;}
@@ -18,7 +19,6 @@
 	  
 	                      
 </style>
-<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 <div><img alt="수업사진" src="${classVO.cpic }" id="class_pic" style="width: 100%; height: 380px;"></div>
 <hr>
 <form id="class_form">
@@ -83,7 +83,7 @@
 <div id="class_font" class="text-dark">${businessVO.bintro }</div><br><br>
 
 <div>
- <jsp:include page="/WEB-INF/views/api/mapApi.jsp" />
+<jsp:include page="/WEB-INF/views/api/mapApi.jsp" />
 </div><br><br>
 </form>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
