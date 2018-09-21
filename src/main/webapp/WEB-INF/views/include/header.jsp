@@ -21,11 +21,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- Bootstrap -->
- 
-  <script type="text/javascript" src="/resources/js/bootstrap.js"></script> 
   <link href="/resources/css/bootstrap.css" rel="stylesheet">
   <link href="/resources/css/animate.min.css" rel="stylesheet">
   <link href="/resources/css/animate.css" rel="stylesheet" />
@@ -33,7 +28,10 @@
   <link href="/resources/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="js/jquery.js"></script>
+ 
+ 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/resources/js/bootstrap.js"></script> 
   <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
   <script src="/resources/bootstrap/js/jquery.prettyPhoto.js"></script>
   <script src="/resources/bootstrap/js/jquery.isotope.min.js"></script>
@@ -89,6 +87,5 @@
 		</div>
   </nav>
   <hr>
-  
   </body>
-  </html>
+</html>

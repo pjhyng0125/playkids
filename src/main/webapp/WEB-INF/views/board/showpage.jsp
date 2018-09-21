@@ -2,12 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="/WEB-INF/views/include/header.jsp" %>
-<!DOCTYPE html >
-<html>
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@include file="/WEB-INF/views/include/header.jsp" %>
 <script type="text/javascript">
 
 function replylist(replypage){
@@ -107,6 +105,7 @@ $(function(){
 				data:JSON.stringify({'rno':rno,'reply_content':replytext}),
 				success:function(result){
 					if(result=='SUCCESS'){
+						alert('hi')
 						$('#mod_modal').hide();
 						replylist(1);
 					}
@@ -139,8 +138,6 @@ $(function(){
 });
 
 </script>
-</head>
-<body>
 <center>
 <h3>게시물 보기</h3>
 <div>
@@ -190,5 +187,4 @@ $(function(){
 	</div>
 </div>
 
-</body>
-</html>
+<%@include file="/WEB-INF/views/include/footer.jsp" %>
