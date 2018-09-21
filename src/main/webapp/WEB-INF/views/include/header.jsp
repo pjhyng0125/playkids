@@ -21,25 +21,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/resources/css/bootstrap.css" rel="stylesheet">
-  <link href="/resources/css/animate.min.css" rel="stylesheet">
-  <link href="/resources/css/animate.css" rel="stylesheet" />
-  <link href="/resources/css/prettyPhoto.css" rel="stylesheet">
-  <link href="/resources/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- 
- 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="/resources/js/bootstrap.js"></script> 
-  <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/resources/bootstrap/js/jquery.prettyPhoto.js"></script>
-  <script src="/resources/bootstrap/js/jquery.isotope.min.js"></script>
-  <script src="/resources/bootstrap/js/wow.min.js"></script>
-  <script src="/resources/bootstrap/js/jquery.easing.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
-  <script src="/resources/bootstrap/js/main.js"></script>
-  <script src="/resources/bootstrap/contactform/contactform.js"></script>
+<script type="text/javascript"
+   src="/resources/js/jquery-3.3.1.min.js"></script>
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="/resources/bootstrap/js/wow.min.js"></script>
+<script src="/resources/bootstrap/js/main.js"></script>
+<link href="/resources/css/anybootstrap.css" rel="stylesheet">
+<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
+<link href="/resources/bootstrap/css/animate.min.css" rel="stylesheet">
+<link href="/resources/bootstrap/css/animate.css" rel="stylesheet" />
+<link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
+<link href="/resources/bootstrap/css/style.css" rel="stylesheet">
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <!-- Include all compiled plugins (below), or include individual files as needed -->
