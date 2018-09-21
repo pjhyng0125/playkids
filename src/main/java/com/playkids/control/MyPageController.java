@@ -11,8 +11,13 @@ public class MyPageController {
 		return "mypage/readMypage";
 	}
 	
-	@RequestMapping("myinfolist")
-	public String myclassinfo() {
-		return "mypage/result/myinfolist";
+	@RequestMapping("myclasslist")
+	public String myclasslist() {
+		return "mypage/result/myclasslist";
+	}
+
+	@RequestMapping("mypaylist")
+	public String mypaylist() {
+		return "mypage/result/mypaylist";
 	}
 }

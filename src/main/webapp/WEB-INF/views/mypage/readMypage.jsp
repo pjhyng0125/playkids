@@ -40,7 +40,7 @@
 		$('.myclassinfo').click(function(){
 			$.ajax({  	        
     	        //data : {"page" : page},
-    	        url : "/myinfolist",
+    	        url : "/myclasslist",
     	        success : function(result) {   	            	
 	    	            $('.myinfolist-data').html(result);
     	       },error:function(e,code){
@@ -53,7 +53,18 @@
 			
 		})
 		$('.mypayinfo').click(function(){
-			
+			$.ajax({  	        
+    	        //data : {"page" : page},
+    	        url : "/mypaylist",
+    	        success : function(result) {   	            	
+	    	            $('.myinfolist-data').html(result);
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+    	    }); 
 		})
 		$('.myQnAinfo').click(function(){
 			
@@ -117,7 +128,7 @@
 			<button class="btn btn-info mypayinfo">구매내역</button>
 		</div>
 		<div class="col-md-4">
-			<button class="btn btn-info myQnAinfo">1:1문의</button>
+			<button class="btn btn-info myQnAinfo">1 : 1 문의</button>
 		</div>
 	</div>
 <br><br><br>
