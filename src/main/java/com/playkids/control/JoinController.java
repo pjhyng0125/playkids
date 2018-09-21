@@ -256,21 +256,6 @@ public class JoinController {
 		System.out.println("file_class:"+classvo.getCpic());
 		System.out.println("file_teacher:"+classvo.getCteacherpic());
 		
-		//System.out.println("auth:"+classvo.getAutho());
-		
-		//String result=null;
-		/*System.out.println("originalName: "+file_class.getOriginalFilename());
-		System.out.println("size: "+file_class.getSize());
-		System.out.println("contentType: "+file_class.getContentType());*/
-		//전송된 파일이 저장될 경로
-		
-		
-		/*if(service.createclass(cv)) {
-			result="클래스 입력 성공!!!";
-		}else {
-			result="클래스 입력 실패...";		
-		}*/
-		
 		return "메세지 받기 성공!";
 	}
 	//teacher.jpg=> teacher_cno.jpg

@@ -55,7 +55,7 @@ CREATE TABLE class (
 	bid VARCHAR2(50), /* 기업아이디 */
 	ctype VARCHAR2(30) NOT NULL, /* 클래스타입 */
 	cname VARCHAR2(30) NOT NULL, /* 클래스명 */
-	cpic VARCHAR2(30) NOT NULL, /* 클래스사진 */
+	cpic VARCHAR2(30), /* 클래스사진 */
 	cage VARCHAR2(10) NOT NULL, /* 권장나이 */
 	cintro VARCHAR2(500) NOT NULL, /* 클래스소개 */
 	cdate DATE NOT NULL, /* 클래스예정날짜 */
@@ -63,12 +63,12 @@ CREATE TABLE class (
 	notice VARCHAR2(500) NOT NULL, /* 유의사항 */
 	price NUMBER NOT NULL, /* 금액 */
 	cteachername VARCHAR2(20) NOT NULL, /* 강사명 */
-	cteacherpic VARCHAR2(30) NOT NULL, /* 강사사진 */
+	cteacherpic VARCHAR2(30), /* 강사사진 */
 	cteacher VARCHAR2(500) NOT NULL, /* 강사소개 */
 	cregdate DATE default sysdate NOT NULL,	/*클래스등록일*/
-	park CHAR(1) default '0',
-	protect CHAR(1) default '0',
-	together CHAR(1) default '0',
+	park VARCHAR2(3) ,
+	protect VARCHAR2(3),
+	together VARCHAR2(3),
 	autho CHAR(1) default '0' /* 인증 */
 );
 
@@ -292,7 +292,7 @@ ALTER TABLE reply
 CREATE TABLE reserve (
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
 	cno number NOT NULL,
-	regdate DATE /* 확정일 */
+	regdate DATE, /* 확정일 */
 );
 
 COMMENT ON TABLE reserve IS 'reserve';
@@ -331,10 +331,10 @@ ALTER TABLE class
 	ADD
 		CONSTRAINT FK_business_TO_class
 		FOREIGN KEY (
-			bid
+			cno
 		)
 		REFERENCES business (
-			bid
+			cno
 		);
 
 ALTER TABLE location
@@ -391,8 +391,12 @@ ALTER TABLE reserve
 	ADD
 		CONSTRAINT FK_class_TO_reserve
 		FOREIGN KEY (
-			cno
+			ctype,
+			cname,
+			cdate2
 		)
 		REFERENCES class (
-			cno
+			ctype,
+			cname,
+			cdate
 		);
