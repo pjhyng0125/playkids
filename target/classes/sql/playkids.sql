@@ -6,7 +6,7 @@ CREATE TABLE business (
 	bname VARCHAR2(30), /* 기업명 */
 	bintro VARCHAR2(500), /* 업체소개 */
 	bphone VARCHAR2(20), /* 연락처 */
-	baddress VARCHAR2(50), /* 주소 */
+	baddress VARCHAR2(100), /* 주소 */
 	bregdate DATE, /* 가입일 */
 	baccount VARCHAR2(20) /* 계좌번호 */
 );
