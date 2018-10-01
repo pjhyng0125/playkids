@@ -1,11 +1,12 @@
 /* business */
+drop table business;
 CREATE TABLE business (
 	bid VARCHAR2(50) NOT NULL, /* 기업아이디 */
 	bpw VARCHAR2(50), /* 패스워드 */
 	bname VARCHAR2(30), /* 기업명 */
 	bintro VARCHAR2(500), /* 업체소개 */
 	bphone VARCHAR2(20), /* 연락처 */
-	baddress VARCHAR2(50), /* 주소 */
+	baddress VARCHAR2(100), /* 주소 */
 	bregdate DATE, /* 가입일 */
 	baccount VARCHAR2(20) /* 계좌번호 */
 );
@@ -136,17 +137,20 @@ ALTER TABLE location
 		);
 
 /* member */
+drop table member;
 CREATE TABLE member (
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
 	mpw VARCHAR2(50), /* 패스워드 */
 	mname VARCHAR2(30), /* 이름 */
 	maddress VARCHAR2(50), /* 주소 */
 	mphone VARCHAR2(20), /* 연락처 */
-	mbirth CHAR(6), /* 생년월일 */
+	mbirth Date, /* 생년월일 */
 	minterest VARCHAR2(30), /* 관심분야 */
 	mregdate DATE default sysdate NOT NULL,
 	mcash NUMBER default 0
 );
+
+select * from MEMBER;
 
 COMMENT ON TABLE member IS 'member';
 
@@ -163,6 +167,10 @@ COMMENT ON COLUMN member.mphone IS '연락처';
 COMMENT ON COLUMN member.mbirth IS '생년월일';
 
 COMMENT ON COLUMN member.minterest IS '관심분야';
+
+COMMENT ON COLUMN member.mregdate IS '가입일';
+
+COMMENT ON COLUMN member.mcash IS '캐쉬';
 
 CREATE UNIQUE INDEX PK_member
 	ON member (

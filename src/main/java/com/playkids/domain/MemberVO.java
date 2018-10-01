@@ -8,13 +8,17 @@ public class MemberVO {
 	private String mphone;
 	private String mbirth;
 	private String minterest;
+	private String mregdate;
+	private String mcash;
 	
+	
+
 	public MemberVO() {
 		super();
 	}
 
 	public MemberVO(String mid, String mpw, String mname, String maddress, String mphone, String mbirth,
-			String minterest) {
+			String minterest, String mregdate, String mcash) {
 		super();
 		this.mid = mid;
 		this.mpw = mpw;
@@ -23,6 +27,8 @@ public class MemberVO {
 		this.mphone = mphone;
 		this.mbirth = mbirth;
 		this.minterest = minterest;
+		this.mregdate = mregdate;
+		this.mcash = mcash;
 	}
 
 	public String getMid() {
@@ -81,9 +87,26 @@ public class MemberVO {
 		this.minterest = minterest;
 	}
 
+	public String getMregdate() {
+		return mregdate;
+	}
+
+	public void setMregdate(String mregdate) {
+		this.mregdate = mregdate;
+	}
+
+	public String getMcash() {
+		return mcash;
+	}
+
+	public void setMcash(String mcash) {
+		this.mcash = mcash;
+	}
+
 	@Override
 	public String toString() {
-		return "Member [mid=" + mid + ", mpw=" + mpw + ", mname=" + mname + ", maddress=" + maddress + ", mphone="
-				+ mphone + ", mbirth=" + mbirth + ", minterest=" + minterest + "]";
+		return "MemberVO [mid=" + mid + ", mpw=" + mpw + ", mname=" + mname + ", maddress=" + maddress + ", mphone="
+				+ mphone + ", mbirth=" + mbirth + ", minterest=" + minterest + ", mregdate=" + mregdate + ", mcash="
+				+ mcash + "]";
 	}
 }
