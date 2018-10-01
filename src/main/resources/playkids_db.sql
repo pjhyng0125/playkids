@@ -23,9 +23,9 @@ create table board(
 	count number default 0,
 	regdate DATE default sysdate,
 	newflag number default 1
-);	-- newflag = 0 false //	newflag = 1 true ; new badge on
+);
 
-alter table board 													-- 안들어가지더라
+alter table board 
 add constraint fk_member_to_board
 	foreign key(mid)
 	references member(mid);
