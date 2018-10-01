@@ -82,7 +82,7 @@
 						
 </select> <input type="text" name='keyword' i size="30" id="search_board" placeholder="검색내용" value='${cri.keyword }'>
 
-<button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i>검색</button>
+<button class="btn btn-default" type="button" id="searchBtn"><i class="glyphicon glyphicon-search"></i>검색</button>
 <button class="btn btn-info" id="write">글쓰기</button>
 </div>
 <hr>
@@ -96,7 +96,12 @@
 		<tr align="center" class="board_line">
 		<td>${posting.bno}</td>
 		<td><a href='/board/showpage${pm.makeSearch(pm.cri.page) }&bno=${posting.bno}'>${posting.title}
-			</a>[${posting.reply_cnt }] <span class='badge badge-danger'>New</span>
+			</a>[${posting.reply_cnt }] 
+			<c:choose>
+				<c:when test="${posting.newflag==1 }">
+						<span class='badge badge-danger'>New</span>
+				</c:when>
+			</c:choose>
 		</td>
 		<td>${posting.mid}</td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd"

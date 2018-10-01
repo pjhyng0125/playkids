@@ -60,3 +60,12 @@ add constraint fk_member_to_reply
 	foreign key(bno)
 	references board(bno);
 	
+	select bno, mid, title, content, regdate,count,
+     case
+     when (sysdate-regdate<1)  then 1
+     else 0
+     end newflag,(select count(*) from reply where reply.bno = board.bno) reply_cnt
+     from board
+     order by bno desc;
+	
+	

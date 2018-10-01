@@ -10,7 +10,8 @@ public class BoardVO {
 	private String content;				// 내용
 	private Date regdate;				// 작성일자
 	private int count;					// 조회수
-	private int reply_cnt;				
+	private int reply_cnt;				// 게시물 댓글 갯수
+	private int newflag;				// new badge flag
 	
 	public int getBno() {
 		return bno;
@@ -55,10 +56,19 @@ public class BoardVO {
 	public void setReply_cnt(int reply_cnt) {
 		this.reply_cnt = reply_cnt;
 	}
+	
+	
+	public int getNewflag() {
+		return newflag;
+	}
+	public void setNewflag(int newflag) {
+		this.newflag = newflag;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", mid=" + mid + ", title=" + title + ", content=" + content + ", regdate="
-				+ regdate + ", count=" + count + ", reply_cnt=" + reply_cnt + "]";
+				+ regdate + ", count=" + count + ", reply_cnt=" + reply_cnt + ", newflag=" + newflag + "]";
 	}
+	
 	
 }
