@@ -1,4 +1,5 @@
 /* business */
+drop table business;
 CREATE TABLE business (
 	bid VARCHAR2(50) NOT NULL, /* 기업아이디 */
 	bpw VARCHAR2(50), /* 패스워드 */
@@ -143,7 +144,7 @@ CREATE TABLE member (
 	mname VARCHAR2(30), /* 이름 */
 	maddress VARCHAR2(50), /* 주소 */
 	mphone VARCHAR2(20), /* 연락처 */
-	mbirth CHAR(6), /* 생년월일 */
+	mbirth Date, /* 생년월일 */
 	minterest VARCHAR2(30), /* 관심분야 */
 	mregdate DATE default sysdate NOT NULL,
 	mcash NUMBER default 0
