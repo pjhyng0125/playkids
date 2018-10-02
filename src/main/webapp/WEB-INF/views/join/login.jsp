@@ -23,6 +23,10 @@
 			type:"POST",
 			success:function(result){
 				alert(result);
+				if(result.indexOf('로그인 성공')>0){
+					alert('이동쓰');
+					location.href="/main";
+				}
 			}
 		});
 	}
