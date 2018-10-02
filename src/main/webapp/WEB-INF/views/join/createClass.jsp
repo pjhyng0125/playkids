@@ -157,7 +157,7 @@
 				<td>유의사항:</td><td><input type="text" name="notice"></td>
 			</tr>
 			<tr>
-				<td>금액:</td><td><input type="text" name="price"></td>
+				<td>금액:</td><td><input type="number" min="5000" step="5000" name="price"></td>
 			</tr>
 			<tr>
 				<td>시설정보:</td><td><input type="checkbox" name="park" value="park">주차공간 
