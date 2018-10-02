@@ -104,5 +104,5 @@
   <img onclick="javascript:location.href='/program';" src="/resources/bootstrap/images/slide13.jpg" hspace="50">
   </div>
   
-  <br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
   <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

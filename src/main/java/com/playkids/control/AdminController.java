@@ -2,6 +2,7 @@ package com.playkids.control;
 
 
 
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -24,10 +25,9 @@ public class AdminController {
 	
 	@RequestMapping(value="adminMember", method=RequestMethod.GET)
 	public String admin_memberGET(Model model)throws Exception{
+		model.addAttribute("list",service.selectmember());
 		
-		model.addAttribute("admin",service.selectmember());
-		
-		return "admin/admin_member";
+		return "/admin/member_list";
 	}
 	
 	@RequestMapping(value="adminBusiness", method=RequestMethod.GET)
@@ -35,7 +35,7 @@ public class AdminController {
 		
 		model.addAttribute("admin",service.selectbusiness());
 		
-		return "admin/admin_business";
+		return "/admin/business_list";
 	}
 	
 	@RequestMapping(value="adminClassInfo", method=RequestMethod.GET)
@@ -43,7 +43,7 @@ public class AdminController {
 		
 		model.addAttribute("admin",service.selectclassinfo());
 		
-		return "admin/admin_classinfo";
+		return "admin/classinfo_list";
 		
 	}
 	
@@ -52,7 +52,8 @@ public class AdminController {
 		
 		model.addAttribute("admin",service.selectboard());
 		
-		return "admin/admin_board";
+		return "/admin/admin_board";
 	}
+	
 	
 }
