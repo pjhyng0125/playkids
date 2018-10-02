@@ -69,15 +69,16 @@ public class JoinController {
 		List<Integer> list = new ArrayList<>();
 
 		int startage=Integer.parseInt(type);
-		for(int i=startage+1; i<=13; i++) {
-			list.add(i);
+		if(startage!=0) {
+			for(int i=startage+1; i<=13; i++) {
+				list.add(i);
+			}
 		}
 		
 		html="<option value='0'>==º±≈√==</option>";
 		for(int i=0; i<list.size(); i++){
 			html+="<option value="+list.get(i)+">"+list.get(i)+"ºº"+"</option>";
 		}
-		System.out.println(html);
 		return html;
 	}
 	@RequestMapping(value="loadaddr")

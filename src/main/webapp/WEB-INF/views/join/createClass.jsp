@@ -135,12 +135,6 @@
 		               	~
 						<select name="cage2" id="cage2">
 							<option value="0">==선택==</option>
-							<option value="8">8세</option>
-							<option value="9">9세</option>
-							<option value="10">10세</option>
-							<option value="11">11세</option>
-							<option value="12">12세</option>
-							<option value="13">13세</option>
 		               	</select>
 				    </td>
 			</tr>
