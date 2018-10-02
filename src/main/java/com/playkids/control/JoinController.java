@@ -3,6 +3,7 @@ package com.playkids.control;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +63,23 @@ public class JoinController {
 		return "/join/confirmBusiness";
 	}
 
+	@RequestMapping(value="loadendage")
+	public @ResponseBody String loadAge(String type) throws SQLException {
+		String html=null;
+		List<Integer> list = new ArrayList<>();
+
+		int startage=Integer.parseInt(type);
+		for(int i=startage+1; i<=13; i++) {
+			list.add(i);
+		}
+		
+		html="<option value='0'>==º±≈√==</option>";
+		for(int i=0; i<list.size(); i++){
+			html+="<option value="+list.get(i)+">"+list.get(i)+"ºº"+"</option>";
+		}
+		System.out.println(html);
+		return html;
+	}
 	@RequestMapping(value="loadaddr")
 	public @ResponseBody String loadAddr(String type, String gugun) throws SQLException {
 		String html=null;
