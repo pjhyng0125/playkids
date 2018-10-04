@@ -23,12 +23,9 @@
 							+ '${pm.makeQuery(1)}'
 							+ "&searchType="
 							+ $("select option:selected").val()
-							+ "&keyword=" + encodeURIComponent($('#keywordInput').val());
+							+ "&keyword=" + encodeURIComponent($('#search_board').val());
 
 				});
-		
-		var now = new Date();
-		var now_compare = now.getFullYear()+"-"+now.getMonth()+"-"+now.getDate();
 	
 	});
 </script>
@@ -90,11 +87,34 @@
 <div class="box-body">
 <center>
 <table style="width: 70%" class="table">
-	<tr class="table_headline" align="center"><td>글 번호</td><td width="30%">제목</td><td>작성자</td><td>작성일자</td><td>조회수</td></tr>
+	<tr class="table_headline" align="center"><td>글 번호</td><td>카테고리</td><td width="30%">제목</td><td>작성자</td><td>작성일자</td><td>조회수</td></tr>
+
+	<tbody class="notice_body">
+	<c:forEach items="${notice }" var="posting">
+		<tr align="center" class="danger">
+		<td><font color="red"><필독></font></td>
+		<td><font color="red">공지사항</font></td>
+		<td><a href='/board/showpage?&bno=${posting.bno}'>${posting.title}
+			</a>[${posting.reply_cnt }] 
+			<c:choose>
+				<c:when test="${posting.newflag==1 }">
+						<span class='badge badge-danger'>New</span>
+				</c:when>
+			</c:choose>
+		</td>
+		<td>${posting.mid}</td>
+		<td><fmt:formatDate pattern="yyyy-MM-dd"
+				value="${posting.regdate }" /></td>
+		<td>${posting.count}</td>
+		</tr>
+	</c:forEach>
+	</tbody>
+	
 	<tbody class="tbod">
 	<c:forEach items="${list }" var="posting">
 		<tr align="center" class="board_line">
 		<td>${posting.bno}</td>
+		<td>${posting.category }</td>
 		<td><a href='/board/showpage${pm.makeSearch(pm.cri.page) }&bno=${posting.bno}'>${posting.title}
 			</a>[${posting.reply_cnt }] 
 			<c:choose>

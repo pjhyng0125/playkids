@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	
  	<insert id="insert_board">
- 		insert into board(bno, title, content, mid)
-     	values (tbl_board_seq.nextval, #{title}, #{content}, #{mid})
+ 		insert into board(bno, title, content, mid, category)
+     	values (tbl_board_seq.nextval, #{title}, #{content}, #{mid}, #{category})
  	</insert>
  	
  	<delete id="delete_board">
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</update>
  	
  	<select id="select_board" resultType="BoardVO">
- 		select bno,mid, title, regdate, content, count from board
+ 		select bno,mid, title, regdate, content, count, category from board
  		where bno=#{bno}
  	</select>
  	
@@ -41,30 +41,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 공통된 sql문 작성 저장   -->
   <sql id="search">
-  	<if test="searchType!=null">
-  		<choose>
-  			<when test="searchType=='t'.toString()">
-  				where title like '%'||#{keyword}||'%'
-  			</when>
-  			<when test="searchType=='c'.toString()">
-  				where content like '%'||#{keyword}||'%'
-  			</when>
-  			<when test="searchType=='w'.toString()">
-  				where mid like '%'||#{keyword}||'%'
-  			</when>
-  		</choose>
-  	</if>
+  	<choose>
+  		<when test="searchType!=null">
+  			<choose>
+  				<when test="searchType=='t'.toString()">
+  					and title like '%'||#{keyword}||'%'
+  				</when>
+  				<when test="searchType=='c'.toString()">
+  					and content like '%'||#{keyword}||'%'
+  				</when>
+  				<when test="searchType=='w'.toString()">
+  					and mid like '%'||#{keyword}||'%'
+  				</when>
+  			</choose>
+  		</when>
+  	</choose>
   </sql>
   
 
   
   <select id="listSearch" resultType="BoardVO"><![CDATA[
-  select bno, mid, title, content, regdate,count,
+  select bno, mid, title, content, regdate,count,category,
      case
      when (1>sysdate-regdate)  then 1
      else 0
      end newflag,(select count(*) from reply where reply.bno = board.bno) reply_cnt
      from board
+     where category in ('후기', '추천', '질문', '잡담')
      ]]>
      <include refid="search"></include>
      order by bno desc
@@ -76,5 +79,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<include refid="search"></include>
   </select>
  	
+  <select id="noticelistSearch" resultType="BoardVO"><![CDATA[
+  select bno, mid, title, content, regdate,count,category,
+     case
+     when (1>sysdate-regdate)  then 1
+     else 0
+     end newflag,(select count(*) from reply where reply.bno = board.bno) reply_cnt
+     from board
+     where category in ('공지')
+     ]]>
+     order by bno desc
+ </select>
  	
 </mapper>

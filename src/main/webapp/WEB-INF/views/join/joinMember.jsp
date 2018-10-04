@@ -49,6 +49,10 @@
 				alert('비밀번호 확인 입력!')
 				return;
 			}
+			if($('#mpwcheck').text().indexOf('실패')>0){
+				alert('비밀번호 일치 확인!');
+				return;
+			}
 			if($('#mname').val()==''){
 				alert('이름 입력!')
 				return;
@@ -116,6 +120,15 @@
 		});//ajax
 	}//insertmember
 	
+	function checkpw(){
+		var pass=$('#mpw').val();
+		var pass2=$('#mpwconfirm').val();
+		if(pass===pass2)
+			$('#mpwcheck').html('<font color=green>비밀번호 일치</font>');
+		else
+			$('#mpwcheck').html('<font color=red>비밀번호 일치 실패</font>');
+	}
+	
 //address	
 	function loadgugun(){
 		param="type=gugun";
@@ -182,7 +195,7 @@
 <div class="container">
 	<div>
 	<h3>개인 회원 가입</h3><br>
-		<table cellspacing="5" cellpadding="10">
+		<table cellspacing="5" cellpadding="10" class="table-bordered">
 			<tr>
 				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="mid"><div id="midcheck"></div></td>
 			</tr>
@@ -190,7 +203,7 @@
 				<td>비밀번호:</td><td colspan="2"><input type="password" id="mpw"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="mpwconfirm"></td>
+				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="mpwconfirm" onkeyup="checkpw()"><div id="mpwcheck"></div></td>
 			</tr>
 			<tr>
 				<td>이름:</td><td colspan="2"><input type="text" id="mname"></td>
