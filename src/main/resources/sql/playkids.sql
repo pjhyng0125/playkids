@@ -103,7 +103,7 @@ COMMENT ON COLUMN class.autho IS '¿Œ¡ı';
 
 CREATE UNIQUE INDEX PK_class
 	ON class (cno ASC);
-
+	
 ALTER TABLE class
 	ADD
 		CONSTRAINT PK_class
