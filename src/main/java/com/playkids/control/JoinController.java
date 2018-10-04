@@ -141,7 +141,7 @@ public class JoinController {
 		if(type.equals("member")) {
 			if(service.findmember(map)) {
 				result="개인 회원 로그인 성공!!!";
-				session.setAttribute("login_member", map.get("id"));
+				session.setAttribute("login_id", map.get("id"));
 				session.setAttribute("login_type", map.get("member"));
 			}
 			else
@@ -149,7 +149,7 @@ public class JoinController {
 		}else if(type.equals("business")) {
 			if(service.findbusiness(map)) {
 				result="기업 회원 로그인 성공!!!";
-				session.setAttribute("login_business", map.get("id"));
+				session.setAttribute("login_id", map.get("id"));
 				session.setAttribute("login_type", map.get("business"));
 			}
 			else
