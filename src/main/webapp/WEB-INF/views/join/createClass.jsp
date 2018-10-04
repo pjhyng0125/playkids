@@ -10,6 +10,19 @@
 			checkEmpty();
 		});//addclass click
 	}); 
+//권장 나이1 check!	
+	function loadendage(){
+		param="type="+$('select[name=cage1]').val();
+		$.ajax({
+			url:"/loadendage",
+			data:param,
+			type:"POST",
+			success:function(str){
+				var endage=document.getElementById("cage2");
+				endage.innerHTML=str;
+			}
+		});//ajax for gugun
+	}//loadgugun
 
 //유효성 검사
 	function checkEmpty(){
@@ -111,24 +124,17 @@
 			<tr>
 				<td>권장나이:</td>
 					<td>
-						<select name="cage1">
+						<select name="cage1" onchange="loadendage()">
 							<option value="0">==선택==</option>
 							<option value="8">8세</option>
 							<option value="9">9세</option>
 							<option value="10">10세</option>
 							<option value="11">11세</option>
 							<option value="12">12세</option>
-							<option value="13">13세</option>
 		               	</select>
 		               	~
-						<select name="cage2">
+						<select name="cage2" id="cage2">
 							<option value="0">==선택==</option>
-							<option value="8">8세</option>
-							<option value="9">9세</option>
-							<option value="10">10세</option>
-							<option value="11">11세</option>
-							<option value="12">12세</option>
-							<option value="13">13세</option>
 		               	</select>
 				    </td>
 			</tr>
@@ -151,7 +157,7 @@
 				<td>유의사항:</td><td><input type="text" name="notice"></td>
 			</tr>
 			<tr>
-				<td>금액:</td><td><input type="text" name="price"></td>
+				<td>금액:</td><td><input type="number" min="5000" step="5000" name="price"></td>
 			</tr>
 			<tr>
 				<td>시설정보:</td><td><input type="checkbox" name="park" value="park">주차공간 

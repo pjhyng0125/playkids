@@ -20,4 +20,9 @@ public class MyPageController {
 	public String mypaylist() {
 		return "mypage/result/mypaylist";
 	}
+	
+	@RequestMapping("chat")
+	public String chat() {
+		return "chat/qna";
+	}
 }
