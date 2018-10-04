@@ -21,4 +21,6 @@ public interface BoardDAO {
 
 	public void updateViewCnt(int bno);
 
+	public List<BoardVO> listNotice() throws Exception;
+
 }

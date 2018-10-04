@@ -60,5 +60,11 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlsession.update("board.updateViewCnt", bno);
 	}
 	
+	@Override
+	public List<BoardVO> listNotice() throws Exception {
+		
+		return sqlsession.selectList("board.noticelistSearch");
+	}
+	
 
 }
