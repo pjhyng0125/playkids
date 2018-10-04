@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage">
+	<insert id="insertChild" parameterType="ChildInfoVO">
+		insert into childinfo(dno,mid,dname,dgender,dbirth)
+		values(childinfo_seq.nextval,#{mid},#{dname},#{dgender},#{dbirth})
+	</insert>
+	
+	<select id="selectChild" parameterType="string" resultType="ChildInfoVO">
+		select dname,dgender,dbirth
+		from childinfo
+		where mid=#{mid}
+	</select>
+</mapper>
