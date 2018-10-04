@@ -25,21 +25,20 @@ $(function(){
 <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i>검색</button>
 <hr>
 <c:forEach items="${list }" var="faqVO">
-	<div id="faqList">
-		
+	<div id="faqList">	
 		<table>
 			<tr>
-				<td>
+				<td align="left">
 					<font class="category_font">${faqVO.fcategory}</font>
 				</td>
-				<td>
+				<td width="20%">
 					<font class="title_font">${faqVO.ftitle}</font>
 				</td>
 			</tr>
 		</table>
 
 		<ul class="fanswer">
-			<li>${faqVO.fanswer}</li>
+			<div>${faqVO.fanswer}</div>
 			<br><br><br>
 			<font class="question">답변이 충분하지 않으면 1:1 문의서비스를 이용해 주세요.</font>
 			&nbsp;&nbsp;&nbsp;<a>1:1 문의서비스 이용하러가기></a>

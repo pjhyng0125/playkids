@@ -17,13 +17,15 @@ public class ClassInfoDAOImpl implements ClassInfoDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public ClassVO select_info(String cname) throws Exception {
-		return sqlSession.selectOne("classInfo.select_info",cname);
+	public ClassVO select_info(int cno) throws Exception {
+		return sqlSession.selectOne("classInfo.select_info",cno);
 	}
 
 	@Override
 	public BusinessVO select_business(String bid) throws Exception {
 		return sqlSession.selectOne("classInfo.select_business",bid);
 	}
+
+	
 
 }

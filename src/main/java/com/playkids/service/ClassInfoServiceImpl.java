@@ -17,8 +17,8 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 	private ClassInfoDAO dao;
 	
 	@Override
-	public ClassVO select_info(String cname) throws Exception {
-		return dao.select_info(cname);
+	public ClassVO select_info(int cno) throws Exception {
+		return dao.select_info(cno);
 	}
 
 	@Override

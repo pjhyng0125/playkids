@@ -7,7 +7,7 @@ import com.playkids.domain.ClassVO;
 
 public interface ClassInfoService {
 
-	public ClassVO select_info(String cname) throws Exception;
+	public ClassVO select_info(int cno) throws Exception;
 	public BusinessVO select_business(String bid) throws Exception;
 	
 }

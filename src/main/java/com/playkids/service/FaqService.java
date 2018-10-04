@@ -15,5 +15,6 @@ public interface FaqService {
 	public List<FaqVO> faq_criteria(Criteria cri)throws Exception;
 
 	public int faq_criteriaCount(SearchCriteria cri)throws Exception;
-	
+
+
 }

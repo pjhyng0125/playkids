@@ -39,11 +39,6 @@ public class FaqDAOImpl implements FaqDAO{
 	public int faq_criteriaCount(SearchCriteria cri) throws Exception {
 		return sqlSession.selectOne("faq.listSearchCount", cri);
 	}
-/*
-	@Override
-	public List<FaqVO> faq_listSearch(SearchCriteria cri) throws Exception {
-		RowBounds bounds = new RowBounds(cri.getPageStart(), cri.getPerPageNum());
-		return sqlSession.selectList("faq.faq_listSearch",cri);
-	}*/
+
 
 }

@@ -3,6 +3,7 @@ package com.playkids.domain;
 import java.util.Date;
 
 public class ClassVO {
+	private int cno;
 	private String bid;
 	private String ctype;
 	private String cname;
@@ -16,22 +17,23 @@ public class ClassVO {
 	private String cteachername;
 	private String cteacherpic;
 	private String cteacher;
-	
+
 	private String park;
 	private String protect;
 	private String together;
-	
+
 	private Date cregdate;
 	private boolean autho;
-	
+
 	public ClassVO() {
 		super();
 	}
 
-	public ClassVO(String bid, String ctype, String cname, String cpic, String cage, String cintro, String cdate,
-			String prepare, String notice, int price, String cteachername, String cteacherpic, String cteacher,
-			String park, String protect, String together, Date cregdate, boolean autho) {
+	public ClassVO(int cno, String bid, String ctype, String cname, String cpic, String cage, String cintro,
+			String cdate, String prepare, String notice, int price, String cteachername, String cteacherpic,
+			String cteacher, String park, String protect, String together, Date cregdate, boolean autho) {
 		super();
+		this.cno = cno;
 		this.bid = bid;
 		this.ctype = ctype;
 		this.cname = cname;
@@ -50,6 +52,14 @@ public class ClassVO {
 		this.together = together;
 		this.cregdate = cregdate;
 		this.autho = autho;
+	}
+
+	public int getCno() {
+		return cno;
+	}
+
+	public void setCno(int cno) {
+		this.cno = cno;
 	}
 
 	public String getBid() {
@@ -198,13 +208,11 @@ public class ClassVO {
 
 	@Override
 	public String toString() {
-		return "ClassVO [bid=" + bid + ", ctype=" + ctype + ", cname=" + cname + ", cpic=" + cpic + ", cage=" + cage
-				+ ", cintro=" + cintro + ", cdate=" + cdate + ", prepare=" + prepare + ", notice=" + notice + ", price="
-				+ price + ", cteachername=" + cteachername + ", cteacherpic=" + cteacherpic + ", cteacher=" + cteacher
-				+ ", park=" + park + ", protect=" + protect + ", together=" + together + ", cregdate=" + cregdate
-				+ ", autho=" + autho + "]";
+		return "ClassVO [cno=" + cno + ", bid=" + bid + ", ctype=" + ctype + ", cname=" + cname + ", cpic=" + cpic
+				+ ", cage=" + cage + ", cintro=" + cintro + ", cdate=" + cdate + ", prepare=" + prepare + ", notice="
+				+ notice + ", price=" + price + ", cteachername=" + cteachername + ", cteacherpic=" + cteacherpic
+				+ ", cteacher=" + cteacher + ", park=" + park + ", protect=" + protect + ", together=" + together
+				+ ", cregdate=" + cregdate + ", autho=" + autho + "]";
 	}
-	
-	
-	
+
 }

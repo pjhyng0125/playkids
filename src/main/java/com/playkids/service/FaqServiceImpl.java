@@ -1,6 +1,6 @@
 package com.playkids.service;
 
-import java.util.List; 
+import java.util.List;  
 
 import javax.inject.Inject;
 
@@ -37,6 +37,8 @@ public class FaqServiceImpl implements FaqService{
 	public int faq_criteriaCount(SearchCriteria cri) throws Exception {
 		return dao.faq_criteriaCount(cri);
 	}
+	
 
+	
 
 }

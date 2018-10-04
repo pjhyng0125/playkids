@@ -15,15 +15,27 @@
 	#class_cfont{font-size: 18px; margin-left: 10px;}
 	#class_title{font-size: 20px; font-weight: bolder; color: black;}
 	#class_pic{border-radius: 10px; box-shadow: 0px 0px 20px -5px;}
-	
-	  
-	                      
 </style>
-<div><img alt="수업사진" src="${classVO.cpic }" id="class_pic" style="width: 100%; height: 380px;"></div>
+<script type="text/javascript">
+	$(function(){
+		$('#park,#protect,#together').hide();
+		
+		var park='${classVO.park}'
+		var protect='${classVO.protect}'
+		var together='${classVO.together}'
+		
+		if(park=='use') $('#park').show();
+		if(protect=='use') $('#protect').show();
+		if(together=='use') $('#together').show();
+		
+	
+	});
+</script>
+<div><img alt="수업사진" src="/resources/upload/class/${classVO.cpic }" id="class_pic" style="width: 100%; height: 380px;"></div>
 <hr>
-<form id="class_form">
 <font id="class_title">강사소개</font>
-<div><img alt="선생님사진" src="${classVO.cteacherpic }" id="class_pic" alt="Cinque Terre" style="width: 150px; height: 170px;"></div>
+<form id="class_form">
+<div><img alt="선생님사진" src="/resources/upload/teacher/${classVO.cteacherpic }" id="class_pic" alt="Cinque Terre" style="width: 150px; height: 170px;"></div>
 이름 : <font class="text-dark">${classVO.cteachername }</font><br>
 소개
 <div id="class_font" class="text-dark">${classVO.cteacher }</div><br>
@@ -35,7 +47,11 @@
 위치 :  ${businessVO.baddress }<br>
 연락처 :  ${businessVO.bphone }<br>
 권장나이 : ${classVO.cage }<br>
-수업일시 : <fmt:formatDate pattern="yyyy-mm-dd" value="${classVO.cdate }"/> 
+
+
+<%-- 수업일시 : <fmt:formatDate pattern="yyyy-MM-dd" value="${classVO.cdate }"/>  --%>
+수업일시 : <fmt:parseDate pattern="yyyy-MM-dd" value='${classVO.cdate }' var="parsedDate"/>
+<fmt:formatDate pattern="yyyy-MM-dd" value="${parsedDate }"/>
 </div>
 
 <hr>
@@ -46,25 +62,17 @@
 
 <table cellpadding="10">
 	<tr>
-		<td>
+		<td id="park">
 			<img alt="주차공간" src="/resources/image/parking.png" id="facility_info">
+			<div align="center">주차공간</div>
 		</td>
-		<td>
+		<td id="protect">
 			<img alt="대기실" src="/resources/image/waiting_area.png" id="facility_info">
+			<div align="center">대기실</div>
 		</td>
-		<td>
+		<td id="together">
 			<img alt="참관여부" src="/resources/image/observation.png" id="facility_info">
-		</td>
-	</tr>
-	<tr align="center" id="facility_font">
-		<td>
-			주차공간 
-		</td>
-		<td>
-			보호자대기실 
-		</td>
-		<td>
-			참관가능여부
+			<div align="center">참관가능여부</div>
 		</td>
 	</tr>
 </table>

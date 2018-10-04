@@ -15,6 +15,5 @@ public interface FaqDAO {
 	public List<FaqVO> faq_criteria(Criteria cri)throws Exception;
 		
 	public int faq_criteriaCount(SearchCriteria cri)throws Exception;
-	
-/*	public List<FaqVO> faq_listSearch(SearchCriteria cri)throws Exception;*/
+
 }
