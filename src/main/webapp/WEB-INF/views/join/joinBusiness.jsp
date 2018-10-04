@@ -112,7 +112,7 @@ function idcheck(){
 			type:"POST",
 			success:function(result){
 				alert(result);
-				href.location="/login";
+				location.href="/login";
 			}				
 		});//ajax
 	}//insertmember
@@ -120,8 +120,6 @@ function idcheck(){
 	function checkpw(){
 		var pass=$('#bpw').val();
 		var pass2=$('#bpwconfirm').val();
-		alert(pass);
-		alert(pass2);
 		
 		if(pass===pass2)
 			$('#bpwcheck').html('<font color=green>비밀번호 일치</font>');
