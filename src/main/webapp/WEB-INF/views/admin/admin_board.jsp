@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -66,21 +66,6 @@
   </nav1>
   <hr>
   
-<table class="table table-bordered">
-	<tr>
-		<th>No.</th><th>아이디</th><th>제목</th><th>내용</th><th>등록일</th><th>조회수</th>
-	</tr>
-	<c:forEach items="${list }" var="adminVO">
-		<tr>
-			<th>${adminVO.bno}</th>
-			<th>${adminVO.mid}</th>
-			<th>${adminVO.title}</th>
-			<th>${adminVO.content}</th>
-			<th>${adminVO.regdate}</th>
-			<th>${adminVO.count}</th>
-		</tr>
-	</c:forEach>
-</table> 
 
 </body>
-</html>
+</html> --%>

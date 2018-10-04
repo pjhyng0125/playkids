@@ -33,26 +33,25 @@ public class AdminController {
 	@RequestMapping(value="adminBusiness", method=RequestMethod.GET)
 	public String admin_businessGET(Model model)throws Exception{
 		
-		model.addAttribute("admin",service.selectbusiness());
+		model.addAttribute("list",service.selectbusiness());
 		
 		return "/admin/business_list";
 	}
 	
 	@RequestMapping(value="adminClassInfo", method=RequestMethod.GET)
 	public String admin_classinfoGET(Model model)throws Exception{
+		model.addAttribute("list",service.selectclassinfo());
 		
-		model.addAttribute("admin",service.selectclassinfo());
-		
-		return "admin/classinfo_list";
+		return "/admin/classinfo_list";
 		
 	}
 	
 	@RequestMapping(value="adminBoard", method=RequestMethod.GET)
 	public String admin_boardGET(Model model)throws Exception{
 		
-		model.addAttribute("admin",service.selectboard());
+		model.addAttribute("list",service.selectboard());
 		
-		return "/admin/admin_board";
+		return "/admin/board_list";
 	}
 	
 	

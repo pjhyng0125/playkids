@@ -22,7 +22,8 @@ create table board(
 	content varchar2(1000),
 	count number default 0,
 	regdate DATE default sysdate,
-	newflag number default 1
+	newflag number default 1,							
+	category varchar2(50)	
 );
 
 alter table board 

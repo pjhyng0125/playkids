@@ -27,14 +27,14 @@
 <link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
 <script type="text/javascript">
-	$(function(){
+	 $(function(){
 		/* $.ajax({
 			url:"/result/member_list",
 			success:function(htmlTxt){
 				$('#a1').html(htmlTxt);
 			}
 		}); */
-	});
+	}); 
 	function loadmember(){
 		$.ajax({
 			url:"/adminMember",
@@ -45,7 +45,7 @@
 	}
 	function loadbusiness(){
 		$.ajax({
-			url:"/result/member_list",
+			url:"/adminBusiness",
 			success:function(htmlTxt){
 				$('#a1').html(htmlTxt);
 			}
@@ -53,7 +53,15 @@
 	}
 	function loadclassinfo(){
 		$.ajax({
-			url:"/result/member_list",
+			url:"/adminClassInfo",
+			success:function(htmlTxt){
+				$('#a1').html(htmlTxt);
+			}
+		});
+	}
+	function loadboard(){
+		$.ajax({
+			url:"/adminBoard",
 			success:function(htmlTxt){
 				$('#a1').html(htmlTxt);
 			}
@@ -90,10 +98,10 @@
 		<div class="web-nav2-inner">
 			<ul>
 			<li><a href="#" onclick="loadmember(); return false">회원정보</a></li>
-			<li><a href="#" onclick="loadbusiness(); return false"href="#" onclick="loadmember(); return false">기업정보</a></li>
+			<li><a href="#" onclick="loadbusiness(); return false">기업정보</a></li>
 			<li><a href="#" onclick="loadclassinfo(); return false">클래스정보</a></li>
-			<li><a id="adminBoard">게시판</a></li>
-			<li><a id="adminRevenue">수익정보</a></li>
+			<li><a href="#" onclick="loadboard(); return false">게시판</a></li>
+			<li><a href="#" onclick="loadrevenue(); return false">수익정보</a></li>
 			</ul>
 		</div>
   </nav1>

@@ -103,7 +103,7 @@ COMMENT ON COLUMN class.autho IS '인증';
 
 CREATE UNIQUE INDEX PK_class
 	ON class (cno ASC);
-
+	
 ALTER TABLE class
 	ADD
 		CONSTRAINT PK_class
@@ -301,7 +301,8 @@ ALTER TABLE reply
 /* reserve */
 CREATE TABLE reserve (
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
-	cno number NOT NULL,
+	cno number NOT NULL, /* 클래스 아이디 */
+	dno number NOT NULL, /* 자녀 아이디 */
 	regdate DATE /* 확정일 */
 );
 
@@ -309,19 +310,11 @@ COMMENT ON TABLE reserve IS 'reserve';
 
 COMMENT ON COLUMN reserve.mid IS '회원아이디';
 
-COMMENT ON COLUMN reserve.bid IS '기업아이디';
+COMMENT ON COLUMN reserve.cno IS '클래스 아이디';
 
-COMMENT ON COLUMN reserve.cdate IS '클래스등록일';
+COMMENT ON COLUMN reserve.dno IS '자녀 아이디';
 
-COMMENT ON COLUMN reserve.cname IS '클래스명';
-
-COMMENT ON COLUMN reserve.rdate IS '확정일';
-
-COMMENT ON COLUMN reserve.price IS '금액';
-
-COMMENT ON COLUMN reserve.ctype IS '클래스타입';
-
-COMMENT ON COLUMN reserve.cdate2 IS '클래스등록일2';
+COMMENT ON COLUMN reserve.regdate IS '확정일';
 
 CREATE UNIQUE INDEX PK_reserve
 	ON reserve (
@@ -365,6 +358,16 @@ ALTER TABLE childinfo
 		)
 		REFERENCES member (
 			mid
+		);
+
+ALTER TABLE reserve
+	ADD
+		CONSTRAINT FK_childinfo_TO_reserve
+		FOREIGN KEY (
+			dno
+		)
+		REFERENCES childinfo (
+			dno
 		);
 
 ALTER TABLE board

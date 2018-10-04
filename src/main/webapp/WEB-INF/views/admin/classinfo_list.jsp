@@ -6,13 +6,13 @@
 	<tr>
 		<th>아이디</th><th>클래스타입</th><th>클래스이름</th><th>클래스등록일</th><th>인증</th>
 	</tr>
-	<c:forEach items="${list }" var="adminVO">
+	<c:forEach items="${list }" var="list">
 		<tr>
-			<th>${adminVO.bid}</th>
-			<th>${adminVO.ctype}</th>
-			<th>${adminVO.cname}</th>
-			<th>${adminVO.cregdate}</th>
-			<th>${adminVO.autho}</th>
+			<th>${list.bid}</th>
+			<th>${list.ctype}</th>
+			<th>${list.cname}</th>
+			<th>${list.cregdate}</th>
+			<th>${list.autho}</th>
 		</tr>
 	</c:forEach>
 </table>

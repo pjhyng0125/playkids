@@ -6,13 +6,13 @@
 	<tr>
 		<th>아이디</th><th>기업명</th><th>연락처</th><th>가입일</th><th>계좌번호</th>
 	</tr>
-	<c:forEach items="${list }" var="adminVO">
+	<c:forEach items="${list }" var="busi">
 		<tr>
-			<th>${adminVO.bid}</th>
-			<th>${adminVO.bname}</th>
-			<th>${adminVO.bphone}</th>
-			<th>${adminVO.bregdate}</th>
-			<th>${adminVO.baccount}</th>
+			<th>${busi.bid}</th>
+			<th>${busi.bname}</th>
+			<th>${busi.bphone}</th>
+			<th>${busi.bregdate}</th>
+			<th>${busi.baccount}</th>
 		</tr>
 	</c:forEach>
 </table>
