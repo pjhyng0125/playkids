@@ -25,7 +25,7 @@ public class BoardController {
 	public String list(SearchCriteria cri, Model model) throws Exception {
 		model.addAttribute("cri", cri);
 		
-		
+		model.addAttribute("notice", service.listNotice());
 		model.addAttribute("list", service.listSearchCriteria(cri));
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);

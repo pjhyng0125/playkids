@@ -48,5 +48,10 @@ public class BoardServiceImpl implements BoardService{
 		return dao.listSearchCount(cri);
 	}
 	
+	@Override
+	public List<BoardVO> listNotice() throws Exception {
+		return dao.listNotice();
+	}
+	
 
 }
