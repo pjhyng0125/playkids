@@ -235,9 +235,9 @@ int cnocount=service.getcnocount(map);
 if(cnocount==1) {//유일한 cno 검출
 			int cno=service.getcno(map);
 //파일 저장 경로
-			String path_class=request.getServletContext().getRealPath("upload/class");
+			String path_class=request.getServletContext().getRealPath("resources/upload/class");
 			System.out.println(path_class);
-			String path_teacher=request.getServletContext().getRealPath("upload/teacher");
+			String path_teacher=request.getServletContext().getRealPath("resources/upload/teacher");
 //파일 업로드 함수 호출
 			String classFileName=setFileName(file_class.getOriginalFilename(),cno);
 			String teacherFileName=setFileName(file_teacher.getOriginalFilename(),cno);

@@ -106,9 +106,9 @@
 <!-- 클래스 정보 입력 -->
 <form enctype="multipart/form-data" method="post">
 	<div>
-		<table cellspacing="5" cellpadding="10">
+		<table cellspacing="5" cellpadding="10" class="table-bordered">
 			<tr>
-				<td width="150px">기업 아이디:</td><td colspan="2"><input type="text" name="bid"></td>
+				<td width="150px">기업 아이디:</td><td colspan="2"><input type="text" name="bid" value="${sessionScope.login_business}" readonly></td>
 			</tr>
 			<tr>
 				<td>클래스타입:</td><td><select name="ctype">
@@ -147,7 +147,7 @@
 <!-- 클래스 상세 정보 입력 -->
 <h3>클래스 상세 정보를 입력해주세요!</h3>
 <div>
-		<table cellspacing="5" cellpadding="10">
+		<table cellspacing="5" cellpadding="10" class="table-bordered">
 			<tr>
 				<td>날짜:</td><td><input type="date" id="cdate" name="cdate"></td>
 			</tr>
@@ -171,7 +171,7 @@
 <!-- 강사 정보 입력 -->
 <h3>playkids는 믿을 수 있는 강사님을 원합니다!</h3>
 <div>
-		<table cellspacing="5" cellpadding="10">
+		<table cellspacing="5" cellpadding="10" class="table-bordered">
 			<tr>
 				<td>강사명:</td><td><input type="text" name="cteachername"></td>
 			</tr>
