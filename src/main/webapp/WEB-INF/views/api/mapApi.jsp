@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>주소로 장소 표시하기</title>
-    
-</head>
-<body>
 <div id="map" style="width:600px;height:300px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df426e292958a92daf7565449eff0552&libraries=services"></script>
@@ -46,5 +38,3 @@ geocoder.addressSearch('${businessVO.baddress}', function(result, status) {
     } 
 });    
 </script>
-</body>
-</html>

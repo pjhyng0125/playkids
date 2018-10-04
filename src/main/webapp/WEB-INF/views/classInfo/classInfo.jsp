@@ -89,9 +89,9 @@
 
 <div id="class_intro">업체소개</div><br>
 <div id="class_font" class="text-dark">${businessVO.bintro }</div><br><br>
-
 <div>
 <jsp:include page="/WEB-INF/views/api/mapApi.jsp" />
-</div><br><br>
+</div><br><br><br>
+
 </form>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
