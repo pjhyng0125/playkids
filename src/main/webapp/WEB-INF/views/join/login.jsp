@@ -36,8 +36,8 @@
 <center>
 <div class="container">
 	<div>
-		<h2>회원 가입</h2><br>
-	<table cellspacing="5" cellpadding="10">
+		<h2>로그인</h2><br>
+	<table cellspacing="5" cellpadding="10" class="table-bordered">
 		<tr>
 			<td width="150px">아이디:</td><td><input type="text" id="id"></td>
 		</tr>

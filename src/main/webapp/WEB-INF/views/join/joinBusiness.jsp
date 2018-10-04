@@ -47,6 +47,10 @@
 				alert('비밀번호 확인 입력!')
 				return;
 			}
+			if($('#bpwcheck').text().indexOf('실패')>0){
+				alert('비밀번호 일치 확인!');
+				return;
+			}
 			if($('#bname').val()==''){
 				alert('기업명 입력!')
 				return;
@@ -113,6 +117,18 @@ function idcheck(){
 		});//ajax
 	}//insertmember
 	
+	function checkpw(){
+		var pass=$('#bpw').val();
+		var pass2=$('#bpwconfirm').val();
+		alert(pass);
+		alert(pass2);
+		
+		if(pass===pass2)
+			$('#bpwcheck').html('<font color=green>비밀번호 일치</font>');
+		else
+			$('#bpwcheck').html('<font color=red>비밀번호 일치 실패</font>');
+	}
+	
 //address	
 	function loadgugun(){
 		param="type=gugun";
@@ -150,7 +166,7 @@ function idcheck(){
 <div class="container">
 	<div>
 	<h3>기업 회원 가입</h3><br>
-		<table cellspacing="5" cellpadding="10">
+		<table cellspacing="5" cellpadding="10" class="table-bordered">
 			<tr>
 				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="bid"><div id="bidcheck"></div></td>
 			</tr>
@@ -158,7 +174,7 @@ function idcheck(){
 				<td>비밀번호:</td><td colspan="2"><input type="password" id="bpw"></td>
 			</tr>
 			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="bpwconfirm"></td>
+				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="bpwconfirm" onkeyup="checkpw()"><div id="bpwcheck"></div></td>
 			</tr>
 			<tr>
 				<td>기업명:</td><td colspan="2"><input type="text" id="bname"></td>
@@ -196,7 +212,7 @@ function idcheck(){
  계좌 번호 등록 안내
 </pre>
 	</div>
-	<table cellspacing="5" cellpadding="10">
+	<table cellspacing="5" cellpadding="10" class="table-bordered">
 		<tr>
 			<td width="150px">계좌번호:</td><td><input type="text" id="baccount"></td>
 		</tr>

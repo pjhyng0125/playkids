@@ -10,6 +10,7 @@
 			checkEmpty();
 		});//addclass click
 	}); 
+	
 //권장 나이1 check!	
 	function loadendage(){
 		param="type="+$('select[name=cage1]').val();
