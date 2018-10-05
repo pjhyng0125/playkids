@@ -3,14 +3,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
-	<insert id="insertChild" parameterType="ChildInfoVO">
-		insert into childinfo(dno,mid,dname,dgender,dbirth)
-		values(childinfo_seq.nextval,#{mid},#{dname},#{dgender},#{dbirth})
-	</insert>
 	
+	<!-- member table 전용 -->
+	<select id="selectMyInfo" parameterType="string" resultType="MemberVO">
+	 select mname, mcash
+	 from member
+	 where mid = #{mid}
+	</select>
+	
+	<!-- childinfo table 전용 -->
 	<select id="selectChild" parameterType="string" resultType="ChildInfoVO">
 		select dname,dgender,dbirth
 		from childinfo
 		where mid=#{mid}
 	</select>
+	
+	<insert id="insertChild" parameterType="ChildInfoVO">
+		insert into childinfo(dno,mid,dname,dgender,dbirth)
+		values(childinfo_seq.nextval,#{mid},#{dname},#{dgender},#{dbirth})
+	</insert>
 </mapper>

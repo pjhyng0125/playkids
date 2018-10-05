@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 .myinfo{
             border: 0px;
@@ -35,6 +36,31 @@
 	$(function(){
 		$('#chargeBtn').click(function(){
 			location.href="/chargepage";
+		})
+		
+		$('#addChildBtn').click(function(){// 자녀 등록
+			dgender=$('input[name=childGenderradio]:checked').val();
+			$.ajax({
+				type : 'post',
+				data:{'dgender':dgender,
+					  'dname':$('#dname').val(),
+					  'dbirth':$('#dbirth').val()},
+    	        url : "/insertChild",
+    	        success : function(result) {   	            	
+	    	          alert('등록 성공')
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+			});
+		});
+
+		$('#cancelChildBtn').click(function(){// 자녀 등록 취소
+			$('#dname').val('');
+			$('#dbirth').val('');
+			$('#initRadio').prop('checked',true);
 		})
 		
 		$('.myclassinfo').click(function(){
@@ -93,7 +119,7 @@
 				<img class="card-img-top " src="/resources/img/man.png" alt="Card image"
 					style="width: 100%" height="280px">
 				<div class="card-body">
-					<p class="card-text text-center font-weight-bold">OOO님</p>
+					<p class="card-text text-center font-weight-bold">${myInfo.mname }님</p>
 				</div>
 
 			</div>
@@ -103,8 +129,9 @@
 			<div class="card myinfo text-center">
 				<div class="card-header font-weight-bold">자녀 정보</div>
 				<div class="card-body">
+					<c:forEach items="${childInfo }" var="child">
 					<p class="card-text">김길동(10세 남)</p>
-					<p class="card-text">김라임(8세 여)</p>
+					</c:forEach>
 					<button type="button" class="btn btn-info " data-toggle="modal" data-target="#childModal">등록</button>
 				</div>
 
@@ -113,7 +140,7 @@
 		<div class="card myinfo text-center">
 			<div class="card-header font-weight-bold">캐쉬 정보</div>
 			<div class="card-body">
-				<p class="card-text">1,000원</p>
+				<p class="card-text">${myInfo.mcash }원</p>
 				<button class="btn btn-info " id="chargeBtn">충전</button>
 			</div>
 
@@ -131,7 +158,6 @@
                 <!-- Modal body -->
                 <div class="modal-body">    
                       <div class="row">
-						<form action="" method="post" id="addChildForm">
 							<div class="col-md-12">
 							<div class="form-group form-inline">							
 								<label for="dname">키즈명</label> &nbsp;&nbsp;<input type="text"
@@ -144,19 +170,18 @@
 							<div class="form-group">
 								<label for="dgender">성별</label> &nbsp;&nbsp;
 								<label class="radio-inline" id="dgender"> <input
-										type="radio" name="optradio" checked>남
+										type="radio" name="dgender" id="initRadio" checked value="남">남
 									</label> <label class="radio-inline"> <input
-										type="radio" name="optradio">여
+										type="radio" name="dgender" value="여">여
 									</label>
 								</div>
 							</div>
-						</form>
 					</div>     
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default ageApplyBtn" data-dismiss="modal" id="addChild">등록</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="addChildBtn">등록</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelChildBtn">취소</button>
                 </div>
               </div>
             </div>
