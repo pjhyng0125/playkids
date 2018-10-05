@@ -38,8 +38,7 @@
 		})
 		
 		$('.myclassinfo').click(function(){
-			$.ajax({  	        
-    	        //data : {"page" : page},
+			$.ajax({
     	        url : "/myclasslist",
     	        success : function(result) {   	            	
 	    	            $('.myinfolist-data').html(result);
@@ -83,6 +82,7 @@
 			$('.myclassStatus-completeTable').show();
 			$('.myclassStatus-reserveTable').hide();
 		})
+		
 	})
 </script>
 <br><br><br>
@@ -105,11 +105,11 @@
 				<div class="card-body">
 					<p class="card-text">김길동(10세 남)</p>
 					<p class="card-text">김라임(8세 여)</p>
+					<button type="button" class="btn btn-info " data-toggle="modal" data-target="#childModal">등록</button>
 				</div>
 
 			</div>
 		</div>
-
 		<div class="card myinfo text-center">
 			<div class="card-header font-weight-bold">캐쉬 정보</div>
 			<div class="card-body">
@@ -119,6 +119,48 @@
 
 		</div>
 	</div>
+	    <div class="modal fade" id="childModal">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h2 class="modal-title text-left">Kids 등록</h2>
+                  
+                  <button type="button" class="close" data-dismiss="modal">&times;&nbsp;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">    
+                      <div class="row">
+						<form action="" method="post" id="addChildForm">
+							<div class="col-md-12">
+							<div class="form-group form-inline">							
+								<label for="dname">키즈명</label> &nbsp;&nbsp;<input type="text"
+									class="form-control" id="dname" name="dname" >
+							</div>
+							<div class="form-group form-inline">
+								<label for="dbirth">키즈 생년월일</label> <input type="date"
+									class="form-control" id="dbirth" name="dbirth" >
+							</div>
+							<div class="form-group">
+								<label for="dgender">성별</label> &nbsp;&nbsp;
+								<label class="radio-inline" id="dgender"> <input
+										type="radio" name="optradio" checked>남
+									</label> <label class="radio-inline"> <input
+										type="radio" name="optradio">여
+									</label>
+								</div>
+							</div>
+						</form>
+					</div>     
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default ageApplyBtn" data-dismiss="modal" id="addChild">등록</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+                </div>
+              </div>
+            </div>
+            </div> <!--childModal 끝-->
 <br><br><br>
 	<div class="row myinfolist">
 		<div class="col-md-4">

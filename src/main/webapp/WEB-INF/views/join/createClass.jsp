@@ -108,7 +108,7 @@
 	<div>
 		<table cellspacing="5" cellpadding="10" class="table-bordered">
 			<tr>
-				<td width="150px">기업 아이디:</td><td colspan="2"><input type="text" name="bid" value="${sessionScope.login_business}" readonly></td>
+				<td width="150px">기업 아이디:</td><td colspan="2"><input type="text" name="bid" value="${sessionScope.login_id}" readonly></td>
 			</tr>
 			<tr>
 				<td>클래스타입:</td><td><select name="ctype">
