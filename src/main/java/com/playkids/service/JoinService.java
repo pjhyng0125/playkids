@@ -24,4 +24,9 @@ public interface JoinService {
 	public int getcno(Map<String, String> map);
 	public int getcnocount(Map<String, String> map);
 	public boolean modifyfile(Map<String, Object> map);
+	
+	public String selectmemberid(Map<String, String> map);
+	public String selectbusinessid(Map<String, String> map);
+	public boolean selectmemberpw(Map<String, String> map);
+	public boolean selectbusinesspw(Map<String, String> map);
 }

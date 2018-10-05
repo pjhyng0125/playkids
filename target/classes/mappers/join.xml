@@ -70,4 +70,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set cpic=#{cpic}, cteacherpic=#{cteacherpic}
 		where cno=#{cno}
 	</update>
+	
+	<!-- find id -->
+	<!-- member -->
+	<select id="findmemberid" parameterType="java.util.Map" resultType="String">
+		select mid from member
+		where mname=#{name} and mphone=#{phone}
+	</select>
+	<!-- business -->
+	<select id="findbusinessid" parameterType="java.util.Map" resultType="String">
+		select bid from business
+		where bname=#{name} and bphone=#{phone}
+	</select>
+	
+	<!-- find pw -->
+	<!-- member -->
+	<select id="findmemberpw" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from member
+		where mid=#{id} and mphone=#{phone}
+	</select>
+	<!-- business -->
+	<select id="findbusinesspw" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from business
+		where bid=#{id} and bphone=#{phone}
+	</select>
 </mapper>

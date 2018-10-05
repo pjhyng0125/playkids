@@ -30,4 +30,9 @@ public interface JoinDAO {
 	public int selectcnocount(Map<String, String> map);
 	public boolean updatefile(Map<String, Object> map);
 	
+	public String findmemberid(Map<String, String> map);
+	public String findbusinessid(Map<String, String> map);
+	public boolean findmemberpw(Map<String, String> map);
+	public boolean findbusinesspw(Map<String, String> map);
+	
 }

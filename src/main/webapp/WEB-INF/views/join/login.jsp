@@ -56,7 +56,7 @@
 		</tr>
 		<tr>	
 			<td colspan="2" align="center">
-				<pre><a href="/joinchoice">회원 가입</a>  <a href="#">아이디/비밀번호 찾기</a></pre>
+				<pre><a href="/joinchoice">회원 가입</a>  <a href="/findchoice">아이디/비밀번호 찾기</a></pre>
 			</td>
 		</tr>
 	</table>

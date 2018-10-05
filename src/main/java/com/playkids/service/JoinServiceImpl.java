@@ -87,6 +87,26 @@ public class JoinServiceImpl implements JoinService{
 	public int getcnocount(Map<String, String> map) {
 		return joindao.selectcnocount(map);
 	}
+
+	@Override
+	public String selectmemberid(Map<String, String> map) {
+		return joindao.findmemberid(map);
+	}
+
+	@Override
+	public String selectbusinessid(Map<String, String> map) {
+		return joindao.findbusinessid(map);
+	}
+
+	@Override
+	public boolean selectmemberpw(Map<String, String> map) {
+		return joindao.findmemberpw(map);
+	}
+
+	@Override
+	public boolean selectbusinesspw(Map<String, String> map) {
+		return joindao.findbusinesspw(map);
+	}
 	
 
 }

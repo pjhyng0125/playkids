@@ -48,6 +48,85 @@ public class JoinController {
 		return "/join/joinChoice";
 	}
 
+	@RequestMapping(value="findchoice")
+	public String findChoice() {
+		return "/join/findChoice";
+	}
+
+	@RequestMapping(value="findid")
+	public String findid(String find_id, HttpSession session, HttpServletRequest request) {
+		session.setAttribute("find_id", find_id);
+		if(find_id.equals("member")) {
+			request.setAttribute("find_name", "이름");
+			session.setAttribute("find_phone", "폰번호");
+			session.setAttribute("title", "개인");
+		}
+		else {//business
+			request.setAttribute("find_name", "기업명");
+			session.setAttribute("find_phone", "전화번호");
+			session.setAttribute("title", "기업");
+		}
+		return "/join/findId";
+	}
+
+	@RequestMapping(value="findcheckid")
+	public @ResponseBody String findcheckid(String name, String phone, HttpSession session, HttpServletRequest request) {
+		String find_id=(String)session.getAttribute("find_id");
+		System.out.println(name+", "+phone);
+		String result;
+		String show_id;
+		Map<String, String> map=new HashMap<>();
+			map.put("name", name);
+			map.put("phone", phone);
+		
+		if(find_id.equals("member")) {//member table
+			show_id=service.selectmemberid(map);
+		}
+		else {//business table
+			show_id=service.selectbusinessid(map);			
+		}
+		request.setAttribute("show_id", show_id);
+		System.out.println("show_id:"+show_id);
+		if(show_id!=null)
+			result=show_id;
+		else
+			result="아이디 찾기 실패";
+			
+		return result;
+	}
+	
+	@RequestMapping(value="findpw")
+	public String findpw() {
+		return "/join/findPw";
+	}
+	
+	@RequestMapping(value="findcheckpw")
+	public @ResponseBody String findcheckpw(String id, String phone, HttpSession session, HttpServletRequest request) {
+		String find_id=(String)session.getAttribute("find_id");
+		System.out.println(id+", "+phone);
+		String result;
+		String update_pw="";
+		boolean autho_pw=false;
+		Map<String, String> map=new HashMap<>();
+			map.put("id", id);
+			map.put("phone", phone);
+		
+		if(find_id.equals("member")) {//member table
+			autho_pw=service.selectmemberpw(map);
+		}
+		else {//business table
+			autho_pw=service.selectbusinesspw(map);			
+		}
+		request.setAttribute("update_pw", update_pw);
+		System.out.println("show_id:"+autho_pw);
+		if(autho_pw)
+			result="임시 비밀번호 받기 성공";
+		else
+			result="임시 비밀번호 받기 실패";
+			
+		return result;
+	}
+
 	@RequestMapping(value="joinmember")
 	public String joinMemeber() {
 		return "/join/joinMember";
