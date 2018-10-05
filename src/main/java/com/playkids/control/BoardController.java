@@ -2,6 +2,7 @@ package com.playkids.control;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,14 +37,19 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="insert", method=RequestMethod.GET)
-	public String insertGet() {
-		
+	public String insertGet(String mid, Model model,HttpSession session) throws Exception {
+		String login_id= (String) session.getAttribute("login_id");
+		if(login_id!=null) {
+			System.out.println(login_id);
+		}
+	//	model.addAttribute("joinclass", service.joinClass_list(mid));
 		return "board/insert";
 	}
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public String insertPost(BoardVO vo, RedirectAttributes attr) throws Exception {
 		service.insert_page(vo);
 	//	attr.addFlashAttribute("msg", "success");
+		// session 처리 db테이블 데이터 만들기 3 처리
 		return "redirect:list";
 	}
 	

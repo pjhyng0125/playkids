@@ -90,5 +90,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      ]]>
      order by bno desc
  </select>
+ 
+ <select id="joinclass" resultType="String">
+ select c.cname
+	from member m, class c, reserve r
+	where m.mid= r.mid and c.cno = r.cno and m.mid= #{mid}
+ </select>
  	
 </mapper>

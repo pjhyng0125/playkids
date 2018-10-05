@@ -11,9 +11,7 @@
 
 <script type="text/javascript">
 	$(function(){
-		$('#write').click(function(evt){
-			self.location="insert";
-		});
+	
 		
 		$('#searchBtn').on(
 				"click",
@@ -26,6 +24,23 @@
 							+ "&keyword=" + encodeURIComponent($('#search_board').val());
 
 				});
+		
+		$('#write').click(function(evt){
+			//var id = $('#login_id')
+			
+			//alert('id : '+id)
+			//alert('type : '+$('#login_type'))
+			
+			
+			if($('#login_id').val()==null||$('#login_id').val()==''){
+		       $('#alert_modal').modal();
+				
+			}else{
+			   self.location="insert";
+			}
+			
+		});
+		
 	
 	});
 </script>
@@ -52,8 +67,10 @@
 <body>
 <br>
 <div id="hidden">
-	<input type="hidden" id="regdate_board" value="">
+	<input type="hidden" id="login_id" value="${login_id }">
+	<input type="hidden" id="login_type" value="${login_type }">
 </div>
+<div class="container">
 <section class="content">
 <div class="row">
 		<!-- left column -->
@@ -80,7 +97,8 @@
 </select> <input type="text" name='keyword' i size="30" id="search_board" placeholder="검색내용" value='${cri.keyword }'>
 
 <button class="btn btn-default" type="button" id="searchBtn"><i class="glyphicon glyphicon-search"></i>검색</button>
-<button class="btn btn-info" id="write">글쓰기</button>
+<!-- <button type="button" class="btn btn-info" id="write" data-toggle="modal" data-target="#alert_modal">글쓰기</button> -->
+<button type="button" class="btn btn-info" id="write">글쓰기</button>
 </div>
 <hr>
 
@@ -158,6 +176,27 @@
 </div>
 </div>
 </div>
-</div>
+	
+	<div class="modal fade" id="alert_modal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>로그인 필요</h4>
+				</div>
+				<div class="modal-body">
+					<p>해당 기능은 로그인 이후 사용할 수 있습니다.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	</div>
 </section>
+</div>
+
+ 
 <%@include file="/WEB-INF/views/include/footer.jsp" %>

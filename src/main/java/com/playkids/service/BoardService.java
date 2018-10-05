@@ -20,4 +20,6 @@ public interface BoardService {
 	public int listSearchCount(SearchCriteria cri) throws Exception;
 
 	public List<BoardVO> listNotice() throws Exception;
+
+	public List<String> joinClass_list(String mid) throws Exception;
 }

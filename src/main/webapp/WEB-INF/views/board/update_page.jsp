@@ -18,6 +18,10 @@
 <body>
 <h3>게시물 수정</h3>
 <form action="/board/update" method="post">
+<div id="hidden">
+	<input type="hidden" id="login_id" value="${login_id }">
+	<input type="hidden" id="login_type" value="${login_type }">
+</div>
 글 번호 : <input type="text" name="bno" size="3" value="${boardVO.bno }" readonly>
 작성자 : <input type="text" name="mid" size="40" value="${boardVO.mid }" readonly>					<br>
 제목 : <input type="text" name="title" value="${boardVO.title }" >
