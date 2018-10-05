@@ -75,22 +75,29 @@ $(function(){
 	$('#send_reply').click(function(){
 		var replyer=$('input[name=replyer]').val();
 		var replytext=$('textarea[name=reply_content]').val();
-		$.ajax({
-				url:'/replies',
-				type:'post',
-				data:JSON.stringify({'replyer':replyer,'reply_content':replytext,'bno':'${boardVO.bno}'}),
-						// 컨트롤러 메소드파라미터에 @RequestBody가 선언되 있을 경우 이와같이 JSON처리해줘야함.
-				success:function(result){
-					alert(result);
-					$('textarea[name=reply_content]').val('');
-					replylist(1);
-				},
-				headers:{		// 서버로 보낼 데이터 형식 지정
-						// JSON 데이터를 서버컨트롤러로 보낼경우 반드시 명시
-						'Content-Type':'application/json'			
-				}
-				//dataType:'JSON'	// 서버로 부터 받는 데이터 형식 지정
-		});
+		var test = $('#login_id').val();
+		
+
+		if(test!=replyer || replyer==''){
+			 $('#alert_modal_login').modal();
+		}else{
+			$.ajax({
+					url:'/replies',
+					type:'post',
+					data:JSON.stringify({'replyer':replyer,'reply_content':replytext,'bno':'${boardVO.bno}'}),
+							// 컨트롤러 메소드파라미터에 @RequestBody가 선언되 있을 경우 이와같이 JSON처리해줘야함.
+					success:function(result){
+						alert(result);
+						$('textarea[name=reply_content]').val('');
+						replylist(1);
+					},
+					headers:{		// 서버로 보낼 데이터 형식 지정
+							// JSON 데이터를 서버컨트롤러로 보낼경우 반드시 명시
+							'Content-Type':'application/json'			
+					}
+					//dataType:'JSON'	// 서버로 부터 받는 데이터 형식 지정
+			});// ajax
+		}
 	});
 	
 	$('#replylist').on('click','.replyLi #mod_reply',function(){
@@ -98,7 +105,6 @@ $(function(){
 		var rno = reply.attr('data-rno');
 		var replyer = reply.find('#replyer').attr('val');
 		var reply_content = reply.find('#reply_content').attr('val');
-		var test = $('#login_id').val();
 		$('#modal_replyer').html(replyer);
 		$('#mod_reply_content').val(reply_content);
 		$('#modal_rno_display').attr({'value':rno});	
@@ -221,6 +227,22 @@ $(function(){
 				</div>
 				<div class="modal-body">
 					<p>타인의 게시물은 임의로 수정 및 삭제가 불가능합니다.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="alert_modal_login" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>로그인 필요</h4>
+				</div>
+				<div class="modal-body">
+					<p>로그인 후 이용가능</p>
+					<a href="/login">로그인 화면으로 이동하시겠습니까?</a>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>

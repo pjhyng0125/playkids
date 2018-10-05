@@ -185,6 +185,7 @@
 				</div>
 				<div class="modal-body">
 					<p>해당 기능은 로그인 이후 사용할 수 있습니다.</p>
+					<a href="/login">로그인 화면으로 이동하시겠습니까?</a>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
