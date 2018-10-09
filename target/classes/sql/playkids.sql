@@ -186,12 +186,19 @@ ALTER TABLE member
 
 /* childinfo */
 CREATE TABLE childinfo (
-	no NUMBER NOT NULL, /* 번호 */
+	dno NUMBER NOT NULL, /* 번호 */
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
 	dname VARCHAR2(50), /* 자녀이름 */
 	dgender VARCHAR2(5), /* 자녀성별 */
-	dbirth CHAR(6) /* 자녀생년월일 */
+	dbirth date /* 자녀생년월일 */
 );
+
+drop sequence childinfo_seq;
+create sequence childinfo_seq
+start with 1
+increment by 1
+nocycle
+nocache;
 
 COMMENT ON TABLE childinfo IS 'childinfo';
 

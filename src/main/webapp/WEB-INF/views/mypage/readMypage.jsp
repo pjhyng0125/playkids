@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 .myinfo{
             border: 0px;
@@ -33,22 +34,31 @@
 
 </style>
 <script>
+	var login_id="${login_id}"
+	if(login_id=="" || login_id==undefined){
+		alert('로그인을 먼저 실행해 주세요!');
+		location.href="/login";
+	}
+
 	$(function(){
-		$('#chargeBtn').click(function(){
+		$('#myPagechargeBtn').click(function(){
+			alert("충전페이지로 이동합니다.");
 			location.href="/chargepage";
 		})
 		
-		$('#addChildBtn').click(function(){// 자녀 등록
-			dgender=$('input[name=childGenderradio]:checked').val();
+		$('#addChildBtn').click(function(){// 자녀 등록	
 			$.ajax({
 				type : 'post',
-				data:{'dgender':dgender,
-					  'dname':$('#dname').val(),
-					  'dbirth':$('#dbirth').val()},
+				data : {dgender:dgender=$('input[name=dgender]:checked').val(),
+					  dname:$('#dname').val(),
+					  dbirth: new Date($('#dbirth').val())},
     	        url : "/insertChild",
     	        success : function(result) {   	            	
 	    	          alert('등록 성공')
-    	       },error:function(e,code){
+	    	          $('.childInfo button').before('<p class="card-text">'+result.dname+'('+result.dage+'세 '+result.dgender+')</p>');
+    	       },
+    	       dataType:'json',
+    	       error:function(e,code){
     	    	   alert('정말에러!!'+e.status+":"+code)
     	           if(e.status==300){
     	               alert("데이터를 가져오는데 실패하였습니다.");
@@ -64,23 +74,38 @@
 		})
 		
 		$('.myclassinfo').click(function(){
-			$.ajax({
-    	        url : "/myclasslist",
-    	        success : function(result) {   	            	
-	    	            $('.myinfolist-data').html(result);
-    	       },error:function(e,code){
-    	    	   alert('정말에러!!'+e.status+":"+code)
-    	           if(e.status==300){
-    	               alert("데이터를 가져오는데 실패하였습니다.");
-    	           };
-    	       }
-    	    }); 
+			$('.myinfolist-data').html('');
 			
-		})
+			$(this).removeClass("btn-info");
+			$(this).addClass("btn-danger");
+			
+			$('#myReserve').removeClass('myclassStatus-selected');
+			$('#myComplete').removeClass('myclassStatus-selected');
+			
+			$('.mypayinfo').removeClass("btn-danger");
+			$('.mypayinfo').addClass("btn-info");
+			$('.myQnAinfo').removeClass("btn-danger");
+			$('.myQnAinfo').addClass("btn-info");
+		
+			
+			$('#myclassStatus').show();
+		});
+		
+		
 		$('.mypayinfo').click(function(){
+			$('#myclassStatus').hide();
+			
+			$(this).removeClass("btn-info");
+			$(this).addClass("btn-danger");
+			
+			$('.myclassinfo').removeClass("btn-danger");
+			$('.myclassinfo').addClass("btn-info");
+			$('.myQnAinfo').removeClass("btn-danger");
+			$('.myQnAinfo').addClass("btn-info");
+			
 			$.ajax({  	        
-    	        //data : {"page" : page},
-    	        url : "/mypaylist",
+    	        data : {"myclass" : "payment"},
+    	        url : "/myclasslist",
     	        success : function(result) {   	            	
 	    	            $('.myinfolist-data').html(result);
     	       },error:function(e,code){
@@ -95,20 +120,43 @@
 			
 		})
 		
-		$('.myinfolist-data').on('click','#myReserve',function(){
+		$('#myReserve').click(function(){
 			$(this).addClass('myclassStatus-selected');
 			$('#myComplete').removeClass('myclassStatus-selected');
-			$('.myclassStatus-reserveTable').show();
-			$('.myclassStatus-completeTable').hide();
-		})
+			$.ajax({
+				data:{myclass:"reserve"},
+    	        url : "/myclasslist",
+    	        success : function(result) {   	            	
+	    	            $('.myinfolist-data').html(result);
+	    				$('.myclassStatus-reserveTable').show();
+	    				$('.myclassStatus-completeTable').hide();
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+    	    }); 
+		});
 
-		$('.myinfolist-data').on('click','#myComplete',function(){
+		$('#myComplete').click(function(){
 			$(this).addClass('myclassStatus-selected');
 			$('#myReserve').removeClass('myclassStatus-selected');
-			$('.myclassStatus-completeTable').show();
-			$('.myclassStatus-reserveTable').hide();
-		})
-		
+			$.ajax({
+				data:{myclass:"complete"},
+    	        url : "/myclasslist",
+    	        success : function(result) {   	            	
+	    	            $('.myinfolist-data').html(result);
+	    				$('.myclassStatus-completeTable').show();
+	    				$('.myclassStatus-reserveTable').hide();
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+    	    }); 
+		});
 	})
 </script>
 <br><br><br>
@@ -124,26 +172,23 @@
 
 			</div>
 		</div>
-
 		<div class="col-md-4">
 			<div class="card myinfo text-center">
-				<div class="card-header font-weight-bold">자녀 정보</div>
-				<div class="card-body">
+				<div class="card-header font-weight-bold small">자녀 정보</div>
+				<div class="card-body childInfo">
 					<c:forEach items="${childInfo }" var="child">
-					<p class="card-text">김길동(10세 남)</p>
+					<p class="card-text">${child.dname }(${child.dage }세 ${child.dgender })</p>
 					</c:forEach>
 					<button type="button" class="btn btn-info " data-toggle="modal" data-target="#childModal">등록</button>
 				</div>
-
 			</div>
 		</div>
 		<div class="card myinfo text-center">
-			<div class="card-header font-weight-bold">캐쉬 정보</div>
+			<div class="card-header font-weight-bold small">캐쉬 정보</div>
 			<div class="card-body">
-				<p class="card-text">${myInfo.mcash }원</p>
-				<button class="btn btn-info " id="chargeBtn">충전</button>
+				<p class="card-text"><fmt:formatNumber value="${myInfo.mcash }" type="currency" currencySymbol=""/>원</p>
+				<button class="btn btn-info" id="myPagechargeBtn">충전</button>
 			</div>
-
 		</div>
 	</div>
 	    <div class="modal fade" id="childModal">
@@ -198,8 +243,13 @@
 			<button class="btn btn-info myQnAinfo">1 : 1 문의</button>
 		</div>
 	</div>
-<br><br><br>
-<div class="row myinfolist myinfolist-data">
+<br><br>
+<div class="row myinfolist ">
+<div class="font-weight-bold" id="myclassStatus" style="display: none;">
+	<div class="myclassStatus" id="myReserve"><span>예약</span></div>|<div class="myclassStatus font-weight-bold" id="myComplete"><span>수강완료</span></div>
+	</div>
+	<br>
 </div>
+<div class="myinfolist-data"></div>
 </div>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>

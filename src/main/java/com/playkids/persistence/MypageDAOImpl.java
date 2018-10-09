@@ -1,6 +1,7 @@
 package com.playkids.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.MemberVO;
+import com.playkids.domain.MyClassVO;
 
 @Repository
 public class MypageDAOImpl implements MypageDAO{
@@ -31,5 +33,17 @@ public class MypageDAOImpl implements MypageDAO{
 	@Override
 	public MemberVO selectMyInfo(String login_id) {
 		return sqlsession.selectOne("mypage.selectMyInfo", login_id);
+	}
+
+	@Override
+	public List<MyClassVO> selectClass(Map map) {
+		return sqlsession.selectList("mypage.selectClass",map);
+	}
+
+	@Override
+	public boolean updateCash(Map map) {
+		int t = sqlsession.update("mypage.updateCash",map);
+		if(t>0) return true;
+		return false;
 	}
 }

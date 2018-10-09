@@ -8,6 +8,15 @@ public class ChildInfoVO {
 	private String dname;
 	private String dgender;
 	private Date dbirth;
+	private int dage;
+	
+	
+	public int getDage() {
+		return dage;
+	}
+	public void setDage(int dage) {
+		this.dage = dage;
+	}
 	public int getDno() {
 		return dno;
 	}
@@ -41,8 +50,10 @@ public class ChildInfoVO {
 	@Override
 	public String toString() {
 		return "ChildInfoVO [dno=" + dno + ", mid=" + mid + ", dname=" + dname + ", dgender=" + dgender + ", dbirth="
-				+ dbirth + "]";
+				+ dbirth + ", dage=" + dage + "]";
 	}
+
+	
 	
 	
 }
