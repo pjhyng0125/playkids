@@ -35,7 +35,7 @@
 				if(result.indexOf('실패')>0){//아이디 찾기 실패
 					alert(result);
 				}else{//아이디 찾기 성공
-					alert('회원님의 임시비밀번호는 '+result+'입니다\n'+'로그인 후 비밀번호를 변경해주세요.');
+					alert(result);
 						location.href="/login";												
 				}
 			}

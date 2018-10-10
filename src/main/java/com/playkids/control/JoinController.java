@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ import com.playkids.service.JoinService;
 
 @Controller
 public class JoinController {
-	
+	Random r=new Random();
 	@Inject
 	private JoinService service;
 	
@@ -111,8 +112,8 @@ public class JoinController {
 	public @ResponseBody String findcheckpw(String id, String phone, HttpSession session, HttpServletRequest request) {
 		String find_id=(String)session.getAttribute("find_id");
 		System.out.println(id+", "+phone);
-		String result;
 		String update_pw="";
+		String result="";
 		boolean autho_pw=false;
 		Map<String, String> map=new HashMap<>();
 			map.put("id", id);
@@ -126,12 +127,39 @@ public class JoinController {
 		}
 		if(autho_pw) {
 			//임시 비밀 번호 생성 & update 하는 부분
+			int k = 3;//임시 비밀번호  길이 (xxx111)
+//영문 k 개 생성 (xxx)
+			for(int i=0;i<k; i++) {
+				int n=r.nextInt(58) + 65; //0~57=> 65~122
+				if(n>=91 && n<=96) {
+					i--;
+					continue;
+				}
+				update_pw+=(char)n;
+			}
+//숫자 k 개 생성 (111)
+			for(int i=0;i<k; i++) {
+				int n=r.nextInt(10); //0~9
+				update_pw+=n;
+			}//update_pw 생성 완료
+
+			map.put("pw", update_pw);//map에 update_pw put
+			if(find_id.equals("member")) {//member table
+				if(service.modifypw(map))
+					System.out.println("member: 비번 변경 성공! "+update_pw);
+				else
+					System.out.println("member: 비번 변경 실패....");
+			}else {//business table
+				if(service.modifypwbusin(map))
+					System.out.println("business: 비번 변경 성공! "+update_pw);
+				else
+					System.out.println("business: 비번 변경 실패....");
+			}
 			request.setAttribute("update_pw", update_pw);
-			System.out.println("update_pw:"+autho_pw);
-			result="임시 비밀번호 받기 성공";
+			result="회원님의 임시 비밀번호는 [ "+update_pw+" ]입니다.\n로그인 후 비밀번호를 변경해주세요.";
 		}
 		else
-			result="임시 비밀번호 받기 실패";
+			result="아이디와 전화번호를 확인해주세요.";
 			
 		return result;
 	}

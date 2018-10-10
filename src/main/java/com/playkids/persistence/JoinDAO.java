@@ -39,4 +39,7 @@ public interface JoinDAO {
 	public boolean findmemberpw(Map<String, String> map);
 	public boolean findbusinesspw(Map<String, String> map);
 	
+	public boolean updatepw(Map<String, String> map);
+	public boolean updatepwbusin(Map<String, String> map);
+	
 }

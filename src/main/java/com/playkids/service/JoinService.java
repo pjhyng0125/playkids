@@ -33,4 +33,7 @@ public interface JoinService {
 	public String selectbusinessid(Map<String, String> map);
 	public boolean selectmemberpw(Map<String, String> map);
 	public boolean selectbusinesspw(Map<String, String> map);
+	
+	public boolean modifypw(Map<String, String> map);
+	public boolean modifypwbusin(Map<String, String> map);
 }

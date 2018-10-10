@@ -164,5 +164,23 @@ public class JoinDAOImpl implements JoinDAO{
 		else
 			return false;
 	}
+
+	@Override
+	public boolean updatepw(Map<String, String> map) {
+		int n=session.update("join.updatepw", map);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean updatepwbusin(Map<String, String> map) {
+		int n=session.update("join.updatepwbusin", map);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
 	
 }

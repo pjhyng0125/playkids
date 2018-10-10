@@ -101,4 +101,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from business
 		where bid=#{id} and bphone=#{phone}
 	</select>
+	<!-- update pw member -->
+	<update id="updatepw" parameterType="java.util.Map">
+		update member
+		set mpw=#{pw}
+		where mid=#{id} and mphone=#{phone}
+	</update>
+	<!-- update pw business -->
+	<update id="updatepwbusin" parameterType="java.util.Map">
+		update business
+		set bpw=#{pw}
+		where bid=#{id} and bphone=#{phone}
+	</update>
 </mapper>

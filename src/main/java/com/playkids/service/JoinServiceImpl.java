@@ -118,6 +118,16 @@ public class JoinServiceImpl implements JoinService{
 		return joindao.findbusinesspw(map);
 	}
 
+	@Override
+	public boolean modifypw(Map<String, String> map) {
+		return joindao.updatepw(map);
+	}
+
+	@Override
+	public boolean modifypwbusin(Map<String, String> map) {
+		return joindao.updatepw(map);
+	}
+
 	
 	
 
