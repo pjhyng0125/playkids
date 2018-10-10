@@ -86,17 +86,14 @@ public class JoinController {
 			show_id=service.selectbusinessid(map);			
 		}
 		request.setAttribute("show_id", show_id);
-		System.out.println("show_id:"+show_id);
 
 		if(show_id!=null) {
 			//아이디 찾기 * 찍기
 			for(int i=0; i<show_id.length(); i++) {
 				if(i%3==0) {
-					System.out.println("바꿀 char:"+show_id.charAt(i));
 					show_id=show_id.replace(show_id.charAt(i), '*');
 				}
 			}
-			System.out.println("별 찍은 show id:"+show_id);
 			result=show_id;	//* 찍은 id 보내기
 		}
 		else
@@ -127,10 +124,12 @@ public class JoinController {
 		else {//business table
 			autho_pw=service.selectbusinesspw(map);			
 		}
-		request.setAttribute("update_pw", update_pw);
-		System.out.println("show_id:"+autho_pw);
-		if(autho_pw)
+		if(autho_pw) {
+			//임시 비밀 번호 생성 & update 하는 부분
+			request.setAttribute("update_pw", update_pw);
+			System.out.println("update_pw:"+autho_pw);
 			result="임시 비밀번호 받기 성공";
+		}
 		else
 			result="임시 비밀번호 받기 실패";
 			
