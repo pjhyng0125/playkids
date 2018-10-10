@@ -23,6 +23,6 @@ public interface BoardDAO {
 
 	public List<BoardVO> listNotice() throws Exception;
 
-	public List<String> joinClass_list(String mid) throws Exception;
+	public List<String> listClass(String mid);
 
 }

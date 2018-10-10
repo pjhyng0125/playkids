@@ -104,15 +104,15 @@
 
 <div class="box-body">
 <center>
-<table style="width: 70%" class="table">
+<table style="width: 90%" class="table">
 	<tr class="table_headline" align="center"><td>글 번호</td><td>카테고리</td><td width="30%">제목</td><td>작성자</td><td>작성일자</td><td>조회수</td></tr>
 
 	<tbody class="notice_body">
 	<c:forEach items="${notice }" var="posting">
 		<tr align="center" class="danger">
-		<td><font color="red"><필독></font></td>
-		<td><font color="red">공지사항</font></td>
-		<td><a href='/board/showpage?&bno=${posting.bno}'>${posting.title}
+		<td style="width: 8%"><font color="red"><필독></font></td>
+		<td style="width: 8%"><font color="red">공지사항</font></td>
+		<td style="width: 60%"><a href='/board/showpage?&bno=${posting.bno}'>${posting.title}
 			</a>[${posting.reply_cnt }] 
 			<c:choose>
 				<c:when test="${posting.newflag==1 }">
@@ -181,7 +181,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4>로그인 필요</h4>
+					<font color="red"><h3>로그인 필요</h3></font>
 				</div>
 				<div class="modal-body">
 					<p>해당 기능은 로그인 이후 사용할 수 있습니다.</p>

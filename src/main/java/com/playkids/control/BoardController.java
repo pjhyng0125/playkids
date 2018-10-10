@@ -1,5 +1,7 @@
 package com.playkids.control;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,13 +41,9 @@ public class BoardController {
 	@RequestMapping(value="insert", method=RequestMethod.GET)
 	public String insertGet(String mid, Model model,HttpSession session) throws Exception {
 		
-		
-		// get 상태일때 데이터 mid를 받을수 있는지 test
-		String login_id= (String) session.getAttribute("login_id");
-		if(login_id!=null) {
-			System.out.println(login_id);
-		}
-		
+		// ** 세션으로 부터 로그인 아이디를 받음.
+		String login_id= (String) session.getAttribute("login_id");	
+		model.addAttribute("listClass", service.listClass(login_id));
 		
 		
 	//	model.addAttribute("joinclass", service.joinClass_list(mid));
@@ -55,7 +53,7 @@ public class BoardController {
 	public String insertPost(BoardVO vo, RedirectAttributes attr) throws Exception {
 		service.insert_page(vo);
 	//	attr.addFlashAttribute("msg", "success");
-		// session 처리 완료  db테이블 데이터 만들기 3 처리
+		
 		return "redirect:list";
 	}
 	
