@@ -62,8 +62,12 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	@Override
 	public List<BoardVO> listNotice() throws Exception {
-		
 		return sqlsession.selectList("board.noticelistSearch");
+	}
+	
+	@Override
+	public List<String> joinClass_list(String mid) throws Exception{
+		return sqlsession.selectList("board.joinclass", mid);
 	}
 	
 

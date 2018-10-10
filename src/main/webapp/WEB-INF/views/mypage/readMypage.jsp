@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 .myinfo{
             border: 0px;
@@ -32,29 +34,78 @@
 
 </style>
 <script>
+	var login_id="${login_id}"
+	if(login_id=="" || login_id==undefined){
+		alert('로그인을 먼저 실행해 주세요!');
+		location.href="/login";
+	}
+
 	$(function(){
-		$('#chargeBtn').click(function(){
+		$('#myPagechargeBtn').click(function(){
+			alert("충전페이지로 이동합니다.");
 			location.href="/chargepage";
 		})
 		
-		$('.myclassinfo').click(function(){
+		$('#addChildBtn').click(function(){// 자녀 등록	
 			$.ajax({
-    	        url : "/myclasslist",
+				type : 'post',
+				data : {dgender:dgender=$('input[name=dgender]:checked').val(),
+					  dname:$('#dname').val(),
+					  dbirth: new Date($('#dbirth').val())},
+    	        url : "/insertChild",
     	        success : function(result) {   	            	
-	    	            $('.myinfolist-data').html(result);
-    	       },error:function(e,code){
+	    	          alert('등록 성공')
+	    	          $('.childInfo button').before('<p class="card-text">'+result.dname+'('+result.dage+'세 '+result.dgender+')</p>');
+    	       },
+    	       dataType:'json',
+    	       error:function(e,code){
     	    	   alert('정말에러!!'+e.status+":"+code)
     	           if(e.status==300){
     	               alert("데이터를 가져오는데 실패하였습니다.");
     	           };
     	       }
-    	    }); 
-			
+			});
+		});
+
+		$('#cancelChildBtn').click(function(){// 자녀 등록 취소
+			$('#dname').val('');
+			$('#dbirth').val('');
+			$('#initRadio').prop('checked',true);
 		})
+		
+		$('.myclassinfo').click(function(){
+			$('.myinfolist-data').html('');
+			
+			$(this).removeClass("btn-info");
+			$(this).addClass("btn-danger");
+			
+			$('#myReserve').removeClass('myclassStatus-selected');
+			$('#myComplete').removeClass('myclassStatus-selected');
+			
+			$('.mypayinfo').removeClass("btn-danger");
+			$('.mypayinfo').addClass("btn-info");
+			$('.myQnAinfo').removeClass("btn-danger");
+			$('.myQnAinfo').addClass("btn-info");
+		
+			
+			$('#myclassStatus').show();
+		});
+		
+		
 		$('.mypayinfo').click(function(){
+			$('#myclassStatus').hide();
+			
+			$(this).removeClass("btn-info");
+			$(this).addClass("btn-danger");
+			
+			$('.myclassinfo').removeClass("btn-danger");
+			$('.myclassinfo').addClass("btn-info");
+			$('.myQnAinfo').removeClass("btn-danger");
+			$('.myQnAinfo').addClass("btn-info");
+			
 			$.ajax({  	        
-    	        //data : {"page" : page},
-    	        url : "/mypaylist",
+    	        data : {"myclass" : "payment"},
+    	        url : "/myclasslist",
     	        success : function(result) {   	            	
 	    	            $('.myinfolist-data').html(result);
     	       },error:function(e,code){
@@ -69,20 +120,43 @@
 			
 		})
 		
-		$('.myinfolist-data').on('click','#myReserve',function(){
+		$('#myReserve').click(function(){
 			$(this).addClass('myclassStatus-selected');
 			$('#myComplete').removeClass('myclassStatus-selected');
-			$('.myclassStatus-reserveTable').show();
-			$('.myclassStatus-completeTable').hide();
-		})
+			$.ajax({
+				data:{myclass:"reserve"},
+    	        url : "/myclasslist",
+    	        success : function(result) {   	            	
+	    	            $('.myinfolist-data').html(result);
+	    				$('.myclassStatus-reserveTable').show();
+	    				$('.myclassStatus-completeTable').hide();
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+    	    }); 
+		});
 
-		$('.myinfolist-data').on('click','#myComplete',function(){
+		$('#myComplete').click(function(){
 			$(this).addClass('myclassStatus-selected');
 			$('#myReserve').removeClass('myclassStatus-selected');
-			$('.myclassStatus-completeTable').show();
-			$('.myclassStatus-reserveTable').hide();
-		})
-		
+			$.ajax({
+				data:{myclass:"complete"},
+    	        url : "/myclasslist",
+    	        success : function(result) {   	            	
+	    	            $('.myinfolist-data').html(result);
+	    				$('.myclassStatus-completeTable').show();
+	    				$('.myclassStatus-reserveTable').hide();
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+    	    }); 
+		});
 	})
 </script>
 <br><br><br>
@@ -93,30 +167,28 @@
 				<img class="card-img-top " src="/resources/img/man.png" alt="Card image"
 					style="width: 100%" height="280px">
 				<div class="card-body">
-					<p class="card-text text-center font-weight-bold">OOO님</p>
+					<p class="card-text text-center font-weight-bold">${myInfo.mname }님</p>
 				</div>
 
 			</div>
 		</div>
-
 		<div class="col-md-4">
 			<div class="card myinfo text-center">
-				<div class="card-header font-weight-bold">자녀 정보</div>
-				<div class="card-body">
-					<p class="card-text">김길동(10세 남)</p>
-					<p class="card-text">김라임(8세 여)</p>
+				<div class="card-header font-weight-bold small">자녀 정보</div>
+				<div class="card-body childInfo">
+					<c:forEach items="${childInfo }" var="child">
+					<p class="card-text">${child.dname }(${child.dage }세 ${child.dgender })</p>
+					</c:forEach>
 					<button type="button" class="btn btn-info " data-toggle="modal" data-target="#childModal">등록</button>
 				</div>
-
 			</div>
 		</div>
 		<div class="card myinfo text-center">
-			<div class="card-header font-weight-bold">캐쉬 정보</div>
+			<div class="card-header font-weight-bold small">캐쉬 정보</div>
 			<div class="card-body">
-				<p class="card-text">1,000원</p>
-				<button class="btn btn-info " id="chargeBtn">충전</button>
+				<p class="card-text"><fmt:formatNumber value="${myInfo.mcash }" type="currency" currencySymbol=""/>원</p>
+				<button class="btn btn-info" id="myPagechargeBtn">충전</button>
 			</div>
-
 		</div>
 	</div>
 	    <div class="modal fade" id="childModal">
@@ -131,7 +203,6 @@
                 <!-- Modal body -->
                 <div class="modal-body">    
                       <div class="row">
-						<form action="" method="post" id="addChildForm">
 							<div class="col-md-12">
 							<div class="form-group form-inline">							
 								<label for="dname">키즈명</label> &nbsp;&nbsp;<input type="text"
@@ -144,19 +215,18 @@
 							<div class="form-group">
 								<label for="dgender">성별</label> &nbsp;&nbsp;
 								<label class="radio-inline" id="dgender"> <input
-										type="radio" name="optradio" checked>남
+										type="radio" name="dgender" id="initRadio" checked value="남">남
 									</label> <label class="radio-inline"> <input
-										type="radio" name="optradio">여
+										type="radio" name="dgender" value="여">여
 									</label>
 								</div>
 							</div>
-						</form>
 					</div>     
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default ageApplyBtn" data-dismiss="modal" id="addChild">등록</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="addChildBtn">등록</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelChildBtn">취소</button>
                 </div>
               </div>
             </div>
@@ -173,8 +243,13 @@
 			<button class="btn btn-info myQnAinfo">1 : 1 문의</button>
 		</div>
 	</div>
-<br><br><br>
-<div class="row myinfolist myinfolist-data">
+<br><br>
+<div class="row myinfolist ">
+<div class="font-weight-bold" id="myclassStatus" style="display: none;">
+	<div class="myclassStatus" id="myReserve"><span>예약</span></div>|<div class="myclassStatus font-weight-bold" id="myComplete"><span>수강완료</span></div>
+	</div>
+	<br>
 </div>
+<div class="myinfolist-data"></div>
 </div>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>

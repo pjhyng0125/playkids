@@ -141,7 +141,7 @@
     		$('#loadingImg').html('<img src="/resources/img/loader.gif">');  
     	    $.ajax({
     	        type : 'post',  	        
-    	        data : {"page" : page},
+    	        data : {page : page},
     	        url : url,
     	        success : function(result) {   	            	
 	    	            if (page!=1){  //페이지가 1이 아닐경우 데이터를 붙힌다.

@@ -51,6 +51,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findidcheckbusin" resultType="Integer" parameterType="String">
 		select count(*) from business where bid=#{checkid}
 	</select>
+	<!-- login phonecheck -->
+	<select id="findphonecheck" resultType="Integer" parameterType="String">
+		select count(*) from member where mphone=#{checkphone}
+	</select>
+	<select id="findphonecheckbusin" resultType="Integer" parameterType="String">
+		select count(*) from business where bphone=#{checkphone}
+	</select>
 	
 	<!-- insert class -->
 	<insert id="insertclass" parameterType="ClassVO">
@@ -69,5 +76,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update class
 		set cpic=#{cpic}, cteacherpic=#{cteacherpic}
 		where cno=#{cno}
+	</update>
+	
+	<!-- find id -->
+	<!-- member -->
+	<select id="findmemberid" parameterType="java.util.Map" resultType="String">
+		select mid from member
+		where mname=#{name} and mphone=#{phone}
+	</select>
+	<!-- business -->
+	<select id="findbusinessid" parameterType="java.util.Map" resultType="String">
+		select bid from business
+		where bname=#{name} and bphone=#{phone}
+	</select>
+	
+	<!-- find pw -->
+	<!-- member -->
+	<select id="findmemberpw" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from member
+		where mid=#{id} and mphone=#{phone}
+	</select>
+	<!-- business -->
+	<select id="findbusinesspw" parameterType="java.util.Map" resultType="Integer">
+		select count(*) from business
+		where bid=#{id} and bphone=#{phone}
+	</select>
+	<!-- update pw member -->
+	<update id="updatepw" parameterType="java.util.Map">
+		update member
+		set mpw=#{pw}
+		where mid=#{id} and mphone=#{phone}
+	</update>
+	<!-- update pw business -->
+	<update id="updatepwbusin" parameterType="java.util.Map">
+		update business
+		set bpw=#{pw}
+		where bid=#{id} and bphone=#{phone}
 	</update>
 </mapper>

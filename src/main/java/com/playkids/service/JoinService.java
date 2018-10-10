@@ -18,10 +18,22 @@ public interface JoinService {
 	boolean createbusiness(BusinessVO business) throws SQLException;
 	boolean findmember(Map<String, String> map) throws SQLException;
 	boolean findbusiness(Map<String, String> map) throws SQLException;
+//중복체크	
 	public boolean selectidcheck(String checkid);
 	public boolean selectidcheckbusin(String checkid);
+	public boolean selectphonecheck(String checkphone);
+	public boolean selectphonecheckbusin(String checkphone);
+
 	public boolean createclass(ClassVO cv);
 	public int getcno(Map<String, String> map);
 	public int getcnocount(Map<String, String> map);
 	public boolean modifyfile(Map<String, Object> map);
+	
+	public String selectmemberid(Map<String, String> map);
+	public String selectbusinessid(Map<String, String> map);
+	public boolean selectmemberpw(Map<String, String> map);
+	public boolean selectbusinesspw(Map<String, String> map);
+	
+	public boolean modifypw(Map<String, String> map);
+	public boolean modifypwbusin(Map<String, String> map);
 }

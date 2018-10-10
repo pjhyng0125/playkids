@@ -23,11 +23,23 @@ public interface JoinDAO {
 	public boolean insertbusiness(BusinessVO business) throws SQLException;
 	public boolean loginmember(Map<String, String> map) throws SQLException;
 	public boolean loginbusiness(Map<String, String> map) throws SQLException;
+//중복체크
 	public boolean findidcheck(String checkid);
 	public boolean findidcheckbusin(String checkid);
+	public boolean findphonecheck(String checkphone);
+	public boolean findphonecheckbusin(String checkphone);
+
 	public boolean insertclass(ClassVO cv);
 	public int selectcno(Map<String, String> map);
 	public int selectcnocount(Map<String, String> map);
 	public boolean updatefile(Map<String, Object> map);
+	
+	public String findmemberid(Map<String, String> map);
+	public String findbusinessid(Map<String, String> map);
+	public boolean findmemberpw(Map<String, String> map);
+	public boolean findbusinesspw(Map<String, String> map);
+	
+	public boolean updatepw(Map<String, String> map);
+	public boolean updatepwbusin(Map<String, String> map);
 	
 }

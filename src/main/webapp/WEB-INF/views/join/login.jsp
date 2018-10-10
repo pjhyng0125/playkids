@@ -24,7 +24,6 @@
 			success:function(result){
 				alert(result);
 				if(result.indexOf('로그인 성공')>0){
-					alert('이동쓰');
 					location.href="/main";
 				}
 			}
@@ -45,18 +44,17 @@
 			<td>비밀번호:</td><td><input type="password" id="pw"></td>
 		</tr>
 		<tr>
-			<td><input type="radio" name="rb" value="member" checked> 개인</td>
-			<td><input type="radio" name="rb" value="business"> 기업</td>
+			<td colspan="2" align="center"><pre><input type="radio" name="rb" value="member" checked> 개인      <input type="radio" name="rb" value="business"> 기업</pre></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="로그인" id="btlogin">
-				<input type="button" value="취소" id="btcancel">
+				<input type="button" value="로그인" id="btlogin" class="btn btn-primary">
+				<input type="button" value="취소" id="btcancel" class="btn btn-primary">
 			</td>
 		</tr>
 		<tr>	
 			<td colspan="2" align="center">
-				<pre><a href="/joinchoice">회원 가입</a>  <a href="#">아이디/비밀번호 찾기</a></pre>
+				<pre><a href="/joinchoice">회원 가입</a>  <a href="/findchoice">아이디/비밀번호 찾기</a></pre>
 			</td>
 		</tr>
 	</table>

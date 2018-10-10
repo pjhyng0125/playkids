@@ -1,4 +1,4 @@
-package com.playkids.service;
+package com.playkids.persistence;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,8 @@ import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.MyClassVO;
 
-public interface MypageService {
+public interface MypageDAO {
+	
 	// member Àü¿ë
 	public MemberVO selectMyInfo(String login_id);
 	

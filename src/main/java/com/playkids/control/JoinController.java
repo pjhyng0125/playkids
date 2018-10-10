@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ import com.playkids.service.JoinService;
 
 @Controller
 public class JoinController {
-	
+	Random r=new Random();
 	@Inject
 	private JoinService service;
 	
@@ -46,6 +47,121 @@ public class JoinController {
 	@RequestMapping(value="joinchoice")
 	public String joinChoice() {
 		return "/join/joinChoice";
+	}
+
+	@RequestMapping(value="findchoice")
+	public String findChoice() {
+		return "/join/findChoice";
+	}
+
+	@RequestMapping(value="findid")
+	public String findid(String find_id, HttpSession session, HttpServletRequest request) {
+		session.setAttribute("find_id", find_id);
+		if(find_id.equals("member")) {
+			request.setAttribute("find_name", "이름");
+			session.setAttribute("find_phone", "폰번호");
+			session.setAttribute("title", "개인");
+		}
+		else {//business
+			request.setAttribute("find_name", "기업명");
+			session.setAttribute("find_phone", "전화번호");
+			session.setAttribute("title", "기업");
+		}
+		return "/join/findId";
+	}
+
+	@RequestMapping(value="findcheckid")
+	public @ResponseBody String findcheckid(String name, String phone, HttpSession session, HttpServletRequest request) {
+		String find_id=(String)session.getAttribute("find_id");
+		System.out.println(name+", "+phone);
+		String result;
+		String show_id;
+		Map<String, String> map=new HashMap<>();
+			map.put("name", name);
+			map.put("phone", phone);
+		
+		if(find_id.equals("member")) {//member table
+			show_id=service.selectmemberid(map);
+		}
+		else {//business table
+			show_id=service.selectbusinessid(map);			
+		}
+		request.setAttribute("show_id", show_id);
+
+		if(show_id!=null) {
+			//아이디 찾기 * 찍기
+			for(int i=0; i<show_id.length(); i++) {
+				if(i%3==0) {
+					show_id=show_id.replace(show_id.charAt(i), '*');
+				}
+			}
+			result=show_id;	//* 찍은 id 보내기
+		}
+		else
+			result="아이디 찾기 실패";
+			
+		return result;
+	}
+	
+	@RequestMapping(value="findpw")
+	public String findpw() {
+		return "/join/findPw";
+	}
+	
+	@RequestMapping(value="findcheckpw")
+	public @ResponseBody String findcheckpw(String id, String phone, HttpSession session, HttpServletRequest request) {
+		String find_id=(String)session.getAttribute("find_id");
+		System.out.println(id+", "+phone);
+		String update_pw="";
+		String result="";
+		boolean autho_pw=false;
+		Map<String, String> map=new HashMap<>();
+			map.put("id", id);
+			map.put("phone", phone);
+		
+		if(find_id.equals("member")) {//member table
+			autho_pw=service.selectmemberpw(map);
+		}
+		else {//business table
+			autho_pw=service.selectbusinesspw(map);			
+		}
+		if(autho_pw) {
+			//임시 비밀 번호 생성 & update 하는 부분
+			int k = 3;//임시 비밀번호  길이 (xxx111)
+//영문 k 개 생성 (xxx)
+			for(int i=0;i<k; i++) {
+				int n=r.nextInt(58) + 65; //0~57=> 65~122
+				if(n>=91 && n<=96) {
+					i--;
+					continue;
+				}
+				update_pw+=(char)n;
+			}
+//숫자 k 개 생성 (111)
+			for(int i=0;i<k; i++) {
+				int n=r.nextInt(10); //0~9
+				update_pw+=n;
+			}//update_pw 생성 완료
+
+			map.put("pw", update_pw);//map에 update_pw put
+			if(find_id.equals("member")) {//member table
+				if(service.modifypw(map))
+					System.out.println("member: 비번 변경 성공! "+update_pw);
+				else
+					System.out.println("member: 비번 변경 실패....");
+			}else {//business table
+				if(service.modifypwbusin(map))
+					System.out.println("business: 비번 변경 성공! "+update_pw);
+				else
+					System.out.println("business: 비번 변경 실패....");
+			}
+			request.setAttribute("update_pw", update_pw);
+			result="회원님의 임시 비밀번호는 [ "+update_pw+" ]입니다.\n로그인 후 비밀번호를 변경해주세요.";
+		}
+		else
+			result="아이디와 전화번호를 확인해주세요.";
+			
+		return result;
 	}
 
 	@RequestMapping(value="joinmember")
@@ -173,6 +289,26 @@ public class JoinController {
 				result="<font color=red>아이디 중복</font>";
 			}else {
 				result="<font color=green>아이디 사용 가능</font>";			
+			}
+		}
+		return result;
+	}
+	
+//멤버 로그인 폰번호 중복 체크
+	@RequestMapping(value="phonecheck")
+	public @ResponseBody String phoneCheck(String type, String checkphone) {
+		String result=null;
+		if(type.equals("member")) {
+			if(service.selectphonecheck(checkphone)){
+				result="<font color=red>폰번호 중복</font>";
+			}else {
+				result="<font color=green>폰번호 사용 가능</font>";			
+			}
+		}else if(type.equals("business")) {
+			if(service.selectphonecheckbusin(checkphone)){
+				result="<font color=red>전화번호 중복</font>";
+			}else {
+				result="<font color=green>전화번호 사용 가능</font>";			
 			}
 		}
 		return result;

@@ -89,6 +89,24 @@ public class JoinDAOImpl implements JoinDAO{
 		else
 			return false;
 	}
+	
+	@Override
+	public boolean findphonecheck(String checkphone) {
+		int n=session.selectOne("join.findphonecheck",checkphone);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+	
+	@Override
+	public boolean findphonecheckbusin(String checkphone) {
+		int n=session.selectOne("join.findphonecheckbusin",checkphone);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
 
 	@Override
 	public boolean insertclass(ClassVO cv) {
@@ -117,6 +135,52 @@ public class JoinDAOImpl implements JoinDAO{
 	@Override
 	public int selectcnocount(Map<String, String> map) {
 		return session.selectOne("join.selectcnocount", map);
+	}
+
+	@Override
+	public String findmemberid(Map<String, String> map) {
+		return session.selectOne("join.findmemberid",map);
+	}
+
+	@Override
+	public String findbusinessid(Map<String, String> map) {
+		return session.selectOne("join.findbusinessid",map);
+	}
+
+	@Override
+	public boolean findmemberpw(Map<String, String> map) {
+		int n=session.selectOne("join.findmemberpw",map);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean findbusinesspw(Map<String, String> map) {
+		int n=session.selectOne("join.findbusinesspw",map);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean updatepw(Map<String, String> map) {
+		int n=session.update("join.updatepw", map);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public boolean updatepwbusin(Map<String, String> map) {
+		int n=session.update("join.updatepwbusin", map);
+		if(n==1)
+			return true;
+		else
+			return false;
 	}
 	
 }

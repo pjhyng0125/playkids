@@ -71,6 +71,14 @@
 				alert('기업전화번호 입력!')
 				return;
 			}
+			if($('#bphonecheck').text().indexOf('형식')>0){
+				alert('전화번호 형식 확인!');
+				return;
+			}
+			if($('#bphonecheck').text().indexOf('중복')>0){
+				alert('전화번호 중복 확인!');
+				return;
+			}
 			if($('#mbintro').val()==''){
 				alert('기업 소개 입력!')
 				return;
@@ -95,6 +103,42 @@ function idcheck(){
 		}
 	});//ajax
 }
+	
+function phonecheck(){
+	if($('bmphone').val()==''){
+		$('#bphonecheck').html('<font color=red>폰번호 입력</font>');
+		return;
+	}
+	if($('#bphone').val().indexOf('-')<3){
+		$('#bphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+		return;
+	}
+	if($('#bphone').val().substring(4).indexOf('-')<4){
+		$('#bphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+		return;			
+	}
+	if($('#bphone').val().substring(9).length<4){
+		$('#bphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+		return;						
+	}
+	if($('#bphone').val().substring(9).length>4){
+		$('#bphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+		return;						
+	}
+	
+	
+	$.ajax({
+		url:"/phonecheck",
+		data:{
+			type:"business",
+			checkphone:$('#bphone').val()
+		},
+		success:function(str){
+			$('#bphonecheck').html(str);
+		}
+	});//ajax
+}//phonecheck
+	
 //join
 	function insertbusiness(){
 		$.ajax({
@@ -112,7 +156,7 @@ function idcheck(){
 			type:"POST",
 			success:function(result){
 				alert(result);
-				location.href="/login";
+				location.href="/main";
 			}				
 		});//ajax
 	}//insertmember
@@ -194,7 +238,7 @@ function idcheck(){
 				<td>도로명주소:</td><td colspan="2"><input type="text" id="road"></td>
 			</tr>
 			<tr>
-				<td>전화번호:</td><td colspan="2"><input type="text" id="bphone"></td>
+				<td>전화번호:</td><td colspan="2"><input type="text" id="bphone" onkeyup="phonecheck()"><div id="bphonecheck"></div></td>
 			</tr>
 			<tr>
 				<td>기업소개:</td><td colspan="2"><textarea cols="22px" rows="4px" id="bintro"></textarea></td>
@@ -216,8 +260,8 @@ function idcheck(){
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="회원가입" id="btjoin">
-				<input type="button" value="취소" id="btcancel">
+				<input type="button" value="회원가입" id="btjoin" class="btn btn-primary">
+				<input type="button" value="취소" id="btcancel" class="btn btn-primary">
 			</td>
 		</tr>
 	</table>

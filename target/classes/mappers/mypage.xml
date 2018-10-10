@@ -3,14 +3,45 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
-	<insert id="insertChild" parameterType="ChildInfoVO">
-		insert into childinfo(dno,mid,dname,dgender,dbirth)
-		values(childinfo_seq.nextval,#{mid},#{dname},#{dgender},#{dbirth})
-	</insert>
 	
+	<!-- member table 전용 -->
+	<select id="selectMyInfo" parameterType="string" resultType="MemberVO">
+	 select mname, mcash
+	 from member
+	 where mid = #{mid}
+	</select>
+	
+	<!-- childinfo table 전용 -->
 	<select id="selectChild" parameterType="string" resultType="ChildInfoVO">
 		select dname,dgender,dbirth
 		from childinfo
 		where mid=#{mid}
 	</select>
+	
+	<insert id="insertChild" parameterType="ChildInfoVO">
+		insert into childinfo(dno,mid,dname,dgender,dbirth)
+		values(childinfo_seq.nextval,#{mid},#{dname},#{dgender},#{dbirth})
+	</insert>
+	
+	<!-- myclass -->
+	<select id="selectClass" parameterType="map" resultType="MyClassVO">
+	select cno, ctype, cname, dname, regdate,price,
+	(select floor((to_date(sysdate, 'YY-MM-DD') - to_date(dbirth, 'YY-MM-DD') ) /365)+1 from reserve where mid=#{mid}) dage
+	from reserve natural join class join childinfo
+	using(mid)
+	where mid=#{mid} and reserve.dno = childinfo.dno
+	<if test="myclass=='reserve'.toString()">
+	and cdate >=sysdate 
+	</if>
+	<if test="myclass=='complete'.toString()">
+	and sysdate > cdate
+	</if>
+	order by regdate desc
+	</select>
+	
+	<!-- cash charge -->
+	<update id="updateCash" parameterType="map">
+	update member set mcash = mcash + #{mcash}
+	where mid=#{mid}
+	</update>
 </mapper>

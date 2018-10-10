@@ -67,6 +67,16 @@ public class JoinServiceImpl implements JoinService{
 	public boolean selectidcheckbusin(String checkid) {
 		return joindao.findidcheckbusin(checkid);
 	}
+	
+	@Override
+	public boolean selectphonecheck(String checkphone) {
+		return joindao.findphonecheck(checkphone);
+	}
+
+	@Override
+	public boolean selectphonecheckbusin(String checkphone) {
+		return joindao.findphonecheckbusin(checkphone);
+	}
 
 	@Override
 	public boolean createclass(ClassVO cv) {
@@ -87,6 +97,38 @@ public class JoinServiceImpl implements JoinService{
 	public int getcnocount(Map<String, String> map) {
 		return joindao.selectcnocount(map);
 	}
+
+	@Override
+	public String selectmemberid(Map<String, String> map) {
+		return joindao.findmemberid(map);
+	}
+
+	@Override
+	public String selectbusinessid(Map<String, String> map) {
+		return joindao.findbusinessid(map);
+	}
+
+	@Override
+	public boolean selectmemberpw(Map<String, String> map) {
+		return joindao.findmemberpw(map);
+	}
+
+	@Override
+	public boolean selectbusinesspw(Map<String, String> map) {
+		return joindao.findbusinesspw(map);
+	}
+
+	@Override
+	public boolean modifypw(Map<String, String> map) {
+		return joindao.updatepw(map);
+	}
+
+	@Override
+	public boolean modifypwbusin(Map<String, String> map) {
+		return joindao.updatepw(map);
+	}
+
+	
 	
 
 }
