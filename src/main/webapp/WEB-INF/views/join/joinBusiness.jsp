@@ -244,7 +244,7 @@ function phonecheck(){
 	 </div>
 	 
 	 <div class="group">
-	 	<input type="text" id="bphone" onkeyup="phonecheck()" readonly="readonly" required="required"/><span class="highlight"></span><span class="bar"></span>
+	 	<input type="text" id="bphone" onkeyup="phonecheck()" required="required"/><span class="highlight"></span><span class="bar"></span>
 		<label>전화번호</label>
 	 	<div id="bphonecheck"></div>
 	 </div>

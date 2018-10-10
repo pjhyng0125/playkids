@@ -254,6 +254,7 @@
 		<div class="group">
 			<input type="password" id="mpwconfirm" onkeyup="checkpw()" required="required"/><span class="highlight"></span><span class="bar"></span>
 			<label>비밀번호 확인</label>
+			<div id="mpwcheck"></div>
 		</div>
 		
 		<div class="group">
