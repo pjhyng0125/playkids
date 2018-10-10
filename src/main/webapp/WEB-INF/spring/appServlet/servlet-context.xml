@@ -49,6 +49,7 @@
 	<context:component-scan base-package="com.playkids.myapp" />
 	<context:component-scan base-package="com.playkids.control" />
 	
+	<!--  websocket -->
 	<websocket:handlers>
    	 <websocket:mapping handler="echoHandler" path="/echo"/>
    	 <websocket:sockjs/>
@@ -56,5 +57,15 @@
  
 	<beans:bean id="echoHandler" class="com.playkids.handler.EchoHandler"/>
 	
+	<!-- interceptor -->
+	<beans:bean class="com.playkids.interceptor.LoginInterceptor" id="loginInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage"/>
+			<mapping path="/chargepage"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
