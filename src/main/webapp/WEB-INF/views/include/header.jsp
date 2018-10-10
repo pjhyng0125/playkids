@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,15 +68,25 @@
 						</button>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="menu">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/main">홈</a></li>
-            <li><a href="/login">로그인</a></li>
-            <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/chargepage">캐쉬충전</a></li>
-          </ul>
-        </div>
-        <!-- /.Navbar-collapse -->
+        	
+        		<div class="collapse navbar-collapse" id="menu">
+          			<ul class="nav navbar-nav navbar-right">
+            			<c:if test="${login_id == null }">
+            				<li><a href="/main">홈</a>
+	            			<li><a href="/login">로그인</a></li>
+	            		</c:if>
+            			<c:if test="${login_id != null }">   
+            				<li style="line-height:48px; color:blue">${login_id}님 환영합니다!</li>    			
+	            			<li><a href="/logout" onclick="alert('로그아웃되었습니다^^');">로그아웃</a></li>
+            			</c:if>
+            			<c:if test="${admin_id != null }">
+            				<li style="line-height:48px; color:blue">${admin_id}관리자님 환영합니다!</li>
+            				<li><a href="/logout" onclick="alert('로그아웃되었습니다^^');">로그아웃</a></li>
+            			</c:if>
+            			<li><a href="/mypage">마이페이지</a></li>
+            			<li><a href="/chargepage">캐쉬충전</a></li>
+          			</ul>
+        		</div>
       </div>
     </div>
   </nav>
