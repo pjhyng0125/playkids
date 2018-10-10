@@ -278,7 +278,7 @@
 		</div>
 		
 		<div class="group">
-			<input type="date" id="mbirth" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<input type="date" id="mbirth"/><span class="highlight"></span><span class="bar"></span>
 			<label>생년월일</label>
 		</div>
 		

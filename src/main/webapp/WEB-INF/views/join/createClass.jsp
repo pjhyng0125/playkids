@@ -121,7 +121,7 @@
 		</div>
 		
 		<div class="group">
-			<input type="file" id="file1" name="file_class" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<input type="file" id="file1" name="file_class"/><span class="highlight"></span><span class="bar"></span>
 			<label>클래스사진</label>
 		</div>
 		
@@ -141,7 +141,7 @@
 		    <label>권장나이</label>
 		</div>
 		<div class="group">
-			<textarea cols="22px" rows="4px" name="cintro"></textarea><span class="highlight"></span><span class="bar"></span>
+			<textarea cols="22px" rows="4px" name="cintro" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
 			<label>클래스소개</label>
 		</div>
 
@@ -149,7 +149,7 @@
 <h5>클래스 상세 정보를 입력해주세요!</h5>
 <div>
 		<div class="group">
-			<input type="date" id="cdate" name="cdate" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<input type="date" id="cdate" name="cdate"/><span class="highlight"></span><span class="bar"></span>
 			<label>날짜</label>
 		</div>
 		<div class="group">
@@ -180,11 +180,11 @@
 		<label>강사명</label>
 	</div>
 	<div class="group">
-		<input type="file" id="file2" name="file_teacher" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<input type="file" id="file2" name="file_teacher"/><span class="highlight"></span><span class="bar"></span>
 		<label>강사사진</label>
 	</div>
 	<div class="group">
-		<textarea rows="5" name="cteacher"></textarea><span class="highlight"></span><span class="bar"></span>
+		<textarea rows="5" name="cteacher" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
 		<label>강사소개</label>
 	</div>
 </div>

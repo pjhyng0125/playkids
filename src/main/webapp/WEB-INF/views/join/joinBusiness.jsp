@@ -244,13 +244,13 @@ function phonecheck(){
 	 </div>
 	 
 	 <div class="group">
-	 	<input type="text" id="bphone" onkeyup="phonecheck()" required="required"/><span class="highlight"></span><span class="bar"></span>
+	 	<input type="text" id="bphone" onkeyup="phonecheck()" readonly="readonly" required="required"/><span class="highlight"></span><span class="bar"></span>
 		<label>전화번호</label>
 	 	<div id="bphonecheck"></div>
 	 </div>
 	 
 	 <div class="group">
-	 	<textarea cols="22px" rows="4px" id="bintro"></textarea><span class="highlight"></span><span class="bar"></span>
+	 	<textarea rows="5" id="bintro" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
 		<label>기업 소개</label>
 	 </div>
 		<br><br>
