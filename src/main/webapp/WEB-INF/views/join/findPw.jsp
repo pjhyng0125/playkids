@@ -44,30 +44,25 @@
 </script>
 </head>
 <body>
-<center>
 <div class="container">
-	<div>
-		<h2>${title } 회원 임시 비밀번호 받기</h2><br>
-	<table cellspacing="5" cellpadding="10" class="table-bordered">
-
-		<tr>
-			<td width="150px">${title } 아이디:</td><td><input type="text" id="id">
-		<tr>
-			<td>${find_phone }:</td><td><input type="text" id="phone"></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="임시 비밀번호 받기" id="btfindpw">
-				<input type="button" value="취소" id="btcancel">
-			</td>
-		</tr>
-		<tr>	
-			<td colspan="2" align="center">
-				<pre><a href="/login">로그인 화면으로</a></pre>
-			</td>
-		</tr>
-	</table>
+	<form>
+		<h1>${title } 회원 임시 비밀번호 받기</h1>
+	<div class="group">
+	<input type="text" id="id" required="required"/><span class="highlight"></span><span class="bar"></span>
+	<label>${title } 아이디</label>
 	</div>
+	<div class="group">
+		<input type="text" id="phone" required="required"/><span class="highlight"></span><span class="bar"></span>
+	<label>${find_phone }</label>
+	</div>
+	<div class="btn-box">
+		<button type="button" class="btn btn-submit" id="btfindpw">임시 비밀번호 받기</button>
+		<button type="button" class="btn btn-submit" id="btcancel">취소</button>
+	</div>
+	<div class="btn-box">
+		<a href="/login">로그인 화면으로</a>
+	</div>
+			
+	</form>
 </div>
-</center>
 <%@include file="../include/footer.jsp"%>

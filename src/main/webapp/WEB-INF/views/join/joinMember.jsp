@@ -293,8 +293,8 @@
 		</div>       	
 		
 		<div class="btn-box">
-				<button type="button" class="btn btn-submit" id="btjoin">회원가입</button>
-				<button type="button" class="btn btn-cancel" id="btcancel">취소</button>
+			<button type="button" class="btn btn-submit" id="btjoin">회원가입</button>
+			<button type="button" class="btn btn-cancel" id="btcancel">취소</button>
 		</div>		
 	</form>
 </div>

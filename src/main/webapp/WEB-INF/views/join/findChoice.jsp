@@ -16,21 +16,16 @@
 </script>
 </head>
 <body>
-<center>
 <div class="container">
-	<div>
-	<h3>아이디/비밀번호 찾기 선택</h3><br>
-		<table cellspacing="5" cellpadding="10" class="table-bordered">
-		<tr>
-			<td><input type="button" value="개인 회원" id="btmember">  
-			    <input type="button" value="기업 회원" id="btbusiness"></td>		
-		</tr>
-		<tr>
-			<td colspan="2" align="center"><a href="/login">로그인 화면으로</a></td>
-		</tr>
-		</table>
-		
+<form>
+	<h1>아이디/비밀번호 찾기 선택</h1>
+	<div class="btn-box">
+		<button type="button" class="btn btn-submit" id="btmember">개인 회원</button>
+		<button type="button" class="btn btn-submit" id="btbusiness">기업 회원</button>
 	</div>
+	<div class="btn-box">	
+		<a href="/login">로그인 화면으로</a>
+	</div>
+</form>
 </div>
-</center>
 <%@include file="../include/footer.jsp"%>

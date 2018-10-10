@@ -56,20 +56,12 @@ form .emoji {
   margin: 20px 0;
 }
 
-.group2 {
-  position: absolute;
-  margin: 20px 0;
-}
-
 textarea {
   resize: none;
 }
-select {
-  resize: none;
-}
 
-select,
 input,
+select,
 textarea {
   background: none;
   color: #424242;
