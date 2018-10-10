@@ -89,6 +89,12 @@ public class MyPageController {
 		return "mypage/result/myclasslist";
 	}
 	
+	@RequestMapping("deleteReserve")
+	public @ResponseBody String deleteReserve(){
+		return "";
+	}
+	
+	
 	@RequestMapping("chargepage")
 	public String readChargePage(Model model, HttpSession session) {
 		String login_id = (String) session.getAttribute("login_id");

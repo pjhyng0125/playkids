@@ -568,8 +568,7 @@ textarea#message{
 }
 
 #footer {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   color: #fff;
   background: #2487cd;
 }

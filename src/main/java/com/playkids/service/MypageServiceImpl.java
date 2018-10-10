@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.MemberVO;
@@ -42,6 +44,15 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public boolean updateCash(Map map) {
 		if(mypageDAO.updateCash(map)) return true;
+		return false;
+	}
+
+	@Transactional(isolation=Isolation.READ_COMMITTED)
+	@Override
+	public boolean deleteReserve(Map map) {
+		if(mypageDAO.updateCash(map)){
+			if(mypageDAO.deleteReserve(map)) return true;
+		}
 		return false;
 	}
 

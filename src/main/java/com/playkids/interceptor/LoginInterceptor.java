@@ -1,6 +1,5 @@
 package com.playkids.interceptor;
 
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +14,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session =request.getSession();
 		String login_id = (String) session.getAttribute("login_id");
+		System.out.println(login_id);
 		if(login_id==null) {
 			response.sendRedirect("/returnLogin");
 			return false;

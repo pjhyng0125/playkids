@@ -32,9 +32,11 @@
 	text-align: center;
 }
 
+.myclassStatus-reserveTable td{
+	
+}
 </style>
 <script>
-
 	$(function(){
 		$('#myPagechargeBtn').click(function(){
 			alert("충전페이지로 이동합니다.");
@@ -181,7 +183,7 @@
 		<div class="card myinfo text-center">
 			<div class="card-header font-weight-bold small">캐쉬 정보</div>
 			<div class="card-body">
-				<p class="card-text"><fmt:formatNumber value="${myInfo.mcash }" type="currency" currencySymbol=""/>원</p>
+				<p class="card-text"><fmt:formatNumber value="${myInfo.mcash }" type="currency" currencySymbol=""/>젤리</p>
 				<button class="btn btn-info" id="myPagechargeBtn">충전</button>
 			</div>
 		</div>

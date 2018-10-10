@@ -9,7 +9,8 @@
 		<td><a href="/class/info?cno=${myclass.cno }">${myclass.cname }</a></td>
 		<td>${myclass.dname }</td>
 		<td>${myclass.dage }세</td>
-		<td><fmt:formatDate value="${myclass.regdate }" pattern="yyyy-MM-dd"/></td></tr>
+		<td><fmt:formatDate value="${myclass.regdate }" pattern="yyyy-MM-dd"/> &nbsp;
+		<button class="btn btn-default" id="canclePayment">결제취소</button></td></tr>
 		</c:forEach>
 	</table>
 

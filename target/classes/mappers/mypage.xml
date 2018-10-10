@@ -22,26 +22,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into childinfo(dno,mid,dname,dgender,dbirth)
 		values(childinfo_seq.nextval,#{mid},#{dname},#{dgender},#{dbirth})
 	</insert>
+
+	<!-- reserve -->
+	<delete id="deleteReserve" parameterType="map">
+	delete from reserve where mid=#{mid} and regdate=#{regdate}
+	</delete>	
 	
 	<!-- myclass -->
 	<select id="selectClass" parameterType="map" resultType="MyClassVO">
 	select cno, ctype, cname, dname, regdate,price,
-	(select floor((to_date(sysdate, 'YY-MM-DD') - to_date(dbirth, 'YY-MM-DD') ) /365)+1 from reserve where mid=#{mid}) dage
+	floor((to_date(sysdate, 'YY-MM-DD') - to_date(dbirth, 'YY-MM-DD') ) /365)+1 dage
 	from reserve natural join class join childinfo
 	using(mid)
 	where mid=#{mid} and reserve.dno = childinfo.dno
 	<if test="myclass=='reserve'.toString()">
-	and cdate >=sysdate 
+		and cdate >=sysdate 
 	</if>
 	<if test="myclass=='complete'.toString()">
-	and sysdate > cdate
+		and sysdate > cdate
 	</if>
 	order by regdate desc
 	</select>
+	
+
 	
 	<!-- cash charge -->
 	<update id="updateCash" parameterType="map">
 	update member set mcash = mcash + #{mcash}
 	where mid=#{mid}
 	</update>
+	
 </mapper>

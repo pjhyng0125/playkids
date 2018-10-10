@@ -56,18 +56,18 @@
 		</div>
 		<div class="col-md-4">
 			<div class="card cashinfo text-center">
-				<div class="card-header font-weight-bold">캐쉬충전</div>
+				<div class="card-header font-weight-bold small">젤리 충전</div>
 				<div class="card-body">
-					<label class="radio-form"> <input type="radio"
-						name="cash" value="10000">10,000원
-					</label><br> <label class="radio-form"> <input type="radio"
-						name="cash" value="20000">20,000원
-					</label><br> <label class="radio-form"> <input type="radio"
-						name="cash" value="30000">30,000원
-					</label><br> <label class="radio-form"> <input type="radio"
-						name="cash" value="50000">50,000원
-					</label><br>
 					<br>
+					<label class="radio-form small"> <input type="radio"
+						name="cash" value="10000">10,000젤리
+					</label><br><br> <label class="radio-form small"> <input type="radio"
+						name="cash" value="20000">20,000젤리
+					</label><br><br> <label class="radio-form small"> <input type="radio"
+						name="cash" value="30000">30,000젤리
+					</label><br><br> <label class="radio-form small"> <input type="radio"
+						name="cash" value="50000">50,000젤리
+					</label><br><br>
 					<button class="btn btn-info" id="chargeBtn">충전</button>
 				</div>
 			</div>
