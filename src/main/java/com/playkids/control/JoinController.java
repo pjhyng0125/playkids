@@ -87,8 +87,18 @@ public class JoinController {
 		}
 		request.setAttribute("show_id", show_id);
 		System.out.println("show_id:"+show_id);
-		if(show_id!=null)
-			result=show_id;
+
+		if(show_id!=null) {
+			//아이디 찾기 * 찍기
+			for(int i=0; i<show_id.length(); i++) {
+				if(i%3==0) {
+					System.out.println("바꿀 char:"+show_id.charAt(i));
+					show_id=show_id.replace(show_id.charAt(i), '*');
+				}
+			}
+			System.out.println("별 찍은 show id:"+show_id);
+			result=show_id;	//* 찍은 id 보내기
+		}
 		else
 			result="아이디 찾기 실패";
 			
