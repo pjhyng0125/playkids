@@ -1,6 +1,8 @@
 package com.playkids.control;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -28,9 +31,19 @@ public class MyPageController {
 	private MypageService service;
 	
 	@RequestMapping("mypage")
-	public String readMypage(HttpSession session, Model model) {
+	public String readMypage(HttpSession session, Model model, HttpServletResponse response) {
 		String login_id = (String) session.getAttribute("login_id");
 		System.out.println(login_id);
+/*		
+		if(login_id==null) {
+			try {
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('로그인이 필요합니다.')</script");
+				return "join/login";
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}*/
 		
 		List<ChildInfoVO> childList = service.selectChild(login_id);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -93,6 +106,18 @@ public class MyPageController {
 		map.put("mcash", Integer.parseInt(cash));
 		if(service.updateCash(map)) return "충전 되었습니다.";
 		return "충전을 실패하였습니다.";
+	}
+	
+	@RequestMapping("returnLogin")
+	public void returnLogin(HttpServletResponse response) {
+		try {
+			response.setContentType("text/html; charset=UTF-8"); 
+			PrintWriter out= response.getWriter();
+			out.print("<script>alert('로그인이 필요합니다.'); location.href='/login'"
+					+ "</script>");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	

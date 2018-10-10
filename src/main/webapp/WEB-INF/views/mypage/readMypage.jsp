@@ -34,11 +34,6 @@
 
 </style>
 <script>
-	var login_id="${login_id}"
-	if(login_id=="" || login_id==undefined){
-		alert('로그인을 먼저 실행해 주세요!');
-		location.href="/login";
-	}
 
 	$(function(){
 		$('#myPagechargeBtn').click(function(){
