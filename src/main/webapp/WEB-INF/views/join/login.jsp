@@ -32,33 +32,29 @@
 </script>
 </head>
 <body>
-<center>
 <div class="container">
-	<div>
-		<h2>로그인</h2><br>
-	<table cellspacing="5" cellpadding="10" class="table-bordered">
-		<tr>
-			<td width="150px">아이디:</td><td><input type="text" id="id"></td>
-		</tr>
-		<tr>
-			<td>비밀번호:</td><td><input type="password" id="pw"></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center"><pre><input type="radio" name="rb" value="member" checked> 개인      <input type="radio" name="rb" value="business"> 기업</pre></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="로그인" id="btlogin" class="btn btn-primary">
-				<input type="button" value="취소" id="btcancel" class="btn btn-primary">
-			</td>
-		</tr>
-		<tr>	
-			<td colspan="2" align="center">
-				<pre><a href="/joinchoice">회원 가입</a>  <a href="/findchoice">아이디/비밀번호 찾기</a></pre>
-			</td>
-		</tr>
-	</table>
-	</div>
+	<form>
+		<h1>로그인</h1>
+		<div class="group">
+			<input type="text" id="id" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>아이디</label>
+		</div>
+		<div class="group">
+			<input type="password" id="pw" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>비밀번호</label>
+		</div>
+		
+		<div class="bt-box">
+			<pre><input type="radio" name="rb" value="member" checked>개인<input type="radio" name="rb" value="business">기업</pre>
+		</div>
+		
+		<div class="btn-box">
+			<button type="button" id="btlogin" class="btn btn-submit">로그인</button>
+			<button type="button" id="btcancel" class="btn btn-cancel">취소</button>
+		</div>
+		<div class="btn-box">
+			<pre><a href="/joinchoice">회원 가입</a>  <a href="/findchoice">아이디/비밀번호 찾기</a></pre>
+		</div>
+	</form>
 </div>
-</center>
 <%@include file="../include/footer.jsp"%>

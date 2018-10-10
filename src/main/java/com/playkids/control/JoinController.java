@@ -321,6 +321,11 @@ public class JoinController {
 		return "/join/createClass";
 	}
 	
+	@RequestMapping(value="test")
+	public String test() {
+		return "/join/test";
+	}
+	
 	@RequestMapping(value="insertclass", method=RequestMethod.POST)
 	public @ResponseBody String createClass(HttpServletRequest request,
 			MultipartFile file_class, MultipartFile file_teacher,

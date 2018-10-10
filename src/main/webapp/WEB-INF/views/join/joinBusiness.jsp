@@ -204,69 +204,72 @@ function phonecheck(){
 </script>
 </head>
 <body>
-<center>
 <div class="container">
-	<div>
-	<h3>기업 회원 가입</h3><br>
-		<table cellspacing="5" cellpadding="10" class="table-bordered">
-			<tr>
-				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="bid"><div id="bidcheck"></div></td>
-			</tr>
-			<tr>
-				<td>비밀번호:</td><td colspan="2"><input type="password" id="bpw"></td>
-			</tr>
-			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="bpwconfirm" onkeyup="checkpw()"><div id="bpwcheck"></div></td>
-			</tr>
-			<tr>
-				<td>기업명:</td><td colspan="2"><input type="text" id="bname"></td>
-			</tr>
-			<tr>
-				<td>주소:</td>
-					<td>
-						<select name="gugun" id="gugun" onchange="loaddong()">
-							<option value="0">==선택==</option>
-		               	</select>
-				    </td>
-				    <td>
-						<select name="dong" id="dong">
-							<option value="0">==선택==</option>
-		               	</select>
-				    </td>
-			</tr>
-			<tr>
-				<td>도로명주소:</td><td colspan="2"><input type="text" id="road"></td>
-			</tr>
-			<tr>
-				<td>전화번호:</td><td colspan="2"><input type="text" id="bphone" onkeyup="phonecheck()"><div id="bphonecheck"></div></td>
-			</tr>
-			<tr>
-				<td>기업소개:</td><td colspan="2"><textarea cols="22px" rows="4px" id="bintro"></textarea></td>
-			</tr>
-		</table>
+	<form>
+	<h1>기업 회원 가입</h1>
+	<div class="group">
+		<input type="text" id="bid" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>아이디</label>
+		<div id="bidcheck"></div>
+	</div>
+	
+	<div class="group">
+		<input type="password" id="bpw" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>비밀번호</label>
+	</div>
+	
+	<div class="group">
+		<input type="password" id="bpwconfirm" onkeyup="checkpw()" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>비밀번호 확인</label>
+		<div id="bpwcheck"></div>
+	</div>
+	<div class="group">
+		<input type="text" id="bname" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>이름</label>
+	</div>
+	
+	<div class="group">
+		<select name="gugun" id="gugun" onchange="loaddong()" required="required">
+				<option value="0">==선택==</option>
+		</select>
+		<select name="dong" id="dong" required="required">
+			<option value="0">==선택==</option>
+	 	</select>
+	 	<label>주소</label>
+	 </div>
+	 
+	 <div class="group">
+	 	<input type="text" id="road" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>도로명 주소</label>
+	 </div>
+	 
+	 <div class="group">
+	 	<input type="text" id="bphone" onkeyup="phonecheck()" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>전화번호</label>
+	 	<div id="bphonecheck"></div>
+	 </div>
+	 
+	 <div class="group">
+	 	<textarea cols="22px" rows="4px" id="bintro"></textarea><span class="highlight"></span><span class="bar"></span>
+		<label>기업 소개</label>
+	 </div>
 		<br><br>
 <!--기업 회원 가입-계좌번호 등록-->
-		<div>
-		<h4>계좌번호 등록</h4><br>
-	<div>
-<pre>
-기업 준수 사항
- 계좌 번호 등록 안내
-</pre>
+		<h1>계좌 번호 등록</h1>
+ 	<div class="group">
+	 	<textarea cols="22px" rows="4px" readonly="readonly"></textarea><span class="highlight"></span><span class="bar"></span>
+		<label>계좌 번호 등록 안내</label>
 	</div>
-	<table cellspacing="5" cellpadding="10" class="table-bordered">
-		<tr>
-			<td width="150px">계좌번호:</td><td><input type="text" id="baccount"></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<input type="button" value="회원가입" id="btjoin" class="btn btn-primary">
-				<input type="button" value="취소" id="btcancel" class="btn btn-primary">
-			</td>
-		</tr>
-	</table>
+
+ 	<div class="group">
+		<input type="text" id="baccount" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>계좌 번호</label>
 	</div>
+	
+	<div class="btn-box">
+		<button type="button" class="btn btn-submit" id="btjoin">회원가입</button>
+		<button type="button" class="btn btn-cancel" id="btcancel">취소</button>
 	</div>
+	</form>
 </div>
-</center>
 <%@include file="../include/footer.jsp"%>

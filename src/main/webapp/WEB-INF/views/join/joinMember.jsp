@@ -237,63 +237,65 @@
 </script>
 </head>
 <body>
-<center>
 <div class="container">
-	<div>
-	<h3>개인 회원 가입</h3><br>
-		<table cellspacing="5" cellpadding="10" class="table-bordered">
-			<tr>
-				<td width="150px">아이디:</td><td colspan="2"><input type="text" id="mid"><div id="midcheck"></div></td>
-			</tr>
-			<tr>
-				<td>비밀번호:</td><td colspan="2"><input type="password" id="mpw"></td>
-			</tr>
-			<tr>
-				<td>비밀번호 확인:</td><td colspan="2"><input type="password" id="mpwconfirm" onkeyup="checkpw()"><div id="mpwcheck"></div></td>
-			</tr>
-			<tr>
-				<td>이름:</td><td colspan="2"><input type="text" id="mname"></td>
-			</tr>
-			<tr>
-				<td>주소:</td>
-					<td>
-						<select name="gugun" id="gugun" onchange="loaddong()">
-							<option value="0">==선택==</option>
-		               	</select>
-				    </td>
-				    <td>
-						<select name="dong" id="dong">
-							<option value="0">==선택==</option>
-		               	</select>
-				    </td>
-			</tr>
-			<tr>
-				<td>폰번호:</td><td colspan="2"><input type="text" id="mphone" onkeyup="phonecheck()"><div id="mphonecheck"></div></td>
-			</tr>
-			<tr>
-				<td>생년월일:</td><td colspan="2"><input type="date" id="mbirth"></td>
-			</tr>
-			<tr>
-				<td>관심사:</td>
-					<td>
-						<select name="playtype" id="playtype" onchange="loadact()">
-							<option value="0">==선택==</option>
-		               	</select>
-				    </td>
-				    <td>
-						<select name="act" id="act">
-							<option value="0">==선택==</option>
-		               	</select>
-				    </td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center">
-					<input type="button" value="회원가입" id="btjoin" class="btn btn-primary">
-					<input type="reset" value="취소" id="btcancel" class="btn btn-primary">
-				</td>
-			</tr>
-		</table>
-	</div>
+	<form>
+	<h1>개인 회원 가입</h1><br>
+		<div class="group">
+			<input type="text" id="mid" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>아이디</label>
+			<div id="midcheck"></div>
+		</div>			
+			
+		<div class="group">
+			<input type="password" id="mpw" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>비밀번호</label>
+		</div>
+		
+		<div class="group">
+			<input type="password" id="mpwconfirm" onkeyup="checkpw()" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>비밀번호 확인</label>
+		</div>
+		
+		<div class="group">
+			<input type="text" id="mname"  required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>이름</label>
+		</div>
+		
+		<div class="group">
+			<select name="gugun" id="gugun" onchange="loaddong()" required="required">
+				<option value="0">==선택==</option>
+			</select>
+			<select name="dong" id="dong" required="required">
+				<option value="0">==선택==</option>
+			</select>
+			<label>주소</label>
+		</div>
+		
+		<div class="group">
+			<input type="text" id="mphone" onkeyup="phonecheck()" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>폰번호</label>
+			<div id="mphonecheck"></div>
+		</div>
+		
+		<div class="group">
+			<input type="date" id="mbirth" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<label>생년월일</label>
+		</div>
+		
+		<div class="group">
+			<select name="playtype" id="playtype" onchange="loadact()" required="required">
+				<option value="0">==선택==</option>
+		   	</select>
+			<select name="act" id="act">
+				<option value="0">==선택==</option>
+		    </select>
+			<label>관심사</label>
+		</div>       	
+		
+		<div class="btn-box">
+				<button type="button" class="btn btn-submit" id="btjoin">회원가입</button>
+				<button type="button" class="btn btn-cancel" id="btcancel">취소</button>
+		</div>		
+	</form>
 </div>
-</center>
 <%@include file="../include/footer.jsp"%>
