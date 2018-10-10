@@ -28,6 +28,7 @@
 </head>
 <body>
 <center>
+
 <h3>게시물 수정</h3>
 <hr width="80%">
 <form action="/board/update" method="post" name="form1">
@@ -36,13 +37,13 @@
 	<input type="hidden" id="login_type" value="${login_type }">
 </div>
 
- 글 번호 : <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
- 작성자 : <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
- 조회수 :<input type="text" name="count" value="${boardVO.count }" readonly size="3">
- 카테고리 : <input id="category" type="text" value="${boardVO.category }" readonly="readonly" size="8">
- 작성일자 : <input type="text" value="${boardVO.regdate }" readonly size="10"><br>
-제목 : <input type="text" id="writeTitle" name="title" size="105"  value="${boardVO.title }" ><br><br>
-내용 : <textarea rows="10" style="width: 60%" name="content" >${boardVO.content }</textarea><br>
+ <label>글 번호 :</label> <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
+ <label>작성자 :</label> <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
+ <label>조회수 :</label><input type="text" name="count" value="${boardVO.count }" readonly size="3">
+ <label>카테고리 :</label> <input id="category" type="text" value="${boardVO.category }" readonly="readonly" size="8">
+ <label>작성일자 :</label> <input type="text" value="${boardVO.regdate }" readonly size="10"><br>
+<label>제목 :</label> <input type="text" id="writeTitle" name="title" size="105"  value="${boardVO.title }" ><br><br>
+<label>내용</label><br><textarea rows="10" style="width: 60%" name="content" >${boardVO.content }</textarea><br>
 
 <input type="button" value="확인" class="btn btn-info" onclick="write_board()">
 <input type="button" id="cancel" value="취소" class="btn btn-warning">
@@ -51,8 +52,8 @@
 	<div class="modal fade" id="alert_modal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<font color="red"><h3>게시물 수정 에러</h3></font>
+				<div class="bg-danger text-white modal-header ">
+					<h3>게시물 수정 에러</h3>
 				</div>
 				<div class="modal-body">
 					<p>게시물의 제목은 반드시 작성해 주셔야 합니다.</p>

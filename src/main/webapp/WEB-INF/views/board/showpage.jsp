@@ -174,14 +174,14 @@ $(function(){
 </div>
 <center>
 <h3>게시물 보기</h3>
-
- 글 번호 : <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
- 작성자 : <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
- 조회수 :<input type="text" name="count" value="${boardVO.count }" readonly size="3">
- 카테고리 : <input type="text" value="${boardVO.category }" readonly="readonly" size="8">
- 작성일자 : <input type="text" value="${boardVO.regdate }" readonly size="10"><br>
-제목 : <input type="text" name="title" size="105"  value="${boardVO.title }" readonly><br><br>
-내용 : <textarea rows="10" style="width: 70%" name="content" readonly>${boardVO.content }</textarea><br>
+<hr>
+ <label>글 번호 :</label> <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
+ <label>작성자 :</label> <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
+ <label>조회수 :</label><input type="text" name="count" value="${boardVO.count }" readonly size="3">
+ <label>카테고리 :</label> <input type="text" value="${boardVO.category }" readonly="readonly" size="8">
+<label> 작성일자 :</label> <input type="text" value="${boardVO.regdate }" readonly size="10"><br>
+<label>제목 :</label> <input type="text" name="title" size="105"  value="${boardVO.title }" readonly><br><br>
+<label>내용</label><br> <textarea rows="10" style="width: 70%" name="content" readonly>${boardVO.content }</textarea><br>
 <button id="mod" class="btn btn-info">수정</button>
 <button id="del"class="btn btn-warning">삭제</button>
 <button id="list" class="btn btn-success">목록으로</button><br>
@@ -189,14 +189,15 @@ $(function(){
 
 <div>
 	<label>댓글작성</label><br>				<!-- ***id 받아온 값 인가하기********************************  -->
-	작성자 : <input type="text" name="replyer" value="${login_id }" readonly >
+	<label>작성자 :</label> <input type="text" name="replyer" value="${login_id }" readonly >
 	 <input type="button" id="send_reply" value="댓글작성" class="btn btn-info"><br>
-	내용 :  <textarea rows="2" style="width: 70%" name="reply_content"></textarea><br>
+	<label>내용</label> 
+	<textarea rows="2" style="width: 70%" name="reply_content"></textarea><br>
 	
 </div>
 <div>
 	<br>
-	<label>댓글목록</label><br><br>
+	<label>댓글목록</label><hr><br>
 	<div id="replylist"></div>
 	<div id="pagination"></div>
 </div>
@@ -224,7 +225,7 @@ $(function(){
 	<div class="modal fade" id="alert_modal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header bg-danger text-white">
 					<font color="red"><h3>회원 불일치</h3></font>
 				</div>
 				<div class="modal-body">
@@ -239,7 +240,7 @@ $(function(){
 	<div class="modal fade" id="alert_modal_login" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header bg-danger text-white">
 					<font color="red"><h3>로그인 필요</h3></font>
 				</div>
 				<div class="modal-body">
