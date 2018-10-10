@@ -49,6 +49,7 @@
 </head>
 <body>
 <center>
+<br>
 <h3>글쓰기 페이지</h3>
 <form method="post" name="form1">
 
@@ -90,8 +91,8 @@
 	<div class="modal fade" id="alert_modal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<font color="red"><h3>게시물 작성 에러</h3></font>
+				<div class="modal-header bg-danger text-white">
+					<h3>게시물 작성 에러</h3>
 				</div>
 				<div class="modal-body">
 					<p>게시물의 제목은 반드시 작성해 주셔야 합니다.</p>
