@@ -175,10 +175,12 @@ $(function(){
 <center>
 <h3>게시물 보기</h3>
 
-글 번호 : <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
-작성자 : <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
-제목 : <input type="text" name="title" size="30"  value="${boardVO.title }" readonly>
-조회수 :<input type="text" name="count" value="${boardVO.count }" readonly size="3"><br><br>
+ 글 번호 : <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
+ 작성자 : <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
+ 조회수 :<input type="text" name="count" value="${boardVO.count }" readonly size="3">
+ 카테고리 : <input type="text" value="${boardVO.category }" readonly="readonly" size="8">
+ 작성일자 : <input type="text" value="${boardVO.regdate }" readonly size="10"><br>
+제목 : <input type="text" name="title" size="105"  value="${boardVO.title }" readonly><br><br>
 내용 : <textarea rows="10" style="width: 70%" name="content" readonly>${boardVO.content }</textarea><br>
 <button id="mod" class="btn btn-info">수정</button>
 <button id="del"class="btn btn-warning">삭제</button>
@@ -188,7 +190,7 @@ $(function(){
 <div>
 	<label>댓글작성</label><br>				<!-- ***id 받아온 값 인가하기********************************  -->
 	작성자 : <input type="text" name="replyer" value="${login_id }" readonly >
-	 <input type="button" id="send_reply" value="댓글작성"><br>
+	 <input type="button" id="send_reply" value="댓글작성" class="btn btn-info"><br>
 	내용 :  <textarea rows="2" style="width: 70%" name="reply_content"></textarea><br>
 	
 </div>
@@ -223,7 +225,7 @@ $(function(){
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4>회원 불일치</h4>
+					<font color="red"><h3>회원 불일치</h3></font>
 				</div>
 				<div class="modal-body">
 					<p>타인의 게시물은 임의로 수정 및 삭제가 불가능합니다.</p>
@@ -238,7 +240,7 @@ $(function(){
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4>로그인 필요</h4>
+					<font color="red"><h3>로그인 필요</h3></font>
 				</div>
 				<div class="modal-body">
 					<p>로그인 후 이용가능</p>

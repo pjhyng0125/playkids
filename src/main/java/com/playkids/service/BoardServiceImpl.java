@@ -54,8 +54,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public List<String> joinClass_list(String mid) throws Exception{
-		return dao.joinClass_list(mid);
+	public List<String> listClass(String mid) throws Exception{
+		return dao.listClass(mid);
 	}
-
 }

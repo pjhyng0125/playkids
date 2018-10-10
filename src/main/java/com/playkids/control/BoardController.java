@@ -1,5 +1,7 @@
 package com.playkids.control;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,14 +40,20 @@ public class BoardController {
 	
 	@RequestMapping(value="insert", method=RequestMethod.GET)
 	public String insertGet(String mid, Model model,HttpSession session) throws Exception {
-		
+		// session 처리 완료  db테이블 데이터 만들기 3 처리
+				/* 해야 할 일
+				 *   목표 : 글쓰기 - 후기 선택시 해당 아이디가 예약 수강한 목록 가지고 오기  
+				 *   	처리사항1 db테이블 생성 및 예시 데이터 작성
+				 *   	처리사항2  작성된 데이터 호출하기
+				 *   	처리사항3 css 및 bootstrap	- 현재 수정하기 페이지(update_page)도 건드리지 않은 상태
+				 */
 		
 		// get 상태일때 데이터 mid를 받을수 있는지 test
-		String login_id= (String) session.getAttribute("login_id");
+		String login_id= (String) session.getAttribute("login_id");	// ** 세션으로 부터 로그인 아이디를 받음.
 		if(login_id!=null) {
 			System.out.println(login_id);
 		}
-		
+		model.addAttribute("listClass", service.listClass(login_id));
 		
 		
 	//	model.addAttribute("joinclass", service.joinClass_list(mid));
@@ -55,7 +63,7 @@ public class BoardController {
 	public String insertPost(BoardVO vo, RedirectAttributes attr) throws Exception {
 		service.insert_page(vo);
 	//	attr.addFlashAttribute("msg", "success");
-		// session 처리 완료  db테이블 데이터 만들기 3 처리
+		
 		return "redirect:list";
 	}
 	

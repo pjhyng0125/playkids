@@ -1,6 +1,7 @@
 package com.playkids.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -66,9 +67,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
-	public List<String> joinClass_list(String mid) throws Exception{
-		return sqlsession.selectList("board.joinclass", mid);
+	public List<String> listClass(String mid){
+		return sqlsession.selectList("listClass", mid);
 	}
-	
 
 }

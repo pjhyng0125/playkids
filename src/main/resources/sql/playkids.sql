@@ -184,6 +184,8 @@ ALTER TABLE member
 			mid
 		);
 
+		
+drop table childinfo
 /* childinfo */
 CREATE TABLE childinfo (
 	dno NUMBER NOT NULL, /* 번호 */
@@ -193,16 +195,9 @@ CREATE TABLE childinfo (
 	dbirth date /* 자녀생년월일 */
 );
 
-drop sequence childinfo_seq;
-create sequence childinfo_seq
-start with 1
-increment by 1
-nocycle
-nocache;
-
 COMMENT ON TABLE childinfo IS 'childinfo';
 
-COMMENT ON COLUMN childinfo.no IS '번호';
+COMMENT ON COLUMN childinfo.dno IS '번호';
 
 COMMENT ON COLUMN childinfo.mid IS '회원아이디';
 
@@ -214,14 +209,14 @@ COMMENT ON COLUMN childinfo.dbirth IS '자녀생년월일';
 
 CREATE UNIQUE INDEX PK_childinfo
 	ON childinfo (
-		no ASC
+		dno ASC
 	);
 
 ALTER TABLE childinfo
 	ADD
 		CONSTRAINT PK_childinfo
 		PRIMARY KEY (
-			no
+			dno
 		);
 
 /* agegrade */

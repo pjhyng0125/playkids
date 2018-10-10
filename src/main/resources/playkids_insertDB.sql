@@ -95,6 +95,21 @@ values (tbl_reply_seq.nextval,'1','연습댓글12','abcd1234');
 insert into reply (rno, bno, reply_content, replyer)
 values (tbl_reply_seq.nextval,'1','연습댓글13','abcd1234');
 
+
+insert into reserve(mid,cno,dno,regdate)
+   values('gildong',1,1,'2018-10-01');
+insert into reserve(mid,cno,dno,regdate)
+   values('gildong',2,1,'2018-10-01');
+
+insert into class(cno,bid,ctype,cname,cage,cintro,cdate,prepare,notice,price,cteachername,cteacher,cregdate,autho)
+values(class_seq.nextval,'testcompany','야외놀이','테스트용 클래스','12,13','재밌어??','2018-10-05','하이하이','하이하이',10000,'하이루','하이','18-09-15',0);
+insert into class(cno,bid,ctype,cname,cage,cintro,cdate,prepare,notice,price,cteachername,cteacher,cregdate,autho)
+values(class_seq.nextval,'testcompany','야외놀이','테스트용 클래스2','12,13','재밌어??','2018-10-05','하이하이','하이하이',10000,'하이루','하이','18-09-15',0);
+
+
+select * from class
+select * from business
+
 select * from reply
 
 update board set regdate= sysdate-1 where bno in (30,29);
