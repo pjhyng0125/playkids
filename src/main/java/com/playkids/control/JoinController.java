@@ -257,6 +257,26 @@ public class JoinController {
 		return result;
 	}
 	
+//멤버 로그인 폰번호 중복 체크
+	@RequestMapping(value="phonecheck")
+	public @ResponseBody String phoneCheck(String type, String checkphone) {
+		String result=null;
+		if(type.equals("member")) {
+			if(service.selectphonecheck(checkphone)){
+				result="<font color=red>폰번호 중복</font>";
+			}else {
+				result="<font color=green>폰번호 사용 가능</font>";			
+			}
+		}else if(type.equals("business")) {
+			if(service.selectphonecheckbusin(checkphone)){
+				result="<font color=red>전화번호 중복</font>";
+			}else {
+				result="<font color=green>전화번호 사용 가능</font>";			
+			}
+		}
+		return result;
+	}
+	
 //클래스 생성 action
 	@RequestMapping(value="insertclass", method=RequestMethod.GET)
 	public String showclass() {

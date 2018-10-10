@@ -10,6 +10,8 @@
 //회원가입 버튼 클릭 시
 		$('#btjoin').click(function(){
 			checkEmpty();
+			alert('기업 회원 가입 성공!\n 메인화면으로 이동합니다.')
+			location.href="/main";
 		});//btjoin click
 		
 //취소 버튼 클릭 시
@@ -216,8 +218,8 @@ function idcheck(){
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="회원가입" id="btjoin">
-				<input type="button" value="취소" id="btcancel">
+				<input type="button" value="회원가입" id="btjoin" class="btn btn-primary">
+				<input type="button" value="취소" id="btcancel" class="btn btn-primary">
 			</td>
 		</tr>
 	</table>

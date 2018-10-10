@@ -11,7 +11,6 @@
 //회원가입 버튼 클릭 시
 		$('#btjoin').click(function(){
 			checkEmpty();
-			//location.href="/login";
 		});//btjoin click
 		
 //취소 버튼 클릭 시
@@ -65,8 +64,16 @@
 				alert('주소 동 선택!')
 				return;
 			}
-			if($('#mphone').val()==''){
+			 if($('#mphone').val()==''){
 				alert('폰번호 입력!')
+				return;
+			}
+			if($('#mphonecheck').text().indexOf('형식')>0){
+				alert('폰번호 형식 확인!');
+				return;
+			}
+			if($('#mphonecheck').text().indexOf('중복')>0){
+				alert('폰번호 중복 확인!');
 				return;
 			}
 			if($('#mbirth').val()==''){
@@ -87,6 +94,10 @@
 	});//function
 //join
 	function idcheck(){
+		if($('#mid').val()==''){
+			$('#midcheck').html('<font color=red>아이디 입력</font>');
+			return;
+		}
 		$.ajax({
 			url:"/idcheck",
 			data:{
@@ -95,6 +106,41 @@
 			},
 			success:function(str){
 				$('#midcheck').html(str);
+			}
+		});//ajax
+	}
+	
+	function phonecheck(){
+		if($('#mphone').val()==''){
+			$('#mphonecheck').html('<font color=red>폰번호 입력</font>');
+			return;
+		}
+		if($('#mphone').val().indexOf('-')<3){
+			$('#mphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+			return;
+		}
+		if($('#mphone').val().substring(4).indexOf('-')<4){
+			$('#mphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+			return;			
+		}
+		if($('#mphone').val().substring(9).length<4){
+			$('#mphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+			return;						
+		}
+		if($('#mphone').val().substring(9).length>4){
+			$('#mphonecheck').html('<font color=red>폰번호 형식 확인</font>');
+			return;						
+		}
+		
+		
+		$.ajax({
+			url:"/phonecheck",
+			data:{
+				type:"member",
+				checkphone:$('#mphone').val()
+			},
+			success:function(str){
+				$('#mphonecheck').html(str);
 			}
 		});//ajax
 	}
@@ -115,7 +161,7 @@
 			type:"POST",
 			success:function(result){
 				alert(result);
-				href.location="/login";
+				location.href="/main";
 			}				
 		});//ajax
 	}//insertmember
@@ -222,7 +268,7 @@
 				    </td>
 			</tr>
 			<tr>
-				<td>폰번호:</td><td colspan="2"><input type="text" id="mphone"></td>
+				<td>폰번호:</td><td colspan="2"><input type="text" id="mphone" onkeyup="phonecheck()"><div id="mphonecheck"></div></td>
 			</tr>
 			<tr>
 				<td>생년월일:</td><td colspan="2"><input type="date" id="mbirth"></td>
@@ -242,8 +288,8 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="center">
-					<input type="button" value="회원가입" id="btjoin">
-					<input type="reset" value="취소" id="btcancel">
+					<input type="button" value="회원가입" id="btjoin" class="btn btn-primary">
+					<input type="reset" value="취소" id="btcancel" class="btn btn-primary">
 				</td>
 			</tr>
 		</table>

@@ -67,6 +67,16 @@ public class JoinServiceImpl implements JoinService{
 	public boolean selectidcheckbusin(String checkid) {
 		return joindao.findidcheckbusin(checkid);
 	}
+	
+	@Override
+	public boolean selectphonecheck(String checkphone) {
+		return joindao.findphonecheck(checkphone);
+	}
+
+	@Override
+	public boolean selectphonecheckbusin(String checkphone) {
+		return joindao.findphonecheckbusin(checkphone);
+	}
 
 	@Override
 	public boolean createclass(ClassVO cv) {
@@ -107,6 +117,8 @@ public class JoinServiceImpl implements JoinService{
 	public boolean selectbusinesspw(Map<String, String> map) {
 		return joindao.findbusinesspw(map);
 	}
+
+	
 	
 
 }

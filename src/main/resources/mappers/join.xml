@@ -51,6 +51,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findidcheckbusin" resultType="Integer" parameterType="String">
 		select count(*) from business where bid=#{checkid}
 	</select>
+	<!-- login phonecheck -->
+	<select id="findphonecheck" resultType="Integer" parameterType="String">
+		select count(*) from member where mphone=#{checkphone}
+	</select>
+	<select id="findphonecheckbusin" resultType="Integer" parameterType="String">
+		select count(*) from business where bphone=#{checkphone}
+	</select>
 	
 	<!-- insert class -->
 	<insert id="insertclass" parameterType="ClassVO">

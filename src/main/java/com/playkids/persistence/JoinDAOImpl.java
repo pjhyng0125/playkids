@@ -89,6 +89,24 @@ public class JoinDAOImpl implements JoinDAO{
 		else
 			return false;
 	}
+	
+	@Override
+	public boolean findphonecheck(String checkphone) {
+		int n=session.selectOne("join.findphonecheck",checkphone);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
+	
+	@Override
+	public boolean findphonecheckbusin(String checkphone) {
+		int n=session.selectOne("join.findphonecheckbusin",checkphone);
+		if(n==1)
+			return true;
+		else
+			return false;
+	}
 
 	@Override
 	public boolean insertclass(ClassVO cv) {
