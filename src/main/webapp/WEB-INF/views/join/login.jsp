@@ -8,7 +8,7 @@
 			checkEmpty();
 		});//로그인 button 클릭 시
 		$('#btcancel').click(function(){
-			alert('취소 버튼 클릭');
+			location.href="/main";
 			
 		});//취소 button 클릭 시
 	});//function
@@ -65,7 +65,7 @@
 		
 		<div class="btn-box">
 			<button type="button" id="btlogin" class="btn btn-submit">로그인</button>
-			<button type="button" id="btcancel" class="btn btn-cancel">취소</button>
+			<button type="button" id="btcancel" class="btn btn-cancel">메인으로</button>
 		</div>
 		<div class="btn-box">
 			<pre><a href="/joinchoice">회원 가입</a>  <a href="/findchoice">아이디/비밀번호 찾기</a></pre>
