@@ -54,9 +54,5 @@ public class AdminController {
 		return "/admin/board_list";
 	}
 	
-/*	@RequestMapping(value="adminRevenue", method=RequestMethod.GET)
-	public String admin_revenueGET(Model model)throws Exception{
-		model.addAllAttributes("list",service.select)
-	}*/
 	
 }

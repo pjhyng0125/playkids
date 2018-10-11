@@ -13,7 +13,7 @@
          .web-nav2 ul li {
             display:inline;                         /*  세로나열을 가로나열로 변경 */
             font:bold 17px Dotum;                     /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */
-            padding: 90px;                         /* 각 메뉴 간격 */
+            padding: 95px;                         /* 각 메뉴 간격 */
         }       
         
         body{
