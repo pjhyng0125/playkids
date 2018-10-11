@@ -105,7 +105,8 @@
 	<h1>클래스 등록 화면</h1><br>
 <!-- 클래스 정보 입력 -->
 		<div class="group">
-		기업 아이디<input type="text" name="bid" value="${login_id}" readonly/>
+		<font color="#2196F3" size="2px">기업 아이디</font>
+		<input type="text" name="bid" value="${login_id}" readonly/>
 		</div>
 		<div class="group">
 		<select name="ctype">
@@ -165,10 +166,10 @@
 			<label>금액</label>
 		</div>
 		<div class="group">
+		<font color="#2196F3" size="2px">시설정보</font>
 				<input type="checkbox" name="park" value="park">주차공간 
   				<input type="checkbox" name="protect" value="protect">보호자대기실
   				<input type="checkbox" name="together" value="together">참관가능여부
-  		<label>시설정보</label>
   		</div>
 			
 </div>

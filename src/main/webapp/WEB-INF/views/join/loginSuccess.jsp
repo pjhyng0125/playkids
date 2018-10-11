@@ -25,17 +25,17 @@
 	<h1>Playkids 회원이 되어주셔서 진심으로 감사합니다</h1>
 	<h5>로그인 하시면 Playkids의 다양한 혜택과 정보를 이용하실 수 있습니다.</h5>
 		<div class="group">
-			${fid }
+			<font color="#2196F3" size="2px">${fid }</font>
 			<input type="text" id="id" value="${id }" readonly/><span class="highlight"></span><span class="bar"></span>
 		</div>			
 		
 		<div class="group">
-			${fname }
+			<font color="#2196F3" size="2px">${fname }</font>
 			<input type="text" id="name" value="${name }" readonly/><span class="highlight"></span><span class="bar"></span>
 		</div>
 		
 		<div class="group">
-			${fphone }
+			<font color="#2196F3" size="2px">${fphone }</font>
 			<input type="text" id="phone" value="${phone }" readonly/><span class="highlight"></span><span class="bar"></span>
 		</div>
 		
