@@ -105,7 +105,7 @@
 <div class="box-body">
 <center>
 <table style="width: 90%" class="table">
-	<tr class="table_headline" align="center"><td>글 번호</td><td>카테고리</td><td width="30%">제목</td><td>작성자</td><td>작성일자</td><td>조회수</td></tr>
+	<tr class="table_headline" align="center"><td>글 번호</td><td style="width: 10%">카테고리</td><td>제목</td><td>작성자</td><td style="width: 12%">작성일자</td><td style="width: 8%">조회수</td></tr>
 
 	<tbody class="notice_body">
 	<c:forEach items="${notice }" var="posting">

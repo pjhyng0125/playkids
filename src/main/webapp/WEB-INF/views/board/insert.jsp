@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@include file="/WEB-INF/views/include/header.jsp" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %><%@include file="/WEB-INF/views/include/header.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +13,20 @@
 		$('#cancel').click(function(){
 			self.location="/board/list";
 		});
+	
 		$('select[name=category]').click(function(){
 			
 			var i =document.form1.category.selectedIndex
 			if(i==1){
-			/*	$.ajax({
-						url:'/board'
-				});*/
 				$('#reserve').show();
+				if(${listClass.size()==0 }){		//vv
+					
+					$('#listOff').show();
+					$('#listOn').hide();	
+				}else{		// 리스트가 없을 경우
+					$('#listOff').hide();
+					$('#listOn').show();
+				}
 			}else if(i!=1){				
 				$('#writeTitle').val('')
 				$('#writeTitle').attr('readonly',false)
@@ -66,9 +72,12 @@
 		<fieldset style="width: 60%">
 			<legend>수강강좌 선택하기</legend>
 			<ul>
-				<div class="alert alert-warning">
+				<div id="listOn" class="alert alert-warning" style="display: ">
     				<strong><주의></strong> 후기를 남기실 때는 제목을 변경하실수 없습니다!<br>
     				수강한 클래스 중 후기를 남기실 클래스를 아래에서 선택해주세요.
+  				</div>
+  				<div id="listOff" class="alert alert-danger" style="display: none">
+  					<strong><주의></strong> 수강한 클래스가 없습니다!
   				</div>
 				<div id="listclass">
 					<c:forEach items="${listClass }" var="classnames" >

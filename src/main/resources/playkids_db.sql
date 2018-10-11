@@ -61,6 +61,14 @@ add constraint fk_member_to_reply
 	foreign key(bno)
 	references board(bno);
 	
+	
+	
+	
+	
+	
+	
+	
+--------------------------------------- 필요 없는 부분 ------------------	
 	select bno, mid, title, content, regdate,count,
      case
      when (sysdate-regdate<1)  then 1

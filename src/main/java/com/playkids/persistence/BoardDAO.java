@@ -1,6 +1,7 @@
 package com.playkids.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.playkids.domain.BoardVO;
 import com.playkids.domain.SearchCriteria;
@@ -23,6 +24,6 @@ public interface BoardDAO {
 
 	public List<BoardVO> listNotice() throws Exception;
 
-	public List<String> listClass(String mid);
+	public  List<Map> listClass(String mid);
 
 }

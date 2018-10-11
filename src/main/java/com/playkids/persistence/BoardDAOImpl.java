@@ -66,8 +66,11 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlsession.selectList("board.noticelistSearch");
 	}
 	
+	//public List<String> listClass(String mid){
 	@Override
-	public List<String> listClass(String mid){
+	public List<Map> listClass(String mid){
+		
+		//return sqlsession.selectList("listClass", mid);
 		return sqlsession.selectList("listClass", mid);
 	}
 

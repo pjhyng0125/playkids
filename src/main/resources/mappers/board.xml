@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      order by bno desc
  </select>
  
- <select id="listClass" resultType="HashMap">
+ <select id="listClass" parameterType="String" resultType="HashMap">
     select c.cname as cname, b.bname as bname, to_char(c.cdate,'mm/dd') cdate
 	from member m, class c, reserve r, business b
 	where m.mid= r.mid and c.cno = r.cno and b.bid=c.bid and m.mid= #{mid} and sysdate > c.cdate

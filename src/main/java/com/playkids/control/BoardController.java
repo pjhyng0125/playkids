@@ -43,6 +43,7 @@ public class BoardController {
 		
 		// ** 세션으로 부터 로그인 아이디를 받음.
 		String login_id= (String) session.getAttribute("login_id");	
+		System.out.println("map : "+service.listClass(login_id));
 		model.addAttribute("listClass", service.listClass(login_id));
 		
 		

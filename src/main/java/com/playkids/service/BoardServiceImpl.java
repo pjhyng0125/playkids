@@ -1,6 +1,7 @@
 package com.playkids.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -54,7 +55,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public List<String> listClass(String mid) throws Exception{
+	public  List<Map>  listClass(String mid) throws Exception{
 		return dao.listClass(mid);
 	}
 }
