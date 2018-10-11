@@ -21,6 +21,11 @@ public class FaqServiceImpl implements FaqService{
 	public void create(FaqVO faq) throws Exception {
 		dao.create(faq);
 	}
+	
+	@Override
+	public FaqVO select_faq(int fno) throws Exception{
+		return dao.select_faq(fno);
+	}
 
 	@Override
 	public List<FaqVO> listAll() throws Exception {
@@ -38,6 +43,15 @@ public class FaqServiceImpl implements FaqService{
 		return dao.faq_criteriaCount(cri);
 	}
 	
+	@Override
+	public void update_faq(FaqVO faq) throws Exception{
+		dao.update_faq(faq);
+	}
+	
+	@Override
+	public void delete_faq(int fno) throws Exception{
+		dao.delete_faq(fno);
+	}
 
 	
 
