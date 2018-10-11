@@ -48,7 +48,7 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 
 	@Override
-	public boolean deleteReserve(Map map) {
+	public boolean deleteReserve(Map<String, Object> map) {
 		int t = sqlsession.delete("mypage.deleteReserve",map);
 		if(t>0) return true;
 		return false;

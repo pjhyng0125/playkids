@@ -90,8 +90,17 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("deleteReserve")
-	public @ResponseBody String deleteReserve(){
-		return "";
+	public @ResponseBody String deleteReserve(HttpSession session,String rno, String price){
+		System.err.println(rno);
+		System.err.println(price);
+		String login_id = (String) session.getAttribute("login_id");
+		Map<String, Object> map = new HashMap<>();
+		int negaPrice = 0;
+		map.put("mcash", negaPrice-Integer.parseInt(price));
+		map.put("mid", login_id);
+		map.put("rno", rno);
+		if(service.deleteReserve(map)) return "결제 취소가 완료되었습니다.";
+		return "결제 취소를 실패하였습니다.";
 	}
 	
 	

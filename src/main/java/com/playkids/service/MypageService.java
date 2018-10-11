@@ -19,5 +19,5 @@ public interface MypageService {
 	public List<MyClassVO> selectClass(Map map);
 	
 	public boolean updateCash(Map map);
-	public boolean deleteReserve(Map map);
+	public boolean deleteReserve(Map<String, Object> map);
 }

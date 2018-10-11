@@ -49,9 +49,9 @@ public class MypageServiceImpl implements MypageService{
 
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
-	public boolean deleteReserve(Map map) {
-		if(mypageDAO.updateCash(map)){
-			if(mypageDAO.deleteReserve(map)) return true;
+	public boolean deleteReserve(Map<String, Object> map) {
+		if(mypageDAO.deleteReserve(map)){
+			if(mypageDAO.updateCash(map)) return true;
 		}
 		return false;
 	}

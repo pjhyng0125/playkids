@@ -84,7 +84,7 @@
             				<li><a href="/logout" onclick="alert('로그아웃되었습니다^^');">로그아웃</a></li>
             			</c:if>
             			<li><a href="/mypage">마이페이지</a></li>
-            			<li><a href="/chargepage">캐쉬충전</a></li>
+            			<li><a href="/chargepage">젤리충전</a></li>
           			</ul>
         		</div>
       </div>

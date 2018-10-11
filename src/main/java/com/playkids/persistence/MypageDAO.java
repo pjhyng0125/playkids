@@ -21,5 +21,5 @@ public interface MypageDAO {
 	
 	public boolean updateCash(Map map);
 	
-	public boolean deleteReserve(Map map);
+	public boolean deleteReserve(Map<String, Object> map);
 }

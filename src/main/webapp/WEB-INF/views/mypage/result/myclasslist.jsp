@@ -10,7 +10,10 @@
 		<td>${myclass.dname }</td>
 		<td>${myclass.dage }세</td>
 		<td><fmt:formatDate value="${myclass.regdate }" pattern="yyyy-MM-dd"/> &nbsp;
-		<button class="btn btn-default" id="canclePayment">결제취소</button></td></tr>
+		<input type="hidden" name="rno" value="${myclass.rno }">
+		<button class="btn btn-default" id="canclePayment" type="button">결제취소</button>
+		<input type="hidden" name="mcash" value="${myclass.price }">
+		</td></tr>
 		</c:forEach>
 	</table>
 

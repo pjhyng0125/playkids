@@ -3,6 +3,7 @@ package com.playkids.domain;
 import java.util.Date;
 
 public class MyClassVO {
+	private int rno;
 	private int cno;
 	private String ctype;
 	private String cname;
@@ -14,6 +15,12 @@ public class MyClassVO {
 	
 	
 	
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public int getCno() {
 		return cno;
 	}
@@ -64,10 +71,11 @@ public class MyClassVO {
 	}
 	@Override
 	public String toString() {
-		return "MyClassVO [cno=" + cno + ", ctype=" + ctype + ", cname=" + cname + ", dname=" + dname + ", dbirth="
-				+ dbirth + ", regdate=" + regdate + ", dage=" + dage + ", price=" + price + "]";
+		return "MyClassVO [rno=" + rno + ", cno=" + cno + ", ctype=" + ctype + ", cname=" + cname + ", dname=" + dname
+				+ ", dbirth=" + dbirth + ", regdate=" + regdate + ", dage=" + dage + ", price=" + price + "]";
 	}
-
+	
+	 
 
 
 	

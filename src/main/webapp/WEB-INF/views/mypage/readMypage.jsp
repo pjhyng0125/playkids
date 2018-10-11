@@ -89,7 +89,7 @@
 		});
 		
 		
-		$('.mypayinfo').click(function(){
+		$('.mypayinfo').click(function(){ //구매내역 보여주기
 			$('#myclassStatus').hide();
 			
 			$(this).removeClass("btn-info");
@@ -117,7 +117,7 @@
 			
 		})
 		
-		$('#myReserve').click(function(){
+		$('#myReserve').click(function(){ // 예약 테이블 보여주기
 			$(this).addClass('myclassStatus-selected');
 			$('#myComplete').removeClass('myclassStatus-selected');
 			$.ajax({
@@ -135,8 +135,9 @@
     	       }
     	    }); 
 		});
+		
 
-		$('#myComplete').click(function(){
+		$('#myComplete').click(function(){ //수강 완료 테이블 보여주기
 			$(this).addClass('myclassStatus-selected');
 			$('#myReserve').removeClass('myclassStatus-selected');
 			$.ajax({
@@ -154,6 +155,26 @@
     	       }
     	    }); 
 		});
+		
+		$('.myinfolist-data').on('click','.myclassStatus-reserveTable button',function(){// 결제 취소버튼 선택시
+			if(confirm('정말로 취소하시겠습니까?')){
+				$.ajax({
+					data:{rno:$(this).prev().val(),
+						price:$(this).next().val()},
+	    	        url : "/deleteReserve",
+	    	        success : function(result) {   	            	
+		    	            alert(result)
+		    	            location.href = "/mypage";
+	    	       },error:function(e,code){
+	    	    	   alert('정말에러!!'+e.status+":"+code)
+	    	           if(e.status==300){
+	    	               alert("데이터를 가져오는데 실패하였습니다.");
+	    	           };
+	    	       }
+	    	    }); 		
+			}
+		});
+		
 	})
 </script>
 <br><br><br>
@@ -164,7 +185,8 @@
 				<img class="card-img-top " src="/resources/img/man.png" alt="Card image"
 					style="width: 100%" height="280px">
 				<div class="card-body">
-					<p class="card-text text-center font-weight-bold">${myInfo.mname }님</p>
+					<p class="card-text text-center font-weight-bold"> &nbsp;&nbsp;&nbsp;${myInfo.mname }님
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="">정보 변경</button></p>
 				</div>
 
 			</div>
@@ -230,13 +252,16 @@
             </div> <!--childModal 끝-->
 <br><br><br>
 	<div class="row myinfolist">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<button class="btn btn-info myclassinfo">클래스</button>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<button class="btn btn-info mypayinfo">구매내역</button>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
+			<button class="btn btn-info myboardinfo">마이게시물</button>
+		</div>
+		<div class="col-md-3">
 			<button class="btn btn-info myQnAinfo">1 : 1 문의</button>
 		</div>
 	</div>

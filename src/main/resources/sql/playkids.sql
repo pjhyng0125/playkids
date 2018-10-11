@@ -302,13 +302,26 @@ ALTER TABLE reply
 
 /* reserve */
 CREATE TABLE reserve (
+	rno number,
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
 	cno number NOT NULL, /* 클래스 아이디 */
 	dno number NOT NULL, /* 자녀 아이디 */
 	regdate DATE /* 확정일 */
 );
 
+/* reserve sequence */
+drop sequence reserve_seq;
+create sequence reserve_seq
+start with 1
+increment by 1
+nocycle
+nocache;
+
+
+
 COMMENT ON TABLE reserve IS 'reserve';
+
+COMMENT ON COLUMN reserve.rno IS '예약고유번호';
 
 COMMENT ON COLUMN reserve.mid IS '회원아이디';
 
@@ -320,16 +333,14 @@ COMMENT ON COLUMN reserve.regdate IS '확정일';
 
 CREATE UNIQUE INDEX PK_reserve
 	ON reserve (
-		mid ASC,
-		cno ASC
+		rno ASC
 	);
 
 ALTER TABLE reserve
 	ADD
 		CONSTRAINT PK_reserve
 		PRIMARY KEY (
-		mid ASC,
-		cno ASC
+		 rno
 		);
 
 ALTER TABLE class

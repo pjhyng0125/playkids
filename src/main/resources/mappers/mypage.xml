@@ -25,12 +25,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- reserve -->
 	<delete id="deleteReserve" parameterType="map">
-	delete from reserve where mid=#{mid} and regdate=#{regdate}
+	delete from reserve where rno=#{rno}
 	</delete>	
 	
 	<!-- myclass -->
 	<select id="selectClass" parameterType="map" resultType="MyClassVO">
-	select cno, ctype, cname, dname, regdate,price,
+	select rno, cno, ctype, cname, dname, regdate,price,
 	floor((to_date(sysdate, 'YY-MM-DD') - to_date(dbirth, 'YY-MM-DD') ) /365)+1 dage
 	from reserve natural join class join childinfo
 	using(mid)
