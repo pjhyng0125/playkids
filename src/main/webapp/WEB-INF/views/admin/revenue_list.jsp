@@ -6,3 +6,4 @@
 	<tr>
 		<th>수익금</th>
 	</tr>
+</table>
