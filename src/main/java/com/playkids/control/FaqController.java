@@ -1,6 +1,7 @@
 package com.playkids.control;
 
-import javax.inject.Inject;  
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +49,28 @@ public class FaqController {
 			
 		
 		return "faq/faq";
+	}
+	
+	@RequestMapping(value="faqModify", method=RequestMethod.GET)
+	public String modifyGet(int fno, HttpServletRequest request) throws Exception{
+		request.setAttribute("faqVO", service.select_faq(fno));
+		return "faq/faqModify";		
+	}
+	
+	@RequestMapping(value="faqModify",method=RequestMethod.POST)
+	public String ModifyPost(FaqVO faq) throws Exception{
+		System.out.println("faq수정내용="+faq);
+		service.update_faq(faq);
+		System.out.println("수정성공!");
+		return "redirect:faqList";
+	}
+	
+	@RequestMapping(value="remove", method=RequestMethod.POST)
+	public String remove(int fno, RedirectAttributes attr) throws Exception{
+		System.out.println("Faq컨트롤러의 말>>>삭제를 원해?"+fno);
+		service.delete_faq(fno);
+		attr.addFlashAttribute("msg","SUCCESS");
+		return "redirect:/faq/faqList";
 	}
 
 
