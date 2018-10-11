@@ -317,8 +317,24 @@ public class JoinController {
 //클래스 생성 action
 	@RequestMapping(value="insertclass", method=RequestMethod.GET)
 	public String showclass() {
-		System.out.println("insertclass get in");
 		return "/join/createClass";
+	}
+
+	@RequestMapping(value="loginsuccess", method=RequestMethod.GET)
+	public String loginsuccess(String type, String id, String name, String phone, HttpServletRequest request) {
+		request.setAttribute("id", id);
+		request.setAttribute("name", name);
+		request.setAttribute("phone", phone);
+		if(type.equals("member")) {
+			request.setAttribute("fid", "개인 회원 아이디");
+			request.setAttribute("fname", "이름");
+			request.setAttribute("fphone", "폰번호");			
+		}else {
+			request.setAttribute("fid", "기업 회원 아이디");
+			request.setAttribute("fname", "기업명");
+			request.setAttribute("fphone", "전화번호");						
+		}
+		return "/join/loginSuccess";
 	}
 	
 	@RequestMapping(value="test")
@@ -427,54 +443,4 @@ if(cnocount==1) {//유일한 cno 검출
 		FileCopyUtils.copy(fileData, target);
 	}//uploadFile
 	
-	/*@RequestMapping(value="insertclass", method=RequestMethod.POST)
-	public @ResponseBody String createClass(HttpServletRequest request) throws IOException {
-		MultipartRequest mreq=null;
-		String result=null;
-		String formName=null;
-		String fileName=null;
-		String savepath=request.getServletContext().getRealPath("/upload");
-		System.out.println("savepath:"+savepath);
-		int maxSize=5*1024*1024;
-		mreq=new MultipartRequest(request, savepath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-		
-		
-		@SuppressWarnings("rawtypes")
-		Enumeration formNames=mreq.getFileNames();
-		while(formNames.hasMoreElements()) {
-			formName=(String)formNames.nextElement();
-			fileName=mreq.getFilesystemName(formName);
-			System.out.println("filename:"+fileName);
-			if(fileName != null) {
-				System.out.println("파일 업로드 성공!");
-			}//if
-		}//while
-		
-		ClassVO cv=new ClassVO();
-		cv.setBid(mreq.getParameter("bid"));
-		cv.setCtype(mreq.getParameter("ctype"));
-		cv.setCname(mreq.getParameter("cname"));
-		//cv.setCpic("cpic");
-		cv.setCpic(mreq.getFilesystemName("cpic"));
-		cv.setCage(mreq.getParameter("cage1")+","+mreq.getParameter("cage2"));
-		cv.setCintro(mreq.getParameter("cintro"));
-		
-		//cv.setCdate(mreq.getParameter("cdate"));
-		cv.setPrepare(mreq.getParameter("prepare"));
-		cv.setNotice(mreq.getParameter("notice"));
-		cv.setPrice(Integer.parseInt(mreq.getParameter("price")));
-		
-		cv.setCteachername(mreq.getParameter("cteachername"));
-		//cv.setCteacherpic(mreq.getParameter("cteacherpic"));
-		cv.setCpic(mreq.getFilesystemName("cteacherpic"));
-		cv.setCteacher(mreq.getParameter("cteacher"));		
-		
-		if(service.createclass(cv)) {
-			result="클래스 입력 성공!!!";
-		}else {
-			result="클래스 입력 실패...";		
-		}
-		
-		return result;
-	}*/
 }

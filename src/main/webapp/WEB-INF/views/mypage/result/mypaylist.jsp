@@ -9,7 +9,7 @@
 		<td><a href="/class/info?cno=${myclass.cno }">${myclass.cname }</a></td>
 		<td>${myclass.dname }</td>
 		<td>${myclass.dage }세</td>
-		<td><fmt:formatNumber value="${myclass.price }" type="currency" currencySymbol=""/>원</td>
+		<td><fmt:formatNumber value="${myclass.price }" type="currency" currencySymbol=""/>젤리</td>
 		<td><fmt:formatDate value="${myclass.regdate }" pattern="yyyy-MM-dd"/></td></tr>
 		</c:forEach>
 	</table>

@@ -156,7 +156,9 @@ function phonecheck(){
 			type:"POST",
 			success:function(result){
 				alert(result);
-				location.href="/main";
+				location.href="/loginsuccess?type=business&id="+$('#bid').val()
+				+"&name="+$('#bname').val()
+				+"&phone="+$('#bphone').val();
 			}				
 		});//ajax
 	}//insertmember
@@ -250,15 +252,16 @@ function phonecheck(){
 	 </div>
 	 
 	 <div class="group">
-	 	<textarea cols="22px" rows="4px" id="bintro"></textarea><span class="highlight"></span><span class="bar"></span>
+	 	<textarea rows="5" id="bintro" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
 		<label>기업 소개</label>
 	 </div>
 		<br><br>
 <!--기업 회원 가입-계좌번호 등록-->
 		<h1>계좌 번호 등록</h1>
  	<div class="group">
-	 	<textarea cols="22px" rows="4px" readonly="readonly"></textarea><span class="highlight"></span><span class="bar"></span>
-		<label>계좌 번호 등록 안내</label>
+ 		<font color="#2196F3" size="2px">계좌 번호 등록 안내</font>
+	 	<textarea cols="22px" rows="6px" readonly="readonly">계좌 번호는 정확하게 입력해주시기 바랍니다. 잘못된 계좌 번호에 따른 피해는 본 기업이 책임지는 것을 원칙으로 하며 Playkids는 관련이 없음을 밝힙니다.
+	 	</textarea><span class="highlight"></span><span class="bar"></span>
 	</div>
 
  	<div class="group">

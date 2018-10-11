@@ -105,7 +105,8 @@
 	<h1>클래스 등록 화면</h1><br>
 <!-- 클래스 정보 입력 -->
 		<div class="group">
-		기업 아이디<input type="text" name="bid" value="${login_id}" readonly/>
+		<font color="#2196F3" size="2px">기업 아이디</font>
+		<input type="text" name="bid" value="${login_id}" readonly/>
 		</div>
 		<div class="group">
 		<select name="ctype">
@@ -121,7 +122,7 @@
 		</div>
 		
 		<div class="group">
-			<input type="file" id="file1" name="file_class" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<input type="file" id="file1" name="file_class"/><span class="highlight"></span><span class="bar"></span>
 			<label>클래스사진</label>
 		</div>
 		
@@ -141,7 +142,7 @@
 		    <label>권장나이</label>
 		</div>
 		<div class="group">
-			<textarea cols="22px" rows="4px" name="cintro"></textarea><span class="highlight"></span><span class="bar"></span>
+			<textarea cols="22px" rows="4px" name="cintro" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
 			<label>클래스소개</label>
 		</div>
 
@@ -149,7 +150,7 @@
 <h5>클래스 상세 정보를 입력해주세요!</h5>
 <div>
 		<div class="group">
-			<input type="date" id="cdate" name="cdate" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<input type="date" id="cdate" name="cdate"/><span class="highlight"></span><span class="bar"></span>
 			<label>날짜</label>
 		</div>
 		<div class="group">
@@ -165,10 +166,10 @@
 			<label>금액</label>
 		</div>
 		<div class="group">
+		<font color="#2196F3" size="2px">시설정보</font>
 				<input type="checkbox" name="park" value="park">주차공간 
   				<input type="checkbox" name="protect" value="protect">보호자대기실
   				<input type="checkbox" name="together" value="together">참관가능여부
-  		<label>시설정보</label>
   		</div>
 			
 </div>
@@ -180,11 +181,11 @@
 		<label>강사명</label>
 	</div>
 	<div class="group">
-		<input type="file" id="file2" name="file_teacher" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<input type="file" id="file2" name="file_teacher"/><span class="highlight"></span><span class="bar"></span>
 		<label>강사사진</label>
 	</div>
 	<div class="group">
-		<textarea rows="5" name="cteacher"></textarea><span class="highlight"></span><span class="bar"></span>
+		<textarea rows="5" name="cteacher" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
 		<label>강사소개</label>
 	</div>
 </div>

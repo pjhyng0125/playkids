@@ -180,8 +180,8 @@
 	<div class="modal fade" id="alert_modal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<font color="red"><h3>로그인 필요</h3></font>
+				<div class="modal-header bg-danger text-white">
+					<h3>로그인 필요</h3>
 				</div>
 				<div class="modal-body">
 					<p>해당 기능은 로그인 이후 사용할 수 있습니다.</p>

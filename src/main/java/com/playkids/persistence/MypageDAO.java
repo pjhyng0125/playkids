@@ -20,4 +20,6 @@ public interface MypageDAO {
 	public List<MyClassVO> selectClass(Map map);
 	
 	public boolean updateCash(Map map);
+	
+	public boolean deleteReserve(Map map);
 }

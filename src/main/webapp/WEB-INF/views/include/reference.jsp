@@ -56,6 +56,10 @@ form .emoji {
   margin: 20px 0;
 }
 
+.group2 {
+  position: absolute;
+}
+
 textarea {
   resize: none;
 }
@@ -168,6 +172,15 @@ label {
   text-align: center;
   margin: 50px 0;
 }
+.btn-box2 {
+  margin: 50px 0;
+}
+
+.sizeRadio{
+ float:left;
+ width: 16px;
+}
+
   </style>
 </head>
 <body>

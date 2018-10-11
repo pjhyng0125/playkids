@@ -161,7 +161,10 @@
 			type:"POST",
 			success:function(result){
 				alert(result);
-				location.href="/main";
+				location.href="/loginsuccess?type=member&id="+$('#mid').val()
+						+"&name="+$('#mname').val()
+						+"&phone="+$('#mphone').val();
+						
 			}				
 		});//ajax
 	}//insertmember
@@ -254,6 +257,7 @@
 		<div class="group">
 			<input type="password" id="mpwconfirm" onkeyup="checkpw()" required="required"/><span class="highlight"></span><span class="bar"></span>
 			<label>비밀번호 확인</label>
+			<div id="mpwcheck"></div>
 		</div>
 		
 		<div class="group">
@@ -278,7 +282,7 @@
 		</div>
 		
 		<div class="group">
-			<input type="date" id="mbirth" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<input type="date" id="mbirth"/><span class="highlight"></span><span class="bar"></span>
 			<label>생년월일</label>
 		</div>
 		
