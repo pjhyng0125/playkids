@@ -161,7 +161,10 @@
 			type:"POST",
 			success:function(result){
 				alert(result);
-				location.href="/main";
+				location.href="/loginsuccess?type=member&id="+$('#mid').val()
+						+"&name="+$('#mname').val()
+						+"&phone="+$('#mphone').val();
+						
 			}				
 		});//ajax
 	}//insertmember

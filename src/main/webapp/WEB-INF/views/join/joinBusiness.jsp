@@ -156,7 +156,9 @@ function phonecheck(){
 			type:"POST",
 			success:function(result){
 				alert(result);
-				location.href="/main";
+				location.href="/loginsuccess?type=business&id="+$('#bid').val()
+				+"&name="+$('#bname').val()
+				+"&phone="+$('#bphone').val();
 			}				
 		});//ajax
 	}//insertmember
