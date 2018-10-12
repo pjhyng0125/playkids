@@ -1,11 +1,14 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${classVO.cname } 수업</title>
+<% pageContext.setAttribute("comma", ","); %>
 <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 <style type="text/css">
 	#facility_info{width:100px; height: 100px; display:block;}
@@ -15,6 +18,7 @@
 	#class_cfont{font-size: 18px; margin-left: 10px;}
 	#class_title{font-size: 20px; font-weight: bolder; color: black;}
 	#class_pic{border-radius: 10px; box-shadow: 0px 0px 20px -5px;}
+	#buttb1{width: 20%;}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -46,7 +50,7 @@
 상호명 : ${businessVO.bname }<br>
 위치 :  ${businessVO.baddress }<br>
 연락처 :  ${businessVO.bphone }<br>
-권장나이 : ${classVO.cage }<br>
+권장나이 : ${fn:replace(classVO.cage,comma,"세~") }세<br>
 
 
 <%-- 수업일시 : <fmt:formatDate pattern="yyyy-MM-dd" value="${classVO.cdate }"/>  --%>
@@ -93,5 +97,16 @@
 <jsp:include page="/WEB-INF/views/api/mapApi.jsp" />
 </div><br><br><br>
 
+<table id="buttb1">
+	<tr>
+		<td align="center">
+			<button id="buy" class="btn btn-info">구매하기</button> 
+		</td>
+		<td>
+			<a class="btn btn-warning" id="charge" href="javascript:history.back()">이전 페이지로</a>
+		</td>
+	</tr>
+</table>
+<br><br><br><br>
 </form>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
