@@ -6,10 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- member table 전용 -->
 	<select id="selectMyInfo" parameterType="string" resultType="MemberVO">
-	 select mname, mcash
+	 select mname,maddress,mphone,mbirth,mcash,minterest
 	 from member
 	 where mid = #{mid}
 	</select>
+	<update id="updateMyInfo" parameterType="MemberVO">
+		update member 
+		set mpw=#{mpw},maddress=#{maddress},mphone=#{mphone}
+		,mbirth=#{mbirth},minterest=#{minterest}
+	    where mid=#{mid}
+	</update>
 	
 	<!-- childinfo table 전용 -->
 	<select id="selectChild" parameterType="string" resultType="ChildInfoVO">
@@ -43,9 +49,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</if>
 	order by regdate desc
 	</select>
-	
 
-	
+	<!-- myboard -->
+	<select id="selectMyBoard" parameterType="String" resultType="BoardVO">
+	select bno,category,title,count,regdate
+	from board
+	where mid=#{mid}
+	</select>
 	<!-- cash charge -->
 	<update id="updateCash" parameterType="map">
 	update member set mcash = mcash + #{mcash}

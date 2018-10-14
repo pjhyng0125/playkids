@@ -231,63 +231,27 @@
 		</div>
 		<div class="col-md-4">
 			<div class="card myinfo text-center">
-				<div class="card-header font-weight-bold small">자녀 정보</div>
+				<div class="card-header font-weight-bold small">진행중인 클래스</div>
 				<div class="card-body childInfo">
 					<c:forEach items="${childInfo }" var="child">
 					<p class="card-text">${child.dname }(${child.dage }세 ${child.dgender })</p>
 					</c:forEach>
-					<button type="button" class="btn btn-info " data-toggle="modal" data-target="#childModal">등록</button>
+				</div>
+				</div>
+			</div>
+
+		<div class="col-md-4">
+			<div class="card myinfo text-center">
+				<div class="card-header font-weight-bold small">총 수익금</div>
+				<div class="card-body childInfo">
+					<button type="button" class="btn btn-default">수익금 반환</button>
+					<br><br><br>
+					<p class="text-left" style="color: olive;">・ 수수료(20%)를 공제하고 <br>&nbsp;&nbsp;&nbsp;남은 금액이 반환됩니다.</p>
+				</div>
 				</div>
 			</div>
 		</div>
-		<div class="card myinfo text-center">
-			<div class="card-header font-weight-bold small">보유한 젤리</div>
-			<div class="card-body">
-				<p class="card-text"><fmt:formatNumber value="${myInfo.mcash }" type="currency" currencySymbol=""/>젤리</p>
-				<button class="btn btn-info" id="myPagechargeBtn">충전</button>
-			</div>
-		</div>
-	</div>
-	    <div class="modal fade" id="childModal">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-              <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h2 class="modal-title text-left">Kids 등록</h2>
-                  
-                  <button type="button" class="close" data-dismiss="modal">&times;&nbsp;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">    
-                      <div class="row">
-							<div class="col-md-12">
-							<div class="form-group form-inline">							
-								<label for="dname">키즈명</label> &nbsp;&nbsp;<input type="text"
-									class="form-control" id="dname" name="dname" >
-							</div>
-							<div class="form-group form-inline">
-								<label for="dbirth">키즈 생년월일</label> <input type="date"
-									class="form-control" id="dbirth" name="dbirth" >
-							</div>
-							<div class="form-group">
-								<label for="dgender">성별</label> &nbsp;&nbsp;
-								<label class="radio-inline" id="dgender"> <input
-										type="radio" name="dgender" id="initRadio" checked value="남">남
-									</label> <label class="radio-inline"> <input
-										type="radio" name="dgender" value="여">여
-									</label>
-								</div>
-							</div>
-					</div>     
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" id="addChildBtn">등록</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelChildBtn">취소</button>
-                </div>
-              </div>
-            </div>
-            </div> <!--childModal 끝-->
+	  
 	    <div class="modal fade" id="myInfoModal">
             <div class="modal-dialog modal-dialog-centered modal-md">
               <div class="modal-content">
@@ -579,17 +543,14 @@
 </div> <!--myInfoModal 끝-->
 <br><br><br>
 	<div class="row myinfolist">
-		<div class="col-md-3">
-			<button class="btn btn-info myclassinfo">클래스</button>
+		<div class="col-md-4">
+			<button class="btn btn-info myclassinfo">등록된 클래스</button>
 		</div>
-		<div class="col-md-3">
-			<button class="btn btn-info mypayinfo">구매내역</button>
+		<div class="col-md-4">
+			<button class="btn btn-info mypayinfo">구매자 내역</button>
 		</div>
-		<div class="col-md-3">
-			<button class="btn btn-info myboardinfo">마이게시물</button>
-		</div>
-		<div class="col-md-3">
-			<button class="btn btn-info myQnAinfo">1 : 1 문의</button>
+		<div class="col-md-4">
+			<button class="btn btn-info myboardinfo">수익 내역</button>
 		</div>
 	</div>
 <br><br>

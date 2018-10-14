@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.playkids.domain.BoardVO;
 import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.MyClassVO;
@@ -36,12 +37,12 @@ public class MypageDAOImpl implements MypageDAO{
 	}
 
 	@Override
-	public List<MyClassVO> selectClass(Map map) {
+	public List<MyClassVO> selectClass(Map<String,String> map) {
 		return sqlsession.selectList("mypage.selectClass",map);
 	}
 
 	@Override
-	public boolean updateCash(Map map) {
+	public boolean updateCash(Map<String, Object> map) {
 		int t = sqlsession.update("mypage.updateCash",map);
 		if(t>0) return true;
 		return false;
@@ -52,5 +53,17 @@ public class MypageDAOImpl implements MypageDAO{
 		int t = sqlsession.delete("mypage.deleteReserve",map);
 		if(t>0) return true;
 		return false;
+	}
+
+	@Override
+	public boolean updateMyInfo(MemberVO member) {
+		int t = sqlsession.update("mypage.updateMyInfo",member);
+		if(t>0) return true;
+		return false;
+	}
+
+	@Override
+	public List<BoardVO> selectMyBoard(String login_id) {
+		return sqlsession.selectList("mypage.selectMyBoard",login_id);
 	}
 }

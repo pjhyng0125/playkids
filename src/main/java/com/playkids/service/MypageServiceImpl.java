@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.playkids.domain.BoardVO;
 import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.MyClassVO;
@@ -37,12 +38,12 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<MyClassVO> selectClass(Map map) {
+	public List<MyClassVO> selectClass(Map<String,String> map) {
 		return mypageDAO.selectClass(map);
 	}
 
 	@Override
-	public boolean updateCash(Map map) {
+	public boolean updateCash(Map<String,Object> map) {
 		if(mypageDAO.updateCash(map)) return true;
 		return false;
 	}
@@ -54,6 +55,17 @@ public class MypageServiceImpl implements MypageService{
 			if(mypageDAO.updateCash(map)) return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean updateMyInfo(MemberVO member) {
+		if(mypageDAO.updateMyInfo(member)) return true;
+		return false;
+	}
+
+	@Override
+	public List<BoardVO> selectMyBoard(String login_id) {
+		return mypageDAO.selectMyBoard(login_id);
 	}
 
 }

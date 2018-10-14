@@ -84,7 +84,8 @@
             				<li><a href="/logout" onclick="alert('로그아웃되었습니다^^');">로그아웃</a></li>
             			</c:if>
             			<li><a href="/mypage">마이페이지</a></li>
-            			<li><a href="/chargepage">젤리충전</a></li>
+            			<c:if test="${login_type ==null || login_type.equals('member') }">
+            			<li><a href="/chargepage">젤리충전</a></li></c:if>
           			</ul>
         		</div>
       </div>
