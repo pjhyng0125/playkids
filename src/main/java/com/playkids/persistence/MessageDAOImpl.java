@@ -1,5 +1,6 @@
 package com.playkids.persistence;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,11 @@ public class MessageDAOImpl implements MessageDAO{
 		int t = sqlsession.selectOne("qna.checkUnreadMessage",from_id);
 		if(t>0) return true;
 		return false;
+	}
+
+	@Override
+	public Date selectSendTime(String from_id) {
+		return sqlsession.selectOne("qna.selectSendTime",from_id);
 	}
 
 }

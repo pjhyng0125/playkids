@@ -8,9 +8,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   values (message_seq.nextval,#{message_content},#{message_sender},#{message_receiver},#{from_id},#{to_id})
 </insert>
 <select id="selectMessageList" parameterType="map" resultType="MessageVO">
-	select message_id,message_sender,message_receiver,from_id,to_id,message_sendTime
+	select message_id,message_content,message_sender,message_receiver,from_id,to_id,message_sendTime
 	from message
 	where from_id=#{from_id} and to_id=#{to_id}
+	order by message_sendTime asc
+</select>
+
+<select id="selectSendTime" parameterType="String" resultType="date">
+	select max(message_sendTime)
+	from message
+	where from_id=#{from_id}
 	order by message_sendTime asc
 </select>
 

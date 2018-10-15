@@ -43,9 +43,9 @@ public class EchoHandler extends TextWebSocketHandler{
             throws Exception {
     	log(session.getId()+" 연결됨"); 
     	
+    	connectedUsers.add(session);
     	//맵을 쓸때 방법
     	users.put(session.getId(), session);
-    	System.out.println(session.getAttributes());
     }
     
     /**
@@ -68,30 +68,32 @@ public class EchoHandler extends TextWebSocketHandler{
     @Override
     protected void handleTextMessage(WebSocketSession session,
             TextMessage message) throws Exception {
+    	Map<String, Object> map = session.getAttributes();
         log(session.getId()+"로부터  "+message.getPayload()+"받음");
         MessageVO messageVO = MessageVO.convertMessage(message.getPayload());
+        System.out.println(map);
         System.out.println(messageVO);
-        if(service.insertMessage(messageVO)) {
-        	Gson gson = new Gson();
-        	String msgJson = gson.toJson(messageVO);
-        	session.sendMessage(new TextMessage(msgJson));
-        };
-        /*//연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
-        for(WebSocketSession sess : connectedUsers){
-            sess.sendMessage(new TextMessage("echo:" + message.getPayload()));
-        }*/
+        String login_id = (String) map.get("login_id");
+        if(login_id!=null && login_id.equals(messageVO.getFrom_id())) {
+        	if(service.insertMessage(messageVO)) {
+        		messageVO.setMessage_sendTime(service.selectSendTime(login_id));
+        		Gson gson = new Gson();
+        		String msgJson = gson.toJson(messageVO);
+        		session.sendMessage(new TextMessage(msgJson));        		
+        	}
+        }
         
-        // 맵 방법.
-        /*Iterator<String> sessionIds = sessions.ketSet().iterator();
-        String sessionId = "";
-        while (sessionIds.hasNext()) {
-            sessionId = sessionIds.next();
-            sessions.get(sessionId).sendMessage(new TextMessage("echo:" + message.getPayload()));
-            
-        }*/
         
-        //연결되어 있는 모든 클라이언트들에게 메시지를 전송한다.
-//        session.sendMessage(new TextMessage("echo:" + message.getPayload()));
+        for (WebSocketSession websocketSession : connectedUsers) {
+	         map = websocketSession.getAttributes();
+	         String to_id =  (String) map.get("login_id");
+	         //받는사람
+	         if (to_id !=null && to_id.equals(messageVO.getTo_id())) {
+	            Gson gson = new Gson();
+	            String msgJson = gson.toJson(messageVO);
+	            websocketSession.sendMessage(new TextMessage(msgJson));
+	         }
+	     }
     }
     
 	@Override

@@ -1,5 +1,6 @@
 package com.playkids.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,11 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public boolean checkUnreadMessage(String from_id) {
 		return messageDAO.checkUnreadMessage(from_id);
+	}
+
+	@Override
+	public Date selectSendTime(String from_id) {
+		return messageDAO.selectSendTime(from_id);
 	}
 
 }

@@ -16,13 +16,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.MemberVO;
+import com.playkids.domain.MessageVO;
 import com.playkids.domain.MyClassVO;
+import com.playkids.service.MessageService;
 import com.playkids.service.MypageService;
 
 @Controller
@@ -30,6 +34,9 @@ public class MyPageController {
 	
 	@Inject
 	private MypageService service;
+	
+	@Inject
+	private MessageService msgService;
 	
 	@RequestMapping("mypage")
 	public String readMypage(HttpSession session, Model model, HttpServletResponse response) {
@@ -151,8 +158,19 @@ public class MyPageController {
 
 	
 	@RequestMapping("chat")
-	public String chat() {
+	public String chat(Model model,HttpSession session,String to_id,String mname) {
+		String login_id = (String) session.getAttribute("login_id");
+		Map<String, Object> map = new HashMap<>();
+		map.put("from_id", login_id);
+		map.put("to_id",to_id);
+		//model.addAttribute("mname", mname);
+		model.addAttribute("msgList", msgService.selectMessageList(map));
 		return "chat/qna";
+	}
+	
+	@RequestMapping("qnaResult")
+	public String qnaResult(@ModelAttribute("message") MessageVO messageVO) {
+		return "chat/result/qnaResult";
 	}
 
 }

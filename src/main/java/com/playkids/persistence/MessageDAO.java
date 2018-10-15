@@ -1,5 +1,6 @@
 package com.playkids.persistence;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,4 +11,5 @@ public interface MessageDAO {
 	public List<MessageVO> selectMessageList(Map<String, Object> map);
 	public boolean updateReadTime(String from_id);
 	public boolean checkUnreadMessage(String from_id);
+	public Date selectSendTime(String from_id);
 }

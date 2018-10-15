@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,41 +27,6 @@
 	float: left;
 }
 </style>
-<!-- <script type="text/javascript">
- 
-    $(document).ready(function(){
-        /* $("#sendBtn").click(function(){
-            sendMessage();
-        }); */
-    });
-    
-    //websocket을 지정한 URL로 연결
-    var sock= new SockJS("<c:url value="/echo"/>");
-    //websocket 서버에서 메시지를 보내면 자동으로 실행된다.
-    sock.onmessage = onMessage;
-    //websocket 과 연결을 끊고 싶을때 실행하는 메소드
-    sock.onclose = onClose;
-    
-    
-    function sendMessage(){
-        
-            //websocket으로 메시지를 보내겠다.
-            sock.send($("#message").val());
-        
-    }
-            
-    //evt 파라미터는 websocket이 보내준 데이터다.
-    function onMessage(evt){  //변수 안에 function자체를 넣음.
-        var data = evt.data;
-        $("#data").append(data+"<br/>");
-        /* sock.close(); */
-    }
-    
-    function onClose(evt){
-        $("#data").append("연결 끊김");
-    }
-    
-</script> -->
 </head>
 <body>
 <div class="container">
@@ -84,7 +50,6 @@
 					
 					<div id="chatMessageArea"
 						style="margin-top: 10px; margin-left: 10px;">
-						
 						<div class="msgDiv-user col-md-12">
 							<div style='padding-right: 0px; padding-left: 0px;'>
 								<img id='profileImg'
@@ -98,19 +63,19 @@
 								</div>
 							</div>
 						</div><!-- msgDiv -->
-						<div class="msgDiv-manager col-md-12">
-							<div style='padding-right: 0px; padding-left: 0px;'>
-								<img id='profileImg'
-									src='/resources/img/man.png' style='width: 50px; height: 50px;'>
-								<span style='background-color: #ACF3FF; padding: 10px 5px;border-radius: 10px; font-size:12px;'>
-									가나다라마바사
-								</span>
-								<div style='font-size: 9px; clear: both;'>${user_name}</div>
-								<div class="col-md-12" style='font-size: 9px;'>
-									<span style='font-size: 9px; text-align: right;'>"+t+"</span>
+						<c:forEach items="${msgList }" var="message">
+							<div class="msgDiv-user col-md-12">
+								<div style='padding-right: 0px; padding-left: 0px;'>
+									<img id='profileImg' src='/resources/img/man.png'
+										style='width: 50px; height: 50px;'> <span
+										style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 12px;'>${message.message_content }</span>
+									<div style='font-size: 9px; clear: both;'>${message.message_sender }&nbsp;&nbsp;</div>
+									<div class="col-md-12" style='font-size: 9px;'>
+										<span style='font-size: 9px; text-align: right;'><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${message.message_sendTime }" /></span>
+									</div>
 								</div>
 							</div>
-						</div><!-- msgDiv -->
+						</c:forEach>
 						
 					</div>
 				</div>
@@ -148,12 +113,12 @@
 	    sock.onmessage = function(evt) {
     	 var data = evt.data;
     	   console.log(data)
-  		   var obj = JSON.parse(data)  	   
-    	   console.log(obj)
-    	   appendMessage(obj.message_content);
+  		   var msgResult = JSON.parse(data)  	   
+    	   console.log(msgResult)
+    	   appendMessage(msgResult);
 	    };
 	    sock.onclose = function() {
-	    	 appendMessage("연결을 끊었습니다.");
+	    	 //appendMessage("연결을 끊었습니다.");
 	        console.log('close');
 	    };
 	}
@@ -169,7 +134,7 @@
   	  message.message_receiver = '관리자';
 	  message.message_content = $("#message").val();
 	  message.from_id = '${login_id}';
-	  message.to_id = 'admin';  
+	  message.to_id = 'manager';  
   }
   sock.send(JSON.stringify(message));
   $("#message").val("");
@@ -177,45 +142,28 @@
 
 
 
-
- function getTimeStamp() {
-   var d = new Date();
-   var s =
-     leadingZeros(d.getFullYear(), 4) + '-' +
-     leadingZeros(d.getMonth() + 1, 2) + '-' +
-     leadingZeros(d.getDate(), 2) + ' ' +
-
-     leadingZeros(d.getHours(), 2) + ':' +
-     leadingZeros(d.getMinutes(), 2) + ':' +
-     leadingZeros(d.getSeconds(), 2);
-
-   return s;
- }
-
- function leadingZeros(n, digits) {
-   var zero = '';
-   n = n.toString();
-
-   if (n.length < digits) {
-     for (i = 0; i < digits - n.length; i++)
-       zero += '0';
-   }
-   return zero + n;
- }
-
-
-
  function appendMessage(msg) {
-	 if(msg == ''){
+	 
+	 if(msg == '' || msg == undefined){
 		 return false;
 	 }else{
-	 var t = getTimeStamp();
-	 $("#chatMessageArea").append("<div  style = 'float:right; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/resources/img/man.png' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;'>형진</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-md-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"+msg+"</span></div><div class='col-md-12' style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"+t+"</span></div></div></div></div>")
-	 	
-
-	  var chatAreaHeight = $("#chatArea").height();
-	  var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
-	  $("#chatArea").scrollTop(maxScroll);
+			$.ajax({
+				type : 'post',
+				data : msg,
+    	        url : "/qnaResult",
+    	        success : function(result) {   	            	
+    	        	$("#chatMessageArea").append(result);
+    	      	  	var chatAreaHeight = $("#chatArea").height();
+    	    	  	var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
+    	    	  	$("#chatArea").scrollTop(maxScroll);
+    	       },
+    	       error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+			});
 	 }
  }
  $(function() {

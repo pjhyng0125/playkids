@@ -265,7 +265,7 @@ public class JoinController {
 			if(service.findmember(map)) {
 				result="개인 회원 로그인 성공!!!";
 				session.setAttribute("login_id", map.get("id"));
-				session.setAttribute("login_type", map.get("member"));
+				session.setAttribute("login_type", type);
 			}
 			else
 				result="개인 회원 아이디 또는 비밀번호를 확인해주세요...OTL";
@@ -273,7 +273,7 @@ public class JoinController {
 			if(service.findbusiness(map)) {
 				result="기업 회원 로그인 성공!!!";
 				session.setAttribute("login_id", map.get("id"));
-				session.setAttribute("login_type", map.get("business"));
+				session.setAttribute("login_type", type);
 			}
 			else
 				result="기업 회원  아이디 또는 비밀번호를 확인해주세요...OTL";
