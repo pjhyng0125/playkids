@@ -6,6 +6,7 @@ import com.playkids.domain.BoardVO;
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
+import com.playkids.domain.ProfitVO;
 
 public interface AdminDAO {
 	
@@ -16,4 +17,6 @@ public interface AdminDAO {
 	public List<ClassVO> admin_classinfo() throws Exception;
 	
 	public List<BoardVO> admin_board() throws Exception;
+	
+	public List<ProfitVO> admin_profit() throws Exception;
 }

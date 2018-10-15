@@ -8,6 +8,7 @@ import com.playkids.domain.BoardVO;
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
+import com.playkids.domain.ProfitVO;
 
 public interface AdminService {
 	
@@ -18,4 +19,6 @@ public interface AdminService {
 	public List<ClassVO> selectclassinfo() throws Exception;
 	
 	public List<BoardVO> selectboard() throws Exception;
+	
+	public List<ProfitVO> selectprofit() throws Exception;
 }
