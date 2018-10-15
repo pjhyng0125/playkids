@@ -3,12 +3,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<html>
-<head>
+
 <style>
 table {
     font-family: arial, sans-serif;
-    border-collapse: collapse;3
+    border-collapse: collapse;
     width: 100%;
 }
 
@@ -38,6 +37,3 @@ tr:nth-child(even) {
 		</tr>
 	</c:forEach>
 </table>
-
-</body>
-</html>
