@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+<insert id="insertMessage" parameterType="MessageVO">
+	insert into message (message_id,message_content,message_sender,message_receiver,from_id,to_id)
+		   values (message_seq.nextval,#{message_content},#{message_sender},#{message_receiver},#{from_id},#{to_id})
+</insert>
+<select id="selectMessageList" parameterType="map" resultType="MessageVO">
+	select message_id,message_sender,message_receiver,from_id,to_id,message_sendTime
+	from message
+	where from_id=#{from_id} and to_id=#{to_id}
+	order by message_sendTime asc
+</select>
+
+<update id="updateReadTime" parameterType="String">
+	update message set message_readTime = sysdate where from_id=#{from_id}
+</update>
+
+<select id="checkUnreadMessage" parameterType="String" resultType="int">
+	select count(*) from message where message_readTime is null and from_id=#{from_id}
+</select>
+</mapper>

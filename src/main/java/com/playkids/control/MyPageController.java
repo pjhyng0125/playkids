@@ -57,8 +57,9 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("updateMyInfo")
-	public @ResponseBody String updateMyInfo(MemberVO member) {
+	public @ResponseBody String updateMyInfo(MemberVO member) throws Exception {
 		System.out.println(member);
+		member.setMpw(new PassEncrypt().encrypt(member.getMpw()));
 		if(service.updateMyInfo(member)) return "회원정보가 변경되었습니다.";
 		return "회원정보 변경을 실패하였습니다.";
 	}

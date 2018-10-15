@@ -18,6 +18,14 @@
 <link href="/resources/bootstrap/css/animate.css" rel="stylesheet" />
 <link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
+<style type="text/css">
+.msgDiv-user *{
+	float: right;
+}
+.msgDiv-manager *{
+	float: left;
+}
+</style>
 <!-- <script type="text/javascript">
  
     $(document).ready(function(){
@@ -56,36 +64,65 @@
 </head>
 <body>
 <div class="container">
-<div class="row">
-    <input type="text" />
-    <input type="button"  value="전송"/>
-    <div id="data"></div>
-    <c:set var="profile" value='<%=session.getAttribute("login")%>' />
+		<div class="row">
+			<input type="text" /> <input type="button" value="전송" />
+			<div id="data"></div>
+			<c:set var="profile" value='<%=session.getAttribute("login")%>' />
 
-	<div class="col-md-12" style="margin-top: 40px; clear: both;">
-		<div class="col-md-12"
-			style="margin: 20px auto; text-align: center; color: white; background-color: #01D1FE; border: 1px solid #01D1FE; padding: 10px 10px; border-radius: 8px;">
-			수업 일정과 강의 내용에 대해 문의해보세요.
+			<div class="col-md-12" style="margin-top: 40px; clear: both;">
+				<div class="col-md-12"
+					style="margin: 20px auto; text-align: center; color: white; background-color: #01D1FE; border: 1px solid #01D1FE; padding: 10px 10px; border-radius: 8px;">
+					수업 일정과 강의 내용에 대해 문의해보세요.</div>
+
+			</div>
+			<!-- 채팅 내용 -->
+
+			<div class="col-md-12">
+				<div class="col-md-12"
+					style="margin: 0 auto; border: 1px solid #01D1FE; height: 400px; border-radius: 10px; overflow: scroll"
+					id="chatArea">
+					
+					<div id="chatMessageArea"
+						style="margin-top: 10px; margin-left: 10px;">
+						
+						<div class="msgDiv-user col-md-12">
+							<div style='padding-right: 0px; padding-left: 0px;'>
+								<img id='profileImg'
+									src='/resources/img/man.png' style='width: 50px; height: 50px;'>
+								<span style='background-color: #ACF3FF; padding: 10px 5px;border-radius: 10px; font-size:12px;'>
+									가나다라마바사
+								</span>
+								<div style='font-size: 9px; clear: both;'>${user_name}</div>
+								<div class="col-md-12" style='font-size: 9px;'>
+									<span style='font-size: 9px; text-align: right;'>"+t+"</span>
+								</div>
+							</div>
+						</div><!-- msgDiv -->
+						<div class="msgDiv-manager col-md-12">
+							<div style='padding-right: 0px; padding-left: 0px;'>
+								<img id='profileImg'
+									src='/resources/img/man.png' style='width: 50px; height: 50px;'>
+								<span style='background-color: #ACF3FF; padding: 10px 5px;border-radius: 10px; font-size:12px;'>
+									가나다라마바사
+								</span>
+								<div style='font-size: 9px; clear: both;'>${user_name}</div>
+								<div class="col-md-12" style='font-size: 9px;'>
+									<span style='font-size: 9px; text-align: right;'>"+t+"</span>
+								</div>
+							</div>
+						</div><!-- msgDiv -->
+						
+					</div>
+				</div>
+			</div>
 		</div>
 
-	</div>
-	<!-- 채팅 내용 -->
-	
-	<div class="col-md-12">
-		<div class="col-md-12"
-			style="margin: 0 auto; border: 1px solid #01D1FE; height: 400px; border-radius: 10px; overflow:scroll" id = "chatArea">
-			<div id="chatMessageArea" style = "margin-top : 10px; margin-left:10px;">
-			<div  style = 'float:right; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/resources/img/man.png' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;'>${user_name}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-md-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"+msg+"</span></div><div class="col-md-12" style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"+t+"</span></div></div></div></div>
-		</div>
-	</div>
-
-	<!-- 채팅 입력창 -->
+		<!-- 채팅 입력창 -->
 	<div class="col-md-12" style="margin-top: 20px; margin-bottom: 15px;">
 		<div class="col-md-12" style="float: left">
 			<textarea class="form-control"
 				style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
-				placeholder="Enter ..." id ="message">
-				</textarea>
+				placeholder="Enter ..." id ="message"></textarea>
 			<span
 				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
 				<a
@@ -128,9 +165,11 @@
   var msg = $("#message").val();
   if(msg != ""){
 	  message = {};
-	  message.message_content = $("#message").val()
-  	  message.user_id = '${login_id}'
-  	  message.admin_id = 'admin'
+  	  message.message_sender = '박형진';
+  	  message.message_receiver = '관리자';
+	  message.message_content = $("#message").val();
+	  message.from_id = '${login_id}';
+	  message.to_id = 'admin';  
   }
   sock.send(JSON.stringify(message));
   $("#message").val("");
@@ -171,7 +210,8 @@
 		 return false;
 	 }else{
 	 var t = getTimeStamp();
-	 $("#chatMessageArea").append("<div class='col-md-12 row' style = 'height : auto; margin-top : 5px;'><div class='col-md-2' style = 'float:right; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/resources/img/man.png' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;'>${user_name}</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-md-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"+msg+"</span></div><div col-12 style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"+t+"</span></div></div></div>")		 
+	 $("#chatMessageArea").append("<div  style = 'float:right; padding-right:0px; padding-left : 0px;'><img id='profileImg' class='img-fluid' src='/resources/img/man.png' style = 'width:50px; height:50px; '><div style='font-size:9px; clear:both;'>형진</div></div><div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'><div class = 'col-md-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'><span style = 'font-size : 12px;'>"+msg+"</span></div><div class='col-md-12' style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"+t+"</span></div></div></div></div>")
+	 	
 
 	  var chatAreaHeight = $("#chatArea").height();
 	  var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
@@ -193,7 +233,7 @@
  });
 </script>
 
-</div>
+
  
 </body>
 </html>

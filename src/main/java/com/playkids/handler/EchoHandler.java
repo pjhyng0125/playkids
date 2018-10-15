@@ -1,6 +1,7 @@
 package com.playkids.handler;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,12 +9,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.google.gson.Gson;
+import com.playkids.domain.MessageVO;
+import com.playkids.service.MessageService;
 
 
 public class EchoHandler extends TextWebSocketHandler{
@@ -25,6 +32,8 @@ public class EchoHandler extends TextWebSocketHandler{
     //방법 2 : 전체 채팅
     private List<WebSocketSession> connectedUsers = new ArrayList<WebSocketSession>();
     
+    @Inject
+    private MessageService service;
     
     /**
      * 클라이언트 연결 이후에 실행되는 메소드
@@ -33,13 +42,10 @@ public class EchoHandler extends TextWebSocketHandler{
     public void afterConnectionEstablished(WebSocketSession session)
             throws Exception {
     	log(session.getId()+" 연결됨"); 
-    	//0번째 중괄호에 session.getId()을 넣으라는뜻
-
+    	
     	//맵을 쓸때 방법
     	users.put(session.getId(), session);
-        //List쓸때 방법
-    	connectedUsers.add(session);
-        
+    	System.out.println(session.getAttributes());
     }
     
     /**
@@ -51,8 +57,8 @@ public class EchoHandler extends TextWebSocketHandler{
         //List 삭제
     	connectedUsers.remove(session);
         //Map 삭제
-    	users.remove(session.getId()+" 연결 끊김");
-        log(session.getId());
+    	users.remove(session.getId());
+        log(session.getId()+"연결 끊김");
     }
     
     
@@ -63,11 +69,17 @@ public class EchoHandler extends TextWebSocketHandler{
     protected void handleTextMessage(WebSocketSession session,
             TextMessage message) throws Exception {
         log(session.getId()+"로부터  "+message.getPayload()+"받음");
-        
-        //연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
+        MessageVO messageVO = MessageVO.convertMessage(message.getPayload());
+        System.out.println(messageVO);
+        if(service.insertMessage(messageVO)) {
+        	Gson gson = new Gson();
+        	String msgJson = gson.toJson(messageVO);
+        	session.sendMessage(new TextMessage(msgJson));
+        };
+        /*//연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
         for(WebSocketSession sess : connectedUsers){
             sess.sendMessage(new TextMessage("echo:" + message.getPayload()));
-        }
+        }*/
         
         // 맵 방법.
         /*Iterator<String> sessionIds = sessions.ketSet().iterator();
