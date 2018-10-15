@@ -236,7 +236,6 @@
 			}
 		});//ajax for act
 	}//loadact
-		
 </script>
 </head>
 <body>
