@@ -96,7 +96,7 @@ insert into reply (rno, bno, reply_content, replyer)
 values (tbl_reply_seq.nextval,'1','연습댓글13','abcd1234');
 
 
-insert into reserve(mid,cno,dno,regdate)
+insert into reserve(mid,cno,dno,regdate)			-- rno 추가 예정
    values('gildong',1,1,'2018-10-01');
 insert into reserve(mid,cno,dno,regdate)
    values('gildong',2,1,'2018-10-01');

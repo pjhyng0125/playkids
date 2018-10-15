@@ -19,4 +19,6 @@ public interface AdminDAO {
 	public List<BoardVO> admin_board() throws Exception;
 	
 	public List<ProfitVO> admin_profit() throws Exception;
+	
+	public boolean insert_notice(BoardVO vo)throws Exception;
 }

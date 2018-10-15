@@ -29,4 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from admin
 		</select>
 		
+		<insert id="insert_notice">
+			insert into board(bno, title, content, mid, category)
+ 			values (tbl_board_seq.nextval, #{title}, #{content}, #{mid}, #{category})
+		</insert>
+	
+		
 </mapper>

@@ -48,6 +48,11 @@ public class AdminServiceImpl implements AdminService{
 	public List<ProfitVO> selectprofit() throws Exception {
 		return dao.admin_profit();
 	}
+	
+	@Override
+	public boolean insert_notice(BoardVO vo) throws Exception {
+		return dao.insert_notice(vo);
+	}
 
 	
 	
