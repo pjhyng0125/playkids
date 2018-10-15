@@ -27,14 +27,14 @@
 <link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
 <script type="text/javascript">
-	 $(function(){
+ 	 $(function(){
 		/* $.ajax({
 			url:"/result/member_list",
 			success:function(htmlTxt){
 				$('#a1').html(htmlTxt);
 			}
 		}); */
-	}); 
+	});  
 	function loadmember(){
 		$.ajax({
 			url:"/adminMember",
@@ -62,6 +62,14 @@
 	function loadboard(){
 		$.ajax({
 			url:"/adminBoard",
+			success:function(htmlTxt){
+				$('#a1').html(htmlTxt);
+			}
+		});
+	}
+	function loadprofit(){
+		$.ajax({
+			url:"/adminProfit",
 			success:function(htmlTxt){
 				$('#a1').html(htmlTxt);
 			}
@@ -101,7 +109,7 @@
 			<li><a href="#" onclick="loadbusiness(); return false">기업정보</a></li>
 			<li><a href="#" onclick="loadclassinfo(); return false">클래스정보</a></li>
 			<li><a href="#" onclick="loadboard(); return false">게시판</a></li>
-			<li><a href="#" onclick="loadrevenue(); return false">수익정보</a></li>
+			<li><a href="#" onclick="loadprofit(); return false">수익정보</a></li>
 			</ul>
 		</div>
   </nav1>

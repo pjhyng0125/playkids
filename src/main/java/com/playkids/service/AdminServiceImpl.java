@@ -11,6 +11,7 @@ import com.playkids.domain.BoardVO;
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
+import com.playkids.domain.ProfitVO;
 import com.playkids.persistence.AdminDAO;
 
 
@@ -41,6 +42,11 @@ public class AdminServiceImpl implements AdminService{
 	public List<BoardVO> selectboard() throws Exception {
 
 		return dao.admin_board();
+	}
+
+	@Override
+	public List<ProfitVO> selectprofit() throws Exception {
+		return dao.admin_profit();
 	}
 
 	

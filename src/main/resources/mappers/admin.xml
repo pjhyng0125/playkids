@@ -24,4 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from board
 		</select>
 		
+		<select id="admin_profit" resultType="ProfitVO">
+		select profit,pregdate
+		from admin
+		</select>
+		
 </mapper>

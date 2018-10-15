@@ -11,6 +11,7 @@ import com.playkids.domain.BoardVO;
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
+import com.playkids.domain.ProfitVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO{
@@ -36,5 +37,10 @@ public class AdminDAOImpl implements AdminDAO{
 	@Override
 	public List<BoardVO> admin_board() throws Exception {
 		return sqlSession.selectList("admin.admin_board");
+	}
+
+	@Override
+	public List<ProfitVO> admin_profit() throws Exception {
+		return sqlSession.selectList("admin.admin_profit");
 	}
 }

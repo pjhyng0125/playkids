@@ -428,7 +428,8 @@ ALTER TABLE reserve
 		);
 		
 create table admin(
-	profit number default 0
+	profit number default 0,
+	pregdate DATE default sysdate NOT NULL
 );
 
 		
