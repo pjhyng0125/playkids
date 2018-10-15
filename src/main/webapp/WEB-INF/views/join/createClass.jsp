@@ -165,11 +165,12 @@
 			<input type="number" min="5000" step="5000" name="price" required="required"/><span class="highlight"></span><span class="bar"></span>
 			<label>금액</label>
 		</div>
-		<div class="group">
-		<font color="#2196F3" size="2px">시설정보</font>
-				<input type="checkbox" name="park" value="park">주차공간 
-  				<input type="checkbox" name="protect" value="protect">보호자대기실
-  				<input type="checkbox" name="together" value="together">참관가능여부
+		<div class="btn-box">
+<pre><font color="#2196F3" size="2px">시설정보</font><br>
+주차공간<input type="checkbox" name="park" value="park"> 
+보호자대기실<input type="checkbox" name="protect" value="protect">
+참관가능여부<input type="checkbox" name="together" value="together">
+</pre>
   		</div>
 			
 </div>

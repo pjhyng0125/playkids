@@ -109,7 +109,7 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value="findcheckpw")
-	public @ResponseBody String findcheckpw(String id, String phone, HttpSession session, HttpServletRequest request) {
+	public @ResponseBody String findcheckpw(String id, String phone, HttpSession session, HttpServletRequest request) throws Exception {
 		String find_id=(String)session.getAttribute("find_id");
 		System.out.println(id+", "+phone);
 		String update_pw="";
@@ -126,7 +126,7 @@ public class JoinController {
 			autho_pw=service.selectbusinesspw(map);			
 		}
 		if(autho_pw) {
-			//임시 비밀 번호 생성 & update 하는 부분
+//임시 비밀 번호 생성 & update 하는 부분
 			int k = 3;//임시 비밀번호  길이 (xxx111)
 //영문 k 개 생성 (xxx)
 			for(int i=0;i<k; i++) {
@@ -142,8 +142,8 @@ public class JoinController {
 				int n=r.nextInt(10); //0~9
 				update_pw+=n;
 			}//update_pw 생성 완료
-
-			map.put("pw", update_pw);//map에 update_pw put
+			String secure_update_pw=new PassEncrypt().encrypt(update_pw);
+			map.put("pw", secure_update_pw);//map에 update_pw put
 			if(find_id.equals("member")) {//member table
 				if(service.modifypw(map))
 					System.out.println("member: 비번 변경 성공! "+update_pw);
@@ -155,7 +155,7 @@ public class JoinController {
 				else
 					System.out.println("business: 비번 변경 실패....");
 			}
-			request.setAttribute("update_pw", update_pw);
+			//request.setAttribute("update_pw", update_pw);
 			result="회원님의 임시 비밀번호는 [ "+update_pw+" ]입니다.\n로그인 후 비밀번호를 변경해주세요.";
 		}
 		else
@@ -230,14 +230,17 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value="insertjoin")
-	public @ResponseBody String insertJoin(String type, MemberVO member, BusinessVO business) throws SQLException {
+	public @ResponseBody String insertJoin(String type, MemberVO member, BusinessVO business) throws Exception {
 		String result=null;
 		if(type.equals("member")) {
+//비밀번호 암호화 과정
+			member.setMpw(new PassEncrypt().encrypt(member.getMpw()));
 			if(service.createmember(member))
 				result="개인 회원 가입 성공!!!";
 			else
 				result="개인 회원 가입 실패...";
 		}else if(type.equals("business")) {
+			business.setBpw(new PassEncrypt().encrypt(business.getBpw()));
 			if(service.createbusiness(business))
 				result="기업 회원 가입 성공!!!";
 			else
@@ -247,13 +250,13 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value="findlogin")
-	public @ResponseBody String findLogin(HttpServletRequest request, String type, String id, String pw) throws SQLException {
+	public @ResponseBody String findLogin(HttpServletRequest request, String type, String id, String pw) throws Exception {
 		String result=null;
 		Map<String, String> map=new HashMap<>();
 		HttpSession session=request.getSession();
-		System.out.println(id+pw);
+		String secure_pw=new PassEncrypt().encrypt(pw);
 		map.put("id", id);
-		map.put("pw", pw);
+		map.put("pw", secure_pw);
 		if(type.equals("member")) {
 			if(service.findmember(map)) {
 				result="개인 회원 로그인 성공!!!";
@@ -261,7 +264,7 @@ public class JoinController {
 				session.setAttribute("login_type", map.get("member"));
 			}
 			else
-				result="개인 회원 로그인 실패...";
+				result="개인 회원 아이디 또는 비밀번호를 확인해주세요...OTL";
 		}else if(type.equals("business")) {
 			if(service.findbusiness(map)) {
 				result="기업 회원 로그인 성공!!!";
@@ -269,7 +272,7 @@ public class JoinController {
 				session.setAttribute("login_type", map.get("business"));
 			}
 			else
-				result="기업 회원 로그인 실패...";
+				result="기업 회원  아이디 또는 비밀번호를 확인해주세요...OTL";
 		}
 		return result;
 	}
@@ -392,6 +395,9 @@ int cnocount=service.getcnocount(map);
 if(cnocount==1) {//유일한 cno 검출
 			int cno=service.getcno(map);
 //파일 저장 경로
+//			String path_class="/resources/upload/class";
+//			System.out.println(path_class);
+//			String path_teacher="/resources/upload/teacher";
 			String path_class=request.getServletContext().getRealPath("resources/upload/class");
 			System.out.println(path_class);
 			String path_teacher=request.getServletContext().getRealPath("resources/upload/teacher");

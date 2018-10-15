@@ -57,10 +57,11 @@
 			<label>비밀번호</label>
 		</div>
 		
-		<div class="group">
-			<input type="radio" name="rb" value="member" checked>개인
-			<input type="radio" name="rb" value="business">기업
-		<label>사용자 선택</label>
+		<div class="btn-box">
+<pre><font color="#2196F3" size="2px">사용자 선택</font><br>
+개인<input type="radio" name="rb" value="member" checked>
+기업<input type="radio" name="rb" value="business"></pre>
+<!-- <label>사용자 선택</label> -->
 		</div>
 		
 		<div class="btn-box">

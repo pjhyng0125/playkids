@@ -2,7 +2,7 @@
 drop table business;
 CREATE TABLE business (
 	bid VARCHAR2(50) NOT NULL, /* 기업아이디 */
-	bpw VARCHAR2(50), /* 패스워드 */
+	bpw VARCHAR2(100), /* 패스워드 */
 	bname VARCHAR2(30), /* 기업명 */
 	bintro VARCHAR2(500), /* 업체소개 */
 	bphone VARCHAR2(20), /* 연락처 */
@@ -140,7 +140,7 @@ ALTER TABLE location
 drop table member;
 CREATE TABLE member (
 	mid VARCHAR2(50) NOT NULL, /* 회원아이디 */
-	mpw VARCHAR2(50), /* 패스워드 */
+	mpw VARCHAR2(100), /* 패스워드 */
 	mname VARCHAR2(30), /* 이름 */
 	maddress VARCHAR2(50), /* 주소 */
 	mphone VARCHAR2(20), /* 연락처 */

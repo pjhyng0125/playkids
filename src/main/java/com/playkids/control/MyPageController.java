@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playkids.domain.ChildInfoVO;
+import com.playkids.domain.MemberVO;
 import com.playkids.domain.MyClassVO;
 import com.playkids.service.MypageService;
 
@@ -34,17 +35,10 @@ public class MyPageController {
 	public String readMypage(HttpSession session, Model model, HttpServletResponse response) {
 		String login_id = (String) session.getAttribute("login_id");
 		System.out.println(login_id);
-/*		
-		if(login_id==null) {
-			try {
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인이 필요합니다.')</script");
-				return "join/login";
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}*/
-		
+		String login_type = (String) session.getAttribute("login_type");
+		if(login_type.equals("business")) {
+			return "mypage/readBusinesspage";
+		}
 		List<ChildInfoVO> childList = service.selectChild(login_id);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String currentYear = sdf.format(new Date()).substring(0, 4);
@@ -53,12 +47,20 @@ public class MyPageController {
 			String dbirthYear = sdf.format(dbirth).substring(0,4);
 			childList.get(i).setDage(Integer.parseInt(currentYear)-Integer.parseInt(dbirthYear)+1);
 		}
+		System.out.println(service.selectMyInfo(login_id));
 		
 		if(login_id != null) {
 			model.addAttribute("myInfo", service.selectMyInfo(login_id)); //이름, 캐쉬 잔액
 			model.addAttribute("childInfo",childList);// 자녀 정보
 		}
 		return "mypage/readMypage";
+	}
+	
+	@RequestMapping("updateMyInfo")
+	public @ResponseBody String updateMyInfo(MemberVO member) {
+		System.out.println(member);
+		if(service.updateMyInfo(member)) return "회원정보가 변경되었습니다.";
+		return "회원정보 변경을 실패하였습니다.";
 	}
 	
 	@RequestMapping("insertChild")
@@ -89,14 +91,20 @@ public class MyPageController {
 		return "mypage/result/myclasslist";
 	}
 	
+	@RequestMapping("myboardlist")
+	public String myboardlist(Model model,HttpSession session) {
+		String login_id = (String) session.getAttribute("login_id");
+		model.addAttribute("myBoard",service.selectMyBoard(login_id));
+		return "mypage/result/myboardlist";
+	}
+	
 	@RequestMapping("deleteReserve")
 	public @ResponseBody String deleteReserve(HttpSession session,String rno, String price){
 		System.err.println(rno);
 		System.err.println(price);
 		String login_id = (String) session.getAttribute("login_id");
 		Map<String, Object> map = new HashMap<>();
-		int negaPrice = 0;
-		map.put("mcash", negaPrice-Integer.parseInt(price));
+		map.put("mcash", Integer.parseInt(price)*-1);
 		map.put("mid", login_id);
 		map.put("rno", rno);
 		if(service.deleteReserve(map)) return "결제 취소가 완료되었습니다.";
@@ -113,13 +121,18 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("updateCharge")
-	public @ResponseBody String updateCharge(HttpSession session, String cash) {
+	public @ResponseBody String updateCharge(HttpSession session, String refund,String cash) {
 		String login_id = (String) session.getAttribute("login_id");
 		System.out.println("cash>>"+ cash);
 		Map<String,Object> map = new HashMap<>();
 		map.put("mid", login_id);
+		if(refund!=null && refund.equals("refund")) {
+			map.put("mcash",Integer.parseInt(cash)*-1);
+			if(service.updateCash(map)) return "환불되었습니다.";
+			return "환불을 실패하였습니다.";
+		}
 		map.put("mcash", Integer.parseInt(cash));
-		if(service.updateCash(map)) return "충전 되었습니다.";
+		if(service.updateCash(map)) return "충전되었습니다.";
 		return "충전을 실패하였습니다.";
 	}
 	

@@ -216,7 +216,7 @@ function phonecheck(){
 	</div>
 	
 	<div class="group">
-		<input type="password" id="bpw" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<input type="password" id="bpw" onkeyup="checkpw()" required="required"/><span class="highlight"></span><span class="bar"></span>
 		<label>비밀번호</label>
 	</div>
 	

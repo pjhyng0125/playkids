@@ -250,7 +250,7 @@
 		</div>			
 			
 		<div class="group">
-			<input type="password" id="mpw" required="required"/><span class="highlight"></span><span class="bar"></span>
+			<input type="password" id="mpw" onkeyup="checkpw()" required="required"/><span class="highlight"></span><span class="bar"></span>
 			<label>비밀번호</label>
 		</div>
 		
