@@ -43,4 +43,11 @@ public class AdminDAOImpl implements AdminDAO{
 	public List<ProfitVO> admin_profit() throws Exception {
 		return sqlSession.selectList("admin.admin_profit");
 	}
+	
+	@Override
+	public boolean insert_notice(BoardVO vo) throws Exception {
+		int t= sqlSession.insert("admin.insert_notice", vo);
+		if(t==1) return true;
+		else return false;
+	}
 }

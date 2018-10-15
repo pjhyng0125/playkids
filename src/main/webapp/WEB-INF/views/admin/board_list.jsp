@@ -3,6 +3,23 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<script type="text/javascript">
+
+	$(function(){
+		$('#write_notice').click(function(){
+			//alert('hi!')
+			self.location="adminInsert";
+		});
+	});
+	
+</script>
+
+<table class="table table-bordered">
+
+	
+	<br>
+	<h3>게시물 현황</h3> <button type="button" class="btn btn-danger" id="write_notice">공지사항 작성하기</button>
+	<hr>
 <html>
 <head>
 <style>

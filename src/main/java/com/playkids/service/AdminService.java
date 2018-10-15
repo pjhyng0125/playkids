@@ -21,4 +21,6 @@ public interface AdminService {
 	public List<BoardVO> selectboard() throws Exception;
 	
 	public List<ProfitVO> selectprofit() throws Exception;
+	
+	public boolean insert_notice(BoardVO vo) throws Exception;
 }
