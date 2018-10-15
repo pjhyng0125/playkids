@@ -263,17 +263,6 @@
 			<input type="text" id="mname"  required="required"/><span class="highlight"></span><span class="bar"></span>
 			<label>이름</label>
 		</div>
-		
-		<div class="group">
-			<select name="gugun" id="gugun" onchange="loaddong()" required="required">
-				<option value="0">==선택==</option>
-			</select>
-			<select name="dong" id="dong" required="required">
-				<option value="0">==선택==</option>
-			</select>
-			<label>주소</label>
-		</div>
-		
 		<div class="group">
 			<input type="text" id="mphone" onkeyup="phonecheck()" required="required"/><span class="highlight"></span><span class="bar"></span>
 			<label>폰번호</label>
@@ -284,6 +273,18 @@
 			<input type="date" id="mbirth"/><span class="highlight"></span><span class="bar"></span>
 			<label>생년월일</label>
 		</div>
+		<br>
+		
+		<div class="group">
+			<select name="gugun" id="gugun" onchange="loaddong()" required="required">
+				<option value="0">==선택==</option>
+			</select>
+			<select name="dong" id="dong" required="required">
+				<option value="0">==선택==</option>
+			</select>
+			<label>주소</label>
+		</div>
+		<br>
 		
 		<div class="group">
 			<select name="playtype" id="playtype" onchange="loadact()" required="required">

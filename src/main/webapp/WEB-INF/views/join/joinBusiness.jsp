@@ -240,7 +240,11 @@ function phonecheck(){
 		<input type="text" id="bname" required="required"/><span class="highlight"></span><span class="bar"></span>
 		<label>이름</label>
 	</div>
-	<br>
+	<div class="group">
+	 	<input type="text" id="bphone" onkeyup="phonecheck()" required="required"/><span class="highlight"></span><span class="bar"></span>
+		<label>전화번호</label>
+	 	<div id="bphonecheck"></div>
+	 </div>
 	<br>
 	 
 	<font color="#2196F3" size="2px">도로명 주소</font>
@@ -259,18 +263,11 @@ function phonecheck(){
 		<input type="text" id="baddress2" required="required"><span class="highlight"></span><span class="bar"></span>
 		<label>상세주소</label>
 	</div>
-	 <br>
-	 <div class="group">
-	 	<input type="text" id="bphone" onkeyup="phonecheck()" required="required"/><span class="highlight"></span><span class="bar"></span>
-		<label>전화번호</label>
-	 	<div id="bphonecheck"></div>
-	 </div>
-	 
 	 <div class="group">
 	 	<textarea rows="5" id="bintro" required="required"></textarea><span class="highlight"></span><span class="bar"></span>
 		<label>기업 소개</label>
 	 </div>
-		<br><br>
+		<br>
 <!--기업 회원 가입-계좌번호 등록-->
 		<h1>계좌 번호 등록</h1>
  	<div class="group">
