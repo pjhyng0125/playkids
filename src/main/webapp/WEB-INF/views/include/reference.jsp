@@ -173,7 +173,8 @@ label {
   margin: 50px 0;
 }
 .btn-box2 {
-  margin: 50px 0;
+  text-align: center;
+  margin: 3px 0;
 }
 
 .sizeRadio{
