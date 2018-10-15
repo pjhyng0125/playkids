@@ -99,7 +99,7 @@
 			<li><a class="web-nav2-button2 web-nav2-button" href="/outerClass">야외놀이</a></li>
 			<li><a class="web-nav2-button3 web-nav2-button" href="/innerClass">실내놀이</a></li>
 			<li><a class="web-nav2-button4 web-nav2-button" href="/board/list">공지사항 및 게시판</a></li>
-			<li><a class="web-nav2-button5 web-nav2-button" href="/faq/faqList">Faq</a></li>
+			<li><a class="web-nav2-button5 web-nav2-button" href="/faq/faqList">FAQ</a></li>
 			</ul>
 		</div>
   </nav>
