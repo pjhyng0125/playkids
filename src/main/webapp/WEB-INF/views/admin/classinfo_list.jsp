@@ -42,7 +42,8 @@ tr:nth-child(even) {
 				<c:when test="${list.autho=='false'}">
 					<td><a href="/class/info?cno=${list.cno }">
 					<button type="button" class="btn btn-danger moveClass" >비승인</button>
-					</a></td>		
+					</a></td>
+							
 				</c:when>
 				<c:otherwise>
 					<td><span class="badge badge-info">승인 완료</span></td>
