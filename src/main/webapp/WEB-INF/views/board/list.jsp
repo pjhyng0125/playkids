@@ -120,7 +120,7 @@
 				</c:when>
 			</c:choose>
 		</td>
-		<td>${posting.mid}</td>
+		<td>운영자</td>
 		<td><fmt:formatDate pattern="yyyy-MM-dd"
 				value="${posting.regdate }" /></td>
 		<td>${posting.count}</td>

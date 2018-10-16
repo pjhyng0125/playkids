@@ -75,9 +75,9 @@ public class AdminController {
 	
 	@RequestMapping(value="adminInsert", method=RequestMethod.POST)
 	public String admin_write_notice2(BoardVO vo, RedirectAttributes attr) throws Exception {
-		System.out.println("Á¤º¸ µµÂø : "+vo);
+		//System.out.println("Á¤º¸ µµÂø : "+vo);
 
-		//service.insert_notice(vo);
+		service.insert_notice(vo);
 		return "redirect:admin";
 	}
 	

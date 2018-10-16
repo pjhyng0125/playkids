@@ -176,7 +176,15 @@ $(function(){
 <h3>게시물 보기</h3>
 <hr>
  <label>글 번호 :</label> <input type="text" name="bno" size="2" value="${boardVO.bno }" readonly>
- <label>작성자 :</label> <input type="text" name="mid" size="13"value="${boardVO.mid }" readonly>	
+ <c:choose>
+ 	<c:when test="${boardVO.mid=='manager' }">
+		 <label>작성자 :</label> <input type="text" name="mid" size="13"value="운영자"readonly>	 	
+ 	</c:when>
+ 	<c:otherwise>
+ 		<label>작성자 :</label> <input type="text" name="mid" size="13"value="${boardVO.mid }"readonly>
+ 	</c:otherwise>
+ </c:choose>
+
  <label>조회수 :</label><input type="text" name="count" value="${boardVO.count }" readonly size="3">
  <label>카테고리 :</label> <input type="text" value="${boardVO.category }" readonly="readonly" size="8">
 <label> 작성일자 :</label> <input type="text" value="${boardVO.regdate }" readonly size="10"><br>

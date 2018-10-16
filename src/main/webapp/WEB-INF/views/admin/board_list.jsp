@@ -16,10 +16,6 @@
 
 <table class="table table-bordered">
 
-	
-	<br>
-	<h3>게시물 현황</h3> <button type="button" class="btn btn-danger" id="write_notice">공지사항 작성하기</button>
-	<hr>
 <html>
 <head>
 <style>
@@ -41,7 +37,10 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-<table>
+	<center><h3>게시물 현황</h3></center>
+	<button type="button" class="btn btn-danger" id="write_notice">공지사항 작성하기</button>
+	<hr>
+<table >
 	<tr>
 		<th>No.</th><th>아이디</th><th>제목</th><th>내용</th><th>등록일</th><th>조회수</th>
 	</tr>
@@ -56,7 +55,6 @@ tr:nth-child(even) {
 		</tr>
 	</c:forEach>
 </table> 
-
 
 </body>
 </html>

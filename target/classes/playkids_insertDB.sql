@@ -113,4 +113,5 @@ select * from business
 select * from reply
 
 update board set regdate= sysdate-1 where bno in (30,29);
+select * from reserve
 

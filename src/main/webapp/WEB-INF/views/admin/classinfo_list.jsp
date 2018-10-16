@@ -5,6 +5,7 @@
 
 <html>
 <head>
+
 <style>
 table {
     font-family: arial, sans-serif;
@@ -24,7 +25,10 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-<table>
+<center>
+<h3>클래스 등록 승인 관리</h3>
+<hr>
+<table style="width: 80%">
 	<tr>
 		<th>아이디</th><th>클래스타입</th><th>클래스이름</th><th>클래스등록일</th><th>인증</th>
 	</tr>
@@ -34,11 +38,20 @@ tr:nth-child(even) {
 			<td>${list.ctype}</td>
 			<td>${list.cname}</td>
 			<td>${list.cregdate}</td>
-			<td>${list.autho}</td>
+			<c:choose>
+				<c:when test="${list.autho=='false'}">
+					<td><a href="/class/info?cno=${list.cno }">
+					<button type="button" class="btn btn-danger moveClass" >비승인</button>
+					</a></td>		
+				</c:when>
+				<c:otherwise>
+					<td><span class="badge badge-info">승인 완료</span></td>
+				</c:otherwise>
+			</c:choose>
 		</tr>
 	</c:forEach>
 </table>
-
+</center>
 
 </body>
 </html>
