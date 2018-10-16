@@ -20,7 +20,16 @@
 		if($('#writeTitle').val()==''){
 			 $('#alert_modal').modal();
 		}
-		else document.form1.submit()
+		else {
+			//if($('#mid').val()== 'manager') {					안되네
+				alert('hi')			
+				document.form1.submit()
+		///	}
+		/*	else{
+				//alert('manager>>'+${login_id })		왜이럴까.
+				$('#alert_modal2').modal();
+			}*/
+		}
 	}
 </script>
 </head>
@@ -53,6 +62,21 @@
 				</div>
 				<div class="modal-body">
 					<p>공지사항의 제목은 반드시 작성해 주셔야 합니다.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="alert_modal2" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-danger text-white">
+					<h3>관리자 외 접근불가</h3>
+				</div>
+				<div class="modal-body">
+					<p>관리자를 제외한 인원이 관리자 게시판 접근불가.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>

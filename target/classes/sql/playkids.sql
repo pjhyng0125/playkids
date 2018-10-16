@@ -235,13 +235,16 @@ COMMENT ON COLUMN agegrade.min IS '최소나이';
 COMMENT ON COLUMN agegrade.max IS '최대나이';
 
 /* board */
-CREATE TABLE board (
-	bno NUMBER NOT NULL, /* 게시물번호 */
-	mid VARCHAR2(50), /* 회원아이디 */
-	title VARCHAR2(200), /* 제목 */
-	content VARCHAR2(1000), /* 내용 */
-	regdate DATE, /* 등록일자 */
-	count NUMBER /* 조회수 */
+
+create table board(
+	bno number constraint tbl_board_pk primary key,
+	mid varchar2(50) not null,
+	title varchar2(200) not null,
+	content varchar2(1000),
+	count number default 0,
+	regdate DATE default sysdate,
+	newflag number default 1,							
+	category varchar2(50)	
 );
 
 COMMENT ON TABLE board IS 'board';
@@ -271,12 +274,21 @@ ALTER TABLE board
 		);
 
 /* reply */
-CREATE TABLE reply (
-	rno NUMBER NOT NULL, /* 댓글번호 */
-	content VARCHAR2(500), /* 내용 */
-	regdate DATE, /* 등록일자 */
-	bno NUMBER /* 게시물번호 */
+drop table reply;
+create table reply(
+	rno number constraint tbl_reply_pk primary key,
+	bno number, 
+	replyer varchar2(50) not null,
+	reply_content varchar2(500) not null,
+	reply_regdate date default sysdate
 );
+
+drop sequence tbl_reply_seq;
+create sequence tbl_reply_seq
+	start with 1
+	increment by 1
+	nocycle
+	nocache;
 
 COMMENT ON TABLE reply IS 'reply';
 
