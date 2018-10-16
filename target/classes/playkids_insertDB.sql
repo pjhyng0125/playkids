@@ -105,6 +105,10 @@ insert into class(cno,bid,ctype,cname,cage,cintro,cdate,prepare,notice,price,cte
 values(class_seq.nextval,'testcompany','야외놀이','테스트용 클래스','12,13','재밌어??','2018-10-05','하이하이','하이하이',10000,'하이루','하이','18-09-15',0);
 insert into class(cno,bid,ctype,cname,cage,cintro,cdate,prepare,notice,price,cteachername,cteacher,cregdate,autho)
 values(class_seq.nextval,'testcompany','야외놀이','테스트용 클래스2','12,13','재밌어??','2018-10-05','하이하이','하이하이',10000,'하이루','하이','18-09-15',0);
+insert into class(cno,bid,ctype,cname,cage,cintro,cdate,prepare,notice,price,cteachername,cteacher,cregdate,autho)
+values(class_seq.nextval,'testcompany','야외놀이','된다고해라','12,13','된다고하라했다','2018-10-15','된다','빨리',10000,'하이루','하이','18-09-15',0);
+insert into class(cno,bid,ctype,cname,cage,cintro,cdate,prepare,notice,price,cteachername,cteacher,cregdate,autho)
+values(class_seq.nextval,'testcompany','야외놀이','된다고해라','12,13','된다고하라했다','2018-10-15','된다','빨리',10000,'하이루','하이','18-09-15',0);
 
 
 select * from class

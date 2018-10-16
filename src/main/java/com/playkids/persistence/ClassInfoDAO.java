@@ -18,6 +18,6 @@ public interface ClassInfoDAO {
 
 	public void insert_reserve(ReserveVO reserveVO) throws Exception;
 
-
+	public boolean permit_class(int cno) throws Exception;
 	
 }

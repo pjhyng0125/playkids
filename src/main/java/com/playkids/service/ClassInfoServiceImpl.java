@@ -32,4 +32,9 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 	public void insert_reserve(ReserveVO reserveVO)throws Exception {
 		dao.insert_reserve(reserveVO);
 	}
+
+	@Override
+	public boolean permit_class(int cno) throws Exception {
+		return dao.permit_class(cno);
+	}
 }

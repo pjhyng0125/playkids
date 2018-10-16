@@ -32,4 +32,13 @@ public class ClassInfoDAOImpl implements ClassInfoDAO{
 	public void insert_reserve(ReserveVO reserveVO) throws Exception{
 		sqlSession.insert("classInfo.insert_reserve",reserveVO);
 	}
+
+	@Override
+	public boolean permit_class(int cno) throws Exception {
+		System.out.println("dao impl cno>>"+cno);
+		int t=  sqlSession.update("classInfo.permit_class", cno);
+		System.out.println("dao impl t>>"+t);
+		if(t==1) return true;
+		else return false;
+	}
 }

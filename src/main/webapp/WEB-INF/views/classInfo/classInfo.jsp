@@ -34,13 +34,27 @@
 		if(together=='use') $('#together').show();
 		
 	
-		
+		$('#admin').click(function(){
+			var cno = $('#cno').val()
+			alert('cno>>'+cno)
+			
+			$.ajax({
+					url:'/class/update',
+					data:{'cno':$('#cno').val()},
+					type: 'post',
+					success:function(result){
+						if(result=='true'){
+							alert('승인 완료')
+						}
+					}
+			});
+		});
 		
 		
 	
 	});
 </script>
-<input type="hidden" value="${classVO.cno}" name="cno">
+<input type="hidden" value="${classVO.cno}" id="cno">
 <div><img alt="수업사진" src="/resources/upload/class/${classVO.cpic }" id="class_pic" style="width: 100%; height: 380px;"></div>
 <hr>
 <font id="class_title">강사소개</font>
@@ -106,7 +120,7 @@
 	<button id="buy" class="btn btn-info">구매하기</button> 
 	<a class="btn btn-warning" id="charge" href="javascript:history.back()">이전 페이지로</a>
 		<c:if test="${login_id=='manager' }">
-			<button class="btn btn-danger" id="admin">인증하기</button> 
+			<button type="button" class="btn btn-danger" id="admin">인증하기</button> 
 			<a href="/admin" class="btn btn-danger">관리자페이지</a>
 		</c:if>
 

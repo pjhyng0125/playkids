@@ -27,4 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from reserve
 		where mid=#{mid}
 	</select>
+	
+	<update id="permit_class" parameterType="Integer">
+		update class
+		set autho='1'
+		where cno=#{cno}
+	</update>
 </mapper>

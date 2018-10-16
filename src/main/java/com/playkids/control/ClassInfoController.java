@@ -1,15 +1,23 @@
 package com.playkids.control;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
@@ -47,6 +55,19 @@ public class ClassInfoController {
 		
 		model.addAttribute("businessVO", businessVO);
 		return "api/mapApi";
+	}
+	
+	@RequestMapping(value="update",method=RequestMethod.POST)
+	public @ResponseBody String prove_autho(int cno, HttpServletRequest request) throws Exception {
+		System.out.println("cno:>>"+(cno+1));
+		String result;
+		if(service.permit_class(cno))
+			result="true";
+		else
+			result="false";	
+		//System.out.println("cno:"+cno+"클래스 승인결과 : "+result);
+		request.setAttribute("cno", cno);
+		return result;
 	}
 	
 	

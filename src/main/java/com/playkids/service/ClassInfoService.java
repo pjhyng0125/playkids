@@ -12,5 +12,5 @@ public interface ClassInfoService {
 	public ClassVO select_info(int cno) throws Exception;
 	public BusinessVO select_business(String bid) throws Exception;
 	public void insert_reserve(ReserveVO reserveVO) throws Exception;
-
+	public boolean permit_class(int cno) throws Exception;
 }
