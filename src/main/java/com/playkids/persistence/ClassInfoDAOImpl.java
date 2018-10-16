@@ -1,6 +1,6 @@
 package com.playkids.persistence;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.inject.Inject;
 
@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
+import com.playkids.domain.MemberVO;
+import com.playkids.domain.ReserveVO;
 
 @Repository
 public class ClassInfoDAOImpl implements ClassInfoDAO{
@@ -25,7 +27,9 @@ public class ClassInfoDAOImpl implements ClassInfoDAO{
 	public BusinessVO select_business(String bid) throws Exception {
 		return sqlSession.selectOne("classInfo.select_business",bid);
 	}
-
 	
-
+	@Override
+	public void insert_reserve(ReserveVO reserveVO) throws Exception{
+		sqlSession.insert("classInfo.insert_reserve",reserveVO);
+	}
 }

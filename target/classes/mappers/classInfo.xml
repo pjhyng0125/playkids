@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="classInfo">
 	<select id="select_info" resultType="ClassVO">
 		select cno,bid,cname, cpic, cage, cintro, cdate, cteachername, cteacher, cteacherpic, prepare, notice
-			   ,park, protect,together
+			   ,park, protect,together,autho
 		from class 
 		where cno=#{cno}
 	</select>
@@ -14,5 +14,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select bid,bname, bintro,bphone,baddress
 		from business
 		where bid=#{bid}
+	</select>
+	
+	<insert id="insert_reserve">
+		insert into reserve(rno,mid)
+		values(reserve_seq.nextval,#{mid})
+	</insert>
+	
+	
+	<select id="select_member" resultType="MemberVO">
+		select mid,mcash
+		from reserve
+		where mid=#{mid}
 	</select>
 </mapper>

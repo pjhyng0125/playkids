@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
@@ -19,6 +19,7 @@
 	#class_title{font-size: 20px; font-weight: bolder; color: black;}
 	#class_pic{border-radius: 10px; box-shadow: 0px 0px 20px -5px;}
 	#buttb1{width: 20%;}
+	
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -33,8 +34,13 @@
 		if(together=='use') $('#together').show();
 		
 	
+		
+		
+		
+	
 	});
 </script>
+<input type="hidden" value="${classVO.cno}" name="cno">
 <div><img alt="수업사진" src="/resources/upload/class/${classVO.cpic }" id="class_pic" style="width: 100%; height: 380px;"></div>
 <hr>
 <font id="class_title">강사소개</font>
@@ -97,16 +103,13 @@
 <jsp:include page="/WEB-INF/views/api/mapApi.jsp" />
 </div><br><br><br>
 
-<table id="buttb1">
-	<tr>
-		<td align="center">
-			<button id="buy" class="btn btn-info">구매하기</button> 
-		</td>
-		<td>
-			<a class="btn btn-warning" id="charge" href="javascript:history.back()">이전 페이지로</a>
-		</td>
-	</tr>
-</table>
+	<button id="buy" class="btn btn-info">구매하기</button> 
+	<a class="btn btn-warning" id="charge" href="javascript:history.back()">이전 페이지로</a>
+		<c:if test="${login_id=='manager' }">
+			<button class="btn btn-danger" id="admin">인증하기</button> 
+			<a href="/admin" class="btn btn-danger">관리자페이지</a>
+		</c:if>
+
 <br><br><br><br>
 </form>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

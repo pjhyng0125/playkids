@@ -1,6 +1,6 @@
 package com.playkids.service;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.inject.Inject;
 
@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
+import com.playkids.domain.MemberVO;
+import com.playkids.domain.ReserveVO;
 import com.playkids.persistence.ClassInfoDAO;
 
 @Service
@@ -25,5 +27,9 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 	public BusinessVO select_business(String bid) throws Exception {
 		return dao.select_business(bid);
 	}
-
+	
+	@Override
+	public void insert_reserve(ReserveVO reserveVO)throws Exception {
+		dao.insert_reserve(reserveVO);
+	}
 }

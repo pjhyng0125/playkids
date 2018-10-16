@@ -48,9 +48,11 @@ td {padding: 15px;}
 				<td width="33%">
 					<font class="title_font">${faqVO.ftitle}</font>
 				</td>
+				<c:if test="${login_id=='manager' }">
 				<td width="33%">
 					<button type="button" class="btn btn-warning" onclick="location.href='/faq/faqModify?fno=${faqVO.fno }'">수정</button>
 				</td>
+				</c:if>
 			</tr>
 		</table>
 
@@ -64,7 +66,9 @@ td {padding: 15px;}
 </c:forEach>
 </form>
 <hr>
+<c:if test="${login_id=='manager' }">
 <button class="btn btn-info" id="write">작성</button>
+</c:if>
 </center>
 <div class="box-footer">
 <div class="text-center">

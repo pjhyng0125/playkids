@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
+import com.playkids.domain.MemberVO;
 import com.playkids.service.ClassInfoService;
 
 @Controller
@@ -23,19 +24,21 @@ public class ClassInfoController {
 	private ClassInfoService service;
 	
 	@RequestMapping("/info")
-	public String select_info(int cno, Model model)throws Exception{
+	public String select_info(int cno,String mid, Model model)throws Exception{
 		System.out.println("cno="+cno);//2 Ãâ·Â	
 		ClassVO classVO = service.select_info(cno);
+		
 		//String bid = classVO.getBid();
 		//System.out.println("bid="+bid);
 		
 		BusinessVO businessVO = service.select_business(classVO.getBid());
 		
-		
 		model.addAttribute("classVO", classVO);
 		model.addAttribute("businessVO", businessVO);
+		
 		return "classInfo/classInfo";
 	}
+	
 
 	@RequestMapping("/map")
 	public String select_info(String bid, Model model)throws Exception{
