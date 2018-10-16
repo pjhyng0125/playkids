@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.playkids.domain.BoardVO;
+import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ChildInfoVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.MyClassVO;
 
@@ -25,4 +27,11 @@ public interface MypageService {
 	
 	//myBoard
 	public List<BoardVO> selectMyBoard(String login_id);
+	
+	//business Àü¿ë
+	public BusinessVO selectBusinessInfo(String login_id);
+	public List<ClassVO> selectCurrentBClass(String login_id);
+	public boolean updateBusinessInfo(BusinessVO business);
+	public List<MyClassVO> selectBusinessPayInfo(Map<String,String> map);
+	public List<ClassVO> selectRegClass(String login_id);
 }

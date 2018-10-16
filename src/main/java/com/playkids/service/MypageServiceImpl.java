@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.playkids.domain.BoardVO;
+import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ChildInfoVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.MyClassVO;
 import com.playkids.persistence.MypageDAO;
@@ -33,8 +35,7 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public boolean insertChild(ChildInfoVO childInfo) {
-		if(mypageDAO.insertChild(childInfo)) return true;
-		return false;
+		return mypageDAO.insertChild(childInfo);
 	}
 
 	@Override
@@ -44,8 +45,7 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public boolean updateCash(Map<String,Object> map) {
-		if(mypageDAO.updateCash(map)) return true;
-		return false;
+		return mypageDAO.updateCash(map);
 	}
 
 	@Transactional(isolation=Isolation.READ_COMMITTED)
@@ -59,13 +59,37 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public boolean updateMyInfo(MemberVO member) {
-		if(mypageDAO.updateMyInfo(member)) return true;
-		return false;
+		return mypageDAO.updateMyInfo(member);
 	}
 
 	@Override
 	public List<BoardVO> selectMyBoard(String login_id) {
 		return mypageDAO.selectMyBoard(login_id);
+	}
+
+	@Override
+	public BusinessVO selectBusinessInfo(String login_id) {
+		return mypageDAO.selectBusinessInfo(login_id);
+	}
+
+	@Override
+	public List<ClassVO> selectCurrentBClass(String login_id) {
+		return mypageDAO.selectCurrentBClass(login_id);
+	}
+
+	@Override
+	public boolean updateBusinessInfo(BusinessVO business) {
+		return mypageDAO.updateBusinessInfo(business);
+	}
+
+	@Override
+	public List<MyClassVO> selectBusinessPayInfo(Map<String, String> map) {
+		return mypageDAO.selectBusinessPayInfo(map);
+	}
+
+	@Override
+	public List<ClassVO> selectRegClass(String login_id) {
+		return mypageDAO.selectRegClass(login_id);
 	}
 
 }

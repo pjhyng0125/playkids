@@ -9,11 +9,12 @@ public class BusinessVO {
 	private String baddress;
 	private String bregdate;
 	private String baccount;
+	private int bprofit;
 	
 	public BusinessVO() {
 		super();
 	}
-
+	
 	public BusinessVO(String bid, String bpw, String bname, String bintro, String bphone, String baddress,
 			String bregdate, String baccount) {
 		super();
@@ -25,6 +26,16 @@ public class BusinessVO {
 		this.baddress = baddress;
 		this.bregdate = bregdate;
 		this.baccount = baccount;
+	}
+
+	
+	
+	public int getBprofit() {
+		return bprofit;
+	}
+
+	public void setBprofit(int bprofit) {
+		this.bprofit = bprofit;
 	}
 
 	public String getBid() {
@@ -94,8 +105,11 @@ public class BusinessVO {
 	@Override
 	public String toString() {
 		return "BusinessVO [bid=" + bid + ", bpw=" + bpw + ", bname=" + bname + ", bintro=" + bintro + ", bphone="
-				+ bphone + ", baddress=" + baddress + ", bregdate=" + bregdate + ", baccount=" + baccount + "]";
+				+ bphone + ", baddress=" + baddress + ", bregdate=" + bregdate + ", baccount=" + baccount + ", bprofit="
+				+ bprofit + "]";
 	}
+
+	
 	
 	
 }

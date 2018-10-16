@@ -56,10 +56,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from board
 	where mid=#{mid}
 	</select>
+	
 	<!-- cash charge -->
 	<update id="updateCash" parameterType="map">
 	update member set mcash = mcash + #{mcash}
 	where mid=#{mid}
 	</update>
 	
+	<!-- business -->
+	<select id="selectBusinessInfo" parameterType="String" resultType="BusinessVO">
+		select bname, bprofit,bphone,baccount,bintro,baddress
+		from business
+		where bid=#{bid}
+	</select>
+	
+	<select id="selectCurrentBClass" parameterType="String" resultType="ClassVO">
+		select cno, cname
+		from class
+		where bid=#{bid} and autho='1' and sysdate>cregdate
+		order by cdate asc
+	</select>
+	
+	<update id="returnBCash" parameterType="map">
+		update business set bcash=0 where bid = #{bid}
+	</update>
+	
+	<update id="updateAdminProfit" parameterType="map">
+		update business set profit= profit+#{profit}
+	</update>
+	
+	<update id="updateBusinessInfo" parameterType="BusinessVO">
+		update business 
+		set bpw=#{bpw},bphone=#{bphone},baccount=#{baccount}
+	    where bid=#{bid}
+	</update>
+	
+	<select id="selectBusinessPayInfo" parameterType="map" resultType="MyClassVO">
+	select rno, cno, ctype, cname, dname, regdate,price, mid,
+	floor((to_date(sysdate, 'YY-MM-DD') - to_date(dbirth, 'YY-MM-DD') ) /365)+1 dage
+	from reserve natural join class join childinfo
+	using(mid)
+	where bid=#{bid} and reserve.dno = childinfo.dno
+	order by regdate desc
+	</select>
+	
+	<select id="selectRegClass" parameterType="string" resultType="ClassVO" >
+		select ctype, cname, cdate,cregdate,autho
+		from class
+		where bid=#{bid}
+		order by cregdate asc
+	</select>
+
 </mapper>

@@ -152,7 +152,30 @@
     	    }); 
 		})
 		$('.myQnAinfo').click(function(){
+			$('#myclassStatus').hide();
 			
+			$(this).removeClass("btn-info");
+			$(this).addClass("btn-danger");
+			
+			$('.myclassinfo').removeClass("btn-danger");
+			$('.myclassinfo').addClass("btn-info");
+			$('.mypayinfo').removeClass("btn-danger");
+			$('.mypayinfo').addClass("btn-info");
+			$('.myboardinfo').removeClass("btn-danger");
+			$('.myboardinfo').addClass("btn-info");
+			
+			$.ajax({  	        
+    	        url : "/chat",
+    	        data:{to_id:"manager",mname:"${myInfo.mname}"},
+    	        success : function(result) {   	            	
+	    	            $('.myinfolist-data').html(result);
+    	       },error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+    	    }); 
 		})
 		
 		$('#myReserve').click(function(){ // 예약 테이블 보여주기
@@ -412,7 +435,7 @@
 				alert(result);			
 			}				
 		});//ajax
-	}//insertmember
+	}
 	
 	function checkpw(){
 		var pass=$('#mpw').val();

@@ -2,37 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/sockjs.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/js/wow.min.js"></script>
-<script src="/resources/bootstrap/js/main.js"></script>
-<link href="/resources/css/anybootstrap.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
-<link href="/resources/bootstrap/css/animate.min.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/animate.css" rel="stylesheet" />
-<link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
-<link href="/resources/bootstrap/css/style.css" rel="stylesheet">
 <style type="text/css">
-.msgDiv-user *{
+.msgDiv-${login_id} *{
 	float: right;
-}
-.msgDiv-manager *{
-	float: left;
 }
 </style>
 </head>
 <body>
 <div class="container">
 		<div class="row">
-			<input type="text" /> <input type="button" value="전송" />
-			<div id="data"></div>
 			<c:set var="profile" value='<%=session.getAttribute("login")%>' />
 
 			<div class="col-md-12" style="margin-top: 40px; clear: both;">
@@ -64,12 +43,12 @@
 							</div>
 						</div><!-- msgDiv -->
 						<c:forEach items="${msgList }" var="message">
-							<div class="msgDiv-user col-md-12">
+								<div class="msgDiv-${message.from_id } col-md-12">							
 								<div style='padding-right: 0px; padding-left: 0px;'>
 									<img id='profileImg' src='/resources/img/man.png'
 										style='width: 50px; height: 50px;'> <span
 										style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 12px;'>${message.message_content }</span>
-									<div style='font-size: 9px; clear: both;'>${message.message_sender }&nbsp;&nbsp;</div>
+									<div style='font-size: 9px; clear: both;'>${message.message_sender }</div>
 									<div class="col-md-12" style='font-size: 9px;'>
 										<span style='font-size: 9px; text-align: right;'><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${message.message_sendTime }" /></span>
 									</div>
@@ -96,12 +75,6 @@
 		</div>
 	</div>
 	</div>
-
-
-
-<input type="text" id="nickname" value = "${user_name }" >
- <input type="button" id="enterBtn" value="입장">
- <input type="button" id="exitBtn" value="나가기">
 <script type="text/javascript">
  connect();
 
@@ -130,7 +103,7 @@
   var msg = $("#message").val();
   if(msg != ""){
 	  message = {};
-  	  message.message_sender = '박형진';
+  	  message.message_sender = '${mname}';
   	  message.message_receiver = '관리자';
 	  message.message_content = $("#message").val();
 	  message.from_id = '${login_id}';
@@ -180,8 +153,3 @@
   /* $('#enterBtn').click(function() { connect(); }); $('#exitBtn').click(function() { disconnect(); }); */
  });
 </script>
-
-
- 
-</body>
-</html>

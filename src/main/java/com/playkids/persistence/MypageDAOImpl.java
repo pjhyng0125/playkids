@@ -9,7 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.playkids.domain.BoardVO;
+import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ChildInfoVO;
+import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.MyClassVO;
 
@@ -65,5 +67,34 @@ public class MypageDAOImpl implements MypageDAO{
 	@Override
 	public List<BoardVO> selectMyBoard(String login_id) {
 		return sqlsession.selectList("mypage.selectMyBoard",login_id);
+	}
+
+	
+	// business
+	@Override
+	public BusinessVO selectBusinessInfo(String login_id) {
+		return sqlsession.selectOne("mypage.selectBusinessInfo",login_id);
+	}
+
+	@Override
+	public List<ClassVO> selectCurrentBClass(String login_id) {
+		return sqlsession.selectList("mypage.selectCurrentBClass", login_id);
+	}
+
+	@Override
+	public boolean updateBusinessInfo(BusinessVO business) {
+		int t = sqlsession.update("mypage.updateBusinessInfo",business);
+		if(t>0) return true;
+		return false;
+	}
+
+	@Override
+	public List<MyClassVO> selectBusinessPayInfo(Map<String, String> map) {
+		return sqlsession.selectList("mypage.selectBusinessPayInfo",map);
+	}
+
+	@Override
+	public List<ClassVO> selectRegClass(String login_id) {
+		return sqlsession.selectList("mypage.selectRegClass",login_id);
 	}
 }

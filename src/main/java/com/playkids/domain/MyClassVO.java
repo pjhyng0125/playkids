@@ -12,9 +12,16 @@ public class MyClassVO {
 	private Date regdate;
 	private int dage;
 	private int price;
+	private String mid;
 	
 	
 	
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
 	public int getRno() {
 		return rno;
 	}
@@ -72,8 +79,12 @@ public class MyClassVO {
 	@Override
 	public String toString() {
 		return "MyClassVO [rno=" + rno + ", cno=" + cno + ", ctype=" + ctype + ", cname=" + cname + ", dname=" + dname
-				+ ", dbirth=" + dbirth + ", regdate=" + regdate + ", dage=" + dage + ", price=" + price + "]";
+				+ ", dbirth=" + dbirth + ", regdate=" + regdate + ", dage=" + dage + ", price=" + price + ", mid=" + mid
+				+ "]";
 	}
+
+	
+	
 	
 	 
 
