@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- join business -->
 	<insert id="insertbusiness" parameterType="BusinessVO">
-		insert into business
+		insert into business (bid,bpw,bname,bintro,bphone,baddress,bregdate,baccount)
 		values (#{bid},#{bpw},#{bname},#{bintro},#{bphone},#{baddress},sysdate,#{baccount})
 	</insert>
 	<!-- login member -->

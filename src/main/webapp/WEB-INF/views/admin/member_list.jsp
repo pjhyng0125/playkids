@@ -25,19 +25,19 @@ tr:nth-child(even) {
 <body>
 	<table>
 	<tr>
-		<th>아이디</th><th>이름</th><th>연락처</th><th>생년월일</th><th>관심분야</th><th>가입일</th><th>캐쉬</th>
+		<th>아이디</th><th>이름</th><th>연락처</th><th>생년월일</th><th>관심분야</th><th>가입일</th><th>캐쉬</th><th>1:1문의</th>
 	</tr>
 	<c:forEach items="${list }" var="member">
 	<tr>
 		<td>${member.mid }</td>
 		<td>${member.mname }</td>
 		<td>${member.mphone }</td>
-		<td>${member.mbirth }</th>
+		<td>${member.mbirth }</td>
 		<td>${member.minterest }</td>
 		<td>${member.mregdate }</td>
 		<td>${member.mcash }</td>
-		 
-	</tr>	
+		<td><button type="button" class="btn btn-default qnaBtn" value="${member.mid }">1:1문의</button></td>
+	</tr>
 	</c:forEach>
 </table>
 

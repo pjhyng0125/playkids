@@ -97,4 +97,23 @@ public class MypageDAOImpl implements MypageDAO{
 	public List<ClassVO> selectRegClass(String login_id) {
 		return sqlsession.selectList("mypage.selectRegClass",login_id);
 	}
+
+	@Override
+	public boolean insertAdminProfit(Map<String, Object> map) {
+		int t = sqlsession.update("mypage.insertAdminProfit",map);
+		if(t>0) return true;
+		return false;
+	}
+
+	@Override
+	public boolean updateBusinessProfit(Map<String, Object> map) {
+		int t = sqlsession.update("mypage.updateBusinessProfit",map);
+		if(t>0) return true;
+		return false;
+	}
+
+	@Override
+	public String selectBid(int rno) {
+		return sqlsession.selectOne("mypage.selectBid",rno);
+	}
 }

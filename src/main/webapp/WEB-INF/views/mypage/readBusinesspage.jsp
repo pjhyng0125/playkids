@@ -52,7 +52,25 @@
 			return false;
 		})
 		
-		
+		$('#returnProfitBtn').click(function(){
+			if(confirm('수익금은 20% 공제된 금액으로 반환됩니다.\n반환 하시겠습니까?')){				
+				$.ajax({
+					data : {bprofit:"${businessInfo.bprofit }"},
+					type : 'post',
+	    	        url : "/returnProfit",
+	    	        success : function(result) {   	            	
+		    	          alert(result);
+		    	          location.href="/mypage";
+	    	       },
+	    	       error:function(e,code){
+	    	    	   alert('정말에러!!'+e.status+":"+code)
+	    	           if(e.status==300){
+	    	               alert("데이터를 가져오는데 실패하였습니다.");
+	    	           };
+	    	       }
+				});
+			}
+		});
 		
 		
 		$('.businessPayinfo').click(function(){ //구매내역 보여주기
@@ -132,64 +150,6 @@
 			
 		})
 		
-		$('#myReserve').click(function(){ // 예약 테이블 보여주기
-			$(this).addClass('myclassStatus-selected');
-			$('#myComplete').removeClass('myclassStatus-selected');
-			$.ajax({
-				data:{myclass:"reserve"},
-    	        url : "/myclasslist",
-    	        success : function(result) {   	            	
-	    	            $('.myinfolist-data').html(result);
-	    				$('.myclassStatus-reserveTable').show();
-	    				$('.myclassStatus-completeTable').hide();
-    	       },error:function(e,code){
-    	    	   alert('정말에러!!'+e.status+":"+code)
-    	           if(e.status==300){
-    	               alert("데이터를 가져오는데 실패하였습니다.");
-    	           };
-    	       }
-    	    }); 
-		});
-		
-
-		$('#myComplete').click(function(){ //수강 완료 테이블 보여주기
-			$(this).addClass('myclassStatus-selected');
-			$('#myReserve').removeClass('myclassStatus-selected');
-			$.ajax({
-				data:{myclass:"complete"},
-    	        url : "/myclasslist",
-    	        success : function(result) {   	            	
-	    	            $('.myinfolist-data').html(result);
-	    				$('.myclassStatus-completeTable').show();
-	    				$('.myclassStatus-reserveTable').hide();
-    	       },error:function(e,code){
-    	    	   alert('정말에러!!'+e.status+":"+code)
-    	           if(e.status==300){
-    	               alert("데이터를 가져오는데 실패하였습니다.");
-    	           };
-    	       }
-    	    }); 
-		});
-		
-		$('.myinfolist-data').on('click','.myclassStatus-reserveTable button',function(){// 결제 취소버튼 선택시
-			if(confirm('정말로 취소하시겠습니까?')){
-				$.ajax({
-					data:{rno:$(this).prev().val(),
-						price:$(this).next().val()},
-	    	        url : "/deleteReserve",
-	    	        success : function(result) {   	            	
-		    	            alert(result)
-		    	            location.href = "/mypage";
-	    	       },error:function(e,code){
-	    	    	   alert('정말에러!!'+e.status+":"+code)
-	    	           if(e.status==300){
-	    	               alert("데이터를 가져오는데 실패하였습니다.");
-	    	           };
-	    	       }
-	    	    }); 		
-			}
-		});
-		
 	})
 </script>
 <br><br><br>
@@ -223,7 +183,7 @@
 				<div class="card-header font-weight-bold small">총 수익금</div>
 				<div class="card-body childInfo">
 					<p class="card-text"><fmt:formatNumber value="${businessInfo.bprofit }" type="currency" currencySymbol=""/>원</p>
-					<button type="button" class="btn btn-default">수익금 반환</button>
+					<button type="button" class="btn btn-default" id="returnProfitBtn">수익금 반환</button>
 					<br><br><br>
 					<p class="text-left" style="color: olive;">・ 수수료(20%)를 공제하고 <br>&nbsp;&nbsp;&nbsp;남은 금액이 반환됩니다.</p>
 				</div>
@@ -275,6 +235,14 @@
 			}
 			updateBusinessInfo();
 		});
+		
+		$('#businessInfoCancleBtn').click(function(){
+			bpw:$('#bpw').val('');
+			bphone:$('#bphone').val('${businessInfo.bphone }')
+			baccount:$('#baccount').val('');
+			$('#bphonecheck').html('');
+			$('#bpwcheck').html('');
+		});
 	});//function
 	
 function phonecheck(){
@@ -325,6 +293,7 @@ function phonecheck(){
 			type:"POST",
 			success:function(result){
 				alert(result);
+				location.href="/mypage";
 			}				
 		});//ajax
 	}
@@ -407,7 +376,7 @@ function phonecheck(){
 			<button class="btn btn-info businessPayinfo">구매자 내역</button>
 		</div>
 		<div class="col-md-4">
-			<button class="btn btn-info myboardinfo">수익 내역</button>
+			<button class="btn btn-info myboardinfo">후기 게시물</button>
 		</div>
 	</div>
 <br><br>

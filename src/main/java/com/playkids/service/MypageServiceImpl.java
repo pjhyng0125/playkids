@@ -42,17 +42,33 @@ public class MypageServiceImpl implements MypageService{
 	public List<MyClassVO> selectClass(Map<String,String> map) {
 		return mypageDAO.selectClass(map);
 	}
-
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public boolean updateCash(Map<String,Object> map) {
-		return mypageDAO.updateCash(map);
+		if(mypageDAO.updateCash(map)) {
+			int mcash = (int) map.get("mcash");
+			if(mcash<0) 
+				map.put("profit",mcash*=0.9);
+			else
+				map.put("profit",mcash);
+			if(mypageDAO.insertAdminProfit(map))
+					return true;
+		}
+		return false;
+		
 	}
+	
 
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public boolean deleteReserve(Map<String, Object> map) {
 		if(mypageDAO.deleteReserve(map)){
-			if(mypageDAO.updateCash(map)) return true;
+			String bid = mypageDAO.selectBid((int)map.get("rno"));
+			System.out.println(bid);
+			map.put("bid", bid);
+			map.put("bprofit", ((int)map.get("mcash"))*-1);
+			if(mypageDAO.updateCash(map) && mypageDAO.updateBusinessProfit(map)) return true;
 		}
 		return false;
 	}
@@ -91,5 +107,16 @@ public class MypageServiceImpl implements MypageService{
 	public List<ClassVO> selectRegClass(String login_id) {
 		return mypageDAO.selectRegClass(login_id);
 	}
+
+	@Override
+	public boolean updateBusinessProfit(Map<String, Object> map) {
+		if(mypageDAO.updateBusinessProfit(map)) {
+			map.put("profit", ((int)map.get("bprofit"))*0.8);
+			if(mypageDAO.insertAdminProfit(map))
+				return true;
+		}
+		return false;
+	}
+	
 
 }

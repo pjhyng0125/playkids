@@ -77,13 +77,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by cdate asc
 	</select>
 	
-	<update id="returnBCash" parameterType="map">
-		update business set bcash=0 where bid = #{bid}
+	<update id="updateBusinessProfit" parameterType="map">
+		update business
+		set bprofit = bprofit+#{bprofit} 
+		where bid=#{bid}
 	</update>
+
+	<insert id="insertAdminProfit" parameterType="map">
+		insert into admin (profit) values (#{profit})
+	</insert>
 	
-	<update id="updateAdminProfit" parameterType="map">
-		update business set profit= profit+#{profit}
-	</update>
+	<select id="selectBid" parameterType="int" resultType="string">
+		select bid from reserve natural join class where rno = #{rno}
+	</select>
 	
 	<update id="updateBusinessInfo" parameterType="BusinessVO">
 		update business 

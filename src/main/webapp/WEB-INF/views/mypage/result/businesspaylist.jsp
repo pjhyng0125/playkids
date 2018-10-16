@@ -7,7 +7,7 @@
 		<c:forEach items="${businessPaylist }" var="businessPaylist">
 		<tr><td>${businessPaylist.ctype }</td>
 		<td><a href="/class/info?cno=${businessPaylist.cno }">${businessPaylist.cname }</a></td>
-		<td>${businessPaylist.dname }</td>
+		<td>${businessPaylist.mid }</td>
 		<td>${businessPaylist.dname }</td>
 		<td>${businessPaylist.dage }세</td>
 		<td><fmt:formatNumber value="${businessPaylist.price }" type="currency" currencySymbol=""/>원</td>

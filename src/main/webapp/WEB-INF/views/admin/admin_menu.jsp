@@ -19,6 +19,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관리자 창</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
@@ -34,6 +35,12 @@
 				$('#a1').html(htmlTxt);
 			}
 		}); */
+		$('#a1').on('click','.qnaBtn',function(){
+			window.open("/chat","confirm",'width=600,height=400,top=100,left=100');
+			return false;
+		});
+		
+		
 	});  
 	function loadmember(){
 		$.ajax({

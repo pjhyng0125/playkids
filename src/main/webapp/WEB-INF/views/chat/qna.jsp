@@ -8,8 +8,8 @@
 	float: right;
 }
 </style>
-</head>
-<body>
+
+
 <div class="container">
 		<div class="row">
 			<c:set var="profile" value='<%=session.getAttribute("login")%>' />
@@ -89,6 +89,7 @@
   		   var msgResult = JSON.parse(data)  	   
     	   console.log(msgResult)
     	   appendMessage(msgResult);
+    	   
 	    };
 	    sock.onclose = function() {
 	    	 //appendMessage("연결을 끊었습니다.");
@@ -103,11 +104,18 @@
   var msg = $("#message").val();
   if(msg != ""){
 	  message = {};
-  	  message.message_sender = '${mname}';
-  	  message.message_receiver = '관리자';
+	  if("${login_id}"=="manager"){
+	  	  message.message_sender = '관리자';
+  		  message.message_receiver = '${mname}';
+  		  message.to_id = '${mid}';  
+	  }else{
+	  	  message.message_sender = '${mname}';
+	  	  message.message_receiver = '관리자';
+	  	  message.to_id = 'manager';
+	  }
 	  message.message_content = $("#message").val();
 	  message.from_id = '${login_id}';
-	  message.to_id = 'manager';  
+	    
   }
   sock.send(JSON.stringify(message));
   $("#message").val("");
@@ -127,7 +135,7 @@
     	        success : function(result) {   	            	
     	        	$("#chatMessageArea").append(result);
     	      	  	var chatAreaHeight = $("#chatArea").height();
-    	    	  	var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
+    	    	  	var maxScroll = chatAreaHeight-$("#chatMessageArea").height();
     	    	  	$("#chatArea").scrollTop(maxScroll);
     	       },
     	       error:function(e,code){

@@ -3,6 +3,7 @@ package com.playkids.control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -124,6 +125,17 @@ public class MyPageController {
       return "mypage/result/businessclasslist";
    }
    
+   @RequestMapping("returnProfit")
+   public @ResponseBody String returnProfit(Model model, HttpSession session, int bprofit) {
+      String login_id = (String) session.getAttribute("login_id");
+      Map<String, Object> map = new HashMap<>();
+      map.put("bid", login_id);
+      map.put("bprofit", bprofit*(-1));
+      NumberFormat formatter = NumberFormat.getCurrencyInstance();
+      if(service.updateBusinessProfit(map)) return formatter.format((int)bprofit*0.8)+"원이 \n반환되었습니다.";
+      return "수익금 반환을 실패하였습니다.";
+   }
+   
    
    @RequestMapping("myboardlist")
    public String myboardlist(Model model,HttpSession session) {
@@ -138,7 +150,7 @@ public class MyPageController {
       System.err.println(price);
       String login_id = (String) session.getAttribute("login_id");
       Map<String, Object> map = new HashMap<>();
-      map.put("mcash", Integer.parseInt(price)*-1);
+      map.put("mcash", Integer.parseInt(price));
       map.put("mid", login_id);
       map.put("rno", rno);
       if(service.deleteReserve(map)) return "결제 취소가 완료되었습니다.";
