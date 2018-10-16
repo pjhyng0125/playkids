@@ -349,6 +349,11 @@ public class JoinController {
 		return "/join/test";
 	}
 	
+	@RequestMapping(value="hc")
+	public String testhc() {
+		return "/join/highChart";
+	}
+	
 	@RequestMapping(value="insertclass", method=RequestMethod.POST)
 	public @ResponseBody String createClass(HttpServletRequest request,
 			MultipartFile file_class, MultipartFile file_teacher,
