@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,12 +25,16 @@ import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.service.JoinService;
+import com.playkids.service.StatsService;
 
 @Controller
 public class JoinController {
 	Random r=new Random();
 	@Inject
 	private JoinService service;
+	
+	@Inject
+	private StatsService service_stats;
 	
 	@Resource(name="upload_class")
 	private String upload_class;
@@ -350,7 +353,20 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value="hc")
-	public String testhc() {
+	public String testhc(HttpServletRequest request) throws SQLException {
+		
+//age
+		Map<String, Integer> map_age=service_stats.findAge();
+		//System.out.println(map_age);
+		request.setAttribute("map_age", map_age);
+//interest
+		
+//act
+		Map<String, Integer> map_act=service_stats.findAct();
+		//System.out.println(map_act);
+		request.setAttribute("map_act", map_act);
+		
+		
 		return "/join/highChart";
 	}
 	

@@ -17,7 +17,7 @@
 		});
 		showTest();
 	});//function
-	
+//카테고리 n개/ 카테고리당 수치 n개
 	function showInterest(){
 		$('#test').highcharts({
 			chart:{
@@ -40,11 +40,12 @@
 			}]
 		});
 	}//showInterest
+//나이 수치 6개
 	function showAge(){
 		Highcharts.chart('test', {
 
 		    title: {
-		        text: '자녀의 나이에 따른 회원의 수'
+		        text: 'Playkids와 함께 하는 자녀의 나이'
 		    },
 
 		    series: [{
@@ -52,17 +53,18 @@
 		        allowPointSelect: true,
 		        keys: ['name', 'y', 'selected', 'sliced'],
 		        data: [
-		            ['8세', 29.9, false],
-		            ['9세', 71.5, false],
-		            ['10세', 106.4, false],
-		            ['11세', 129.2, false],
-		            ['12세', 144.0, false],
-		            ['13세', 176.0, true]
+		            ['8세', ${map_age['8se']}, false],
+		            ['9세', ${map_age['9se']}, false],
+		            ['10세', ${map_age['10se']}, false],
+		            ['11세', ${map_age['11se']}, false],
+		            ['12세', ${map_age['12se']}, false],
+		            ['13세', ${map_age['13se']}, true]
 		        ],
 		        showInLegend: true
 		    }]
 		});
 	}//showAge
+//실내활동/야외활동 수치 2개
 	function showAct(){
 		$('#test').highcharts({
 			chart:{
@@ -72,7 +74,7 @@
 				text: '야외활동 vs 실내활동'
 			},
 			xAxis:{
-				categories:['노원구 부모님들의 관심 활동']
+				categories:['서울 부모님들의 관심 활동 타입']
 			},
 			yAxis:{
 				title:{
@@ -81,10 +83,10 @@
 			},
 			series: [{
 				name: '실내 활동',
-				data: [26]
+				data: [${map_act['in']}]
 			},{
 				name: '야외 활동',
-				data: [7]
+				data: [${map_act['out']}]
 			}]
 		});
 	}//showAct

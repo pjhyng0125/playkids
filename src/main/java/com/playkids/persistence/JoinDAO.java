@@ -4,11 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
-
 import com.playkids.domain.BusinessVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;

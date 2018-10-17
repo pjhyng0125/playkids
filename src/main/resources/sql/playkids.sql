@@ -184,8 +184,15 @@ ALTER TABLE member
 			mid
 		);
 
+/* childinfo sequence */
+drop sequence childinfo_seq;
+create sequence childinfo_seq
+start with 1
+increment by 1
+nocycle
+nocache;
 		
-drop table childinfo
+drop table childinfo;
 /* childinfo */
 CREATE TABLE childinfo (
 	dno NUMBER NOT NULL, /* ¹øÈ£ */

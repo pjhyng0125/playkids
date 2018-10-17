@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stats">
+	<select id="selectAge" resultType="java.util.Map">
+		select count(decode(to_char(dbirth,'yyyy'),'2011',dbirth)) as "8se",
+        	count(decode(to_char(dbirth,'yyyy'),'2010',dbirth)) as "9se",
+        	count(decode(to_char(dbirth,'yyyy'),'2009',dbirth)) as "10se",
+        	count(decode(to_char(dbirth,'yyyy'),'2008',dbirth)) as "11se", 
+       		count(decode(to_char(dbirth,'yyyy'),'2007',dbirth)) as "12se",
+        	count(decode(to_char(dbirth,'yyyy'),'2006',dbirth)) as "13se"
+		from childinfo
+	</select>
+	<select id="selectAct" resultType="java.util.Map">
+		select count(decode(ctype,'실내놀이',ctype)) as "in",
+        	   count(decode(ctype,'야외놀이',ctype)) as "out"
+		from class
+	</select>
+</mapper>
