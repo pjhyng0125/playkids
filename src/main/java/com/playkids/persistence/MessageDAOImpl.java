@@ -30,17 +30,15 @@ public class MessageDAOImpl implements MessageDAO{
 	}
 
 	@Override
-	public boolean updateReadTime(String from_id) {
-		int t = sqlsession.update("qna.updateReadTime",from_id);
+	public boolean updateReadTime(Map<String, Object> map) {
+		int t = sqlsession.update("qna.updateReadTime",map);
 		if(t>0) return true;
 		return false;
 	}
 
 	@Override
-	public boolean checkUnreadMessage(String from_id) {
-		int t = sqlsession.selectOne("qna.checkUnreadMessage",from_id);
-		if(t>0) return true;
-		return false;
+	public String checkUnreadMessage(String from_id) {
+		return sqlsession.selectOne("qna.checkUnreadMessage",from_id);	
 	}
 
 	@Override
@@ -48,4 +46,8 @@ public class MessageDAOImpl implements MessageDAO{
 		return sqlsession.selectOne("qna.selectSendTime",from_id);
 	}
 
+	@Override
+	public String selectMname(String mid) {
+		return sqlsession.selectOne("qna.selectMname",mid);
+	}
 }

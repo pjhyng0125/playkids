@@ -36,6 +36,7 @@ public interface MypageDAO {
 	public List<MyClassVO> selectBusinessPayInfo(Map<String, String> map);
 	public List<ClassVO> selectRegClass(String login_id);
 	public boolean updateBusinessProfit(Map<String, Object> map);
+	public List<BoardVO> selectBusinessBoard(String login_id);
 	
 	public String selectBid(int rno);
 	//admin profit

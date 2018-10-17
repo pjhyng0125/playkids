@@ -5,6 +5,7 @@ package com.playkids.control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playkids.domain.BoardVO;
+import com.playkids.domain.MemberVO;
 import com.playkids.service.AdminService;
+import com.playkids.service.MessageService;
 
 @Controller
 public class AdminController {
@@ -28,12 +31,22 @@ public class AdminController {
 	
 	@Inject
 	private AdminService service;
+	
+
+	@Inject
+	private MessageService msgService;
 
 	
 	@RequestMapping(value="adminMember", method=RequestMethod.GET)
 	public String admin_memberGET(Model model)throws Exception{
-		model.addAttribute("list",service.selectmember());
-		
+		List<MemberVO> list = service.selectmember();
+		for(int i=0; i<list.size();i++) {
+			String messageId = msgService.checkUnreadMessage(list.get(i).getMid());			
+			if(messageId !=null) {
+				list.get(i).setMessageFlag(1);
+			}
+		}
+		model.addAttribute("list",list);
 		return "/admin/member_list";
 	}
 	

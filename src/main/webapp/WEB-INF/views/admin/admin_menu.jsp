@@ -28,6 +28,7 @@
 <link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
 <script type="text/javascript">
+	var checkMid;
  	 $(function(){
 		/* $.ajax({
 			url:"/result/member_list",
@@ -36,8 +37,23 @@
 			}
 		}); */
 		$('#a1').on('click','.qnaBtn',function(){
-			window.open("/chat","confirm",'width=600,height=400,top=100,left=100');
-			return false;
+			checkMid=$(this).val();
+			$.ajax({
+				type : 'post',
+				data : {to_id:$(this).val()},
+    	        url : "/chat",
+    	        success : function(result) {   	            	
+    	        	$("#qnaModal .modal-body").html(result);
+    				$('#qnaModal').modal('show');
+    				$('.newImgDiv').html('');
+    	       },
+    	       error:function(e,code){
+    	    	   alert('정말에러!!'+e.status+":"+code)
+    	           if(e.status==300){
+    	               alert("데이터를 가져오는데 실패하였습니다.");
+    	           };
+    	       }
+			});
 		});
 		
 		
@@ -82,6 +98,8 @@
 			}
 		});
 	}
+	
+
 </script>
 </head>
 <body>
@@ -123,5 +141,20 @@
   <hr>
 
 <div id="a1"></div>
+
+<div class="modal fade" id="qnaModal">
+	<div class="modal-dialog modal-dialog-centered" style="width: 80%">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;&nbsp;</button>
+			</div>
+			<!-- Modal body -->
+			<div class="modal-body"></div>
+		</div>
+	</div>
+</div>
+<!--qnaModal 끝-->
+
 </body>
 </html>

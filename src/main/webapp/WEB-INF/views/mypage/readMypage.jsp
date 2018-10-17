@@ -53,24 +53,48 @@
 		})
 		
 		$('#addChildBtn').click(function(){// 자녀 등록	
-			$.ajax({
-				type : 'post',
-				data : {dgender:dgender=$('input[name=dgender]:checked').val(),
-					  dname:$('#dname').val(),
-					  dbirth: new Date($('#dbirth').val())},
-    	        url : "/insertChild",
-    	        success : function(result) {   	            	
-	    	          alert('등록 성공')
-	    	          $('.childInfo button').before('<p class="card-text">'+result.dname+'('+result.dage+'세 '+result.dgender+')</p>');
-    	       },
-    	       dataType:'json',
-    	       error:function(e,code){
-    	    	   alert('정말에러!!'+e.status+":"+code)
-    	           if(e.status==300){
-    	               alert("데이터를 가져오는데 실패하였습니다.");
-    	           };
-    	       }
-			});
+			var today = new Date();
+			var minYear = today.getFullYear()-12;
+			var maxYear = today.getFullYear()-7;
+			var dbirth = new Date($('#dbirth').val());
+			var dbirth_year = dbirth.getFullYear();
+			var dname = $('#dname').val();
+
+			if(dname=="" || dname==undefined){
+				alert('이름을 입력해주세요!');
+				return false;
+			}else if(dbirth=='Invalid Date'){
+				alert('생년월일을 입력해주세요!');
+				return false;
+			}
+			
+			if(minYear<=dbirth_year && dbirth_year<=maxYear){				
+				$.ajax({
+					type : 'post',
+					data : {dgender:dgender=$('input[name=dgender]:checked').val(),
+						  dname:$('#dname').val(),
+						  dbirth: dbirth},
+	    	        url : "/insertChild",
+	    	        success : function(result) {   	            	
+		    	          alert('등록 성공')
+		    	          $('#dname').val('');
+						  $('#dbirth').val('');
+					      $('#initRadio').prop('checked',true);
+		    	          $('.childInfo button').before('<p class="card-text">'+result.dname+'('+result.dage+'세 '+result.dgender+')</p>');
+	    	       },
+	    	       dataType:'json',
+	    	       error:function(e,code){
+	    	    	   alert('정말에러!!'+e.status+":"+code)
+	    	           if(e.status==300){
+	    	               alert("데이터를 가져오는데 실패하였습니다.");
+	    	           };
+	    	       }
+				});
+			}else {
+				alert('8세부터 13세 아동만 가능합니다!')
+				$('#dbirth').val('');
+				return false;
+			}
 		});
 
 		$('#cancelChildBtn').click(function(){// 자녀 등록 취소
@@ -166,7 +190,7 @@
 			
 			$.ajax({  	        
     	        url : "/chat",
-    	        data:{to_id:"manager",mname:"${myInfo.mname}"},
+    	        data:{to_id:"manager", mname:"${myInfo.mname }"},
     	        success : function(result) {   	            	
 	    	            $('.myinfolist-data').html(result);
     	       },error:function(e,code){
@@ -235,9 +259,10 @@
 	    	    }); 		
 			}
 		});
-		
-	})
+	});
 </script>
+<script type="text/javascript" src="/resources/js/sockjs.js"></script>
+<script type="text/javascript" src="/resources/js/qna.js"></script>
 <br><br><br>
 <div class="container">
 	<div class="row">
@@ -267,7 +292,8 @@
 			<div class="card-header font-weight-bold small">보유한 젤리</div>
 			<div class="card-body">
 				<p class="card-text"><fmt:formatNumber value="${myInfo.mcash }" type="currency" currencySymbol=""/>젤리</p>
-				<button class="btn btn-info" id="myPagechargeBtn">충전</button>
+				<button class="btn btn-info" id="myPagechargeBtn">젤리충전</button>
+				<br><button type="button" class="btn btn-warning" id="statInfo" style="margin-top: 20px;">나의 통계</button>
 			</div>
 		</div>
 	</div>
@@ -614,6 +640,7 @@
 		<div class="col-md-3">
 			<button class="btn btn-info myQnAinfo">1 : 1 문의</button>
 		</div>
+
 	</div>
 <br><br>
 <div class="row myinfolist ">

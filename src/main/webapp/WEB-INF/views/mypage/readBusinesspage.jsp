@@ -29,9 +29,6 @@
 	text-align: center;
 }
 
-.myclassStatus-reserveTable td{
-	
-}
 
 .card-header{
 	background: transparent;
@@ -53,7 +50,14 @@
 		})
 		
 		$('#returnProfitBtn').click(function(){
+			var bprofit = "${businessInfo.bprofit }";
+			if(bprofit==0){
+				alert('반환받을 금액이 부족합니다.');
+				return;
+			
+			
 			if(confirm('수익금은 20% 공제된 금액으로 반환됩니다.\n반환 하시겠습니까?')){				
+				}
 				$.ajax({
 					data : {bprofit:"${businessInfo.bprofit }"},
 					type : 'post',
@@ -82,8 +86,7 @@
 			$('.businessClassinfo').addClass("btn-info");
 			$('.myboardinfo').removeClass("btn-danger");
 			$('.myboardinfo').addClass("btn-info");
-			$('.myQnAinfo').removeClass("btn-danger");
-			$('.myQnAinfo').addClass("btn-info");
+		
 			
 			$.ajax({  	        
     	        url : "/businessPaylist",
@@ -104,10 +107,9 @@
 			
 			$('.businessPayinfo').removeClass("btn-danger");
 			$('.businessPayinfo').addClass("btn-info");
-			$('.myboardinfo').removeClass("btn-danger");
-			$('.myboardinfo').addClass("btn-info");
-			$('.myQnAinfo').removeClass("btn-danger");
-			$('.myQnAinfo').addClass("btn-info");
+			$('.businessboardinfo').removeClass("btn-danger");
+			$('.businessboardinfo').addClass("btn-info");
+			
 			
 			$.ajax({  	        
     	        url : "/regClasslist",
@@ -122,8 +124,7 @@
     	    }); 
 		})
 		
-		$('.myboardinfo').click(function(){
-			$('#myclassStatus').hide();
+		$('.businessboardinfo').click(function(){
 			
 			$(this).removeClass("btn-info");
 			$(this).addClass("btn-danger");
@@ -132,10 +133,9 @@
 			$('.myclassinfo').addClass("btn-info");
 			$('.mypayinfo').removeClass("btn-danger");
 			$('.mypayinfo').addClass("btn-info");
-			$('.myQnAinfo').removeClass("btn-danger");
-			$('.myQnAinfo').addClass("btn-info");
+		
 			$.ajax({  	        
-    	        url : "/myboardlist",
+    	        url : "/businessboardlist",
     	        success : function(result) {   	            	
 	    	            $('.myinfolist-data').html(result);
     	       },error:function(e,code){
@@ -146,10 +146,6 @@
     	       }
     	    }); 
 		})
-		$('.myQnAinfo').click(function(){
-			
-		})
-		
 	})
 </script>
 <br><br><br>
@@ -376,7 +372,7 @@ function phonecheck(){
 			<button class="btn btn-info businessPayinfo">구매자 내역</button>
 		</div>
 		<div class="col-md-4">
-			<button class="btn btn-info myboardinfo">후기 게시물</button>
+			<button class="btn btn-info businessboardinfo">후기 게시물</button>
 		</div>
 	</div>
 <br><br>

@@ -460,6 +460,74 @@ create table admin(
 	pregdate DATE default sysdate NOT NULL
 );
 
+drop table message;
+create table message(
+   message_id number primary key,
+   message_sender varchar2(45) not null,
+   message_receiver varchar2(45) not null,
+   message_content varchar2(2000) not null,
+   message_sendTime date default sysdate,
+   message_readTime date,
+   from_id varchar2(45) not null,
+   to_id varchar2(45) not nulld
+);
+
+/* messagesequence */
+drop sequence message_seq;
+create sequence message_seq
+start with 1
+increment by 1
+nocycle
+nocache;
+
+drop table play;
+drop sequence play_seq;
+CREATE TABLE play (
+  pno number(3) primary key,
+  ptype varchar2(30) NOT NULL,
+  pact varchar2(30) NOT NULL
+);
+
+drop sequence play_seq;
+create sequence play_seq
+start with 1
+increment by 1
+nocycle
+nocache;
+
+drop table faq;
+create table faq(
+	fno       number primary key,
+	fcategory varchar2(500) not null,
+	ftitle    varchar2(500) not null,
+	fanswer   varchar2(500) not null
+);
+
+drop sequence faq_seq;
+create sequence faq_seq
+		start with 1
+		increment by 1
+		nocycle
+		nocache;
+
+
+drop table ds_zip;
+CREATE TABLE ds_zip (
+  ds_id number(3) primary key,
+  ds_gugun varchar2(30) NOT NULL,
+  ds_dong varchar2(75) NOT NULL
+);
+
+drop sequence ds_zip_seq;
+create sequence ds_zip_seq
+start with 1
+increment by 1
+nocycle
+nocache;
+
+
+
+
 
 		
 		

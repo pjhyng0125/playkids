@@ -8,7 +8,8 @@ CREATE TABLE business (
 	bphone VARCHAR2(20), /* 연락처 */
 	baddress VARCHAR2(100), /* 주소 */
 	bregdate DATE, /* 가입일 */
-	baccount VARCHAR2(20) /* 계좌번호 */
+	baccount VARCHAR2(20), /* 계좌번호 */
+	bprofit number default 0
 );
 
 COMMENT ON TABLE business IS 'business';
@@ -458,6 +459,7 @@ create table admin(
 	profit number default 0,
 	pregdate DATE default sysdate NOT NULL
 );
+
 
 		
 		

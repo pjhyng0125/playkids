@@ -4,9 +4,45 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="/resources/js/sockjs.js"></script>
 <style type="text/css">
-.msgDiv-${login_id} *{
-	float: right;
+.message-profile{
+	float: left;
+	padding-right: 0px; padding-left:0px;
 }
+.message-content{
+	float:left;
+	padding-right: 0px; padding-left:0px; margin-top: 20px;
+}
+
+.msgDiv-${login_id} .message-profile{
+	float: right;
+	padding-right: 0px; padding-left:0px;
+}
+.msgDiv-${login_id} .message-content{
+	float: right;
+	padding-right: 0px; padding-left:0px; margin-top: 20px;
+}
+
+.message-profile .profileImg{
+	width: 50px;
+	height: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;'
+}
+.message-profile .sender{
+	font-size: 9px;
+	clear: both;
+	text-align:center;
+	display: block;
+}
+
+.message-profile .sendTime{
+	font-size: 9px; 
+	text-align: right;
+	display: block;'
+}
+
+
 </style>
 
 
@@ -44,16 +80,15 @@
 						</div><!-- msgDiv -->
 						<c:forEach items="${msgList }" var="message">
 								<div class="msgDiv-${message.from_id } col-md-12">							
-								<div style='padding-right: 0px; padding-left: 0px;'>
-									<img id='profileImg' src='/resources/img/man.png'
-										style='width: 50px; height: 50px;'> <span
-										style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 12px;'>${message.message_content }</span>
-									<div style='font-size: 9px; clear: both;'>${message.message_sender }</div>
-									<div class="col-md-12" style='font-size: 9px;'>
-										<span style='font-size: 9px; text-align: right;'><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${message.message_sendTime }" /></span>
-									</div>
+								<div class="message-profile" >
+									<img class='profileImg' src='/resources/img/man.png'> 
+									<span class="sender">${message.message_sender }</span>
+									<span class="sendTime"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${message.message_sendTime }" /></span>
 								</div>
-							</div>
+								<div class="message-content">
+									<span style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 12px;'>${message.message_content }</span>
+								</div>
+								</div>
 						</c:forEach>
 						
 					</div>
@@ -76,28 +111,6 @@
 	</div>
 	</div>
 <script type="text/javascript">
- connect();
-
- function connect() {
-	    sock = new SockJS('/echo');
-	    sock.onopen = function() {
-	        console.log('open');
-	    };
-	    sock.onmessage = function(evt) {
-    	 var data = evt.data;
-    	   console.log(data)
-  		   var msgResult = JSON.parse(data)  	   
-    	   console.log(msgResult)
-    	   appendMessage(msgResult);
-    	   
-	    };
-	    sock.onclose = function() {
-	    	 //appendMessage("연결을 끊었습니다.");
-	        console.log('close');
-	    };
-	}
-
-
 
 
  function send() {
@@ -107,7 +120,7 @@
 	  if("${login_id}"=="manager"){
 	  	  message.message_sender = '관리자';
   		  message.message_receiver = '${mname}';
-  		  message.to_id = '${mid}';  
+  		  message.to_id = '${to_id}';  
 	  }else{
 	  	  message.message_sender = '${mname}';
 	  	  message.message_receiver = '관리자';
@@ -123,30 +136,8 @@
 
 
 
- function appendMessage(msg) {
-	 
-	 if(msg == '' || msg == undefined){
-		 return false;
-	 }else{
-			$.ajax({
-				type : 'post',
-				data : msg,
-    	        url : "/qnaResult",
-    	        success : function(result) {   	            	
-    	        	$("#chatMessageArea").append(result);
-    	      	  	var chatAreaHeight = $("#chatArea").height();
-    	    	  	var maxScroll = chatAreaHeight-$("#chatMessageArea").height();
-    	    	  	$("#chatArea").scrollTop(maxScroll);
-    	       },
-    	       error:function(e,code){
-    	    	   alert('정말에러!!'+e.status+":"+code)
-    	           if(e.status==300){
-    	               alert("데이터를 가져오는데 실패하였습니다.");
-    	           };
-    	       }
-			});
-	 }
- }
+ 
+
  $(function() {
   $('#message').keypress(function(event){
    var keycode = (event.keyCode ? event.keyCode : event.which);

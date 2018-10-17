@@ -7,12 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectClist" parameterType="java.util.Map" resultType="ClassListVO">
 	select cno,ctype, cname, cdate, cpic, baddress, cage,price 
 	from class natural join business
+	where autho='1'
 	<include refid="classtype"></include>	
 	</select>
 	
 	<select id="selectGu" parameterType="java.util.Map" resultType="string">
 	select distinct baddress 
 	from class natural join business
+	where autho='1'
 	<include refid="classtype"></include>
 	order by baddress asc
 	</select>
@@ -20,12 +22,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectTotalCnt" parameterType="java.util.Map" resultType="int">
 		select count(*) 
 		from class
+		where autho='1'
 		<include refid="classtype"></include>
 	</select>
 	
 	<sql id="classtype">
 		<if test="ctype!=null">
-			where ctype = #{ctype}
+			and ctype = #{ctype}
 		</if>
 	</sql>
 </mapper>

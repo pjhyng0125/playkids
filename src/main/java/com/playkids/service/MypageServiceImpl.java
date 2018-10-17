@@ -117,6 +117,11 @@ public class MypageServiceImpl implements MypageService{
 		}
 		return false;
 	}
+
+	@Override
+	public List<BoardVO> selectBusinessBoard(String login_id) {
+		return mypageDAO.selectBusinessBoard(login_id);
+	}
 	
 
 }

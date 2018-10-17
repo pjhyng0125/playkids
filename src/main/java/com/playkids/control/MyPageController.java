@@ -60,6 +60,7 @@ public class MyPageController {
       if(login_id != null) {
          model.addAttribute("myInfo", service.selectMyInfo(login_id)); //이름, 캐쉬 잔액
          model.addAttribute("childInfo",childList);// 자녀 정보
+         model.addAttribute("mname", msgService.selectMname(login_id));
       }
       return "mypage/readMypage";
    }
@@ -123,6 +124,13 @@ public class MyPageController {
       model.addAttribute("regClasslist",service.selectRegClass(login_id));
       
       return "mypage/result/businessclasslist";
+   }
+   
+   @RequestMapping("businessboardlist")
+   public String businessboardlist(Model model,HttpSession session) {
+      String login_id = (String) session.getAttribute("login_id");
+      model.addAttribute("businessBoard",service.selectBusinessBoard(login_id));
+      return "mypage/result/businessboardlist";
    }
    
    @RequestMapping("returnProfit")
@@ -200,9 +208,16 @@ public class MyPageController {
       String login_id = (String) session.getAttribute("login_id");
       System.out.println("이름>>>"+mname);
       Map<String, Object> map = new HashMap<>();
-      map.put("from_id", login_id);
-      map.put("to_id",to_id);
-      model.addAttribute("mname", mname);
+      map.put("from_id", to_id);
+      map.put("to_id",login_id);
+      if(msgService.updateReadTime(map)) {
+    	 System.out.println(to_id+"가 "+login_id+"가 보낸 메시지를 읽음"); 
+      }
+      if(mname !=null)
+    	  model.addAttribute("mname", mname);
+      else
+    	  model.addAttribute("mname", "관리자");
+	  model.addAttribute("to_id",to_id);
       model.addAttribute("msgList", msgService.selectMessageList(map));
       System.out.println(msgService.selectMessageList(map));
       return "chat/qna";

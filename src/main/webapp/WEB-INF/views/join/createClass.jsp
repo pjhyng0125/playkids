@@ -9,6 +9,10 @@
 		$('#btaddclass').click(function(){
 			checkEmpty();
 		});//addclass click
+
+		$('#btcancel').click(function(){
+			window.close();
+		});//addclass click
 	}); 
 	
 //권장 나이1 check!	
@@ -94,6 +98,8 @@
 			success:function(data){
 				alert(data);//입력 성공시: 클래스 입력 성공!!!
 							//입력 실패시: 클래스 입력 실패...
+				if(data=='클래스 입력 성공!!!')
+					window.close();
 			}
 		});//ajax
 	}//insertclass

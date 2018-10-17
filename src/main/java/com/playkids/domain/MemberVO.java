@@ -11,12 +11,13 @@ public class MemberVO {
 	private String mregdate;
 	private String mcash;
 	
-	
+	private int messageFlag;
 
 	public MemberVO() {
 		super();
 	}
 
+	
 	public MemberVO(String mid, String mpw, String mname, String maddress, String mphone, String mbirth,
 			String minterest, String mregdate, String mcash) {
 		super();
@@ -30,6 +31,17 @@ public class MemberVO {
 		this.mregdate = mregdate;
 		this.mcash = mcash;
 	}
+
+	
+	public int getMessageFlag() {
+		return messageFlag;
+	}
+
+
+	public void setMessageFlag(int messageFlag) {
+		this.messageFlag = messageFlag;
+	}
+
 
 	public String getMid() {
 		return mid;
@@ -103,10 +115,13 @@ public class MemberVO {
 		this.mcash = mcash;
 	}
 
+
 	@Override
 	public String toString() {
 		return "MemberVO [mid=" + mid + ", mpw=" + mpw + ", mname=" + mname + ", maddress=" + maddress + ", mphone="
 				+ mphone + ", mbirth=" + mbirth + ", minterest=" + minterest + ", mregdate=" + mregdate + ", mcash="
-				+ mcash + "]";
+				+ mcash + ", messageFlag=" + messageFlag + "]";
 	}
+
+	
 }

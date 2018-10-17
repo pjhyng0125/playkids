@@ -116,4 +116,11 @@ public class MypageDAOImpl implements MypageDAO{
 	public String selectBid(int rno) {
 		return sqlsession.selectOne("mypage.selectBid",rno);
 	}
+
+	@Override
+	public List<BoardVO> selectBusinessBoard(String login_id) {
+		return sqlsession.selectList("mypage.selectBusinessBoard",login_id);
+	}
+
+
 }

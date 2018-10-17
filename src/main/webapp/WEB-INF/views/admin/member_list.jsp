@@ -21,6 +21,8 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
+<script type="text/javascript" src="/resources/js/sockjs.js"></script>
+<script type="text/javascript" src="/resources/js/qnaforadmin.js"></script>
 </head>
 <body>
 	<table>
@@ -36,7 +38,12 @@ tr:nth-child(even) {
 		<td>${member.minterest }</td>
 		<td>${member.mregdate }</td>
 		<td>${member.mcash }</td>
-		<td><button type="button" class="btn btn-default qnaBtn" value="${member.mid }">1:1문의</button></td>
+		<td><button type="button" class="btn btn-default qnaBtn" value="${member.mid }">1:1문의</button>
+			<span class="newImgDiv">
+			<c:if test="${member.messageFlag==1 }">
+				<img alt="new" src="/resources/img/new.gif" style="width:50px; height: 50px; ">
+			</c:if></span>
+		</td>
 	</tr>
 	</c:forEach>
 </table>

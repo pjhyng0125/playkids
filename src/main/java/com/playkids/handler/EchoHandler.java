@@ -84,8 +84,8 @@ public class EchoHandler extends TextWebSocketHandler{
         	}
         }
         
-        
         for (WebSocketSession websocketSession : connectedUsers) {
+        	Map<String, Object> mapforReadTime = new HashMap<>();
 	         map = websocketSession.getAttributes();
 	         String to_id =  (String) map.get("login_id");
 	         //받는사람
@@ -93,6 +93,10 @@ public class EchoHandler extends TextWebSocketHandler{
 	            Gson gson = new Gson();
 	            String msgJson = gson.toJson(messageVO);
 	            websocketSession.sendMessage(new TextMessage(msgJson));
+	            /*mapforReadTime.put("to_id", to_id);
+	            mapforReadTime.put("from_id",login_id);
+	            if(service.updateReadTime(mapforReadTime)) 
+	            	System.out.println(login_id+"가 "+to_id+"가 보낸 메시지를 읽음");*/
 	         }
 	     }
     }

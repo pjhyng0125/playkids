@@ -28,12 +28,12 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public boolean updateReadTime(String from_id) {
-		return messageDAO.updateReadTime(from_id);
+	public boolean updateReadTime(Map<String, Object> map) {
+		return messageDAO.updateReadTime(map);
 	}
 
 	@Override
-	public boolean checkUnreadMessage(String from_id) {
+	public String checkUnreadMessage(String from_id) {
 		return messageDAO.checkUnreadMessage(from_id);
 	}
 
@@ -42,4 +42,9 @@ public class MessageServiceImpl implements MessageService {
 		return messageDAO.selectSendTime(from_id);
 	}
 
+
+	@Override
+	public String selectMname(String mid) {
+		return messageDAO.selectMname(mid);
+	}
 }

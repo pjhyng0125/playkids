@@ -10,7 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="selectMessageList" parameterType="map" resultType="MessageVO">
 	select message_id,message_content,message_sender,message_receiver,from_id,to_id,message_sendTime
 	from message
-	where from_id=#{from_id} and to_id=#{to_id}
+	where (from_id=#{from_id} and to_id=#{to_id})
+	 or (from_id=#{to_id} and to_id=#{from_id})
 	order by message_sendTime asc
 </select>
 
@@ -21,11 +22,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	order by message_sendTime asc
 </select>
 
-<update id="updateReadTime" parameterType="String">
-	update message set message_readTime = sysdate where from_id=#{from_id}
+<update id="updateReadTime" parameterType="map">
+	update message set message_readTime = sysdate where from_id=#{from_id} and to_id=#{to_id} and message_readTime is null
 </update>
 
-<select id="checkUnreadMessage" parameterType="String" resultType="int">
-	select count(*) from message where message_readTime is null and from_id=#{from_id}
+<select id="checkUnreadMessage" parameterType="string" resultType="string">
+	select distinct from_id from message where message_readTime is null and from_id=#{to_id}
+</select>
+	
+<!-- message 보내거나 받는 사람 이름 -->
+<select id="selectMname" parameterType="string" resultType="string">
+	select mname from member where mid=#{mid}
 </select>
 </mapper>
