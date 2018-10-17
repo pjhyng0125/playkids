@@ -38,6 +38,9 @@
 			
 			var classname = $(this).val()
 			var str = "< "+classname+"일자 클래스 참여 후기 >"
+			var cno =$(this).attr('cno');
+			alert('cno>>'+cno)
+			$('#cno').val(cno);
 			$('#writeTitle').val(str);
 			$('#writeTitle').attr('readonly',true)
 		});
@@ -61,6 +64,7 @@
 
 	<input type="hidden" name="mid" value="${login_id }">
 	<input type="hidden" id="login_type" value="${login_type }">
+	<input type="hidden" id="cno" name="cno" value="0">
 	<label>제목 : </label> <input type="text" id="writeTitle" name="title" size="40" style="width:50%" placeholder="제목을 입력하세요.">
 	 <label>카테고리 : </label> <select name="category">
 		<option selected="selected">잡담</option>
@@ -81,7 +85,7 @@
   				</div>
 				<div id="listclass">
 					<c:forEach items="${listClass }" var="classnames" >
-						<button id ="classname" type="button" class="btn btn-danger classnames"value="${classnames.BNAME}의 ${classnames.CNAME} ${classnames.CDATE} ">
+						<button cno="${classnames.CNO}" id ="classname" type="button" class="btn btn-danger classnames"value="${classnames.BNAME}의 ${classnames.CNAME} ${classnames.CDATE} ">
 						 ${classnames.BNAME}의 ${classnames.CNAME} </button>		
 					</c:forEach>
 					

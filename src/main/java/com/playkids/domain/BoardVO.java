@@ -13,6 +13,7 @@ public class BoardVO {
 	private int reply_cnt;				// °Ô½Ã¹° ´ñ±Û °¹¼ö
 	private int newflag;				// new badge flag
 	private String category;
+	private int cno;
 	
 	public int getBno() {
 		return bno;
@@ -70,11 +71,18 @@ public class BoardVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public int getCno() {
+		return cno;
+	}
+	public void setCno(int cno) {
+		this.cno = cno;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", mid=" + mid + ", title=" + title + ", content=" + content + ", regdate="
 				+ regdate + ", count=" + count + ", reply_cnt=" + reply_cnt + ", newflag=" + newflag + ", category="
-				+ category + "]";
+				+ category + ", cno=" + cno + "]";
 	}
 	
 	

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="classInfo">
 	<select id="select_info" resultType="ClassVO">
 		select cno,bid,cname, cpic, cage, cintro, cdate, cteachername, cteacher, cteacherpic, prepare, notice
-			   ,park, protect,together,autho
+			   ,park, protect,together,autho,price
 		from class 
 		where cno=#{cno}
 	</select>
@@ -33,4 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set autho='1'
 		where cno=#{cno}
 	</update>
+	
+	<select id="select_babylist" resultType="ChildInfoVO">
+		select * from childinfo 
+		where mid = #{mid}
+	</select>
 </mapper>

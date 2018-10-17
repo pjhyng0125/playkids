@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.ReserveVO;
@@ -36,5 +37,10 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 	@Override
 	public boolean permit_class(int cno) throws Exception {
 		return dao.permit_class(cno);
+	}
+
+	@Override
+	public List<ChildInfoVO> select_babylist(String mid) throws Exception {
+		return dao.select_babylist(mid);
 	}
 }

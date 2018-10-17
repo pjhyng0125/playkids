@@ -22,6 +22,7 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public boolean insert_board(BoardVO vo) throws Exception {
 		int t = sqlsession.insert("board.insert_board", vo);
+		System.out.println("board DAO IMPL insert success");
 		if(t==1) return true;
 		else return false;
 	}

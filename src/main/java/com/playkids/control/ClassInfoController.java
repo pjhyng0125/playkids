@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,10 +33,10 @@ public class ClassInfoController {
 	private ClassInfoService service;
 	
 	@RequestMapping("/info")
-	public String select_info(int cno,String mid, Model model)throws Exception{
+	public String select_info(int cno,String mid, Model model,HttpSession session)throws Exception{
 		System.out.println("cno="+cno);//2 Ãâ·Â	
 		ClassVO classVO = service.select_info(cno);
-		
+		String login_id= (String) session.getAttribute("login_id");	
 		//String bid = classVO.getBid();
 		//System.out.println("bid="+bid);
 		
@@ -43,7 +44,8 @@ public class ClassInfoController {
 		
 		model.addAttribute("classVO", classVO);
 		model.addAttribute("businessVO", businessVO);
-		
+		model.addAttribute("babylist",service.select_babylist(login_id));
+		//System.out.println("login_id : >"+login_id);
 		return "classInfo/classInfo";
 	}
 	

@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	
  	<insert id="insert_board">
- 		insert into board(bno, title, content, mid, category)
-     	values (tbl_board_seq.nextval, #{title}, #{content}, #{mid}, #{category})
+ 		insert into board(bno, title, content, mid, category, cno)
+     	values (tbl_board_seq.nextval, #{title}, #{content}, #{mid}, #{category}, #{cno})
  	</insert>
  	
  	<delete id="delete_board">
@@ -91,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  
  <select id="listClass" parameterType="String" resultType="HashMap">
-    select c.cname as cname, b.bname as bname, to_char(c.cdate,'mm/dd') cdate
+    select c.cname as cname, b.bname as bname, to_char(c.cdate,'mm/dd') cdate, c.cno as cno
 	from member m, class c, reserve r, business b
 	where m.mid= r.mid and c.cno = r.cno and b.bid=c.bid and m.mid= #{mid} and sysdate > c.cdate
 	order by c.cdate desc

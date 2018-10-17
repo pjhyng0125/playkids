@@ -44,12 +44,46 @@
 					type: 'post',
 					success:function(result){
 						if(result=='true'){
-							alert('승인 완료')
+							$('#alert_modal2').modal();
 						}
 					}
 			});
 		});
 		
+		$('#buy').click(function(){
+			$('#alert_modal').modal()
+		});
+		
+		var baby_cnt=0; 
+		var flag=false;
+		var price =$('#price').val()
+		$('.baby_count').click(function(){
+			/*if(flag=='true'){
+				baby_cnt--
+				flag=flase
+			}else{
+				baby_cnt++			
+				flag=true
+			}*/
+			baby_cnt++
+			$('#cost').html(baby_cnt*price)
+			$(this).toggle(function(){
+				var str = " "+"<button type='button' class='btn btn-warning cancel' style='width: 45%'>"
+						  +$(this).html()+"</button>"				// 추가할 내용
+				var str2 = $('#buylist').html()			// 추가할 div 영역
+				
+				$('#buylist').html(str2+str)
+			})
+			$('#baby_cnt').html(baby_cnt)
+		});
+		
+		$('#buylist').on("click",".cancel",function(){
+			$(this).toggle(function(){
+			});
+			baby_cnt--
+			$('#baby_cnt').html(baby_cnt)
+			$('#cost').html(baby_cnt*price)
+		});
 		
 	
 	});
@@ -75,7 +109,9 @@
 
 <%-- 수업일시 : <fmt:formatDate pattern="yyyy-MM-dd" value="${classVO.cdate }"/>  --%>
 수업일시 : <fmt:parseDate pattern="yyyy-MM-dd" value='${classVO.cdate }' var="parsedDate"/>
-<fmt:formatDate pattern="yyyy-MM-dd" value="${parsedDate }"/>
+<fmt:formatDate pattern="yyyy-MM-dd" value="${parsedDate }"/><br>
+수강료 : ${classVO.price}원
+<input type="hidden" id="price" value="${classVO.price}">
 </div>
 
 <hr>
@@ -117,7 +153,7 @@
 <jsp:include page="/WEB-INF/views/api/mapApi.jsp" />
 </div><br><br><br>
 
-	<button id="buy" class="btn btn-info">구매하기</button> 
+	<button id="buy" type="button" class="btn btn-info">구매하기</button> 
 	<a class="btn btn-warning" id="charge" href="javascript:history.back()">이전 페이지로</a>
 		<c:if test="${login_id=='manager' }">
 			<button type="button" class="btn btn-danger" id="admin">인증하기</button> 
@@ -126,4 +162,52 @@
 
 <br><br><br><br>
 </form>
+	<div class="modal fade" id="alert_modal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-info text-white">
+					<h3>구매하기 창</h3>
+				</div>
+				<div class="modal-body">
+					<p>아래 자녀 목록에서 자녀를 선택해 주십시오.</p>
+					<c:forEach items="${babylist }" var="baby">
+						<button type="button" class="btn btn-success baby_count" style="width: 45%" >
+							이름 : ${baby.dname}<br>
+							나이 : ${baby.dbirth }
+							
+						</button>
+					</c:forEach>
+					<hr>
+					<div>
+						<label>예약 아이 목록</label><p id="buylist">
+						</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div>총 예약 인원 : <label id="baby_cnt">0</label> 명</div>
+					<div>총 결재 금액 : <label id="cost">0</label>원</div><hr>
+					<button type="button" class="btn btn-info" id="buy_class">구매하기</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="alert_modal2" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-info text-white">
+					<h3>클래스 승인 완료</h3>
+				</div>
+				<div class="modal-body">
+					<p>해당 클래스의 승인을 허가하였습니다.</p>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
+

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.ReserveVO;
@@ -35,10 +36,13 @@ public class ClassInfoDAOImpl implements ClassInfoDAO{
 
 	@Override
 	public boolean permit_class(int cno) throws Exception {
-		System.out.println("dao impl cno>>"+cno);
 		int t=  sqlSession.update("classInfo.permit_class", cno);
-		System.out.println("dao impl t>>"+t);
 		if(t==1) return true;
 		else return false;
+	}
+
+	@Override
+	public List<ChildInfoVO> select_babylist(String mid) throws Exception {
+		return sqlSession.selectList("classInfo.select_babylist", mid);
 	}
 }

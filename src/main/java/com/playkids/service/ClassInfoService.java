@@ -3,6 +3,7 @@ package com.playkids.service;
 import java.util.List;
 
 import com.playkids.domain.BusinessVO;
+import com.playkids.domain.ChildInfoVO;
 import com.playkids.domain.ClassVO;
 import com.playkids.domain.MemberVO;
 import com.playkids.domain.ReserveVO;
@@ -13,4 +14,5 @@ public interface ClassInfoService {
 	public BusinessVO select_business(String bid) throws Exception;
 	public void insert_reserve(ReserveVO reserveVO) throws Exception;
 	public boolean permit_class(int cno) throws Exception;
+	public List<ChildInfoVO> select_babylist(String mid) throws Exception;
 }

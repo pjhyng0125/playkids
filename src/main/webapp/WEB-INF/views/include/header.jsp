@@ -83,7 +83,14 @@
             				<li style="line-height:48px; color:blue">${admin_id}관리자님 환영합니다!</li>
             				<li><a href="/logout" onclick="alert('로그아웃되었습니다^^');">로그아웃</a></li>
             			</c:if>
-            			<li><a href="/mypage">마이페이지</a></li>
+            			<c:choose>
+            				<c:when test="${login_id == 'manager' }">
+            					<li><a href="/admin">관리자페이지</a></li>
+            				</c:when>
+            				<c:otherwise>    				
+		            			<li><a href="/mypage">마이페이지</a></li>
+            				</c:otherwise>
+            			</c:choose>
             			<c:if test="${login_type ==null || login_type.equals('member') }">
             			<li><a href="/chargepage">젤리충전</a></li></c:if>
           			</ul>

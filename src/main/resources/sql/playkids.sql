@@ -251,7 +251,8 @@ create table board(
 	count number default 0,
 	regdate DATE default sysdate,
 	newflag number default 1,							
-	category varchar2(50)	
+	category varchar2(50),
+	cno number	
 );
 
 COMMENT ON TABLE board IS 'board';
@@ -279,6 +280,13 @@ ALTER TABLE board
 		PRIMARY KEY (
 			bno
 		);
+		
+drop sequence tbl_board_seq;
+create sequence tbl_board_seq
+	start with 1
+	increment by 1
+	nocycle
+	nocache;
 
 /* reply */
 drop table reply;
