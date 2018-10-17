@@ -1,6 +1,7 @@
 package com.playkids.domain;
 
 import java.util.Date;
+
 import com.google.gson.Gson;
 
 public class MessageVO {

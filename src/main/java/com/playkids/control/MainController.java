@@ -9,7 +9,7 @@ public class MainController {
 	@RequestMapping("main")
 	public String mainpage() {
 		return "/main/mainView";
-	}
+	} 
 
 }
 

@@ -81,7 +81,7 @@
   <br><br><br>
   <section id="class1">
     <div class="container">
-          <h2><font face="verdana" color="black">이달의 인기 클래스</font></h2>
+          <h2><font face="verdana" color="black">KIDS에서 추천하는 클래스</font></h2>
           <hr>
     </div>
   </section>

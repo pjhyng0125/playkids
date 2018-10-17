@@ -67,6 +67,7 @@
 		<interceptor>
 			<mapping path="/mypage"/>
 			<mapping path="/chargepage"/>
+			<mapping path="/admin"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
