@@ -353,14 +353,43 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value="hc")
-	public String testhc(HttpServletRequest request) throws SQLException {
+	public String testhc(HttpServletRequest request, HttpSession session) throws SQLException {
 		
 //age
 		Map<String, Integer> map_age=service_stats.findAge();
 		//System.out.println(map_age);
 		request.setAttribute("map_age", map_age);
 //interest
+		String gu=service_stats.findgu((String)session.getAttribute("login_id"));
+		List<String> list_type=new ArrayList<>();
+		List<String> list_check=new ArrayList<>();
+		List<Integer> list_su=new ArrayList<>();
+		list_type=service_stats.finddisInterest(gu);
+		list_check=service_stats.findInterest(gu);
 		
+		for(int i=0; i<list_type.size(); i++) {
+			int cnt=0;
+			for(int j=0; j<list_check.size(); j++) {
+				if(list_type.get(i).equals(list_check.get(j))) {
+					cnt++;
+				}
+			}// for list_check
+			list_su.add(cnt);
+		}// for list_type
+		System.out.println("list_type:"+list_type);
+		System.out.println("list_su:"+list_su);
+		
+		String categoris="";
+		for(int i=0; i<list_type.size(); i++) {
+			if(i != list_type.size()-1)
+				categoris+=("'"+list_type.get(i)+"'"+",");
+			else
+				categoris+=("'"+list_type.get(i)+"'");
+				
+		}
+		System.out.println("categoris: "+categoris);
+		request.setAttribute("categoris", categoris);
+		request.setAttribute("data", list_su);
 //act
 		Map<String, Integer> map_act=service_stats.findAct();
 		//System.out.println(map_act);

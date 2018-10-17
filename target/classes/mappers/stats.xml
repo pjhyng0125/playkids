@@ -17,4 +17,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	   count(decode(ctype,'야외놀이',ctype)) as "out"
 		from class
 	</select>
+	<select id="selectgu" parameterType="String" resultType="String">
+		select substr(maddress,0,3) as "gu" from member
+		where mid=#{login_id}
+	</select>
+	<select id="selectdisInterest" parameterType="String" resultType="String">
+		select substr(minterest,6) from member
+		where substr(maddress,0,3)=#{gu}
+		group by minterest
+		order by substr(minterest,0,4)
+	</select>
+	<select id="selectInterest" parameterType="String" resultType="String">
+		select substr(minterest,6) from member
+		where substr(maddress,0,3)=#{gu}
+		order by minterest
+	</select>
 </mapper>

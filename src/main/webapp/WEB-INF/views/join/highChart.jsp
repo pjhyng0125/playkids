@@ -15,7 +15,6 @@
 		$('#btact').click(function(){
 			showAct();
 		});
-		showTest();
 	});//function
 //카테고리 n개/ 카테고리당 수치 n개
 	function showInterest(){
@@ -27,7 +26,7 @@
 				text: '노원구 부모님들의 관심사'
 			},
 			xAxis:{
-				categories:['연극놀이', '창의력 풀이 문제', '추리게임', '축구', '야구','요가']
+				categories:[${categoris}]
 			},
 			yAxis:{
 				title:{
@@ -36,7 +35,7 @@
 			},
 			series: [{
 				name: '노원구 부모님',
-				data: [1,20,4,11,1,6]
+ 				data: ${data}
 			}]
 		});
 	}//showInterest
