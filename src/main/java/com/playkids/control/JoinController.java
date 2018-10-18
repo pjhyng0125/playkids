@@ -361,6 +361,7 @@ public class JoinController {
 		request.setAttribute("map_age", map_age);
 //interest
 		String gu=service_stats.findgu((String)session.getAttribute("login_id"));
+		request.setAttribute("gu", gu);
 		List<String> list_type=new ArrayList<>();
 		List<String> list_check=new ArrayList<>();
 		List<Integer> list_su=new ArrayList<>();
@@ -389,7 +390,7 @@ public class JoinController {
 		}
 		System.out.println("categoris: "+categoris);
 		request.setAttribute("categoris", categoris);
-		request.setAttribute("data", list_su);
+		request.setAttribute("list_su", list_su);
 //act
 		Map<String, Integer> map_act=service_stats.findAct();
 		//System.out.println(map_act);

@@ -23,7 +23,7 @@
 				type: 'column'
 			},
 			title: {
-				text: '노원구 부모님들의 관심사'
+				text: '${gu} 부모님들의 관심사'
 			},
 			xAxis:{
 				categories:[${categoris}]
@@ -34,8 +34,8 @@
 				}
 			},
 			series: [{
-				name: '노원구 부모님',
- 				data: ${data}
+				name: '${gu} 부모님',
+ 				data: ${list_su}
 			}]
 		});
 	}//showInterest
@@ -97,7 +97,7 @@
 	<h1>통계</h1>
 	<div class="btn-box">
 		<button type="button" class="btn btn-submit" id="btage">자녀 나이</button>
-		<button type="button" class="btn btn-submit" id="btgu">노원구</button>
+		<button type="button" class="btn btn-submit" id="btgu">${gu }</button>
 		<button type="button" class="btn btn-submit" id="btact">활동</button>
 	</div>
 	<div id="test" style="width:100%; height:400px;"></div>
