@@ -40,8 +40,10 @@ public class AdminController {
 	@RequestMapping(value="adminMember", method=RequestMethod.GET)
 	public String admin_memberGET(Model model)throws Exception{
 		List<MemberVO> list = service.selectmember();
+		System.out.println("adminMember");
 		for(int i=0; i<list.size();i++) {
-			String messageId = msgService.checkUnreadMessage(list.get(i).getMid());			
+			String messageId = msgService.checkUnreadMessage(list.get(i).getMid());
+			System.out.println(messageId);
 			if(messageId !=null) {
 				list.get(i).setMessageFlag(1);
 			}

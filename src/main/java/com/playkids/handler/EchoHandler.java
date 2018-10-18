@@ -71,7 +71,16 @@ public class EchoHandler extends TextWebSocketHandler {
 
 		Date msgReadChk = messageVO.getMessage_readTime();
 		System.out.println("msgReadChk>>>"+msgReadChk);
-		if (msgReadChk == null) {
+//			if (msgReadChk == null) {
+			if(login_id.equals("manager") && messageVO.getTo_id().equals("manager")) {
+				Map<String, Object> mapforReadTime = new HashMap<>();
+				mapforReadTime.put("to_id", messageVO.getTo_id());
+				mapforReadTime.put("from_id", messageVO.getFrom_id());
+				if (service.updateReadTime(mapforReadTime)) 
+						System.out.println("manager가 읽음");
+				return;
+			}
+		
 			if (login_id != null && login_id.equals(messageVO.getFrom_id())) {
 				if (service.insertMessage(messageVO)) {
 					messageVO.setMessage_sendTime(service.selectSendTime(login_id));
@@ -80,34 +89,26 @@ public class EchoHandler extends TextWebSocketHandler {
 					session.sendMessage(new TextMessage(msgJson));
 				}
 			}
-		}
 
 		for (WebSocketSession websocketSession : connectedUsers) {
 			map = websocketSession.getAttributes();
 			String to_id = (String) map.get("login_id");
-			// 받는사람
-			
-			if (msgReadChk == null) {
-				if (to_id != null && to_id.equals(messageVO.getTo_id()) && (!login_id.equals("manager"))) {
+			// 받는사람		
+			if (to_id != null && to_id.equals(messageVO.getTo_id())) { //append할 메시지 보내기
 					Gson gson = new Gson();
 					String msgJson = gson.toJson(messageVO);
 					websocketSession.sendMessage(new TextMessage(msgJson));
-				}
-
-			} else {
-				System.out.println("들어옴?");
-				System.out.println("to_id>>"+to_id+", login_id>>"+login_id);
-				if (login_id != null && login_id.equals("manager") && to_id.equals("manager")) {
-					Map<String, Object> mapforReadTime = new HashMap<>();
-					mapforReadTime.put("to_id", to_id);
-					mapforReadTime.put("from_id", messageVO.getFrom_id());
-					if (service.updateReadTime(mapforReadTime)) {
-						System.out.println(to_id + "가 " + login_id + "가 보낸 메시지를 읽음");
-					}
-				}
 			}
 		}
 	}
+//			else {
+//				System.out.println("들어옴?");
+//				System.out.println("to_id>>"+to_id+", login_id>>"+login_id);
+//				if (login_id != null && login_id.equals("manager")) {
+//					
+//					}
+//				}
+//			}
 
 	@Override
 

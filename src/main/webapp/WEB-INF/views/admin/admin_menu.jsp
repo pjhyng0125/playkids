@@ -47,7 +47,8 @@
     	        	$("#qnaModal .modal-body").html(result);
     				$('.newImgDiv').html('');
     				$('#qnaModal').modal('show');
-    				$("#chatArea").scrollTop($("#chatArea")[0].scrollHeight);
+    				
+    				//$("#qnaModal .modal-body").find('#chatArea')[0].scrollTop();
     	       },
     	       error:function(e,code){
     	    	   alert('정말에러!!'+e.status+":"+code)

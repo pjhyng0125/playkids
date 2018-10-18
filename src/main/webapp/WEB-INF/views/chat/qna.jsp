@@ -62,22 +62,8 @@
 				<div class="col-md-12"
 					style="margin: 0 auto; border: 5px solid #FFFF99; height: 400px; border-radius: 10px; overflow-y: scroll; overflow-x:hidden;"
 					id="chatArea">
-					
 					<div id="chatMessageArea"
 						style="margin-top: 10px; margin-left: 10px;">
-						<div class="msgDiv-user col-md-12">
-							<div style='padding-right: 0px; padding-left: 0px;'>
-								<img id='profileImg'
-									src='/resources/img/man.png' style='width: 50px; height: 50px;'>
-								<span style='background-color: #ACF3FF; padding: 10px 5px;border-radius: 10px; font-size:12px;'>
-									가나다라마바사
-								</span>
-								<div style='font-size: 9px; clear: both;'>${user_name}</div>
-								<div class="col-md-12" style='font-size: 9px;'>
-									<span style='font-size: 9px; text-align: right;'>"+t+"</span>
-								</div>
-							</div>
-						</div><!-- msgDiv -->
 						<c:forEach items="${msgList }" var="message">
 								<div class="msgDiv-${message.from_id } col-md-12">							
 								<div class="message-profile" >
@@ -90,7 +76,6 @@
 								</div>
 								</div>
 						</c:forEach>
-						
 					</div>
 				</div>
 			</div>
@@ -118,8 +103,9 @@
 	  message = {};
 	  if("${login_id}"=="manager"){
 	  	  message.message_sender = '관리자';
-  		  message.message_receiver = '${mname}';
-  		  message.to_id = '${to_id}';  
+  		  message.message_receiver = $('button[value=${to_id}]').attr('name');
+  		  message.to_id = '${to_id}';
+  		  message.message_readTime=new Date();
 	  }else{
 	  	  message.message_sender = '${mname}';
 	  	  message.message_receiver = '관리자';
