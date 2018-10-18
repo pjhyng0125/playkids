@@ -186,7 +186,7 @@ tbody tr:hover{
 				<div class="card-header font-weight-bold small">진행중인 클래스</div>
 				<div class="card-body currentClassInfo">
 					<c:forEach items="${currentBClassList }" var="currentBClass">
-					<p class="card-text"><a href="/class/info?=${currentBClass.cno }">${currentBClass.cname }</a></p>
+					<p class="card-text"><a href="/class/info?cno=${currentBClass.cno }">${currentBClass.cname }</a></p>
 					</c:forEach>
 					<button type="button" class="btn btn-default">클래스 등록</button>
 				</div>
