@@ -90,7 +90,8 @@ public class ClassInfoController {
 		boolean flag1 = service.make_reserve(login_id, cno, dno);
 		boolean flag2 = false;
 		boolean flag3 = false;
-		
+		System.out.println("bid >"+bid);
+		System.out.println("cost >"+cost);
 		if(flag_check==false) {
 			flag_check= true;
 			//한번씩만 처리할 것들

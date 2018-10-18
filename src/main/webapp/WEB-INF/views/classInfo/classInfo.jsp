@@ -139,6 +139,7 @@
 								if(flag_hi==false){
 									alert('결재완료');
 									flag_hi=true;
+									$('#alert_modal').hide(1000)
 								}
 							}
 						}
