@@ -38,4 +38,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from childinfo 
 		where mid = #{mid}
 	</select>
+	
+	<select id="select_member_cash" resultType="int">
+		select mcash from member
+		where mid = #{mid}
+	</select>
+	
+	<insert id="make_reserve">
+		insert into reserve (rno,mid,cno,dno,regdate)
+		values (reserve_seq.nextval, #{mid}, #{cno}, #{dno}, sysdate)
+	</insert>
+	
+	<update id="set_member_cost">
+		update member
+		set mcash = #{mcash}
+		where mid = #{mid}
+	</update>
+	
+	<update id="add_business_profit">
+		update business
+		set bprofit = bprofit + #{bprofit}
+		where bid = #{bid}
+	</update>
 </mapper>

@@ -2,6 +2,8 @@ package com.playkids.control;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.sql.Array;
+import java.util.Arrays;
 import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +30,9 @@ import com.playkids.service.ClassInfoService;
 @Controller
 @RequestMapping("/class")
 public class ClassInfoController {
-					
+	
+	boolean flag_check;
+	
 	@Inject
 	private ClassInfoService service;
 	
@@ -42,10 +46,13 @@ public class ClassInfoController {
 		
 		BusinessVO businessVO = service.select_business(classVO.getBid());
 		
+		model.addAttribute("member_cash",service.select_member_cash(login_id));
 		model.addAttribute("classVO", classVO);
 		model.addAttribute("businessVO", businessVO);
 		model.addAttribute("babylist",service.select_babylist(login_id));
 		//System.out.println("login_id : >"+login_id);
+		
+		flag_check = false;
 		return "classInfo/classInfo";
 	}
 	
@@ -70,6 +77,35 @@ public class ClassInfoController {
 		//System.out.println("cno:"+cno+"클래스 승인결과 : "+result);
 		request.setAttribute("cno", cno);
 		return result;
+	}
+	
+	// 구매하기 버튼 클릭시 
+	@RequestMapping(value="update2", method=RequestMethod.POST)
+	public @ResponseBody boolean reserve_class(HttpServletRequest request,HttpSession session,
+												int cno, int dno,int remain, int cost, String bid) throws Exception {
+		
+		String login_id= (String) session.getAttribute("login_id");	
+		
+		//처리해야할 것 1 reserve 추가 mid= login_id / cno / dno
+		boolean flag1 = service.make_reserve(login_id, cno, dno);
+		boolean flag2 = false;
+		boolean flag3 = false;
+		
+		if(flag_check==false) {
+			flag_check= true;
+			//한번씩만 처리할 것들
+			//처리해야할 것 2 member remain 업데이트 멤버아이디 	mid= login_id / mcash = remain
+			flag2 = service.set_member_cost(login_id, remain);
+			//처리해야할 것 3 business bprofit 추가			bid = bid / bprofit에 추가cost
+			flag3 = service.add_business_profit(bid, cost);
+		}
+	
+		if(flag1==flag2==flag3==true) {
+			System.out.println("클래스 예약 완료");
+			return true;
+			
+		}
+		else return false;
 	}
 	
 	

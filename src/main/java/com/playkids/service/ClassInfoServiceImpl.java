@@ -43,4 +43,24 @@ public class ClassInfoServiceImpl implements ClassInfoService {
 	public List<ChildInfoVO> select_babylist(String mid) throws Exception {
 		return dao.select_babylist(mid);
 	}
+
+	@Override
+	public int select_member_cash(String mid) throws Exception {
+		return dao.select_member_cash(mid);
+	}
+
+	@Override
+	public boolean make_reserve(String mid, int cno, int dno) throws Exception {
+		return dao.make_reserve(mid, cno, dno);
+	}
+
+	@Override
+	public boolean set_member_cost(String mid, int mcash) throws Exception {
+		return dao.set_member_cost(mid, mcash);
+	}
+
+	@Override
+	public boolean add_business_profit(String bid, int bprofit) throws Exception {
+		return dao.add_business_profit(bid, bprofit);
+	}
 }

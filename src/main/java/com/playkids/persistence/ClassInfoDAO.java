@@ -22,5 +22,12 @@ public interface ClassInfoDAO {
 	public boolean permit_class(int cno) throws Exception;
 	
 	public List<ChildInfoVO> select_babylist(String mid) throws Exception;
+
+	public int select_member_cash(String mid) throws Exception;
 	
+	public boolean make_reserve(String mid, int cno, int dno) throws Exception;
+	
+	public boolean set_member_cost(String mid, int mcash) throws Exception;
+	
+	public boolean add_business_profit(String bid, int bprofit) throws Exception;
 }

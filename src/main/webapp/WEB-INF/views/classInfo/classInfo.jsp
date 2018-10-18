@@ -57,38 +57,103 @@
 		var baby_cnt=0; 
 		var flag=false;
 		var price =$('#price').val()
-		$('.baby_count').click(function(){
-			/*if(flag=='true'){
-				baby_cnt--
-				flag=flase
-			}else{
-				baby_cnt++			
-				flag=true
-			}*/
+		var dno_stack = new Array();				// 복수의 dno에 대한 insert하기 위한 작업
+		$('.baby_count').click(function(){					// 초록버튼
+			
+			
 			baby_cnt++
-			$('#cost').html(baby_cnt*price)
-			$(this).toggle(function(){
-				var str = " "+"<button type='button' class='btn btn-warning cancel' style='width: 45%'>"
-						  +$(this).html()+"</button>"				// 추가할 내용
-				var str2 = $('#buylist').html()			// 추가할 div 영역
+			
+			var remain = $('#member_cash').html()-(baby_cnt*price)	// remain = 잔여젤리 - 비용 
+			
+			if(remain>=0){
+				var id_con = $(this).val()
+				$('#cost').html(baby_cnt*price)
+				$('#baby_cnt').html(baby_cnt)
+				$('#member_cash_in').html(remain)
 				
-				$('#buylist').html(str2+str)
-			})
-			$('#baby_cnt').html(baby_cnt)
+				$(this).toggle(function(){
+					var str = " "+"<button type='button' class='btn btn-warning cancel' style='width: 45%' id='"+id_con+"'>"
+							  +$(this).html()+"</button>"				// 추가할 내용
+					var str2 = $('#buylist').html()			// 추가할 div 영역
+					$('#buylist').html(str2+str)
+					
+					//dno_stack_temp = dno_stack
+					dno_stack.push($(this).val())
+					
+					
+				})
+			}else{
+				alert('잔액 부족으로 인해 더이상 추가 신청이 불가능합니다.')
+				baby_cnt--
+			}
+			
 		});
 		
-		$('#buylist').on("click",".cancel",function(){
-			$(this).toggle(function(){
-			});
+		
+		$('#buylist').on("click",".cancel",function(){		// 노란버튼 클릭시 
+			
+			//dno_stack = dno_stack_temp;
+			dno_stack.pop($(this).attr('id'))
 			baby_cnt--
+			
+			var id_val =$(this).attr('id')					// 노랑은 id값이 dno
+			$('button[value="'+id_val+'"]').show()
+			$(this).toggle(function(){});
 			$('#baby_cnt').html(baby_cnt)
 			$('#cost').html(baby_cnt*price)
+			var cash_remain = $('#member_cash_in').html()
+			
+			if(baby_cnt==0){
+				baby_cnt=1
+				var remain = parseInt(cash_remain)+(baby_cnt*price)
+				baby_cnt=0
+			}else{
+				var remain = parseInt(cash_remain)+(baby_cnt*price)
+				
+			}
+			$('#member_cash_in').html(remain)
 		});
+		
+		
+		$('#buy_class').click(function(){
+			
+			var cost =$('#cost').html()	// 총 결재 값 - 기업 benefit update
+			
+			if(cost==0){
+				alert('신청할 어린이를 클릭해 주세요')
+			}else{
+				var remain =  $('#member_cash_in').html()	// member mcash값 update
+				var cno = $('#cno').val()
+				var cnt_len = dno_stack.length
+				var flag_hi = false;
+				var bid = $('#bid').val()
+				for(i=0;i<dno_stack.length;i++){
+					var dno = dno_stack[i]
+					
+					$.ajax({
+						url:'/class/update2',
+						data:{'cno':cno, 'dno':dno, 'remain':remain,'cost':cost,'bid':bid},
+						type: 'post',
+						success:function(result){
+							if(result==true){
+								if(flag_hi==false){
+									alert('결재완료');
+									flag_hi=true;
+								}
+							}
+						}
+					});	// ajax	
+				}// for 문
+				flag_hi=false;
+			}
+			
+		});// 구매하기 버튼
 		
 	
 	});
 </script>
 <input type="hidden" value="${classVO.cno}" id="cno">
+<input type="hidden" value="${classVO.bid }" id="bid">
 <div><img alt="수업사진" src="/resources/upload/class/${classVO.cpic }" id="class_pic" style="width: 100%; height: 380px;"></div>
 <hr>
 <font id="class_title">강사소개</font>
@@ -169,23 +234,29 @@
 					<h3>구매하기 창</h3>
 				</div>
 				<div class="modal-body">
-					<p>아래 자녀 목록에서 자녀를 선택해 주십시오.</p>
+					<div class="alert alert-warning">아래 자녀 목록에서 자녀를 선택해 주십시오.<BR>
+					    등록된 자녀가 없을 경우 마이페이지에서 자녀를 먼저 등록 후 클래스 신청을 해주십시오.</div>
+					<div id="babylist_div">
+					<label>자녀 등록 목록</label><br>
 					<c:forEach items="${babylist }" var="baby">
-						<button type="button" class="btn btn-success baby_count" style="width: 45%" >
+						<button type="button" class="btn btn-success baby_count" style="width: 45%" value="${baby.dno}">
 							이름 : ${baby.dname}<br>
 							나이 : ${baby.dbirth }
 							
 						</button>
 					</c:forEach>
+					</div>
 					<hr>
 					<div>
-						<label>예약 아이 목록</label><p id="buylist">
-						</p>
+						<label>예약 아이 목록</label>
+						<p id="buylist"></p>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<div>총 예약 인원 : <label id="baby_cnt">0</label> 명</div>
 					<div>총 결재 금액 : <label id="cost">0</label>원</div><hr>
+					<div>잔여 젤리 : <label id="member_cash">${member_cash }</label>개  | 결재 후 잔여 젤리 : <label id="member_cash_in"></label>개</div>
+					<hr>
 					<button type="button" class="btn btn-info" id="buy_class">구매하기</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 				</div>
