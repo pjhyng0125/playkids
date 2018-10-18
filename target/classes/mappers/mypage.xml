@@ -116,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBusinessBoard" parameterType="String" resultType="BoardVO">
 		select bno,category,title,count,regdate
 		from board
-		where cno in (select cno from business where bid=#{bid})
+		where cno in (select cno from business where bid=#{bid}) and category='후기'
 	</select>
 
 

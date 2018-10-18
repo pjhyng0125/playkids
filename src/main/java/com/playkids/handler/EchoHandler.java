@@ -72,8 +72,7 @@ public class EchoHandler extends TextWebSocketHandler{
     	Map<String, Object> map = session.getAttributes();
         log(session.getId()+"로부터  "+message.getPayload()+"받음");
         MessageVO messageVO = MessageVO.convertMessage(message.getPayload());
-        System.out.println(map);
-        System.out.println(messageVO);
+ 
         String login_id = (String) map.get("login_id");
         if(login_id!=null && login_id.equals(messageVO.getFrom_id())) {
         	if(service.insertMessage(messageVO)) {
@@ -85,7 +84,6 @@ public class EchoHandler extends TextWebSocketHandler{
         }
         
         for (WebSocketSession websocketSession : connectedUsers) {
-        	Map<String, Object> mapforReadTime = new HashMap<>();
 	         map = websocketSession.getAttributes();
 	         String to_id =  (String) map.get("login_id");
 	         //받는사람
@@ -93,10 +91,17 @@ public class EchoHandler extends TextWebSocketHandler{
 	            Gson gson = new Gson();
 	            String msgJson = gson.toJson(messageVO);
 	            websocketSession.sendMessage(new TextMessage(msgJson));
-	            /*mapforReadTime.put("to_id", to_id);
-	            mapforReadTime.put("from_id",login_id);
-	            if(service.updateReadTime(mapforReadTime)) 
-	            	System.out.println(login_id+"가 "+to_id+"가 보낸 메시지를 읽음");*/
+	            
+	            
+	         }
+	         
+	         if(to_id !=null && to_id.equals("manager") && (!login_id.equals("manager"))) {
+	        	 Map<String , Object> mapforReadTime = new HashMap<>();
+	        	 mapforReadTime.put("to_id", to_id);
+	        	 mapforReadTime.put("from_id",login_id);
+	        	 if(service.updateReadTime(mapforReadTime)) {
+	        		 System.out.println(to_id+"가 "+login_id+"가 보낸 메시지를 읽음");
+	        	 }
 	         }
 	     }
     }

@@ -9,7 +9,7 @@
 		<span class="sendTime"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${message.message_sendTime }" /></span>
 	</div>
 	<div class="message-content">
-		<span style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 12px;'>${message.message_content }</span>
+		<span style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 20px;'>${message.message_content }</span>
 	</div>
 </div>
 <!-- msgDiv -->

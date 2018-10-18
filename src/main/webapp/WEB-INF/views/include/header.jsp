@@ -27,6 +27,7 @@
     bottom: 0;
     width: 100%;
 }
+
     </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>playkids</title>
@@ -42,10 +43,10 @@
 <link href="/resources/css/anybootstrap.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/bootstrap/css/font-awesome.min.css">
-<link href="/resources/bootstrap/css/animate.min.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/animate.css" rel="stylesheet" />
 <link href="/resources/bootstrap/css/prettyPhoto.css" rel="stylesheet">
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
+<link href="/resources/bootstrap/css/animate.min.css" rel="stylesheet">
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <!-- Include all compiled plugins (below), or include individual files as needed -->

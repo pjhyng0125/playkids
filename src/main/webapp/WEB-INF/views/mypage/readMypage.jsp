@@ -35,8 +35,8 @@
 .myclassStatus-reserveTable td{
 	
 }
-#myInfoModal .modal-body{
-
+tbody tr:hover{
+	cursor: pointer;
 }
 .card-header{
 	background: transparent;
@@ -44,6 +44,8 @@
 .card-body p{
 	font-size: large; 
 }
+
+
 </style>
 <script>
 	$(function(){
@@ -193,6 +195,7 @@
     	        data:{to_id:"manager", mname:"${myInfo.mname }"},
     	        success : function(result) {   	            	
 	    	            $('.myinfolist-data').html(result);
+	    	            $("#chatArea").scrollTop($("#chatArea")[0].scrollHeight);
     	       },error:function(e,code){
     	    	   alert('정말에러!!'+e.status+":"+code)
     	           if(e.status==300){
@@ -241,6 +244,18 @@
     	    }); 
 		});
 		
+		$('.myinfolist-data').on('click','.myboardTable tbody tr',function(){// 결제 취소버튼 선택시
+			location.href ="/board/showpage?bno="+$(this).find(':hidden').val();
+		});
+
+		$('.myinfolist-data').on('click','.myclassStatus-table tbody tr',function(){// 결제 취소버튼 선택시
+			location.href ="/class/info?cno="+$(this).find('.hidden').val();
+		});
+		
+		$('.myinfolist-data').on('click','.mypayTable tbody tr',function(){// 결제 취소버튼 선택시
+			location.href ="/board/showpage?bno="+$(this).find(':hidden').val();
+		});
+
 		$('.myinfolist-data').on('click','.myclassStatus-reserveTable button',function(){// 결제 취소버튼 선택시
 			if(confirm('정말로 취소하시겠습니까?')){
 				$.ajax({

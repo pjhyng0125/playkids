@@ -28,9 +28,7 @@
 	    	        url : "/qnaResult",
 	    	        success : function(result) {   	            	
 	    	        	$("#chatMessageArea").append(result);
-	    	      	  	var chatAreaHeight = $("#chatArea").height();
-	    	    	  	var maxScroll = chatAreaHeight-$("#chatMessageArea").height();
-	    	    	  	$("#chatArea").scrollTop(maxScroll);
+	    	    	  	$("#chatArea").scrollTop($("#chatArea")[0].scrollHeight);
 	    	       },
 	    	       error:function(e,code){
 	    	    	   alert('정말에러!!'+e.status+":"+code)

@@ -30,12 +30,18 @@
 }
 
 
+tbody tr:hover{
+	cursor: pointer;
+}
+
 .card-header{
 	background: transparent;
 }
 .card-body p{
 	font-size: large; 
 }
+
+
 </style>
 <script>
 	$(function(){
@@ -84,8 +90,8 @@
 			
 			$('.businessClassinfo').removeClass("btn-danger");
 			$('.businessClassinfo').addClass("btn-info");
-			$('.myboardinfo').removeClass("btn-danger");
-			$('.myboardinfo').addClass("btn-info");
+			$('.businessBoardinfo').removeClass("btn-danger");
+			$('.businessBoardinfo').addClass("btn-info");
 		
 			
 			$.ajax({  	        
@@ -107,8 +113,8 @@
 			
 			$('.businessPayinfo').removeClass("btn-danger");
 			$('.businessPayinfo').addClass("btn-info");
-			$('.businessboardinfo').removeClass("btn-danger");
-			$('.businessboardinfo').addClass("btn-info");
+			$('.businessBoardinfo').removeClass("btn-danger");
+			$('.businessBoardinfo').addClass("btn-info");
 			
 			
 			$.ajax({  	        
@@ -124,15 +130,15 @@
     	    }); 
 		})
 		
-		$('.businessboardinfo').click(function(){
+		$('.businessBoardinfo').click(function(){
 			
 			$(this).removeClass("btn-info");
 			$(this).addClass("btn-danger");
 			
-			$('.myclassinfo').removeClass("btn-danger");
-			$('.myclassinfo').addClass("btn-info");
-			$('.mypayinfo').removeClass("btn-danger");
-			$('.mypayinfo').addClass("btn-info");
+			$('.businessClassinfo').removeClass("btn-danger");
+			$('.businessClassinfo').addClass("btn-info");
+			$('.businessPayinfo').removeClass("btn-danger");
+			$('.businessPayinfo').addClass("btn-info");
 		
 			$.ajax({  	        
     	        url : "/businessboardlist",
@@ -146,6 +152,19 @@
     	       }
     	    }); 
 		})
+		
+		$('.myinfolist-data').on('click','.businessboardTable tbody tr',function(){// 결제 취소버튼 선택시
+			location.href ="/board/showpage?bno="+$(this).find(':hidden').val();
+		});
+		
+		$('.myinfolist-data').on('click','.businesspayTable tbody tr',function(){// 결제 취소버튼 선택시
+			location.href ="/class/info?cno="+$(this).find(':hidden').val();
+		});
+
+		$('.myinfolist-data').on('click','.businessclassTable tbody tr',function(){// 결제 취소버튼 선택시
+			location.href ="/class/info?cno="+$(this).find(':hidden').val();
+		});
+		
 	})
 </script>
 <br><br><br>
@@ -333,11 +352,7 @@ function phonecheck(){
 	<br>
 		<div class="group">
 		<label>주소</label>
-		${businessInfo.baddress.split(",")[0] }		
-	</div>
-	<div class="group">
-		<label>상세주소</label>
-		${businessInfo.baddress.split(",")[1] }
+		${businessInfo.baddress }		
 	</div>
 	
 	 <div class="group">
@@ -372,7 +387,7 @@ function phonecheck(){
 			<button class="btn btn-info businessPayinfo">구매자 내역</button>
 		</div>
 		<div class="col-md-4">
-			<button class="btn btn-info businessboardinfo">후기 게시물</button>
+			<button class="btn btn-info businessBoardinfo">후기 게시물</button>
 		</div>
 	</div>
 <br><br>

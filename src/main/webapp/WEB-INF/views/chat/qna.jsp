@@ -52,7 +52,7 @@
 
 			<div class="col-md-12" style="margin-top: 40px; clear: both;">
 				<div class="col-md-12"
-					style="margin: 20px auto; text-align: center; color: white; background-color: #01D1FE; border: 1px solid #01D1FE; padding: 10px 10px; border-radius: 8px;">
+					style="margin: 20px auto; font:bold;  text-align: center; color: grey; background-color: #FFFF99; border: 1px solid #FFFF99; padding: 10px 10px; border-radius: 8px;">
 					수업 일정과 강의 내용에 대해 문의해보세요.</div>
 
 			</div>
@@ -60,7 +60,7 @@
 
 			<div class="col-md-12">
 				<div class="col-md-12"
-					style="margin: 0 auto; border: 1px solid #01D1FE; height: 400px; border-radius: 10px; overflow: scroll"
+					style="margin: 0 auto; border: 5px solid #FFFF99; height: 400px; border-radius: 10px; overflow-y: scroll; overflow-x:hidden;"
 					id="chatArea">
 					
 					<div id="chatMessageArea"
@@ -86,7 +86,7 @@
 									<span class="sendTime"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${message.message_sendTime }" /></span>
 								</div>
 								<div class="message-content">
-									<span style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 12px;'>${message.message_content }</span>
+									<span style='background-color: #ACF3FF; padding: 10px 5px; border-radius: 10px; font-size: 20px;'>${message.message_content }</span>
 								</div>
 								</div>
 						</c:forEach>
@@ -100,10 +100,10 @@
 	<div class="col-md-12" style="margin-top: 20px; margin-bottom: 15px;">
 		<div class="col-md-12" style="float: left">
 			<textarea class="form-control"
-				style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
+				style="border: 3px solid #32CD32; font-size:20px; height: 65px; float: left; width: 80%"
 				placeholder="Enter ..." id ="message"></textarea>
 			<span
-				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
+				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #32CD32; border-radius: 5px;">
 				<a
 				style="margin-top: 30px; text-align: center; color: white; font-weight: bold;" id = "sendBtn"><br>전송</a>
 			</span>
@@ -111,7 +111,6 @@
 	</div>
 	</div>
 <script type="text/javascript">
-
 
  function send() {
   var msg = $("#message").val();

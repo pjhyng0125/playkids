@@ -44,8 +44,9 @@
     	        url : "/chat",
     	        success : function(result) {   	            	
     	        	$("#qnaModal .modal-body").html(result);
-    				$('#qnaModal').modal('show');
     				$('.newImgDiv').html('');
+    				$('#qnaModal').modal('show');
+    				$("#chatArea").scrollTop($("#chatArea")[0].scrollHeight);
     	       },
     	       error:function(e,code){
     	    	   alert('정말에러!!'+e.status+":"+code)

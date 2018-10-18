@@ -20,7 +20,6 @@
 	}
 	function alarmMsg(msg){
 		 if(msg.to_id=="manager" && checkMid != msg.from_id){
-			 alert(msg.from_id+'로부터 메시지가 왔습니다.');
 			 $('.newImgDiv').html('<img alt="new" src="/resources/img/new.gif" style="width:50px; height: 50px; ">');
 		 }
 	}
@@ -35,9 +34,7 @@
 	    	        url : "/qnaResult",
 	    	        success : function(result) {   	            	
 	    	        	$("#chatMessageArea").append(result);
-	    	      	  	var chatAreaHeight = $("#chatArea").height();
-	    	    	  	var maxScroll = chatAreaHeight-$("#chatMessageArea").height();
-	    	    	  	$("#chatArea").scrollTop(maxScroll);
+	    	      	  	$("#chatArea").scrollTop($("#chatArea")[0].scrollHeight);
 	    	       },
 	    	       error:function(e,code){
 	    	    	   alert('정말에러!!'+e.status+":"+code)
