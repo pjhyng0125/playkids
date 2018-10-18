@@ -94,7 +94,7 @@
 <body>
 <div class="container">
 <form>
-	<h1>통계</h1>
+	<h1>Playkids Charts</h1>
 	<div class="btn-box">
 		<button type="button" class="btn btn-submit" id="btage">자녀 나이</button>
 		<button type="button" class="btn btn-submit" id="btgu">${gu }</button>
