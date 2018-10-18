@@ -98,7 +98,7 @@
 			success:function(data){
 				alert(data);//입력 성공시: 클래스 입력 성공!!!
 							//입력 실패시: 클래스 입력 실패...
-				if(data=='클래스 입력 성공!!!')
+				if(data=='메세지 받기 성공!')
 					window.close();
 			}
 		});//ajax
