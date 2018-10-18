@@ -30,6 +30,7 @@ tr:nth-child(even) {
 		<th>아이디</th><th>이름</th><th>연락처</th><th>생년월일</th><th>관심분야</th><th>가입일</th><th>캐쉬</th><th>1:1문의</th>
 	</tr>
 	<c:forEach items="${list }" var="member">
+	<c:if test="${!member.mid.equals('manager') }">
 	<tr>
 		<td>${member.mid }</td>
 		<td>${member.mname }</td>
@@ -45,6 +46,7 @@ tr:nth-child(even) {
 			</c:if></span>
 		</td>
 	</tr>
+	</c:if>
 	</c:forEach>
 </table>
 

@@ -29,7 +29,8 @@
 <link href="/resources/bootstrap/css/style.css" rel="stylesheet">
 <script type="text/javascript">
 	var checkMid;
- 	 $(function(){
+ 	 
+	$(function(){
 		/* $.ajax({
 			url:"/result/member_list",
 			success:function(htmlTxt){
@@ -57,9 +58,13 @@
 			});
 		});
 		
-		
+		$('#qnaModal').on('hide.bs.modal', function(e){
+			checkMid='';
+			e.stopImmediatePropagation();
+		});		
 	});  
-	function loadmember(){
+	
+ 	function loadmember(){
 		$.ajax({
 			url:"/adminMember",
 			success:function(htmlTxt){

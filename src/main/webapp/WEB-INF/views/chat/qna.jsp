@@ -129,8 +129,8 @@
 	  message.from_id = '${login_id}';
 	    
   }
-  sock.send(JSON.stringify(message));
   $("#message").val("");
+  sock.send(JSON.stringify(message));
  }
 
 

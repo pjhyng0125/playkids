@@ -19,10 +19,15 @@
 	    };
 	}
 	function alarmMsg(msg){
-		 if(msg.to_id=="manager" && checkMid != msg.from_id){
-			 $('.newImgDiv').html('<img alt="new" src="/resources/img/new.gif" style="width:50px; height: 50px; ">');
+		alert(checkMid);
+		 if(msg.to_id=="manager" && (checkMid != msg.from_id || checkMid =='')){
+			 $('button[value='+msg.from_id+']').parent().find('span').html('<img alt="new" src="/resources/img/new.gif" style="width:50px; height: 50px; ">');
+		 }else if(checkMid==msg.from_id || msg.message_readTime=='' || msg.message_readTime==undefined){
+			 msg.message_readTime = new Date();
+			 sock.send(JSON.stringify(msg));
 		 }
 	}
+	
 	
 	 function appendMessage(msg) {		 
 		 if(msg == '' || msg == undefined){
@@ -34,7 +39,7 @@
 	    	        url : "/qnaResult",
 	    	        success : function(result) {   	            	
 	    	        	$("#chatMessageArea").append(result);
-	    	      	  	$("#chatArea").scrollTop($("#chatArea")[0].scrollHeight);
+	    	    	  	$("#chatArea").scrollTop($("#chatArea")[0].scrollHeight);
 	    	       },
 	    	       error:function(e,code){
 	    	    	   alert('정말에러!!'+e.status+":"+code)
