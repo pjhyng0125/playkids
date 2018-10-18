@@ -41,19 +41,22 @@ public class ClassInfoController {
 		System.out.println("cno="+cno);//2 Ãâ·Â	
 		ClassVO classVO = service.select_info(cno);
 		String login_id= (String) session.getAttribute("login_id");	
+		String login_type= (String)session.getAttribute("login_type");
 		//String bid = classVO.getBid();
 		//System.out.println("bid="+bid);
-		
-		BusinessVO businessVO = service.select_business(classVO.getBid());
-		
-		model.addAttribute("member_cash",service.select_member_cash(login_id));
-		model.addAttribute("classVO", classVO);
-		model.addAttribute("businessVO", businessVO);
-		model.addAttribute("babylist",service.select_babylist(login_id));
-		//System.out.println("login_id : >"+login_id);
-		
-		flag_check = false;
-		return "classInfo/classInfo";
+			BusinessVO businessVO = service.select_business(classVO.getBid());
+			model.addAttribute("classVO", classVO);
+			model.addAttribute("businessVO", businessVO);
+		if(login_type==null||login_id.equals("manager")||login_type.equals("business")) {
+			return "classInfo/classInfo";
+		}else {
+			model.addAttribute("member_cash",service.select_member_cash(login_id));
+			model.addAttribute("babylist",service.select_babylist(login_id));
+			//System.out.println("login_id : >"+login_id);
+			
+			flag_check = false;
+			return "classInfo/classInfo";
+		}
 	}
 	
 

@@ -232,11 +232,11 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header bg-info text-white">
-					<h3>구매하기 창</h3>
+					<h3>클래스 예약</h3>
 				</div>
 				<div class="modal-body">
 					<div class="alert alert-warning">아래 자녀 목록에서 자녀를 선택해 주십시오.<BR>
-					    등록된 자녀가 없을 경우 마이페이지에서 자녀를 먼저 등록 후 클래스 신청을 해주십시오.</div>
+					   <font size="1"> 등록된 자녀가 없을 경우 마이페이지에서 자녀를 먼저 등록 후 클래스 신청을 해주십시오.</font></div>
 					<div id="babylist_div">
 					<label>자녀 등록 목록</label><br>
 					<c:forEach items="${babylist }" var="baby">
