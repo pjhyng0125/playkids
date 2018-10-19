@@ -101,7 +101,7 @@ public class ClassInfoController {
 			//처리해야할 것 2 member remain 업데이트 멤버아이디 	mid= login_id / mcash = remain
 			flag2 = service.set_member_cost(login_id, remain);
 			//처리해야할 것 3 business bprofit 추가			bid = bid / bprofit에 추가cost
-			flag3 = service.add_business_profit(bid, cost);
+			flag3 = service.add_business_profit(bid, cost);     
 		}
 	
 		if(flag1==flag2==flag3==true) {
