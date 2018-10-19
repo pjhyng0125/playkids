@@ -15,6 +15,9 @@
 		$('#btact').click(function(){
 			showAct();
 		});
+		$('#btmypage').click(function(){
+			location.href="/mypage";
+		});
 	});//function
 //카테고리 n개/ 카테고리당 수치 n개
 	function showInterest(){

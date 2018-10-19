@@ -54,6 +54,11 @@ tbody tr:hover{
 			location.href="/chargepage";
 		})
 		
+		$('#statInfo').click(function(){
+			alert("통계페이지로 이동합니다.");
+			location.href="/hc";	
+		})
+		
 		$('#addChildBtn').click(function(){// 자녀 등록	
 			var today = new Date();
 			var minYear = today.getFullYear()-12;
