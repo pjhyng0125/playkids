@@ -26,15 +26,11 @@
 				});
 		
 		$('#write').click(function(evt){
-			//var id = $('#login_id')
-			
-			//alert('id : '+id)
-			//alert('type : '+$('#login_type'))
-			
-			
 			if($('#login_id').val()==null||$('#login_id').val()==''){
 		       $('#alert_modal').modal();
 				
+			}else if($('#login_type').val()!='member'){
+				$('#alert_modal3').modal();
 			}else{
 			   self.location="insert";
 			}
@@ -186,6 +182,23 @@
 				<div class="modal-body">
 					<p>해당 기능은 로그인 이후 사용할 수 있습니다.</p>
 					<a href="/login">로그인 화면으로 이동하시겠습니까?</a>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="alert_modal3" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-danger text-white">
+					<h3>게시물 작성 권한</h3>
+				</div>
+				<div class="modal-body">
+					<p>해당 기능은 일반 회원만 사용할 수 있습니다.<br>
+					 기업 회원은 글쓰기 기능을 이용하실 수 없습니다.</p>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-info" data-dismiss="modal">확인</button>

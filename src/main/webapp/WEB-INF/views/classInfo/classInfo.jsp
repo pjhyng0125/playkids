@@ -242,8 +242,8 @@
 					<c:forEach items="${babylist }" var="baby">
 						<button type="button" class="btn btn-success baby_count" style="width: 45%" value="${baby.dno}">
 							이름 : ${baby.dname}<br>
-							나이 : ${baby.dbirth }
-							
+							나이 : ${baby.dage }<br>
+							성별 : ${baby.dgender }
 						</button>
 					</c:forEach>
 					</div>

@@ -113,7 +113,7 @@ values(class_seq.nextval,'testcompany','야외놀이','된다고해라','12,13','된다고하
 
 select * from class
 select * from business
-
+select * from business where bid='testcompany'
 select * from reply
 
 update board set regdate= sysdate-1 where bno in (30,29);

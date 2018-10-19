@@ -35,7 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="select_babylist" resultType="ChildInfoVO">
-		select * from childinfo 
+		select dno,mid,dname, dgender,floor((to_date(sysdate, 'YY-MM-DD') - to_date(dbirth, 'YY-MM-DD') ) /365)+1 dage  
+		from childinfo 
 		where mid = #{mid}
 	</select>
 	

@@ -25,7 +25,9 @@ public class BoardController {
 	private BoardService service;
 	
 	@RequestMapping("list")
-	public String list(SearchCriteria cri, Model model) throws Exception {
+	public String list(SearchCriteria cri, Model model,HttpSession session) throws Exception {
+		
+		model.addAttribute("login_type",(String)session.getAttribute("login_type"));
 		model.addAttribute("cri", cri);
 		
 		model.addAttribute("notice", service.listNotice());
