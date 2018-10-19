@@ -129,7 +129,7 @@
 		<tr align="center" class="board_line">
 		<td>${posting.bno}</td>
 		<td>${posting.category }</td>
-		<td><a href='/board/showpage${pm.makeSearch(pm.cri.page) }&bno=${posting.bno}'>${posting.title}
+		<td align="left"><a href='/board/showpage${pm.makeSearch(pm.cri.page) }&bno=${posting.bno}'>${posting.title}
 			</a>[${posting.reply_cnt }] 
 			<c:choose>
 				<c:when test="${posting.newflag==1 }">
