@@ -59,8 +59,11 @@
 <center>
 <br>
 <h3>글쓰기 페이지</h3>
+<%-- 
+<xmp><font color="red">ABC</font></xmp>
+&lt;font color="red"&gt;ABC&lt;/font&gt;--%>
 <form method="post" name="form1">
-
+  
 	<input type="hidden" name="mid" value="${login_id }">
 	<input type="hidden" id="login_type" value="${login_type }">
 	<input type="hidden" id="cno" name="cno" value="0">
