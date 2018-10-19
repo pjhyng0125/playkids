@@ -3,7 +3,7 @@
 <div id="map" style="width:600px;height:300px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df426e292958a92daf7565449eff0552&libraries=services"></script>
-<script>
+<script type="text/javascript">
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표

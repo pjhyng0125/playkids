@@ -88,7 +88,6 @@
     	//구에 따른 list
     	$('.guBtn').click(function(){
     		gu = $(this).text();
-    		alert(gu)
     	});
     	
     	$('.guApplyBtn').click(function(){
@@ -96,7 +95,6 @@
     			alert('지역을 선택해주세요!');
     			return false;
     		}else{
-    			alert(gu);
     	
     			$('.addressHidden[value= "'+gu+'"]').parent().fadeIn();
 

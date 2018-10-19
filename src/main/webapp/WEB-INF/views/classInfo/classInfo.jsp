@@ -36,7 +36,6 @@
 	
 		$('#admin').click(function(){
 			var cno = $('#cno').val()
-			alert('cno>>'+cno)
 			
 			$.ajax({
 					url:'/class/update',
@@ -221,11 +220,11 @@
 
 	<button id="buy" type="button" class="btn btn-info">구매하기</button> 
 	<a class="btn btn-warning" id="charge" href="javascript:history.back()">이전 페이지로</a>
+
 		<c:if test="${login_id=='manager' }">
 			<button type="button" class="btn btn-danger" id="admin">인증하기</button> 
 			<a href="/admin" class="btn btn-danger">관리자페이지</a>
 		</c:if>
-
 <br><br><br><br>
 </form>
 	<div class="modal fade" id="alert_modal" role="dialog">

@@ -25,11 +25,10 @@ import com.playkids.service.MessageService;
 
 public class EchoHandler extends TextWebSocketHandler {
 
-	// 세션을 모두 저장한다.
-	// 방법 1 : 1:1 채팅
+
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
-	// 방법 2 : 전체 채팅
+
 	private List<WebSocketSession> connectedUsers = new ArrayList<WebSocketSession>();
 
 	@Inject
