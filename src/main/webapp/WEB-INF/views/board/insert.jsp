@@ -39,7 +39,6 @@
 			var classname = $(this).val()
 			var str = "< "+classname+"일자 클래스 참여 후기 >"
 			var cno =$(this).attr('cno');
-			alert('cno>>'+cno)
 			$('#cno').val(cno);
 			$('#writeTitle').val(str);
 			$('#writeTitle').attr('readonly',true)
