@@ -60,10 +60,10 @@ tbody tr:hover{
 			if(bprofit==0){
 				alert('반환받을 금액이 부족합니다.');
 				return;
+			}
 			
 			
 			if(confirm('수익금은 20% 공제된 금액으로 반환됩니다.\n반환 하시겠습니까?')){				
-				}
 				$.ajax({
 					data : {bprofit:"${businessInfo.bprofit }"},
 					type : 'post',

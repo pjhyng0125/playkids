@@ -153,7 +153,7 @@ public class MyPageController {
    }
    
    @RequestMapping("deleteReserve")
-   public @ResponseBody String deleteReserve(HttpSession session,String rno, String price){
+   public @ResponseBody String deleteReserve(HttpSession session,int rno, String price){
       System.err.println(rno);
       System.err.println(price);
       String login_id = (String) session.getAttribute("login_id");

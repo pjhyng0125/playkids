@@ -63,9 +63,10 @@ public class MypageServiceImpl implements MypageService{
 	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public boolean deleteReserve(Map<String, Object> map) {
+		String bid = mypageDAO.selectBid((int)map.get("rno"));
+		
 		if(mypageDAO.deleteReserve(map)){
-			String bid = mypageDAO.selectBid((int)map.get("rno"));
-			System.out.println(bid);
+			System.out.println("bid>>>"+bid);
 			map.put("bid", bid);
 			map.put("bprofit", ((int)map.get("mcash"))*-1);
 			if(mypageDAO.updateCash(map) && mypageDAO.updateBusinessProfit(map)) return true;
