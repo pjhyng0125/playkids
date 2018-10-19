@@ -80,10 +80,6 @@
             				<li style="line-height:48px; color:blue">${login_id}님 환영합니다!</li>    			
 	            			<li><a href="/logout" onclick="alert('로그아웃되었습니다^^');">로그아웃</a></li>
             			</c:if>
-            			<c:if test="${admin_id != null }">
-            				<li style="line-height:48px; color:blue">${admin_id}관리자님 환영합니다!</li>
-            				<li><a href="/logout" onclick="alert('로그아웃되었습니다^^');">로그아웃</a></li>
-            			</c:if>
             			<c:choose>
             				<c:when test="${login_id == 'manager' }">
             					<li><a href="/admin">관리자페이지</a></li>
