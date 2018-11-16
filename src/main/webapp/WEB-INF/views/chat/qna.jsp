@@ -105,20 +105,20 @@
 	  	  message.message_sender = '관리자';
   		  message.message_receiver = $('button[value=${to_id}]').attr('name');
   		  message.to_id = '${to_id}';
-  		  message.message_readTime=new Date();
+  		  message.message_readTime = new Date();
 	  }else{
 	  	  message.message_sender = '${mname}';
 	  	  message.message_receiver = '관리자';
 	  	  message.to_id = 'manager';
 	  }
-	  message.message_content = $("#message").val();
-	  message.from_id = '${login_id}';
-	    
+	  message.message_content = msg;
+	  message.from_id = '${login_id}';    
+	  sock.send(JSON.stringify(message));
+  }else{
+	  alert("내용를 입력해주세요!");
   }
-  $("#message").val("");
-  sock.send(JSON.stringify(message));
+  $("#message").val('');
  }
-
 
 
  
@@ -128,8 +128,9 @@
    var keycode = (event.keyCode ? event.keyCode : event.which);
    if(keycode == '13'){
     send();
+    event.preventDefault();
    }
-   event.stopPropagation();
+   event.stopPropagation(); 
   });
 
 

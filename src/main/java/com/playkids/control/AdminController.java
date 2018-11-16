@@ -42,13 +42,20 @@ public class AdminController {
 		List<MemberVO> list = service.selectmember();
 		System.out.println("adminMember");
 		for(int i=0; i<list.size();i++) {
-			String messageId = msgService.checkUnreadMessage(list.get(i).getMid());
-			System.out.println(messageId);
-			if(messageId !=null) {
+			String mid = list.get(i).getMid();
+			if(mid.equals("manager"))
+				continue;
+			
+			String messageId = msgService.checkUnreadMessage(mid);
+			System.out.println("messageId>>>"+messageId);
+			if(messageId != null) {
 				list.get(i).setMessageFlag(1);
+			}else {
+				list.get(i).setMessageFlag(0);				
 			}
 		}
 		model.addAttribute("list",list);
+		System.out.println("hi");
 		return "/admin/member_list";
 	}
 	

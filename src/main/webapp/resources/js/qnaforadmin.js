@@ -10,7 +10,6 @@
     	   console.log(data)
   		   var msgResult = JSON.parse(data)  	   
     	   console.log(msgResult)
-    	   alert(checkMid)
     	   if(checkMid == "" || checkMid==undefined || checkMid !=msgResult.from_id){
     		   $('button[value='+msgResult.from_id+']').parent().find('span').html('<img alt="new" src="/resources/img/new.gif" style="width:50px; height: 50px; ">');    		   
     	   }
